@@ -11,7 +11,6 @@ export const theme = {
     inputText: 'rgba(17, 17, 17, 0.6)',
     black: '#000000',
     white: '#ffffff',
-    link: '#3091EB',
   },
   //      0  1   2   3   4   5   6   7   8   9  10
   space: [4, 8, 16, 20, 32, 40, 50, 60, 64, 80, 100],
