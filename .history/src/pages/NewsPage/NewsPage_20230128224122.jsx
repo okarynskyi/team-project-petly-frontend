@@ -1,5 +1,5 @@
 import {
-  NewsH1,
+  H1,
   H2,
   NewsListBox,
   NewsListItem,
@@ -11,11 +11,7 @@ import {
 export const NewsPage = () => {
   return (
     <main>
-      <NewsH1>News</NewsH1>
-      
-    <form>
-      <input type="text" name="" autocomplete="off" placeholder="Search"/>
-    </form>
+      <H1>News</H1>
         <NewsListBox>
           <NewsListItem >
             <div>

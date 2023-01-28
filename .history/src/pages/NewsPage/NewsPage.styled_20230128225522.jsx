@@ -2,9 +2,8 @@ import styled from "styled-components";
 
 export const NewsH1 = styled.h1`
 font-size: ${props => props.theme.fontSizes.fs48};
-margin-top: 69px;
 margin-bottom: 144px;
-text-align: center;
+text-align
 `;
 
 export const H2 = styled.h2`

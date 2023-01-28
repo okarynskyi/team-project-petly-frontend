@@ -1,41 +1,34 @@
 import {
-  NewsH1,
-  H2,
-  NewsListBox,
-  NewsListItem,
-  NewsListText,
-  Div,
- 
-} from './NewsPage.styled.jsx';
+  neListBox,
+  ContactListItem,
+  ContactListBtn,
+  ContactListText,
+} from './ContactList.styled';
 
 export const NewsPage = () => {
   return (
     <main>
-      <NewsH1>News</NewsH1>
-      
-    <form>
-      <input type="text" name="" autocomplete="off" placeholder="Search"/>
-    </form>
-        <NewsListBox>
-          <NewsListItem >
+      <h1>News</h1>
+        <ul>
+          <li>
             <div>
               <div>
-                тут должен быть градиент
+                
               </div>
-              <H2>Обережно, кліщі! Як уберегти улюбленця</H2>
-                <NewsListText>Травневі прогулянки з улюбленцем не лише
+              <h2>Обережно, кліщі! Як уберегти улюбленця</h2>
+                <p>Травневі прогулянки з улюбленцем не лише
                   приємні, але й потребують пильності. З початком
                   теплої пори року активізуються кліщі, і треба бути
                   уважним, щоб уберегти свого песика чи котика від
                   дуже серйозних неприємностей зі здоров`ям.
-                </NewsListText>
-                <Div>
+                </p>
+                <div>
                   <p>20/02/2021</p>
                   <a href="" target="_blank">Read more</a>
-                </Div>
+                </div>
             </div>
-          </NewsListItem>
-        </NewsListBox>
+          </li>
+        </ul>
     </main>
   );
 };

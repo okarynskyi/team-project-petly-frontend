@@ -12,9 +12,19 @@ export const NewsPage = () => {
   return (
     <main>
       <NewsH1>News</NewsH1>
-      
-    <form>
-      <input type="text" name="" autocomplete="off" placeholder="Search"/>
+      <div >
+    <form class="" id="">
+      <input class="" 
+      type="" name=""
+      autocomplete=""
+        placeholder=""
+        />
+      <button class="" type="">
+        <img class=""
+         src="" 
+         alt="search" 
+         loading="lazy" />
+      </button>
     </form>
         <NewsListBox>
           <NewsListItem >

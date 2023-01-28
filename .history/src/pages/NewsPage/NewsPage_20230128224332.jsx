@@ -12,10 +12,6 @@ export const NewsPage = () => {
   return (
     <main>
       <NewsH1>News</NewsH1>
-      
-    <form>
-      <input type="text" name="" autocomplete="off" placeholder="Search"/>
-    </form>
         <NewsListBox>
           <NewsListItem >
             <div>

@@ -1,5 +1,5 @@
 import {
-  NewsH1,
+  H1,
   H2,
   NewsListBox,
   NewsListItem,
@@ -11,18 +11,14 @@ import {
 export const NewsPage = () => {
   return (
     <main>
-      <NewsH1>News</NewsH1>
-      
-    <form>
-      <input type="text" name="" autocomplete="off" placeholder="Search"/>
-    </form>
+      <H1>News</H1>
         <NewsListBox>
           <NewsListItem >
             <div>
               <div>
                 тут должен быть градиент
               </div>
-              <H2>Обережно, кліщі! Як уберегти улюбленця</H2>
+              <>Обережно, кліщі! Як уберегти улюбленця</h2>
                 <NewsListText>Травневі прогулянки з улюбленцем не лише
                   приємні, але й потребують пильності. З початком
                   теплої пори року активізуються кліщі, і треба бути

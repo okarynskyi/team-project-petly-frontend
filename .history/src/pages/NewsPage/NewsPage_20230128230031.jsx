@@ -13,8 +13,18 @@ export const NewsPage = () => {
     <main>
       <NewsH1>News</NewsH1>
       
-    <form>
-      <input type="text" name="" autocomplete="off" placeholder="Search"/>
+    <form class="search-form" id="search-form">
+      <input class="search-form__input" 
+      type="text" name="searchQuery"
+      autocomplete="off"
+        placeholder="Search images..."
+        />
+      <button class="search-form__btn" type="submit">
+        <img class="search-form__icon"
+         src="./icons-search-30.png" 
+         alt="search" 
+         loading="lazy" />
+      </button>
     </form>
         <NewsListBox>
           <NewsListItem >

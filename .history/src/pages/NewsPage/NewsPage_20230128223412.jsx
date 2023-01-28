@@ -1,28 +1,22 @@
 import {
-  NewsH1,
-  H2,
   NewsListBox,
   NewsListItem,
   NewsListText,
-  Div,
+  Div
  
 } from './NewsPage.styled.jsx';
 
 export const NewsPage = () => {
   return (
     <main>
-      <NewsH1>News</NewsH1>
-      
-    <form>
-      <input type="text" name="" autocomplete="off" placeholder="Search"/>
-    </form>
+      <h1>News</h1>
         <NewsListBox>
           <NewsListItem >
             <div>
               <div>
                 тут должен быть градиент
               </div>
-              <H2>Обережно, кліщі! Як уберегти улюбленця</H2>
+              <h2>Обережно, кліщі! Як уберегти улюбленця</h2>
                 <NewsListText>Травневі прогулянки з улюбленцем не лише
                   приємні, але й потребують пильності. З початком
                   теплої пори року активізуються кліщі, і треба бути
@@ -32,7 +26,7 @@ export const NewsPage = () => {
                 <Div>
                   <p>20/02/2021</p>
                   <a href="" target="_blank">Read more</a>
-                </Div>
+                </>
             </div>
           </NewsListItem>
         </NewsListBox>

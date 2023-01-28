@@ -13,8 +13,12 @@ export const NewsPage = () => {
     <main>
       <NewsH1>News</NewsH1>
       
-    <form>
-      <input type="text" name="" autocomplete="off" placeholder="Search"/>
+    <form class="search-form" id="search-form">
+      <input class="search-form__input" 
+      type="text" name="searchQuery"
+      autocomplete="off"
+        placeholder="Search"
+        />
     </form>
         <NewsListBox>
           <NewsListItem >
