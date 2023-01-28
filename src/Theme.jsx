@@ -38,8 +38,8 @@ export const theme = {
     fw700: '700',
   },
   borders: {
-    none: 'none',
     main: '2px solid #F59256',
+    accent: '2px solid #FF6101',
     auth: '1px solid rgba(245, 146, 86, 0.5)',
   },
   radii: {
