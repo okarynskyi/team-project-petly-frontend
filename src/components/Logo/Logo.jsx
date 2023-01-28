@@ -1,9 +1,11 @@
+import { LogoStyled, LogoAccentStyled } from './Logo.styled';
+
 export const Logo = () => {
   return (
-    <p>
+    <LogoStyled>
       pe
-      <span>t</span>
+      <LogoAccentStyled>t</LogoAccentStyled>
       ly
-    </p>
+    </LogoStyled>
   );
 };
