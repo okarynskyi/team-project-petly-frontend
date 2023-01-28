@@ -1,17 +1,16 @@
 // import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
-import { HiCamera, HiPencil  } from 'react-icons/hi';
+import { HiCamera, HiPencil, HiCheck } from 'react-icons/hi';
 import { UserDataItem } from 'components/UserDataItem/UserDataItem';
 import userAvatar from '../../staticImages/userAvatar.png';
-
+import { CardProfile, ItemUserInfo } from './UserData.styled';
 const userInfoFromBack = [
   {
-    id: 25635767,
     name: 'Alena',
     email: 'al@gmail.com',
     city: 'Tokio',
     birthday: '00.00.0000',
-    avatarUrl: userAvatar,
+    avatarURL: userAvatar,
     phone: '+380965749315',
   },
 ];
@@ -30,8 +29,7 @@ function checkType(item) {
 export const UserData = ({ userInfo = userInfoFromBack }) => {
   let filterUserInfo = [];
   for (let key in userInfo[0]) {
-    console.log('key', key);
-    if (key === 'id' || key === 'avatarUrl') {
+    if (key === 'avatarURL') {
       continue;
     } else {
       filterUserInfo.push({ label: key, value: userInfo[0][key] });
@@ -41,35 +39,38 @@ export const UserData = ({ userInfo = userInfoFromBack }) => {
   return (
     <section>
       <h2>My information:</h2>
-      <label htmlFor="photoUser">
-        <img
-          src={userInfo[0].avatarUrl}
-          alt="User avatar"
-          style={{ width: '233px' }}
-        />
-        <HiCamera />
-        Edit photo
-        <input
-          type="file"
-          name="photo"
-          id="photoUser"
-          style={{ display: 'none' }}
-        />
-      </label>
-      {userInfo && (
-        <ul>
-          {filterUserInfo.map(itemValue => (
-            <li key={itemValue.label}>
-              <UserDataItem
-                type={checkType(itemValue)}
-                label={itemValue.label}
-                value={itemValue.value}
-              />
-              <HiPencil />
-            </li>
-          ))}
-        </ul>
-      )}
+      <CardProfile>
+          <label htmlFor="photoUser">
+            <img
+              src={userInfo[0].avatarURL}
+              alt="User avatar"
+              style={{ width: '233px' }}
+            />
+            <HiCamera />
+            Edit photo
+          </label>
+          <input
+            type="file"
+            name="photo"
+            id="photoUser"
+            style={{ display: 'none' }}
+          />
+
+        {userInfo && (
+          <ul>
+            {filterUserInfo.map(itemValue => (
+              <ItemUserInfo key={itemValue.label}>
+                <UserDataItem
+                  type={checkType(itemValue)}
+                  label={itemValue.label}
+                  value={itemValue.value}
+                />
+                <HiPencil /> <HiCheck />
+              </ItemUserInfo>
+            ))}
+          </ul>
+        )}
+      </CardProfile>
     </section>
   );
 };
