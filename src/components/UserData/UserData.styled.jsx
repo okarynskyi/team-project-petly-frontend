@@ -11,6 +11,7 @@ export const CardProfile = styled.div`
     align-items: center;
     justify-content: space-between;
     flex-direction: row-reverse;
+    gap: 52px;
     padding: 24px ${props => props.theme.space[5]}px 24px 0;
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
     border-radius: 0px ${props => props.theme.radii.br40}

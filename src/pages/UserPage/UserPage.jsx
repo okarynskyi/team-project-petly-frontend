@@ -1,14 +1,16 @@
 import { UserData } from 'components/UserData/UserData';
+import { PetsData } from 'components/PetsData/PetsData';
 import { Container } from 'components/common/Container.styled';
-import { TitleSectionUser } from './UserPage.styled';
+import { SectionUser } from './UserPage.styled';
+
 export const UserPage = () => {
   return (
     <main>
       <Container>
-        <section>
-          <TitleSectionUser>My information:</TitleSectionUser>
+        <SectionUser>
           <UserData></UserData>
-        </section>
+          <PetsData></PetsData>
+        </SectionUser>
       </Container>
     </main>
   );
