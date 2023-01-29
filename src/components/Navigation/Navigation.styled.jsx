@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
-export const NavigationStyled = styled.nav`
+export const NavigationStyled = styled.div`
+  position: relative;
   display: flex;
-  gap: 200px;
+  align-items: center;
+  justify-content: space-between;
+  div {
+    display: flex;
+  }
 `;
