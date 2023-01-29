@@ -6,6 +6,10 @@ import { LabelUserInfo, ValueUserInfo, Circle } from './UserDataItem.styled';
 export const UserDataItem = ({ type, label, value }) => {
   const [disable, setDisable] = useState(true);
   const [startUpdate, setStartUpdate] = useState(false);
+  useEffect(() => {
+    setDisable(true);
+    setStartUpdate(false)
+  }, [disable, startUpdate]);
   return (
     <>
       <LabelUserInfo htmlFor={label}>{label}:</LabelUserInfo>
