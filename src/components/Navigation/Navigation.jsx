@@ -12,7 +12,7 @@ import { Logo } from '../Logo/Logo';
 
 export const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const token = 'jfdnbkzdjf';
+  const token = '';
   const isDesctop = useMedia('(min-width: 1280px)');
   const isMobile = useMedia('(max-width: 767px)');
 
