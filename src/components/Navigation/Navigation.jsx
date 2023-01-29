@@ -1,16 +1,3 @@
-// import { Nav } from '../Nav/Nav';
-// import { AuthNav } from '../AuthNav/AuthNav';
-// import { NavigationStyled } from './Navigation.styled';
-
-// export const Navigation = () => {
-//   return (
-//     <NavigationStyled>
-//       <Nav />
-//       <AuthNav />
-//     </NavigationStyled>
-//   );
-// };
-
 import { useState } from 'react';
 import { useMedia } from 'react-use';
 // import { useSelector } from 'react-redux';
@@ -25,7 +12,7 @@ import { Logo } from '../Logo/Logo';
 
 export const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const token = 'dghmytyhmnctdyj';
+  const token = 'jfdnbkzdjf';
   const isDesctop = useMedia('(min-width: 1280px)');
   const isMobile = useMedia('(max-width: 767px)');
 

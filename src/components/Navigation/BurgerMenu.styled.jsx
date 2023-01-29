@@ -1,25 +1,23 @@
 import styled from 'styled-components';
-import { CgClose } from 'react-icons/cg';
+import { HiX } from 'react-icons/hi';
 
 export const NavStyled = styled.nav`
   position: absolute;
-  background-color: rgba(253, 247, 242, 1);
+  background-color: ${props => props.theme.colors.background};
   z-index: 50;
   padding: 16px 20px;
-  width: 320px;
+  width: 100%;
   top: 0;
   right: 50%;
   transform: translateX(50%);
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
-  border-radius: 20px;
   margin: 5px auto;
   @media (min-width: 768px) {
     padding: 24px 32px;
-    width: 748px;
   }
 `;
 
-export const Div1 = styled.div`
+export const WrapLogo = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 46px;
@@ -31,7 +29,7 @@ export const Div1 = styled.div`
   }
 `;
 
-export const Div2 = styled.div`
+export const WrapNav = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,9 +40,11 @@ export const Div2 = styled.div`
   }
 `;
 
-export const CloseIcon = styled(CgClose)`
+export const CloseIcon = styled(HiX)`
   width: 32px;
   height: 32px;
+  border: none;
+  background: transparent;
 `;
 
 export const BackDrop = styled.div`
@@ -55,7 +55,7 @@ export const BackDrop = styled.div`
   width: 100%;
   height: 100%;
   padding: 0 20px;
-  background-color: rgba(17, 17, 17, 0.6);
+  background-color: ${props => props.theme.colors.inputText};
   backdrop-filter: blur(10px);
   overflow: auto;
 `;

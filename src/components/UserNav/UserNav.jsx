@@ -5,12 +5,12 @@ import { AccountBtn, UserCircle } from './UserNav.styled';
 
 export const UserNav = ({ onClose }) => {
   //   const user = useSelector(selectUser);
-  const user = { name: 'Alona', avatarURL: userAvatar };
+  const user = { name: 'Alena', avatarURL: userAvatar };
   const { name, avatarURL } = user;
 
   return (
     <>
-      <AccountBtn to="/user" onClick={onClose} size="180px">
+      <AccountBtn to="/user" onClick={onClose} size="164px">
         <div>
           {avatarURL ? <img src={avatarURL} alt="Account" /> : <UserCircle />}
         </div>

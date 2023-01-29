@@ -20,5 +20,5 @@ export const BtnMenuLine = styled.div`
   width: 100%;
   height: 3px;
   border-radius: 3px;
-  background-color: rgba(33, 33, 33, 1);
+  background-color: ${props => props.theme.colors.mainText};
 `;

@@ -1,16 +1,18 @@
 /* @import-normalize; bring in normalize.css styles */
 
 body {
+  background-color: #fdf7f2;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Manrope', 'Montserrat','Inter', 'Poppins' sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Manrope', 'Montserrat',
+    'Inter', 'Poppins' sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
-
 
 h1,
 h2,
