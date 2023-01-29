@@ -1,0 +1,19 @@
+import styled from 'styled-components';
+import { device } from 'Device';
+
+export const TitleSectionUser = styled.h2`
+  font-family: ${props => props.theme.fonts.main};
+  font-style: normal;
+  font-weight: ${props => props.theme.fontWeights.fw500};
+  font-size: ${props => props.theme.fontSizes.fs20};
+  line-height: 1.35;
+  letter-spacing: 0.04em;
+  color: ${props => props.theme.colors.black};
+  margin-bottom: ${props => props.theme.space[2]}px; //18 было
+  @media ${device.tablet} {
+    font-size: ${props => props.theme.fontSizes.fs28};
+    line-height: 38px;
+    color: ${props => props.theme.colors.mainText};
+    margin-bottom: ${props => props.theme.space[5]}px;
+  }
+`;

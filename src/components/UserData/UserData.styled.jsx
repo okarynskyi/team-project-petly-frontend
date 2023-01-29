@@ -1,11 +1,29 @@
 import styled from 'styled-components';
+import { device } from 'Device';
 
 export const CardProfile = styled.div`
-  width: 280px;
-  margin: 0 auto;
-  padding: 20px 0;
+  padding: ${props => props.theme.space[3]}px 0;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
-  border-radius: 20px;
+  background: ${props => props.theme.colors.white};
+  border-radius: ${props => props.theme.radii.br20};
+  @media ${device.tablet} {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    padding: 24px ${props => props.theme.space[5]}px 24px 0;
+    box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+    border-radius: 0px ${props => props.theme.radii.br40}
+      ${props => props.theme.radii.br40} 0px;
+  }
+  @media ${device.desktop} {
+    width: 395px;
+    flex-direction: column;
+    padding: ${props => props.theme.space[3]}px
+      ${props => props.theme.space[2]}px 18px 0;
+    margin-left: 0;
+    margin-right: auto;
+  }
 `;
 export const AvatarWrapper = styled.div`
   position: relative;
@@ -16,21 +34,43 @@ export const AvatarWrapper = styled.div`
 export const Avatar = styled.img`
   margin: 0 auto 70px;
   width: 233px;
+  filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
+  @media ${device.tablet} {
+    margin-bottom: ${props => props.theme.space[4]}px; //30 было
+  }
+  @media ${device.desktop} {
+    margin-bottom: 36px;
+  }
 `;
 export const LabelEditPhoto = styled.label`
   position: absolute;
   right: 24px;
   bottom: -12px;
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 1.83;
-  color: #111111;
   display: flex;
-  align-items: center;
-  letter-spacing: 0.04em;
-  gap: 4px;
+  align-items: normal;
+  gap: ${props => props.theme.space[0]}px;
+  padding: 2px;
+  font-family: ${props => props.theme.fonts.main};
+  font-size: ${props => props.theme.fontSizes.fs12};
+  line-height: 1.83;
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  :hover,
+  :focus {
+    cursor: pointer;
+    border: 1px solid ${props => props.theme.colors.accent};
+    border-radius: ${props => props.theme.radii.br40};
+  }
+  @media ${device.tablet} {
+    right: 0;
+    bottom: 0;
+  }
+  @media ${device.desktop} {
+    right: -74px;
+    bottom: 32px;
+  }
+`;
+export const InfoWrapper = styled.div`
+  position: relative;
 `;
 export const ListUserInfo = styled.ul`
   display: flex;
@@ -38,16 +78,27 @@ export const ListUserInfo = styled.ul`
   justify-content: space-between;
   align-items: center;
   gap: 12px;
-    padding: 0 12px 0 16px;
+  padding: 0 12px 0 16px;
+  margin-bottom: 66px;
+  @media ${device.tablet} {
+    width: 380px;
+    margin-bottom: 55px;
+    gap: ${props => props.theme.space[1]}px;
+    padding-right: 0;
+  }
+  @media ${device.desktop} {
+    gap: ${props => props.theme.space[2]}px;
+    margin-bottom: 46px;
+  }
 `;
 export const ItemUserInfo = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  >div {
-     display: flex;
-  justify-content: space-between;
-  align-items: center;
+  > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 `;
