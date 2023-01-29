@@ -35,8 +35,8 @@ export const NewsPage = () => {
                   <Div>
                     <DataP>20/02/2021</DataP>
                     <A href="" target="_blank">Read more</A>
-            </Div>
-            
+                  </Div>
+                  
             </NewsListItem>
         </NewsListBox>
         </Section>
