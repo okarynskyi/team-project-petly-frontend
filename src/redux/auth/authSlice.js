@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {signUp, logIn, logOut, getCurrentUser} from './authOperations';
+import {signUp, logIn, logOut, getCurrentUser, userUpgade} from './authOperations';
 
 const handleRejectedOrLogOut = state => {
     state.user = { name: null, email: null };
@@ -42,6 +42,13 @@ const authSlice = createSlice({
             
             state.user = { id: _id, name, email, city, phone, birthday, avatarURL, favorites };
             state.isLoggedIn = true;
+        },
+
+        [userUpgade.fulfilled](state, { payload }) {
+            state.user = {
+                ...state.user,
+                ...payload,
+            };
         },
     },
 });
