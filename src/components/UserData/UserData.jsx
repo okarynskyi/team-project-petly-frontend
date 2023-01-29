@@ -1,9 +1,16 @@
 // import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
-import { HiCamera, HiPencil, HiCheck } from 'react-icons/hi';
+import { HiCamera } from 'react-icons/hi';
 import { UserDataItem } from 'components/UserDataItem/UserDataItem';
 import userAvatar from '../../staticImages/userAvatar.png';
-import { CardProfile, ItemUserInfo } from './UserData.styled';
+import {
+  CardProfile,
+  ItemUserInfo,
+  Avatar,
+  AvatarWrapper,
+  LabelEditPhoto, ListUserInfo
+} from './UserData.styled';
+import { Container } from 'components/common/Container.styled';
 const userInfoFromBack = [
   {
     name: 'Alena',
@@ -38,39 +45,33 @@ export const UserData = ({ userInfo = userInfoFromBack }) => {
 
   return (
     <section>
-      <h2>My information:</h2>
-      <CardProfile>
-          <label htmlFor="photoUser">
-            <img
-              src={userInfo[0].avatarURL}
-              alt="User avatar"
-              style={{ width: '233px' }}
-            />
-            <HiCamera />
-            Edit photo
-          </label>
-          <input
-            type="file"
-            name="photo"
-            id="photoUser"
-            style={{ display: 'none' }}
-          />
-
-        {userInfo && (
-          <ul>
-            {filterUserInfo.map(itemValue => (
-              <ItemUserInfo key={itemValue.label}>
-                <UserDataItem
-                  type={checkType(itemValue)}
-                  label={itemValue.label}
-                  value={itemValue.value}
-                />
-                <HiPencil /> <HiCheck />
-              </ItemUserInfo>
-            ))}
-          </ul>
-        )}
-      </CardProfile>
+      <Container>
+        <h2>My information:</h2>
+        <CardProfile>
+          <AvatarWrapper>
+            <Avatar src={userInfo[0].avatarURL} alt="User avatar" />
+            <LabelEditPhoto htmlFor="photoUser">
+              <HiCamera color="#F59256" size="20px" />
+              Edit photo
+            </LabelEditPhoto>
+            <input type="file" name="photo" id="photoUser" />
+          </AvatarWrapper>
+          {userInfo && (
+            <ListUserInfo>
+              {filterUserInfo.map(itemValue => (
+                <ItemUserInfo key={itemValue.label}>
+                  <UserDataItem
+                    type={checkType(itemValue)}
+                    label={itemValue.label}
+                    value={itemValue.value}
+                  />
+       
+                </ItemUserInfo>
+              ))}
+            </ListUserInfo>
+          )}
+        </CardProfile>
+      </Container>
     </section>
   );
 };
