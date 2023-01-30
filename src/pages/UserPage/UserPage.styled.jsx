@@ -16,6 +16,9 @@ export const TitleSectionUser = styled.h2`
     color: ${props => props.theme.colors.mainText};
     margin-bottom: ${props => props.theme.space[5]}px;
   }
+  @media ${device.desktop} {
+    margin-bottom: 24px;
+  }
 `;
 
 export const SectionUser = styled.section`
@@ -24,7 +27,7 @@ export const SectionUser = styled.section`
   align-items: flex-start;
   justify-content: space-between;
   flex-direction: column;
-  gap: 40px;
+  gap: ${props => props.theme.space[5]}px;
   @media ${device.desktop} {
     flex-direction: row;
   }

@@ -1,10 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { device } from 'Device';
 
 export const CircleBtn = styled.button`
   width: 20px;
   height: 20px;
-  padding: 1px 0 0 2px;
+  padding: 0;
   border: 1px solid;
   border-radius: ${props => props.theme.radii.round};
   background-color: ${props => props.theme.colors.background};

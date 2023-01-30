@@ -1,15 +1,14 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { HiPencil, HiCheck } from 'react-icons/hi';
 import {
   LabelUserInfo,
   ValueText,
   ValueEmailTel,
   InputUserInfo,
+  StyledPencil,
+  StyledCheck,
 } from './UserDataItem.styled';
 import { CircleBtn } from 'components/common/CircleBtn.styled';
-// import check from '../../staticImages/check.svg';
-// import pencil from '../../staticImages/pencil.svg';
 
 function chooseTypeLink(type, value) {
   if (type === 'email') {
@@ -39,17 +38,11 @@ export const UserDataItem = ({ type, label, value }) => {
         )}
         {startUpdate ? (
           <CircleBtn type="button">
-            {/* <IconInBtn width="13" height="13">
-              <use href={check}></use>
-            </IconInBtn> */}
-            <HiCheck color="#F59256" size="14px" />
+            <StyledCheck />
           </CircleBtn>
         ) : (
           <CircleBtn type="button">
-            {/* <svg width="13" height="13">
-              <use href={pencil}></use>
-            </svg> */}
-            <HiPencil color="#F59256" size="15px" />
+            <StyledPencil />
           </CircleBtn>
         )}
       </div>

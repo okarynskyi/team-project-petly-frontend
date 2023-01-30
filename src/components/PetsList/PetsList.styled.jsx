@@ -1,33 +1,40 @@
 import styled from 'styled-components';
 import { device } from 'Device';
 import { CircleBtn } from 'components/common/CircleBtn.styled';
+import { HiTrash } from 'react-icons/hi';
 
 export const ListPets = styled.ul`
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 20px;
+  gap: ${props => props.theme.space[3]}px;
 `;
 export const CardPet = styled.li`
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  gap: 20px;
-  background: #ffffff;
+  justify-content: space-between;
+  gap: ${props => props.theme.space[3]}px;
+  background: ${props => props.theme.colors.white};
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
-  border-radius: 20px;
-  padding: 20px 20px 40px;
+  border-radius: ${props => props.theme.radii.br20};
+  padding: ${props => props.theme.space[3]}px ${props => props.theme.space[3]}px
+    ${props => props.theme.space[5]}px;
   @media ${device.tablet} {
     flex-direction: row;
-    gap: 32px;
-    padding: 20px;
-    border-radius: 40px;
+    gap: ${props => props.theme.space[4]}px;
+    padding: ${props => props.theme.space[3]}px;
+    border-radius: ${props => props.theme.radii.br40};
+  }
+  @media ${device.desktop} {
+    width: 820px;
   }
 `;
 export const ImgPet = styled.img`
-  border-radius: 20px;
+  border-radius: ${props => props.theme.radii.br20};
   @media ${device.tablet} {
-    border-radius: 40px;
+    border-radius: ${props => props.theme.radii.br40};
+    width: 160px;
   }
 `;
 export const WrapperInfo = styled.div`
@@ -40,21 +47,21 @@ export const WrapperInfo = styled.div`
   @media ${device.tablet} {
     width: 470px;
   }
+  @media ${device.desktop} {
+    width: 580px;
+  }
 `;
 export const InfoPet = styled.div`
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 1.37;
+  font-family: ${props => props.theme.fonts.main};
+  font-weight: ${props => props.theme.fontWeights.fw500};
+  font-size: ${props => props.theme.fontSizes.fs14};
   letter-spacing: 0.04em;
-  color: #000000;
   > span {
-    font-weight: 400;
+    font-weight: ${props => props.theme.fontWeights.fw400};
     line-height: 1.57;
   }
   @media ${device.tablet} {
-    font-size: 16px;
+    font-size: ${props => props.theme.fontSizes.fs16};
   }
 `;
 export const CircleBtnTrash = styled(CircleBtn)`
@@ -64,4 +71,26 @@ export const CircleBtnTrash = styled(CircleBtn)`
   position: absolute;
   top: 0;
   right: 0;
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  :hover,
+  :focus {
+    cursor: pointer;
+    border: 1px solid ${props => props.theme.colors.inputText};
+  }
+`;
+const IconTrash = ({ className }) => <HiTrash className={className} />;
+export const StyledTrash = styled(IconTrash)`
+  color: ${props => props.theme.colors.inputText};
+  width: 20px;
+  height: 20px;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  :hover,
+  :focus {
+    cursor: pointer;
+    transform: scale(1.2);
+  }
+  @media ${device.tablet} {
+    width: 24px;
+    height: 24px;
+  }
 `;

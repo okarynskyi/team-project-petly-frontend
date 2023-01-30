@@ -25,7 +25,7 @@ export const LogoutBtn = styled.button`
     border-radius: ${props => props.theme.radii.br40};
   }
   @media ${device.tablet} {
-    left: 10px;
+    left: 20px;
     bottom: 0;
     right: auto;
   }
