@@ -17,3 +17,15 @@ export const TitleSectionUser = styled.h2`
     margin-bottom: ${props => props.theme.space[5]}px;
   }
 `;
+
+export const SectionUser = styled.section`
+  padding-top: 52px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 40px;
+  @media ${device.desktop} {
+    flex-direction: row;
+  }
+`;

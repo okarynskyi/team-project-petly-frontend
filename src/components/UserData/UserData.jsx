@@ -2,6 +2,7 @@
 import PropTypes from 'prop-types';
 import { HiCamera } from 'react-icons/hi';
 import { UserDataItem } from 'components/UserDataItem/UserDataItem';
+import { TitleSectionUser } from '../../pages/UserPage/UserPage.styled';
 import { Logout } from 'components/Logout/Logout';
 import userAvatar from '../../staticImages/userAvatar.png';
 import {
@@ -11,7 +12,7 @@ import {
   AvatarWrapper,
   LabelEditPhoto,
   ListUserInfo,
-  InfoWrapper,
+  InfoWrapper
 } from './UserData.styled';
 
 const userInfoFromBack = [
@@ -47,32 +48,35 @@ export const UserData = ({ userInfo = userInfoFromBack }) => {
   }
 
   return (
-    <CardProfile>
-      <AvatarWrapper>
-        <Avatar src={userInfo[0].avatarURL} alt="User avatar" />
-        <LabelEditPhoto htmlFor="photoUser">
-          <HiCamera color="#F59256" size="20px" />
-          Edit photo
-        </LabelEditPhoto>
-        <input type="file" name="photo" id="photoUser" />
-      </AvatarWrapper>
-      <InfoWrapper>
-        {userInfo && (
-          <ListUserInfo>
-            {filterUserInfo.map(itemValue => (
-              <ItemUserInfo key={itemValue.label}>
-                <UserDataItem
-                  type={checkType(itemValue)}
-                  label={itemValue.label}
-                  value={itemValue.value}
-                />
-              </ItemUserInfo>
-            ))}
-          </ListUserInfo>
-        )}
-        <Logout />
-      </InfoWrapper>
-    </CardProfile>
+    <div>
+      <TitleSectionUser>My information:</TitleSectionUser>
+      <CardProfile>
+        <AvatarWrapper>
+          <Avatar src={userInfo[0].avatarURL} alt="User avatar" />
+          <LabelEditPhoto htmlFor="photoUser">
+            <HiCamera color="#F59256" size="20px" />
+            Edit photo
+          </LabelEditPhoto>
+          <input type="file" name="photo" id="photoUser" />
+        </AvatarWrapper>
+        <InfoWrapper>
+          {userInfo && (
+            <ListUserInfo>
+              {filterUserInfo.map(itemValue => (
+                <ItemUserInfo key={itemValue.label}>
+                  <UserDataItem
+                    type={checkType(itemValue)}
+                    label={itemValue.label}
+                    value={itemValue.value}
+                  />
+                </ItemUserInfo>
+              ))}
+            </ListUserInfo>
+          )}
+          <Logout />
+        </InfoWrapper>
+      </CardProfile>
+    </div>
   );
 };
 
