@@ -7,11 +7,9 @@ export const RegisterPage = () => {
     <main>
       <h1>RegisterPage</h1>
       <button onClick={() => setModalActive(true)}>RegistrationForm</button>
-      <Modal active={modalActive} setActive={setModalActive}>
-        <input type="text" />
-        <input type="text" />
-        <input type="text" />
-        <button>Cancel</button>
+      <Modal 
+      active={modalActive} 
+      setActive={setModalActive}>
       </Modal>
     </main>
   );
