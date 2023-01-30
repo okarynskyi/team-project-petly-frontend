@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Container } from 'components/common/Container.styled';
 import { device } from 'Device';
 
 export const Section = styled.section`
@@ -14,21 +15,17 @@ export const Section = styled.section`
   }
 `;
 
-export const StyledContainer = styled.div`
+export const StyledContainer = styled(Container)`
   width: 100%;
-  margin: 0 auto;
-  padding: 0 20px;
 
   @media ${device.mobile} {
     width: 490px;
   }
   @media ${device.tablet} {
     width: 768px;
-    padding: 0 32px;
   }
   @media ${device.desktop} {
     width: 1280px;
-    padding: 0 16px;
   }
 `;
 
