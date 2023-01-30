@@ -1,23 +1,21 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-
-axios.defaults.baseURL = "http://localhost:4000/api";
+import { axiosInstance } from '../../services/apiService';
 
 // Utility to add JWT
 const setAuthHeader = token => {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
 // Utility to remove JWT
 const clearAuthHeader = () => {
-    axios.defaults.headers.common.Authorization = '';
+    axiosInstance.defaults.headers.common.Authorization = '';
 };
 
 export const signUp = createAsyncThunk(
     'auth/signup',
     async (credentials, { rejectWithValue }) => {
         try {
-            const { data } = await axios.post('/auth/signup', credentials);
+            const { data } = await axiosInstance.post('/auth/signup', credentials);
             setAuthHeader(data.token);
 
             return data;
@@ -31,7 +29,7 @@ export const logIn = createAsyncThunk(
     'auth/login',
     async (credentials, { rejectWithValue }) => {
         try {
-            const { data } = await axios.post('/auth/login', credentials);
+            const { data } = await axiosInstance.post('/auth/login', credentials);
             setAuthHeader(data.token);
 
             return data;
@@ -45,7 +43,7 @@ export const logOut = createAsyncThunk(
     'auth/logout',
     async (_, { rejectWithValue }) => {
         try {
-            await axios.post('/auth/logout');
+            await axiosInstance.post('/auth/logout');
             clearAuthHeader();
         } catch (error) {
             return rejectWithValue(error.message);
@@ -66,7 +64,7 @@ export const getCurrentUser = createAsyncThunk(
         setAuthHeader(persistedToken);
 
         try {
-            const { data } = await axios.get('/auth/current');
+            const { data } = await axiosInstance.get('/auth/current');
 
             return data;
         } catch (error) {
@@ -80,7 +78,7 @@ export const userUpgade = createAsyncThunk(
     async (credentials, { rejectWithValue }) => {
         console.log(credentials)
         try {
-            const { data } = await axios.patch('/auth', credentials);
+            const { data } = await axiosInstance.patch('/auth', credentials);
 
             return data;
         } catch (error) {

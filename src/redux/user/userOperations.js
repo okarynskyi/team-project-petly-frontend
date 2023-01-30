@@ -1,14 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-
-axios.defaults.baseURL = "http://localhost:4000/api";
+import { axiosInstance } from '../../services/apiService';
 
 export const addPet = createAsyncThunk(
     'user/addPet',
     async (post, { rejectWithValue }) => {
         console.log(post)
         try {
-            const { data } = await axios.post('/users/pets', post);
+            const { data } = await axiosInstance.post('/users/pets', post);
 
             return data;
         } catch (error) {
@@ -21,7 +19,7 @@ export const removePet = createAsyncThunk(
     'user/removePet',
     async (id, { rejectWithValue }) => {
         try {
-            await axios.delete(`/users/pets/${id}`);
+            await axiosInstance.delete(`/users/pets/${id}`);
 
             return id;
         } catch (error) {
@@ -34,7 +32,7 @@ export const listPets = createAsyncThunk(
     'user/listPets',
     async (_, { rejectWithValue }) => {
         try {
-            const { data } = await axios.get('/users/pets');
+            const { data } = await axiosInstance.get('/users/pets');
         
             return data;
         } catch (error) {
@@ -47,7 +45,7 @@ export const getUserData = createAsyncThunk(
     'user/getUserData',
     async (_, { rejectWithValue }) => {
         try {
-            const { data } = await axios.get('/');
+            const { data } = await axiosInstance.get('/');
 
             return data;
         } catch (error) {
