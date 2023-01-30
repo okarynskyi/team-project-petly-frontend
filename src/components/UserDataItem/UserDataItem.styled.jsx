@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { device } from 'Device';
+import { HiPencil, HiCheck } from 'react-icons/hi';
 
 export const LabelUserInfo = styled.label`
   font-family: ${props => props.theme.fonts.main};
@@ -33,7 +34,8 @@ export const InputUserInfo = styled.input`
   }
 `;
 //дізнатися,як винести спільне в окрему частинку,
-//а потім перевикористати и ValueText and ValueEmailTel
+//а потім перевикористати и ValueText and ValueEmailTel, IconPencil and IconCheck
+
 export const ValueText = styled.p`
   font-family: ${props => props.theme.fonts.main};
   font-size: ${props => props.theme.fontSizes.fs12};
@@ -74,6 +76,35 @@ export const ValueEmailTel = styled.a`
     width: 216px;
   }
 `;
-export const IconInBtn = styled.svg`
-  fill: currentColor;
+const IconPencil = ({ className }) => <HiPencil className={className} />;
+export const StyledPencil = styled(IconPencil)`
+  color: ${props => props.theme.colors.accent};
+  width: 13px;
+  height: 13px;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  :hover,
+  :focus {
+    cursor: pointer;
+    transform: scale(1.2);
+  }
+  @media ${device.tablet} {
+    width: 20px;
+    height: 20px;
+  }
+`;
+const IconCheck = ({ className }) => <HiCheck className={className} />;
+export const StyledCheck = styled(IconCheck)`
+  color: ${props => props.theme.colors.accent};
+  width: 13px;
+  height: 13px;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  :hover,
+  :focus {
+    cursor: pointer;
+    transform: scale(1.2);
+  }
+  @media ${device.tablet} {
+    width: 20px;
+    height: 20px;
+  }
 `;

@@ -1,5 +1,7 @@
 // import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
+import { formatBirthDate } from 'helpers/formatDate';
+import { checkType } from 'helpers/typeInputCheck';
 import { HiCamera } from 'react-icons/hi';
 import { UserDataItem } from 'components/UserDataItem/UserDataItem';
 import { TitleSectionUser } from '../../pages/UserPage/UserPage.styled';
@@ -20,26 +22,19 @@ const userInfoFromBack = [
     name: 'Alena',
     email: 'al@gmail.com',
     city: 'Tokio',
-    birthday: '00.00.0000',
+    birthday: '2000-12-01T00:00:00.000Z',
     avatarURL: userAvatar,
     phone: '+380965749315',
   },
 ];
 
-function checkType(item) {
-  switch (item.label) {
-    case 'email':
-      return 'email';
-    case 'phone':
-      return 'tel';
-    default:
-      return 'text';
-  }
-}
-
 export const UserData = ({ userInfo = userInfoFromBack }) => {
   let filterUserInfo = [];
   for (let key in userInfo[0]) {
+    if (key === 'birthday') {
+      filterUserInfo.push({ label: key, value: formatBirthDate(userInfo[0][key]) });
+      continue;
+    };
     if (key === 'avatarURL') {
       continue;
     } else {

@@ -5,8 +5,8 @@ import {
   WrapperTitlePets,
   WrapperAddPet,
   TitleSectionPets,
+  StyledPlus,
 } from './PetsData.styled';
-import { HiOutlinePlus } from 'react-icons/hi';
 
 export const PetsData = () => {
   return (
@@ -16,7 +16,7 @@ export const PetsData = () => {
         <WrapperAddPet>
           <p>Add pet </p>
           <AddPetBtn>
-            <HiOutlinePlus color="white" size="24px" />
+            <StyledPlus />
           </AddPetBtn>
         </WrapperAddPet>
       </WrapperTitlePets>
