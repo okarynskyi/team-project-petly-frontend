@@ -3,11 +3,11 @@ import FilterNoticesButton from '../../components/FilterNoticesButton/FilterNoti
 import NoticesCategoryList from '../../components/NoticesCategoriesList/NoticesCategoriesList';
 import { SearchBar } from '../../components/NoticesSearchBar/SearchBar';
 import { Box, GlobalBox, Title, Wrapper } from './NoticesPage.styled';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 
 export function NoticesPage() {
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   return (
     <GlobalBox>
