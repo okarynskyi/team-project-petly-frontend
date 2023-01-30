@@ -1,17 +1,18 @@
 {
   "files": {
     "main.css": "/team-project-petly-frontend/static/css/main.91f4132a.css",
-    "main.js": "/team-project-petly-frontend/static/js/main.ab50bdf9.js",
+    "main.js": "/team-project-petly-frontend/static/js/main.a85352bb.js",
     "static/media/woman-desk.png": "/team-project-petly-frontend/static/media/woman-desk.d962e4cd77a81edf7304.png",
     "static/media/background-tab.png": "/team-project-petly-frontend/static/media/background-tab.51b575790204a970844d.png",
+    "static/media/cat.jpg": "/team-project-petly-frontend/static/media/cat.d2c01c43b23e47084546.jpg",
     "static/media/Frame-desk.png": "/team-project-petly-frontend/static/media/Frame-desk.a94bda25cdc187d2cd37.png",
     "static/media/userAvatar.png": "/team-project-petly-frontend/static/media/userAvatar.85a91d1488c0891fb479.png",
     "index.html": "/team-project-petly-frontend/index.html",
     "main.91f4132a.css.map": "/team-project-petly-frontend/static/css/main.91f4132a.css.map",
-    "main.ab50bdf9.js.map": "/team-project-petly-frontend/static/js/main.ab50bdf9.js.map"
+    "main.a85352bb.js.map": "/team-project-petly-frontend/static/js/main.a85352bb.js.map"
   },
   "entrypoints": [
     "static/css/main.91f4132a.css",
-    "static/js/main.ab50bdf9.js"
+    "static/js/main.a85352bb.js"
   ]
 }
