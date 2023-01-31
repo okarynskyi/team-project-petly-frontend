@@ -1,6 +1,6 @@
 // import { useState, useEffect } from "react";
-import PropTypes from 'prop-types';
-import { formatBirthDate } from 'helpers/formatDate';
+// import PropTypes from 'prop-types';
+
 import { checkType } from 'helpers/typeInputCheck';
 import { HiCamera } from 'react-icons/hi';
 import { UserDataItem } from 'components/UserDataItem/UserDataItem';
@@ -14,40 +14,32 @@ import {
   AvatarWrapper,
   LabelEditPhoto,
   ListUserInfo,
-  InfoWrapper
+  InfoWrapper,
 } from './UserData.styled';
 
-const userInfoFromBack = [
-  {
-    name: 'Alena',
-    email: 'al@gmail.com',
-    city: 'Tokio',
-    birthday: '2000-12-01T00:00:00.000Z',
-    avatarURL: userAvatar,
-    phone: '+380965749315',
-  },
-];
+// const userInfoFromBack = [
+//   {
+//     name: 'Alena',
+//     email: 'al@gmail.com',
+//     city: 'Tokio',
+//     birthday: '2000-12-01T00:00:00.000Z',
+//     avatarURL: userAvatar,
+//     phone: '+380965749315',
+//   },
+// ];
 
-export const UserData = ({ userInfo = userInfoFromBack }) => {
-  let filterUserInfo = [];
-  for (let key in userInfo[0]) {
-    if (key === 'birthday') {
-      filterUserInfo.push({ label: key, value: formatBirthDate(userInfo[0][key]) });
-      continue;
-    };
-    if (key === 'avatarURL') {
-      continue;
-    } else {
-      filterUserInfo.push({ label: key, value: userInfo[0][key] });
-    }
-  }
-
+export const UserData = ({ userInfo , avatar }) => {
   return (
     <div>
       <TitleSectionUser>My information:</TitleSectionUser>
       <CardProfile>
         <AvatarWrapper>
-          <Avatar src={userInfo[0].avatarURL} alt="User avatar" />
+          {avatar ? (
+            <Avatar src={avatar} alt="User avatar" />
+          ) : (
+            <Avatar src={userAvatar} alt="User avatar" />
+          )}
+
           <LabelEditPhoto htmlFor="photoUser">
             <HiCamera color="#F59256" size="20px" />
             Edit photo
@@ -55,9 +47,9 @@ export const UserData = ({ userInfo = userInfoFromBack }) => {
           <input type="file" name="photo" id="photoUser" />
         </AvatarWrapper>
         <InfoWrapper>
-          {userInfo && (
+          {userInfo ? (
             <ListUserInfo>
-              {filterUserInfo.map(itemValue => (
+              {userInfo.map(itemValue => (
                 <ItemUserInfo key={itemValue.label}>
                   <UserDataItem
                     type={checkType(itemValue)}
@@ -67,7 +59,7 @@ export const UserData = ({ userInfo = userInfoFromBack }) => {
                 </ItemUserInfo>
               ))}
             </ListUserInfo>
-          )}
+          ): (<ListUserInfo>Not</ListUserInfo>)}
           <Logout />
         </InfoWrapper>
       </CardProfile>
@@ -75,16 +67,15 @@ export const UserData = ({ userInfo = userInfoFromBack }) => {
   );
 };
 
-UserData.propTypes = {
-  userInfo: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      email: PropTypes.string.isRequired,
-      city: PropTypes.string.isRequired,
-      birthday: PropTypes.string.isRequired,
-      avatarUrl: PropTypes.string.isRequired,
-      phone: PropTypes.string.isRequired,
-    })
-  ),
-};
+// UserData.propTypes = {
+//   userInfo: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       name: PropTypes.string.isRequired,
+//       email: PropTypes.string.isRequired,
+//       city: PropTypes.string.isRequired,
+//       birthday: PropTypes.string.isRequired,
+//       avatarUrl: PropTypes.string.isRequired,
+//       phone: PropTypes.string.isRequired,
+//     })
+//   ),
+// };

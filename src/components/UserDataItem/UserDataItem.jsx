@@ -29,13 +29,14 @@ export const UserDataItem = ({ type, label, value }) => {
       <div>
         {startUpdate ? (
           <InputUserInfo type={type} name={label} id={label} value={value} />
-        ) : type === 'email' || type === 'tel' ? (
+        ): ( (type === 'email' || type === 'tel') ? (
           <ValueEmailTel href={chooseTypeLink(type, value)}>
             {value}
           </ValueEmailTel>
         ) : (
           <ValueText>{value}</ValueText>
-        )}
+        ))}
+        
         {startUpdate ? (
           <CircleBtn type="button">
             <StyledCheck />
