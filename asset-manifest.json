@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/team-project-petly-frontend/static/css/main.91f4132a.css",
-    "main.js": "/team-project-petly-frontend/static/js/main.d292337e.js",
+    "main.js": "/team-project-petly-frontend/static/js/main.a0704c45.js",
     "static/media/woman-desk.png": "/team-project-petly-frontend/static/media/woman-desk.d962e4cd77a81edf7304.png",
     "static/media/background-tab.png": "/team-project-petly-frontend/static/media/background-tab.51b575790204a970844d.png",
     "static/media/cat.jpg": "/team-project-petly-frontend/static/media/cat.d2c01c43b23e47084546.jpg",
@@ -10,10 +10,10 @@
     "static/media/noLogo.png": "/team-project-petly-frontend/static/media/noLogo.1001be3e6f3e7adc6f38.png",
     "index.html": "/team-project-petly-frontend/index.html",
     "main.91f4132a.css.map": "/team-project-petly-frontend/static/css/main.91f4132a.css.map",
-    "main.d292337e.js.map": "/team-project-petly-frontend/static/js/main.d292337e.js.map"
+    "main.a0704c45.js.map": "/team-project-petly-frontend/static/js/main.a0704c45.js.map"
   },
   "entrypoints": [
     "static/css/main.91f4132a.css",
-    "static/js/main.d292337e.js"
+    "static/js/main.a0704c45.js"
   ]
 }
