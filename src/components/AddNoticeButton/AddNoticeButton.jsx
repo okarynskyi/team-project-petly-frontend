@@ -1,10 +1,12 @@
+import CircleBtn
 
-
-const AddNoticeButton = ()  => {
+const AddNoticeButton = ({onClick})  => {
   
 
     return ( 
-        <button >add</button>
+        <button 
+        onClick={onClick}
+        >add</button>
     )
 }
 

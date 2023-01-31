@@ -8,7 +8,6 @@ import { useLocation } from 'react-router-dom';
 import AddNoticeButton from '../../components/AddNoticeButton/AddNoticeButton';
 
 import { useState } from 'react';
-// import Modal from '../../components/Modal/Modal';
 import ModalNotice from 'components/ModalNotice/ModalNotice.jsx';
 
 const buttons = [
@@ -71,9 +70,10 @@ const authorizedFilterId = nanoid();
             </Item>
           ))}
       </FilterList>
-      <AddNoticeButton />
-      {/* <button onClick={() => setModalActive(true)}>ModalOpen</button> */}
-
+      <AddNoticeButton 
+      onClick={() => setModalActive(true)}
+      >
+      </AddNoticeButton>
       <ModalNotice
       active={modalActive} 
       setActive={setModalActive}

@@ -1,16 +1,18 @@
 // import { useState } from 'react';
 import Modal from '../../components/Modal/Modal'
 
-const ModalNotice = () => {
-//   const [modalActive, setModalActive] = useState(false)
+const ModalNotice = ({setActive, active}) => {
   return (
     <main>
-      {/* <button onClick={() => setModalActive(true)}>ModalOpen</button> */}
       <Modal 
-    //   active={modalActive} 
-    //   setActive={setModalActive}
+      active={active} 
+      setActive={setActive}
       >
-      {/* <input>Text</input> */}
+        <>
+        text
+        <input></input>
+        </>
+      
       </Modal>
     </main>
   );
