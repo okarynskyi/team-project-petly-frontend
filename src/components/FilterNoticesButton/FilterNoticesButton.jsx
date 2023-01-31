@@ -8,7 +8,7 @@ import { useLocation } from 'react-router-dom';
 import AddNoticeButton from '../../components/AddNoticeButton/AddNoticeButton';
 
 import { useState } from 'react';
-import ModalNotice from 'components/ModalNotice/ModalNotice.jsx';
+import ModalAddPet from 'components/ModalAddsPet/ModalAddsPet.jsx';
 
 const buttons = [
   {
@@ -17,7 +17,7 @@ const buttons = [
   },
   {
     btn: 'in good hands',
-    link: 'for-free',
+    link: 'in-good-hands',
   },
   {
     btn: 'sell',
@@ -28,11 +28,11 @@ const buttons = [
 const authButtons = [
   {
     btn: 'favorite ads',
-    link: 'favorites',
+    link: 'favorites-ads',
   },
   {
     btn: 'my ads',
-    link: 'personal',
+    link: 'my-ads',
   },
 ];
 
@@ -74,11 +74,11 @@ function FilterNoticesButton() {
       onClick={() => setModalActive(true)}
       >
       </AddNoticeButton>
-      <ModalNotice
+      <ModalAddPet
       active={modalActive} 
       setActive={setModalActive}
       >
-        </ModalNotice>
+        </ModalAddPet>
     </Wrapper>
   );
 }

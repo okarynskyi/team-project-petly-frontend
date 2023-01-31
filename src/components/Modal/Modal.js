@@ -30,7 +30,9 @@ export default Modal;
 //       <Modal 
 //       active={modalActive} 
 //       setActive={setModalActive}>
-//       <input>Text</input>
+//          <>
+//          text
+//          </>
 //       </Modal>
 //     </main>
 //   );
