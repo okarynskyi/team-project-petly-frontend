@@ -1,3 +1,4 @@
+
 import { AddPetBtn, StyledPlus } from './AddNoticeButton.styled';
 
 export const AddNoticeButton = () => {
@@ -7,4 +8,3 @@ export const AddNoticeButton = () => {
       </AddPetBtn>
   );
 };
-

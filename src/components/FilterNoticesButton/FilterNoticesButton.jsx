@@ -7,6 +7,9 @@ import { Button, FilterList, Item, Wrapper } from './FilterNoticesButton.styled.
 import { useLocation } from 'react-router-dom';
 import { AddNoticeButton } from '../../components/AddNoticeButton/AddNoticeButton';
 
+import { useState } from 'react';
+import ModalAddPet from 'components/ModalAddsPet/ModalAddsPet.jsx';
+
 const buttons = [
   {
     btn: 'lost/found',
@@ -14,7 +17,7 @@ const buttons = [
   },
   {
     btn: 'in good hands',
-    link: 'for-free',
+    link: 'in-good-hands',
   },
   {
     btn: 'sell',
@@ -25,47 +28,57 @@ const buttons = [
 const authButtons = [
   {
     btn: 'favorite ads',
-    link: 'favorites',
+    link: 'favorites-ads',
   },
   {
     btn: 'my ads',
-    link: 'personal',
+    link: 'my-ads',
   },
 ];
 
 function FilterNoticesButton() {
   const token = useSelector(selectToken);
-const unauthorizedFilterId = nanoid();
-const authorizedFilterId = nanoid();
+// const unauthorizedFilterId = nanoid();
+// const authorizedFilterId = nanoid();
   const location = useLocation();
   const category = location.pathname.split('/')[2];
+
+  const [modalActive, setModalActive] = useState(false);
 
   return (
     <Wrapper>
       <FilterList>
-        {buttons.map(b => (
-          <Item key={unauthorizedFilterId}>
+        {buttons.map(btn => (
+          <Item key={nanoid()}>
             <Button
-              to={b.link === category ? '/notices' : b.link}
-              name={b.link}
+              to={btn.link === category ? '/notices' : btn.link}
+              name={btn.link}
             >
-              {b.btn}
+              {btn.btn}
             </Button>
           </Item>
         ))}
         {token &&
-          authButtons.map(b => (
-            <Item key={authorizedFilterId}>
+          authButtons.map(btn => (
+            <Item key={nanoid()}>
               <Button
-                to={b.link === category ? '/notices' : b.link}
-                name={b.link}
+                to={btn.link === category ? '/notices' : btn.link}
+                name={btn.link}
               >
-                {b.btn}
+                {btn.btn}
               </Button>
             </Item>
           ))}
       </FilterList>
-      <AddNoticeButton />
+      <AddNoticeButton 
+      onClick={() => setModalActive(true)}
+      >
+      </AddNoticeButton>
+      <ModalAddPet
+      active={modalActive} 
+      setActive={setModalActive}
+      >
+        </ModalAddPet>
     </Wrapper>
   );
 }
