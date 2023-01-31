@@ -7,6 +7,10 @@ import { Button, FilterList, Item, Wrapper } from './FilterNoticesButton.styled.
 import { useLocation } from 'react-router-dom';
 import AddNoticeButton from '../../components/AddNoticeButton/AddNoticeButton';
 
+import { useState } from 'react';
+// import Modal from '../../components/Modal/Modal';
+import ModalNotice from 'components/ModalNotice/ModalNotice.jsx';
+
 const buttons = [
   {
     btn: 'lost/found',
@@ -40,6 +44,8 @@ const authorizedFilterId = nanoid();
   const location = useLocation();
   const category = location.pathname.split('/')[2];
 
+  const [modalActive, setModalActive] = useState(false);
+
   return (
     <Wrapper>
       <FilterList>
@@ -66,6 +72,13 @@ const authorizedFilterId = nanoid();
           ))}
       </FilterList>
       <AddNoticeButton />
+      {/* <button onClick={() => setModalActive(true)}>ModalOpen</button> */}
+
+      <ModalNotice
+      active={modalActive} 
+      setActive={setModalActive}
+      >
+        </ModalNotice>
     </Wrapper>
   );
 }

@@ -1,8 +1,10 @@
+
+
 const AddNoticeButton = ()  => {
   
-  
+
     return ( 
-        <button>add</button>
+        <button >add</button>
     )
 }
 

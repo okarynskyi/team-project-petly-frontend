@@ -16,7 +16,7 @@ const Modal = ({active, setActive, children}) => {
 }
 
 export default Modal;
-<input>Text</input>
+
 // /////////////////////////////////////////////
 // Зразок використання модалки
 // import { useState } from 'react';
