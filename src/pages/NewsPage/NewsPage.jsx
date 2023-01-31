@@ -6,6 +6,7 @@ import {
   NewsH1,
   NewsForm,
   NewsInput,
+  // NewsButton,
   NewsListBoxUl,
   Line,
   NewsDiv,
@@ -35,7 +36,7 @@ export const NewsPage = () => {
           
             <NewsForm>
               <NewsInput type="text" name="" autocomplete="off" placeholder="Search"/>
-              
+               {/* <NewsButton  type="submit">S</NewsButton> */}
           </NewsForm>
             
             {news && (<NewsListBoxUl>
@@ -48,7 +49,7 @@ export const NewsPage = () => {
                   </NewsDiv>
                   <Div>
                     <DataP>{item.date}</DataP>
-                    <A href="" target="_blank">Read more</A>
+                    <A href={item.url} target="_blank" >Read more </A>
                   </Div>
               </li>
               ))};
