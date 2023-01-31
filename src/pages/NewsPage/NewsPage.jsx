@@ -1,10 +1,12 @@
+import { useState, useEffect } from 'react';
+import { getNews } from 'services/apiService.js';
+import { Container } from 'components/common/Container.styled.jsx';
 import {
   Section,
-  StyledContainer,
   NewsH1,
   NewsForm,
   NewsInput,
-  NewsListBox,
+  NewsListBoxUl,
   Line,
   NewsDiv,
   NewsH2,
@@ -15,34 +17,45 @@ import {
 } from './NewsPage.styled.jsx';
 
 export const NewsPage = () => {
+  const [news, setNews] = useState([])
+
+  useEffect(() => {
+    getNews().then(data => data.data).then(results => {
+    setNews(results.news);
+  console.log(news);
+      });
+    },[news]);
+
   return (
     <main>
       <Section>
-      <StyledContainer>
+        <Container>
+        
           <NewsH1>News</NewsH1>
-        <NewsForm>
-          <NewsInput type="text" name="" autocomplete="off" placeholder="Search"/>
-        </NewsForm>
-            <NewsListBox>
-              <li >
-              <Line></Line>
-                <NewsDiv>
-                  <NewsH2>Обережно, кліщі! Як уберегти улюбленця</NewsH2>
-                    <NewsListText>Травневі прогулянки з улюбленцем не лише
-                      приємні, але й потребують пильності. З початком
-                      теплої пори року активізуються кліщі, і треба бути
-                      уважним, щоб уберегти свого песика чи котика від
-                      дуже серйозних неприємностей зі здоров`ям.
-                    </NewsListText>
-                    <Div>
-                      <DataP>20/02/2021</DataP>
-                      <A href="" target="_blank">Read more</A>
-                    </Div>
-                </NewsDiv>
+          
+            <NewsForm>
+              <NewsInput type="text" name="" autocomplete="off" placeholder="Search"/>
+              
+          </NewsForm>
+            
+            {news && (<NewsListBoxUl>
+            {news.map(item => (
+                <li key={item._id}>
+                <Line></Line>
+                  <NewsDiv>
+                    <NewsH2>{item.title}</NewsH2>
+                    <NewsListText>{item.description}</NewsListText>
+                  </NewsDiv>
+                  <Div>
+                    <DataP>{item.date}</DataP>
+                    <A href="" target="_blank">Read more</A>
+                  </Div>
               </li>
-            </NewsListBox>
-          </StyledContainer>
-        </Section>
+              ))};
+            </NewsListBoxUl>)}
+
+        </Container>
+      </Section>
     </main>
   );
 };
