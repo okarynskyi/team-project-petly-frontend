@@ -78,7 +78,6 @@ function FriendsItems({
             <StyledItemTitle>Phone:</StyledItemTitle>
             {phone ? (
               <a
-                isPhone={true}
                 href={`tel:${phone}`}
                 target="_blank"
                 rel="noreferrer"
