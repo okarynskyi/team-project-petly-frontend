@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  outline: 2px solid #e818a3;
   margin: 0 auto;
   padding: 0 20px;
   @media screen and (min-width: 320px) {

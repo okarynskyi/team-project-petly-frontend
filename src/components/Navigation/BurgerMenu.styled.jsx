@@ -39,12 +39,19 @@ export const WrapNav = styled.div`
     margin-bottom: 88px;
   }
 `;
-
+export const BtnClose = styled.button`
+  border: none;
+  background: transparent;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  :hover {
+    cursor: pointer;
+    transform: scale(1.2);
+  }
+`;
 export const CloseIcon = styled(HiX)`
   width: 32px;
   height: 32px;
-  border: none;
-  background: transparent;
+
 `;
 
 export const BackDrop = styled.div`

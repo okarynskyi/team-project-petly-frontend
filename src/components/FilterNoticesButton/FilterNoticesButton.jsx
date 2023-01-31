@@ -5,7 +5,7 @@ import { nanoid } from 'nanoid';
 
 import { Button, FilterList, Item, Wrapper } from './FilterNoticesButton.styled.jsx';
 import { useLocation } from 'react-router-dom';
-import AddNoticeButton from '../../components/AddNoticeButton/AddNoticeButton';
+import { AddNoticeButton } from '../../components/AddNoticeButton/AddNoticeButton';
 
 const buttons = [
   {

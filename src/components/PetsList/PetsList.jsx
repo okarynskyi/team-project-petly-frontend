@@ -1,7 +1,6 @@
-// import { useState, useEffect } from "react";
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+import { selectPetsInfo } from 'redux/user/userSelectors';
 import { formatBirthDate } from 'helpers/formatDate';
-import cat from '../../staticImages/cat.jpg';
 import {
   CardPet,
   ImgPet,
@@ -9,35 +8,15 @@ import {
   InfoPet,
   CircleBtnTrash,
   ListPets,
-  StyledTrash,
+  StyledTrash
 } from './PetsList.styled';
 
-const petsFromBack = [
-  {
-    _id: '63d6364d0ae399c680890db1',
-    name: 'Tuzik',
-    birthday: '2004-01-01T00:00:00.000Z',
-    breed: 'German Shepherd',
-    petsPhotoURL: cat,
-    comment: 'It"s fine cat',
-    owner: '63d597e17ca822bddfedb390',
-  },
-  {
-    _id: '63d6364d0ae399c680890db2',
-    name: 'Tuzik',
-    birthday: '2004-01-01T00:00:00.000Z',
-    breed: 'German Shepherd',
-    petsPhotoURL: cat,
-    comment: 'It"s nice cat',
-    owner: '63d597e17ca822bddfedb390',
-  },
-];
+export const PetsList = () => {
+  const pets = useSelector(selectPetsInfo);
 
-
-
-export const PetsList = ({ pets = petsFromBack }) => {
   return (
     <>
+      {pets.length === 0 && <p>Please, add pet.</p>}
       {pets && (
         <ListPets>
           {pets.map(pet => (
@@ -68,16 +47,23 @@ export const PetsList = ({ pets = petsFromBack }) => {
   );
 };
 
-PetsList.propTypes = {
-  pets: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      breed: PropTypes.string.isRequired,
-      birthday: PropTypes.string.isRequired,
-      petsPhotoURL: PropTypes.string.isRequired,
-      owner: PropTypes.string.isRequired,
-      comment: PropTypes.string.isRequired,
-    })
-  ),
-};
+// const petsFromBack = [
+//   {
+//     _id: '63d6364d0ae399c680890db1',
+//     name: 'Tuzik',
+//     birthday: '2004-01-01T00:00:00.000Z',
+//     breed: 'German Shepherd',
+//     petsPhotoURL: cat,
+//     comment: 'It"s fine cat',
+//     owner: '63d597e17ca822bddfedb390',
+//   },
+//   {
+//     _id: '63d6364d0ae399c680890db2',
+//     name: 'Tuzik',
+//     birthday: '2004-01-01T00:00:00.000Z',
+//     breed: 'German Shepherd',
+//     petsPhotoURL: cat,
+//     comment: 'It"s nice cat',
+//     owner: '63d597e17ca822bddfedb390',
+//   },
+// ];

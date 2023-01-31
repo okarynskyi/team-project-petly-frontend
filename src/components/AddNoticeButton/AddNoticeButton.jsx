@@ -1,9 +1,10 @@
-const AddNoticeButton = ()  => {
-  
-  
-    return ( 
-        <button>add</button>
-    )
-}
+import { AddPetBtn, StyledPlus } from './AddNoticeButton.styled';
 
-export default AddNoticeButton
+export const AddNoticeButton = () => {
+  return (
+      <AddPetBtn>
+        <StyledPlus />
+      </AddPetBtn>
+  );
+};
+
