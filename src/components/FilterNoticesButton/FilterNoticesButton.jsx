@@ -38,8 +38,8 @@ const authButtons = [
 
 function FilterNoticesButton() {
   const token = useSelector(selectToken);
-const unauthorizedFilterId = nanoid();
-const authorizedFilterId = nanoid();
+// const unauthorizedFilterId = nanoid();
+// const authorizedFilterId = nanoid();
   const location = useLocation();
   const category = location.pathname.split('/')[2];
 
@@ -48,24 +48,24 @@ const authorizedFilterId = nanoid();
   return (
     <Wrapper>
       <FilterList>
-        {buttons.map(b => (
-          <Item key={unauthorizedFilterId}>
+        {buttons.map(btn => (
+          <Item key={nanoid()}>
             <Button
-              to={b.link === category ? '/notices' : b.link}
-              name={b.link}
+              to={btn.link === category ? '/notices' : btn.link}
+              name={btn.link}
             >
-              {b.btn}
+              {btn.btn}
             </Button>
           </Item>
         ))}
         {token &&
-          authButtons.map(b => (
-            <Item key={authorizedFilterId}>
+          authButtons.map(btn => (
+            <Item key={nanoid()}>
               <Button
-                to={b.link === category ? '/notices' : b.link}
-                name={b.link}
+                to={btn.link === category ? '/notices' : btn.link}
+                name={btn.link}
               >
-                {b.btn}
+                {btn.btn}
               </Button>
             </Item>
           ))}

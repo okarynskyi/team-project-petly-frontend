@@ -3,13 +3,14 @@ import { NavLink } from 'react-router-dom';
 
 export const Wrapper = styled.div`
   position: relative;
+  display: flex;
 
 `;
 
 export const FilterList = styled.ul`
   list-style: none;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap-reverse;
   gap: 12px;
   
 `;

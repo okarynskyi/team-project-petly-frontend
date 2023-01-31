@@ -9,8 +9,7 @@ const ModalNotice = ({setActive, active}) => {
       setActive={setActive}
       >
         <>
-        text
-        <input></input>
+       text
         </>
       
       </Modal>
