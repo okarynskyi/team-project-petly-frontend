@@ -4,14 +4,15 @@ import * as yup from 'yup';
 import { nanoid } from 'nanoid';
 import { useDispatch} from 'react-redux';
 import { logIn } from '../../redux/auth/authOperations';
-// import { selectIsLoadingAuth } from '../../redux/auth/authSelectors';
+// import {  } from '../../redux/auth/authSelectors';
 import { FormFormik, InputFormik, Label, ErrorText } from './LoginForm.styled';
 
 export const LoginForm = () => {
   const loginId = nanoid();
   const passwordIdLogg = nanoid();
-  // const isLoading = useSelector(selectIsLoadingAuth);
+ 
   const dispatch = useDispatch();
+
 
   const schema = yup.object().shape({
     email: yup.string().required(),
