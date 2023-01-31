@@ -47,7 +47,7 @@ export const getUserData = createAsyncThunk(
   'user/getUserData',
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get('/');
+      const { data } = await axios.get('/users');
 
       return data;
     } catch (error) {

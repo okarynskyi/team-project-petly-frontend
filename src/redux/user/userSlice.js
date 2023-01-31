@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { addPet, listPets, removePet, getUserData } from './userOperations';
 
 const initialState = {
-    userData: {
+    profile: {
+       userData: {
         name: null,
         email: null,
         city: null,
@@ -11,7 +12,9 @@ const initialState = {
         avatarURL: null,
         favorites: [],
     },
-    userPets:[]
+    userPets:[] 
+    }
+    
 };
 
 const userSlice = createSlice({
@@ -33,8 +36,8 @@ const userSlice = createSlice({
             state.userPets = filteredUserPets;
         },
 
-        [getUserData.fulfilled](_, { payload }) {
-            console.log(payload);
+        [getUserData.fulfilled](state, { payload }) {
+             state.profile = payload;
         },
     },
 });
