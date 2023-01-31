@@ -1,2 +1,1 @@
-export const selectUserData = state => state.user.userData;
-export const selectuserPets = state => state.user.userPets;
+export const selectUserInfo = state => state.user.profile;
