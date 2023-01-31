@@ -3,7 +3,7 @@ import { Logo } from '../Logo/Logo';
 import { AuthNav } from '../AuthNav/AuthNav';
 import { Nav } from '../Nav/Nav';
 import { UserNav } from '../UserNav/UserNav';
-import { NavStyled, WrapLogo, WrapNav, CloseIcon } from './BurgerMenu.styled';
+import { NavStyled, WrapLogo, WrapNav, CloseIcon, BtnClose } from './BurgerMenu.styled';
 
 export const BurgerMenu = ({ token, onClose, isDesctop, isMobile }) => {
   if (isDesctop) {
@@ -15,9 +15,9 @@ export const BurgerMenu = ({ token, onClose, isDesctop, isMobile }) => {
       <NavStyled>
         <WrapLogo>
           <Logo />
-          <button type="button" onClick={onClose}>
+          <BtnClose type="button" onClick={onClose}>
             <CloseIcon />
-          </button>
+          </BtnClose>
         </WrapLogo>
         <WrapNav>
           {isMobile && token && <UserNav onClose={onClose} />}

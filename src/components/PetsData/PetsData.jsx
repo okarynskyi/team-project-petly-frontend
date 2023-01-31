@@ -1,13 +1,11 @@
 // import { useState, useEffect } from "react";
 import { PetsList } from 'components/PetsList/PetsList';
 import {
-  AddPetBtn,
   WrapperTitlePets,
   WrapperAddPet,
   TitleSectionPets,
-  StyledPlus,
 } from './PetsData.styled';
-
+import { AddNoticeButton } from 'components/AddNoticeButton/AddNoticeButton';
 export const PetsData = () => {
   return (
     <div>
@@ -15,9 +13,7 @@ export const PetsData = () => {
         <TitleSectionPets>My pets:</TitleSectionPets>
         <WrapperAddPet>
           <p>Add pet </p>
-          <AddPetBtn>
-            <StyledPlus />
-          </AddPetBtn>
+          <AddNoticeButton></AddNoticeButton>
         </WrapperAddPet>
       </WrapperTitlePets>
       <PetsList></PetsList>

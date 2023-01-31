@@ -1,14 +1,10 @@
-import {CircleBtn} from "../../components/common/CircleBtn.styled"
-import { HiOutlinePlus} from 'react-icons/hi';
 
-const AddNoticeButton = ({onClick})  => {
-  
+import { AddPetBtn, StyledPlus } from './AddNoticeButton.styled';
 
-    return ( 
-        <CircleBtn 
-        onClick={onClick}
-        >AddPet<HiOutlinePlus color="#F59256" size="20px" /></CircleBtn>
-    )
-}
-
-export default AddNoticeButton
+export const AddNoticeButton = () => {
+  return (
+      <AddPetBtn>
+        <StyledPlus />
+      </AddPetBtn>
+  );
+};
