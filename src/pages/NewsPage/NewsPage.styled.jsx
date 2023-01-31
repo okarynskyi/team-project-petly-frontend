@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { device } from 'Device';
 
+
 export const Section = styled.section`
   background-color: ${p => p.theme.colors.background};
   width: 100%;
@@ -30,29 +31,36 @@ text-align: center;
 `;
 
 export const NewsForm = styled.form`
-margin-bottom: 60px;
 text-align: center;
 `;
 
 export const NewsInput = styled.input`
-left: 336px;
-top: 232px;
+width: 280px;
+height: 40px;
 background-color: ${p => p.theme.colors.white};
 box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
 border-radius: 20px;
 border: none;
 padding: 0 12px;
-
-@media ${device.mobile} {
-  width: 280px;
-  height: 40px;
-  padding: 0 20px;
-  }
+margin-bottom: 40px;
 
 @media ${device.tablet} {
   width: 608px;
   height: 44px;
+  padding: 0 20px;
+  margin-bottom: 60px;
   }
+
+@media ${device.desktop} {
+  width: 608px;
+  height: 44px;
+  }
+`;
+
+export const NewsButton = styled.button`
+ width: 40px;
+  height: 40px;
+  border-radius: 20px;
 `;
 
 export const NewsListBoxUl = styled.ul`
