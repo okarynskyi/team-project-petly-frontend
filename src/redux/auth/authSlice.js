@@ -3,7 +3,7 @@ import { signUp, logIn, logOut } from './authOperations';
 import { toast } from 'react-toastify';
 
 const initialState = {
-  user: { name: null, email: null },
+  user: { name: null, email: null , myPets: [], myFavorite: [] },
   token: null,
   isLoggedIn: false,
   isLoading: false,
