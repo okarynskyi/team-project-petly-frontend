@@ -16,7 +16,7 @@ const Modal = ({active, setActive, children}) => {
 }
 
 export default Modal;
-<input>Text</input>
+
 // /////////////////////////////////////////////
 // Зразок використання модалки
 // import { useState } from 'react';
@@ -30,7 +30,9 @@ export default Modal;
 //       <Modal 
 //       active={modalActive} 
 //       setActive={setModalActive}>
-//       <input>Text</input>
+//          <>
+//          text
+//          </>
 //       </Modal>
 //     </main>
 //   );
