@@ -39,9 +39,11 @@ export const NewsPage = () => {
 
             <NewsForm>
               <NewsInput type="text" name="" autocomplete="off" placeholder="Search"/>
-              {/* <NewsButton type="submit">
-                  <img src="" />
-              </NewsButton> */}
+              <NewsButton type="submit">
+                  <img src=""
+                  alt="search"
+                   />
+              </NewsButton>
             </NewsForm>
             
             {news && (<NewsListBoxUl>
