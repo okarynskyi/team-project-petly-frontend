@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
 import noLogo from '../../../staticImages/noLogo.png';
 import TimeItem from './TimeItem/TimeItem';
-import { StyledItem, StyledTitle, StyledWrapper, ImgWrapper, StyledImg, StyledList, StyledListItem, StyledItemTitle } from './FriendsItems.styled';
+import { StyledItem, StyledTitle, StyledWrapper, ImgWrapper, StyledImg, StyledList, StyledNoInfo, StyledListItem, StyledLink, StyledItemTitle } from './FriendsItems.styled';
 
 
 const noItem = '-----------------------';
@@ -58,39 +58,41 @@ function FriendsItems({
           <StyledListItem>
             <StyledItemTitle>Address:</StyledItemTitle>
             {addressUrl ? (
-              <a href={addressUrl} target="_blank" rel="noreferrer">
+              <StyledLink href={addressUrl} target="_blank" rel="noreferrer">
                 {address || noItem}
-              </a>
+              </StyledLink>
             ) : (
-              <p>{address || noItem}</p>
+              <StyledNoInfo>{address || noItem}</StyledNoInfo>
             )}
           </StyledListItem>
           <StyledListItem>
             <StyledItemTitle>Email:</StyledItemTitle>
             {email ? (
-              <a
+              <StyledLink
+                isNotDecorated={true}
                 href={`mailto:${email}`}
                 target="_blank"
                 rel="noreferrer"
               >
                 {email}
-              </a>
+              </StyledLink>
             ) : (
-              <p>{noItem}</p>
+              <StyledNoInfo>{noItem}</StyledNoInfo>
             )}
           </StyledListItem>
           <StyledListItem>
             <StyledItemTitle>Phone:</StyledItemTitle>
             {phone ? (
-              <a
+              <StyledLink
+                isNotDecorated={true}
                 href={`tel:${phone}`}
                 target="_blank"
                 rel="noreferrer"
               >
                 {phone}
-              </a>
+              </StyledLink>
             ) : (
-              <p>{noItem}</p>
+              <StyledNoInfo>{noItem}</StyledNoInfo>
             )}
           </StyledListItem>
         </StyledList>

@@ -3,9 +3,13 @@ import { device } from 'Device';
 import { StyledListItem, StyledItemTitle } from '../FriendsItems.styled';
 
 export const StyledTimeItem = styled.div`
-  border: 3px green solid;
+  font-family: ${p => p.theme.fonts.main};
   display: flex;
   justify-content: space-between;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: ${p => p.theme.colors.black};
 `
 export const StyledTimeWrapper = styled(StyledListItem)`
   position: relative;
@@ -35,7 +39,6 @@ export const StyledTimeTitle = styled(StyledItemTitle).attrs(props => ({
 export const StyledTimeBox = styled.p.attrs(props => ({
   color: props.isOpen ? '#F59256' : '#000000',
 }))`
-  border: 3px solid yellow;
   transition: color cubic: '250ms cubic-bezier(0.4, 0, 0.2, 1)';
   font-family: ${p => p.theme.fonts.main};
   font-weight: ${p => p.theme.fontWeights.fw500};
