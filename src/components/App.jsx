@@ -54,6 +54,22 @@ export const App = () => {
               <Route index path="sell" element={<NoticesCategoryList />} />
               <Route path="lost-found" element={<NoticesCategoryList />} />
               <Route path="in-good-hands" element={<NoticesCategoryList />} />
+              <Route
+                path="favorites-ads"
+                element={
+                  <PrivateRoute>
+                    <NoticesCategoryList />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="my-ads"
+                element={
+                  <PrivateRoute>
+                    <NoticesCategoryList />
+                  </PrivateRoute>
+                }
+              />
             </Route>
             <Route
               path="/friends"
