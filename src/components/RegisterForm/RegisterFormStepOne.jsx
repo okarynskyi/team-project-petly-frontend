@@ -1,43 +1,30 @@
-import { useState } from 'react';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { Field } from 'formik';
+import { ErrorMessage } from 'formik';
+import { BoxInput, InputFormik, Label, ErrorText } from './RegisterForm.styled';
+
+export const FormError = ({ name }) => {
+  return (
+    <ErrorMessage
+      name={name}
+      render={message => <ErrorText>{message}</ErrorText>}
+    />
+  );
+};
 
 export const RegisterFormStepOne = () => {
-  const [passwordShown, setPasswordShown] = useState(false);
-  const [confirmPasswordShown, setConfirmPasswordShown] = useState(false);
-
-  const togglePassword = () => {
-    setPasswordShown(!passwordShown);
-  };
-
-  const toggleConfirmPassword = () => {
-    setConfirmPasswordShown(!confirmPasswordShown);
-  };
   return (
-    <>
-      <label>
-        <Field name="email" type="text" placeholder="Email" />
-      </label>
-      <label>
-        <Field
-          name="password"
-          type={passwordShown ? 'text' : 'password'}
-          placeholder="Password"
-        />
-        <span onClick={togglePassword}>
-          {passwordShown ? <FaEye /> : <FaEyeSlash />}
-        </span>
-      </label>
-      <label>
-        <Field
-          name="confirmPassword"
-          type={confirmPasswordShown ? 'text' : 'password'}
-          placeholder="Confirm password"
-        />
-        <span onClick={toggleConfirmPassword}>
-          {confirmPasswordShown ? <FaEye /> : <FaEyeSlash />}
-        </span>
-      </label>
-    </>
+    <BoxInput>
+      <Label>
+        <InputFormik name="email" type="text" placeholder="Email" />
+      </Label>
+      <FormError name="email" />
+      <Label>
+        <InputFormik name="password" placeholder="Password" />
+      </Label>
+      <FormError name="password" />
+      <Label>
+        <InputFormik name="confirmPassword" placeholder="Confirm password" />
+      </Label>
+      <FormError name="confirmPassword" />
+    </BoxInput>
   );
 };
