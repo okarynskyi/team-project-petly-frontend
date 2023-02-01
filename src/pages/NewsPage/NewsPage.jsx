@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { getNews } from 'services/apiService.js';
 import { Container } from 'components/common/Container.styled.jsx';
+// import { SearchBar } from 'components/NewsSearchBar/SearchBar';
 import {
   Section,
   NewsH1,
   NewsForm,
   NewsInput,
-  // NewsButton,
+  NewsButton,
   NewsListBoxUl,
   Line,
   NewsDiv,
@@ -17,7 +18,7 @@ import {
   A,
 } from './NewsPage.styled.jsx';
 
-export const NewsPage = () => {
+const NewsPage = () => {
   const [news, setNews] = useState([])
 
   useEffect(() => {
@@ -34,10 +35,16 @@ export const NewsPage = () => {
         
           <NewsH1>News</NewsH1>
           
+          {/* <SearchBar/>  */}
+
             <NewsForm>
               <NewsInput type="text" name="" autocomplete="off" placeholder="Search"/>
-               {/* <NewsButton  type="submit">S</NewsButton> */}
-          </NewsForm>
+              <NewsButton type="submit">
+                  <img src=""
+                  alt="search"
+                   />
+              </NewsButton>
+            </NewsForm>
             
             {news && (<NewsListBoxUl>
             {news.map(item => (
@@ -61,4 +68,4 @@ export const NewsPage = () => {
   );
 };
 
-  
+export default NewsPage;

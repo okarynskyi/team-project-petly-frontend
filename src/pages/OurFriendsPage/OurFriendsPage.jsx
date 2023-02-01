@@ -3,7 +3,7 @@ import Friends from 'components/Friends/Friends';
 import { getFriends } from 'services/apiService';
 import { Section, StyledTitle, StyledContainer } from './OurFriendsPage.styled';
 
-export function OurFriendsPage() {
+const OurFriendsPage = () => {
   const [friends, setFriends] = useState([]);
 
   useEffect(() => {
@@ -25,3 +25,5 @@ export function OurFriendsPage() {
     </>
   );
 };
+
+export default OurFriendsPage;

@@ -1,12 +1,12 @@
 import { AuthNavStyled, ButtonAuthLink } from './AuthNav.styled';
 
-export const AuthNav = () => {
+export const AuthNav = ({ onClose }) => {
   return (
     <AuthNavStyled>
-      <ButtonAuthLink to="/login" size="95px">
+      <ButtonAuthLink onClick={onClose} to="/login" size="95px">
         Login
       </ButtonAuthLink>
-      <ButtonAuthLink to="/register" size="144px">
+      <ButtonAuthLink onClick={onClose} to="/register" size="144px">
         Registration
       </ButtonAuthLink>
     </AuthNavStyled>

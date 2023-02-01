@@ -42,7 +42,7 @@ export const StyledTitle = styled.a`
 
 export const StyledWrapper = styled.div`
   display: flex;
-`;
+`
 
 export const ImgWrapper = styled.div`
   min-width: 110px;
@@ -76,7 +76,7 @@ export const StyledListItem = styled.li`
   &:not(:last-child) {
     margin-bottom: 4px;
   }
-`;
+`
 
 export const StyledItemTitle = styled.h3`
   font-family: ${p => p.theme.fonts.main};

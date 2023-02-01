@@ -3,7 +3,7 @@ import { signUp, logIn, logOut } from './authOperations';
 import { toast } from 'react-toastify';
 
 const initialState = {
-  user: { name: null, email: null , myPets: [], myFavorite: [] },
+  user: { name: null, email: null, myPets: [], myFavorite: [] },
   token: null,
   isLoggedIn: false,
   isLoading: false,
@@ -13,6 +13,7 @@ const initialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {},
   extraReducers: {
     [signUp.pending](state) {
       state.isLoading = true;
@@ -64,6 +65,7 @@ const authSlice = createSlice({
     },
   },
 });
+export const getAuthentication = state => state.auth;
 
 export const authReducer = authSlice.reducer;
 
