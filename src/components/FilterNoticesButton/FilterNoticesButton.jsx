@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectToken } from 'redux/auth/authSelectors';
+import { selectNoticesByCategory } from '../../redux/notices/noticesSelectors';
 import { nanoid } from 'nanoid';
 
 import { Button, FilterList, Item, Wrapper } from './FilterNoticesButton.styled.jsx';
@@ -9,6 +10,7 @@ import { AddNoticeButton } from '../../components/AddNoticeButton/AddNoticeButto
 
 import { useState } from 'react';
 import ModalAddPet from 'components/ModalAddsPet/ModalAddsPet.jsx';
+
 
 const buttons = [
   {
@@ -37,6 +39,7 @@ const authButtons = [
 ];
 
 function FilterNoticesButton() {
+  const test = useSelector(selectNoticesByCategory);
   const token = useSelector(selectToken);
 // const unauthorizedFilterId = nanoid();
 // const authorizedFilterId = nanoid();
@@ -48,10 +51,11 @@ function FilterNoticesButton() {
   return (
     <Wrapper>
       <FilterList>
+        {console.log(test)}
         {buttons.map(btn => (
           <Item key={nanoid()}>
             <Button
-              to={btn.link === category ? '/notices' : btn.link}
+              to={btn.link === category ? '/notices/:categoryName' : btn.link}
               name={btn.link}
             >
               {btn.btn}
@@ -62,7 +66,7 @@ function FilterNoticesButton() {
           authButtons.map(btn => (
             <Item key={nanoid()}>
               <Button
-                to={btn.link === category ? '/notices' : btn.link}
+                to={btn.link === category ? '/notices/:categoryName' : btn.link}
                 name={btn.link}
               >
                 {btn.btn}

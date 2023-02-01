@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 
-export const AccountBtn = styled.button`
+export const AccountBtn = styled(NavLink)`
   padding: 8px 37px;
   display: flex;
   align-items: center;
