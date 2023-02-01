@@ -19,11 +19,6 @@ export const Nav = ({ onClose }) => {
             Our friends
           </NavLinkStyled>
         </li>
-        <li>
-          <NavLinkStyled to="/user" onClick={onClose}>
-            User
-          </NavLinkStyled>
-        </li>
       </NavListStyled>
     </>
   );
