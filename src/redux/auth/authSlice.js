@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { signUp, logIn, logOut } from './authOperations';
+import { signUp, logIn, logOut, getCurrentUser } from './authOperations';
 import { toast } from 'react-toastify';
 
 const initialState = {
@@ -8,6 +8,7 @@ const initialState = {
   isLoggedIn: false,
   isLoading: false,
   isError: null,
+  isFetchingCurrentUser: false,
 };
 
 const authSlice = createSlice({
@@ -66,9 +67,24 @@ const authSlice = createSlice({
       state.isError = payload;
       toast.error('Something went wrong, please try again!');
     },
+       [getCurrentUser.pending](state) {
+      state.isLoading = true;
+      state.isFetchingCurrentUser = true;
+    },
+    [getCurrentUser.fulfilled](state, action) {
+      state.user = action.payload;
+      state.isLoggedIn = true;
+      state.isLoading = false;
+      state.isFetchingCurrentUser = false;
+      state.error = null;
+    },
+    [getCurrentUser.rejected](state, action) {
+      state.isFetchingCurrentUser = false;
+      state.isLoading = false;
+      state.error = action.payload;
+    },
   },
 });
-export const getAuthentication = state => state.auth;
 
 export const authReducer = authSlice.reducer;
 
