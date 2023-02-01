@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { selectToken } from 'redux/auth/authSelectors';
 import { selectNoticesByCategory } from '../../redux/notices/noticesSelectors';
 import { nanoid } from 'nanoid';
+import { v4 as uuidv4 } from 'uuid';
 
 import { Button, FilterList, Item, Wrapper } from './FilterNoticesButton.styled.jsx';
 import { useLocation } from 'react-router-dom';
@@ -45,31 +46,33 @@ function FilterNoticesButton() {
 // const authorizedFilterId = nanoid();
   const location = useLocation();
   const category = location.pathname.split('/')[2];
+  // console.log(category)
 
   const [modalActive, setModalActive] = useState(false);
 
   return (
     <Wrapper>
       <FilterList>
-        {console.log(test)}
-        {buttons.map(btn => (
-          <Item key={nanoid()}>
+        {/* {console.log(test)} */}
+        {buttons.map(b => (
+          <Item key={uuidv4()}>
             <Button
-              to={btn.link === category ? '/notices/:categoryName' : btn.link}
-              name={btn.link}
+              to={b.link === category ? '/notices/' : b.link}
+              name={b.link}
             >
-              {btn.btn}
+              {b.btn}
+              {/* {console.log(b.link)} */}
             </Button>
           </Item>
         ))}
         {token &&
-          authButtons.map(btn => (
-            <Item key={nanoid()}>
+          authButtons.map(b => (
+            <Item key={uuidv4()}>
               <Button
-                to={btn.link === category ? '/notices/:categoryName' : btn.link}
-                name={btn.link}
+                to={b.link === category ? '/notices/' : b.link}
+                name={b.link}
               >
-                {btn.btn}
+                {b.btn}
               </Button>
             </Item>
           ))}
