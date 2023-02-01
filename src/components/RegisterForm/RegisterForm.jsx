@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { logIn, signUp } from '../../redux/auth/authOperations';
-// import { Container } from '../../components/common/Container.styled';
 import { Link } from 'react-router-dom';
 import { RegisterFormStepOne } from './RegisterFormStepOne';
 import { RegisterFormStepTwo } from './RegisterFormStepTwo';
@@ -15,7 +14,7 @@ import {
   FormFormik,
   Question,
 } from './RegisterForm.styled';
-import { AccentButton } from '../StyledButton/StyledButton.styled';
+import { AccentButton } from '../common/StyledButton/StyledButton.styled';
 
 export const passwordRegexp = /^[A-Za-z0-9!?#$%^&_\-*]{7,32}$/;
 export const nameRegexp = /^[a-zA-Z]{2,20}$/;
