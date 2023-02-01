@@ -1,22 +1,7 @@
 import styled from 'styled-components';
 import { Form, Field } from 'formik';
 import { device } from 'Device';
-
-export const FormDiv = styled.div`
-  width: 100%;
-  margin: 0 auto;
-  button {
-    margin: ${props => props.theme.space[5]}px auto;
-    width: 280px;
-    font-weight: ${props => props.theme.fontWeights.fw500};
-    letter-spacing: 0.04em;
-  }
-  @media ${device.tablet} {
-    > button {
-      width: 458px;
-    }
-  }
-`;
+import { AccentButton } from '../common/StyledButton/StyledButton.styled';
 
 export const Label = styled.label`
   display: flex;
@@ -35,7 +20,6 @@ export const FormFormik = styled(Form)`
   width: 100%;
   margin: 0 auto;
   button {
-    margin: ${props => props.theme.space[5]}px auto;
     width: 280px;
     font-weight: ${props => props.theme.fontWeights.fw500};
     letter-spacing: 0.04em;
@@ -45,6 +29,22 @@ export const FormFormik = styled(Form)`
       width: 458px;
     }
   }
+`;
+
+export const BackBtn = styled(AccentButton)`
+  margin-top: ${props => props.theme.space[2]}px;
+  margin-bottom: ${props => props.theme.space[5]}px;
+  color: ${props => props.theme.colors.mainText};
+  background-color: ${props => props.theme.colors.background};
+  border: ${props => props.theme.borders.main};
+`;
+
+export const RegistrBtn = styled(AccentButton)`
+  margin-top: ${props => props.theme.space[5]}px;
+`;
+
+export const NextBtn = styled(AccentButton)`
+  margin: ${props => props.theme.space[5]}px auto;
 `;
 
 export const BoxInput = styled.div`

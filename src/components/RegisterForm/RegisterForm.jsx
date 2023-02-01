@@ -10,11 +10,12 @@ import { RegisterFormStepTwo } from './RegisterFormStepTwo';
 import {
   TitleAuthSection,
   AuthWrapper,
-  FormDiv,
   FormFormik,
   Question,
+  BackBtn,
+  RegistrBtn,
+  NextBtn,
 } from './RegisterForm.styled';
-import { AccentButton } from '../common/StyledButton/StyledButton.styled';
 
 export const passwordRegexp = /^[A-Za-z0-9!?#$%^&_\-*]{7,32}$/;
 export const nameRegexp = /^[a-zA-Z]{2,20}$/;
@@ -126,29 +127,30 @@ export const RegisterForm = () => {
       >
         {({ renderComponent, handlePrev, handleNext, isLastStep }) => (
           <AuthWrapper>
-            <FormDiv>
+            <div>
               <TitleAuthSection>Registration</TitleAuthSection>
               <FormFormik>
                 {renderComponent()}
 
                 {!isLastStep ? (
-                  <AccentButton type="button" onClick={handleNext}>
+                  <NextBtn type="button" onClick={handleNext}>
                     Next
-                  </AccentButton>
+                  </NextBtn>
                 ) : (
                   <>
-                    <AccentButton type="submit">Register</AccentButton>
-                    <AccentButton type="button" onClick={handlePrev}>
+                    <RegistrBtn type="submit" size="180px">
+                      Register
+                    </RegistrBtn>
+                    <BackBtn type="button" size="180px" onClick={handlePrev}>
                       Back
-                    </AccentButton>
+                    </BackBtn>
                   </>
                 )}
               </FormFormik>
               <Question>
-                Already have an account?
-                <Link to="/login">Login</Link>
+                Already have an account? <Link to="/login">Login</Link>
               </Question>
-            </FormDiv>
+            </div>
           </AuthWrapper>
         )}
       </FormikWizard>
