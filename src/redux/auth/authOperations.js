@@ -1,4 +1,3 @@
-
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -11,7 +10,6 @@ const setAuthHeader = token => {
 
 // Utility to remove JWT
 const clearAuthHeader = () => {
-
   axios.defaults.headers.common.Authorization = '';
 };
 
@@ -30,12 +28,12 @@ export const signUp = createAsyncThunk(
 );
 
 export const logIn = createAsyncThunk(
-
   'auth/login',
   async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/auth/login', credentials);
       setAuthHeader(data.token);
+      console.log()
 
 
       return data;
@@ -51,6 +49,7 @@ export const logOut = createAsyncThunk(
     try {
       await axios.post('/auth/logout');
       clearAuthHeader();
+      return 'Logout';
     } catch (error) {
       return rejectWithValue(error.message);
     }
