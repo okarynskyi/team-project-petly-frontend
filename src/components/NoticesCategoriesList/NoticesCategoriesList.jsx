@@ -33,7 +33,7 @@ const NoticesCategoryList = () => {
     if (category) {
       console.log(category)
       console.log(dispatch(operations.getNoticesByCategory( category)))
-        dispatch(operations.getNoticesByCategory( 
+        dispatch(operations.getNoticesByCategory( category
         //  { categoryName: "sell"}
         ));
     } 
