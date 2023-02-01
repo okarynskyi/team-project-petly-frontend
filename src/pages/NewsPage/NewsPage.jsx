@@ -11,7 +11,7 @@ import {
   // NewsButton,
   NewsListBoxUl,
   Line,
-  NewsDiv,
+  // NewsDiv,
   NewsH2,
   NewsListText,
   Div,
@@ -58,10 +58,10 @@ const NewsPage = () => {
             {news.map(item => (
                 <li key={item._id}>
                 <Line></Line>
-                  <NewsDiv>
+                  {/* <NewsDiv> */}
                     <NewsH2>{item.title}</NewsH2>
                     <NewsListText>{item.description}</NewsListText>
-                  </NewsDiv>
+                  {/* </NewsDiv> */}
                   <Div>
                     <DataP>{dateConverter(item.date)}</DataP>
                     <A href={item.url} target="_blank" >Read more </A>
