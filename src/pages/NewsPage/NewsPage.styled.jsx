@@ -30,38 +30,38 @@ text-align: center;
   }
 `;
 
-export const NewsForm = styled.form`
-text-align: center;
-`;
+// export const NewsForm = styled.form`
+// text-align: center;
+// `;
 
-export const NewsInput = styled.input`
-width: 280px;
-height: 40px;
-background-color: ${p => p.theme.colors.white};
-box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
-border-radius: 20px;
-border: none;
-padding: 0 12px;
-margin-bottom: 40px;
+// export const NewsInput = styled.input`
+// width: 280px;
+// height: 40px;
+// background-color: ${p => p.theme.colors.white};
+// box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+// border-radius: 20px;
+// border: none;
+// padding: 0 12px;
+// margin-bottom: 40px;
 
-@media ${device.tablet} {
-  width: 608px;
-  height: 44px;
-  padding: 0 20px;
-  margin-bottom: 60px;
-  }
+// @media ${device.tablet} {
+//   width: 608px;
+//   height: 44px;
+//   padding: 0 20px;
+//   margin-bottom: 60px;
+//   }
 
-@media ${device.desktop} {
-  width: 608px;
-  height: 44px;
-  }
-`;
+// @media ${device.desktop} {
+//   width: 608px;
+//   height: 44px;
+//   }
+// `;
 
-export const NewsButton = styled.button`
- width: 40px;
-  height: 40px;
-  border-radius: 20px;
-`;
+// export const NewsButton = styled.button`
+//  width: 40px;
+//   height: 40px;
+//   border-radius: 20px;
+// `;
 
 export const NewsListBoxUl = styled.ul`
   display: grid;
