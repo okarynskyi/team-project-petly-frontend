@@ -40,6 +40,7 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
       state.token = action.payload.token;
       state.user = action.payload.user;
+      console.log(state.user)
       toast.success('Successfully logged in!');
     },
     [logIn.rejected](state, action) {
@@ -51,16 +52,18 @@ const authSlice = createSlice({
       state.isLoading = true;
       state.isError = null;
     },
-    [logOut.fulfilled](state) {
+    [logOut.fulfilled](state, { payload }) {
+      console.log(payload)
       state.user = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
       state.isLoading = false;
       toast.success('Successfully logged out!');
     },
-    [logOut.rejected](state, action) {
+    [logOut.rejected](state, { payload }) {
+      console.log(`error ${payload}`)
       state.isLoading = false;
-      state.isError = action.payload;
+      state.isError = payload;
       toast.error('Something went wrong, please try again!');
     },
   },
