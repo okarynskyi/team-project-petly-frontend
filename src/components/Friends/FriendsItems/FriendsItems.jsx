@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
 import noLogo from '../../../staticImages/noLogo.png';
+import TimeItem from './TimeItem/TimeItem';
 import { StyledItem, StyledTitle, StyledWrapper, ImgWrapper, StyledImg, StyledList, StyledListItem, StyledItemTitle } from './FriendsItems.styled';
 
 
@@ -20,10 +21,10 @@ function FriendsItems({
   const [isOpen, setIsOpen] = useState(false);
   const prevScrollY = useRef(0);
 
-  // const handleClick = () => {
-  //   if (workDays === null || workDays.length === 0) return;
-  //   setIsOpen(prevState => !prevState);
-  // };
+  const handleClick = () => {
+    if (workDays === null || workDays.length === 0) return;
+    setIsOpen(prevState => !prevState);
+  };
 
    useEffect(() => {
     const handleScroll = () => {
@@ -49,7 +50,11 @@ function FriendsItems({
           <StyledImg src={imageUrl || noLogo} alt={title} />
         </ImgWrapper>
         <StyledList>
-          {/* time component */}
+          <TimeItem
+            onClick={handleClick}
+            workDays={workDays}
+            isOpen={isOpen}
+          />
           <StyledListItem>
             <StyledItemTitle>Address:</StyledItemTitle>
             {addressUrl ? (
