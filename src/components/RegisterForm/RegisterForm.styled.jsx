@@ -17,6 +17,7 @@ export const FormDiv = styled.div`
     }
   }
 `;
+
 export const Label = styled.label`
   display: flex;
   align-items: center;
@@ -34,7 +35,7 @@ export const FormFormik = styled(Form)`
   width: 100%;
   margin: 0 auto;
   button {
-    margin: ${props => props.theme.space[2]}px auto;
+    margin: ${props => props.theme.space[5]}px auto;
     width: 280px;
     font-weight: ${props => props.theme.fontWeights.fw500};
     letter-spacing: 0.04em;
