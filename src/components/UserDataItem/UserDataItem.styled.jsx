@@ -2,6 +2,11 @@ import styled from 'styled-components';
 import { device } from 'Device';
 import { HiPencil, HiCheck } from 'react-icons/hi';
 
+export const FormStyle = styled.form`
+display: flex;
+align-items: center;
+`;
+
 export const LabelUserInfo = styled.label`
   font-family: ${props => props.theme.fonts.main};
   text-transform: capitalize;
@@ -95,6 +100,7 @@ export const StyledPencil = styled(IconPencil)`
 `;
 const IconCheck = ({ className }) => <HiCheck className={className} />;
 export const StyledCheck = styled(IconCheck)`
+
   color: ${props => props.theme.colors.accent};
   width: 13px;
   height: 13px;

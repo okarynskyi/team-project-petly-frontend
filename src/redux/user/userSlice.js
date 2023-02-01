@@ -1,5 +1,7 @@
+
+import { toast } from 'react-toastify';
 import { createSlice } from '@reduxjs/toolkit';
-import { addPet, listPets, removePet, getUserData } from './userOperations';
+import { addPet, listPets, removePet, getUserData, userUpdate } from './userOperations';
 
 const initialState = {
   profile: {
@@ -39,7 +41,23 @@ const userSlice = createSlice({
     [getUserData.fulfilled](state, { payload }) {
       state.profile = payload;
     },
+     [userUpdate.pending](state) {
+      state.isLoading = true;
+      state.isError = null;
+    },
+    [userUpdate.fulfilled](state, { payload }) {
+      state = {
+        ...state,
+        ...payload,
+      };
+    },
+    [userUpdate.rejected](state, action) {
+      state.isLoading = false;
+      state.isError = action.payload;
+      toast.error('Something went wrong, please try again!');
+    },
   },
 });
 
 export const userReducer = userSlice.reducer;
+

@@ -46,7 +46,7 @@ export const UserData = () => {
           } else {
             filterUserInfo.push({
               label: key,
-              value: formatBirthDate('2000-12-01T00:00:00.000Z'),
+              value: '0000-00-00T00:00:00.000+00:00',
             });
           }
           continue;
