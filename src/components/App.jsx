@@ -1,4 +1,6 @@
 // import { lazy } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { HomePage } from '../pages/HomePage/HomePage';
 import { RegisterPage } from '../pages/RegisterPage/RegisterPage';
 import { LoginPage } from '../pages/LoginPage/LoginPage';
@@ -11,6 +13,8 @@ import { Route, Routes } from 'react-router-dom';
 import { SharedLayout } from './SharedLayout';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Loader } from './Loader';
+import { getAuthentication } from 'redux/auth/authSlice';
 
 // const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 // const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
@@ -22,21 +26,27 @@ import 'react-toastify/dist/ReactToastify.css';
 // const NotFoundPage = lazy(() => import('pages/NotFoundPage/NotFoundPage'));
 
 export const App = () => {
+  const { isLoading } = useSelector(getAuthentication);
+
   return (
     <>
-      <Routes>
-        <Route path="/" element={<SharedLayout />}>
-          <Route index element={<HomePage />} />
-          <Route path="news" element={<NewsPage />} />
-          <Route path="notices/sell" element={<NoticesPage />} />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <Routes>
+          <Route path="/" element={<SharedLayout />}>
+            <Route index element={<HomePage />} />
+            <Route path="news" element={<NewsPage />} />
+            <Route path="notices/sell" element={<NoticesPage />} />
 
-          <Route path="friends" element={<OurFriendsPage />} />
-          <Route path="login" element={<LoginPage />} />
-          <Route path="register" element={<RegisterPage />} />
-          <Route path="user" element={<UserPage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Route>
-      </Routes>
+            <Route path="friends" element={<OurFriendsPage />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="register" element={<RegisterPage />} />
+            <Route path="user" element={<UserPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Route>
+        </Routes>
+      )}
       <ToastContainer autoClose={2000} position="top-center" theme="colored" />
     </>
   );
