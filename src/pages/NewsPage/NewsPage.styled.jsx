@@ -121,7 +121,6 @@ line-height: 1.37;
 color: ${p => p.theme.colors.accent};
 `;
 
-
 // export const NewsForm = styled.form`
 // text-align: center;
 // `;
