@@ -1,4 +1,4 @@
-import Modal from '../../components/Modal/Modal'
+import Modal from '../common/Modal/Modal'
 import { Card } from './ModalAddsPet.styled';
 
 const ModalAddPet = ({setActive, active}) => {

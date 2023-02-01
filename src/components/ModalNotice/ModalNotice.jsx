@@ -1,5 +1,5 @@
 // import { useState } from 'react';
-import Modal from '../../components/Modal/Modal'
+import Modal from '../common/Modal/Modal'
 
 const ModalNotice = ({setActive, active}) => {
   return (
