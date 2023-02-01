@@ -8,10 +8,11 @@ export const AddPetBtn = styled(CircleBtn)`
   padding: 0;
   width: 40px;
   height: 40px;
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   :hover,
   :focus {
     cursor: pointer;
+    background-color: ${props => props.theme.colors.hoverAccent} ;
     transform: scale(1.2);
   }
   @media ${device.tablet} {

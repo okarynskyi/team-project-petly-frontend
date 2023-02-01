@@ -7,7 +7,14 @@ export const ListPets = styled.ul`
   display: flex;
   align-items: center;
   flex-direction: column;
+  width: 280px;
   gap: ${props => props.theme.space[3]}px;
+  @media ${device.tablet} {
+    width: 704px;
+  }
+  @media ${device.desktop} {
+    width: 820px;
+  }
 `;
 export const CardPet = styled.li`
   display: flex;
@@ -25,9 +32,6 @@ export const CardPet = styled.li`
     gap: ${props => props.theme.space[4]}px;
     padding: ${props => props.theme.space[3]}px;
     border-radius: ${props => props.theme.radii.br40};
-  }
-  @media ${device.desktop} {
-    width: 820px;
   }
 `;
 export const ImgPet = styled.img`
@@ -92,5 +96,27 @@ export const StyledTrash = styled(IconTrash)`
   @media ${device.tablet} {
     width: 24px;
     height: 24px;
+  }
+`;
+export const EmptyListPet = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 150px;
+  background-color: rgba(245, 146, 86, 0.3);
+  border-radius: ${props => props.theme.radii.br40};
+  font-family: ${props => props.theme.fonts.main};
+  font-weight: ${props => props.theme.fontWeights.fw400};
+  font-size: ${props => props.theme.fontSizes.fs18};
+  line-height: 1.57;
+  letter-spacing: 0.04em;
+  color: rgba(245, 146, 86, 0.9);
+  @media ${device.tablet} {
+    height: 300px;
+  }
+  @media ${device.desktop} {
+    font-size: ${props => props.theme.fontSizes.fs24};
+    height: 582px;
   }
 `;

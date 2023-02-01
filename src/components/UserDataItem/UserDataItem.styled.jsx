@@ -81,11 +81,12 @@ export const StyledPencil = styled(IconPencil)`
   color: ${props => props.theme.colors.accent};
   width: 13px;
   height: 13px;
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   :hover,
   :focus {
     cursor: pointer;
     transform: scale(1.2);
+    color: ${props => props.theme.colors.hoverAccent};
   }
   @media ${device.tablet} {
     width: 20px;
@@ -97,11 +98,12 @@ export const StyledCheck = styled(IconCheck)`
   color: ${props => props.theme.colors.accent};
   width: 13px;
   height: 13px;
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   :hover,
   :focus {
     cursor: pointer;
     transform: scale(1.2);
+    color: ${props => props.theme.colors.hoverAccent};
   }
   @media ${device.tablet} {
     width: 20px;
