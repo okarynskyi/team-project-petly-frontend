@@ -4,6 +4,8 @@ export const checkType = (item) => {
       return 'email';
     case 'phone':
       return 'tel';
+     case 'birthday':
+      return 'date';
     default:
       return 'text';
   }
