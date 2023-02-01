@@ -12,7 +12,7 @@ import { Loader } from './Loader';
 import { getCurrentUser } from '../redux/auth/authOperations';
 import PublicRoute from '../components/PublicRoute';
 import PrivateRoute from '../components/PrivateRoute';
-
+import NoticesCategoryList from '../components/NoticesCategoriesList/NoticesCategoriesList';
 const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
 const OurFriendsPage = lazy(() =>
@@ -49,14 +49,12 @@ export const App = () => {
                 </PublicRoute>
               }
             />
-            <Route
-              path="/notices/sell"
-              element={
-                <PublicRoute>
-                  <NoticesPage />
-                </PublicRoute>
-              }
-            />
+
+            <Route path="/notices" element={<NoticesPage />}>
+              <Route index path="sell" element={<NoticesCategoryList />} />
+              <Route path="lost-found" element={<NoticesCategoryList />} />
+              <Route path="in-good-hands" element={<NoticesCategoryList />} />
+            </Route>
             <Route
               path="/friends"
               element={

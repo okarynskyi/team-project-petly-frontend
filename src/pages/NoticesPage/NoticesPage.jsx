@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import FilterNoticesButton from '../../components/FilterNoticesButton/FilterNoticesButton';
-import NoticesCategoryList from '../../components/NoticesCategoriesList/NoticesCategoriesList';
+// import NoticesCategoryList from '../../components/NoticesCategoriesList/NoticesCategoriesList';
+import { NoticesCategoryNav } from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
 import { SearchBar } from '../../components/NoticesSearchBar/SearchBar';
 import { Box, GlobalBox, Title, Wrapper } from './NoticesPage.styled';
 // import { useDispatch } from 'react-redux';
@@ -17,9 +18,9 @@ const NoticesPage = () => {
           <SearchBar
           // submitForm={search} 
           />
-          <FilterNoticesButton />
+          <FilterNoticesButton /> <NoticesCategoryNav/>
         </Box>
-        <NoticesCategoryList />
+        {/* <NoticesCategoryList /> */}
       </Wrapper>
       <Outlet />
     </GlobalBox>
