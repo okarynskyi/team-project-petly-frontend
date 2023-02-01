@@ -16,7 +16,7 @@ const getNoticesByCategory = createAsyncThunk(
     'notices/getByCategory',
     async (categoryName, { rejectWithValue }) => {
         try {
-            const { data } = await axiosInstance.get(`/notices/${categoryName}`);
+            const { data } = await axiosInstance.get(`/notices/category/${categoryName}`);
             return data;
         } catch (error) {
             return rejectWithValue(error.message);
@@ -42,9 +42,8 @@ const addToFavorites = createAsyncThunk(
     'notices/addToFavorites',
     async (id, { rejectWithValue }) => {
         try {
-            await axiosInstance.post(`/notices/favorites/${id}`);
-
-            // щось повертаємо???
+            const {data} = await axiosInstance.post(`/notices/favorites/${id}`);
+            return data;
         } catch (error) {
             return rejectWithValue(error.message);
         }
@@ -69,8 +68,8 @@ const deleteFromFavorites = createAsyncThunk(
     'notices/deleteFromFavorites',
     async (id, { rejectWithValue }) => {
         try {
-            await axiosInstance.delete(`/notices/favorites/id`);
-            return id;
+            const { data } = await axiosInstance.delete(`/notices/favorites/${id}`); 
+            return data;
         } catch (error) {
             return rejectWithValue(error.message);
         }
@@ -78,7 +77,20 @@ const deleteFromFavorites = createAsyncThunk(
 );
 
 // post '/notices'  додавання оголошень відповідно до обраної категорії
+const createNotice = createAsyncThunk(
+    'notices/createNotice',
+    async (credentials, { rejectWithValue }) => {
+        try {
+            const { data } = await axiosInstance.post('/notices', credentials);
+            return data;
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    },
+);
 
+
+// ЩЕ НЕМАЄ СТВОРЕНОГО ЕНДПОІНТА
 // get '/notices' отримання оголошень авторизованого кристувача створених цим же користувачем
 const getUserNotices = createAsyncThunk(
     'notices/getUserNotices',
@@ -111,6 +123,7 @@ const operations = {
     addToFavorites,
     getFavorites,
     deleteFromFavorites,
+    createNotice,
     getUserNotices,
     deleteUserNotice,
 };

@@ -16,6 +16,7 @@ import { userReducer } from './user/userSlice';
 const persistConfig = {
     key: 'auth',
     storage,
+    whitelist: ['token', 'isLoggedIn'],
 };
 
 export const store = configureStore({
