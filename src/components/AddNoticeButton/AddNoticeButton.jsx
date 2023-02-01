@@ -1,10 +1,13 @@
 
-import { AddPetBtn, StyledPlus } from './AddNoticeButton.styled';
+import { AddPetBtn, StyledPlus, WrapperAddPet } from './AddNoticeButton.styled';
 
 export const AddNoticeButton = ({onClick}) => {
   return (
-      <AddPetBtn  onClick={onClick}>
+      <WrapperAddPet>
+      <AddPetBtn>
         <StyledPlus />
       </AddPetBtn>
+    </WrapperAddPet>
+      
   );
 };

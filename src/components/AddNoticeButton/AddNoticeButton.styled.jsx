@@ -3,6 +3,18 @@ import { device } from 'Device';
 import { CircleBtn } from 'components/common/CircleBtn.styled';
 import { HiOutlinePlus } from 'react-icons/hi';
 
+export const WrapperAddPet = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  > p {
+    font-weight: ${props => props.theme.fontWeights.fw500};
+    font-size: ${props => props.theme.fontSizes.fs20};
+    line-height: 27px;
+    color: ${props => props.theme.colors.mainText};
+  }
+`;
+
 export const AddPetBtn = styled(CircleBtn)`
   background-color: ${props => props.theme.colors.accent};
   padding: 0;
