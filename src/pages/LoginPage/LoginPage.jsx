@@ -2,7 +2,7 @@ import { Container } from 'components/common/Container.styled';
 import { LoginForm } from '../../components/LoginForm/LoginForm';
 import { TitleAuthSection, AuthSection, AuthWrapper } from './LoginPage.styled';
 
-export const LoginPage = () => {
+const LoginPage = () => {
   return (
     <main>
       <AuthSection>
@@ -16,3 +16,5 @@ export const LoginPage = () => {
     </main>
   );
 };
+
+export default LoginPage;

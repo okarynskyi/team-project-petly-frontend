@@ -18,7 +18,7 @@ import {
   A,
 } from './NewsPage.styled.jsx';
 
-export const NewsPage = () => {
+const NewsPage = () => {
   const [news, setNews] = useState([])
 
   useEffect(() => {
@@ -68,4 +68,4 @@ export const NewsPage = () => {
   );
 };
 
-  
+export default NewsPage;

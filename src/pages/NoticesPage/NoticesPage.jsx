@@ -5,7 +5,7 @@ import { SearchBar } from '../../components/NoticesSearchBar/SearchBar';
 import { Box, GlobalBox, Title, Wrapper } from './NoticesPage.styled';
 // import { useDispatch } from 'react-redux';
 
-export function NoticesPage() {
+const NoticesPage = () => {
 
   // const dispatch = useDispatch();
 
@@ -14,7 +14,7 @@ export function NoticesPage() {
       <Wrapper>
         <Box>
           <Title>Find your favorite pet</Title>
-          <SearchBar 
+          <SearchBar
           // submitForm={search} 
           />
           <FilterNoticesButton />
@@ -24,4 +24,6 @@ export function NoticesPage() {
       <Outlet />
     </GlobalBox>
   );
-}
+};
+
+export default NoticesPage;
