@@ -5,7 +5,7 @@ import { Container } from 'components/common/Container.styled';
 import { SectionUser } from './UserPage.styled';
 
 
-export const UserPage = () => {
+const UserPage = () => {
   return (
     <main>
       <Container>
@@ -18,3 +18,5 @@ export const UserPage = () => {
     </main>
   );
 };
+
+export default UserPage;
