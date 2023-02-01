@@ -8,7 +8,8 @@ import {
   InfoPet,
   CircleBtnTrash,
   ListPets,
-  StyledTrash
+  StyledTrash,
+  EmptyListPet,
 } from './PetsList.styled';
 
 export const PetsList = () => {
@@ -16,7 +17,7 @@ export const PetsList = () => {
 
   return (
     <>
-      {pets.length === 0 && <p>Please, add pet.</p>}
+      {pets.length === 0 && <EmptyListPet>Please, add pet.</EmptyListPet>}
       {pets && (
         <ListPets>
           {pets.map(pet => (
