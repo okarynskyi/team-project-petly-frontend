@@ -1,5 +1,5 @@
 // import { useState } from 'react';
-import Modal from '../../components/Modal/Modal'
+import Modal from '../common/Modal/Modal'
 import { Card } from './ModalAddNotice.styled';
 
 const ModalAddNotice = ({setActive, active}) => {
