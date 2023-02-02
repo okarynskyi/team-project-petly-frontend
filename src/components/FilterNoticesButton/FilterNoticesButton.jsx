@@ -4,13 +4,17 @@ import { selectToken } from 'redux/auth/authSelectors';
 
 import { nanoid } from 'nanoid';
 
-import { Button, FilterList, Item, Wrapper } from './FilterNoticesButton.styled.jsx';
-import { AddNoticeButton } from '../../components/AddNoticeButton/AddNoticeButton';
+import {
+  Button,
+  FilterList,
+  Item,
+  Wrapper,
+} from './FilterNoticesButton.styled.jsx';
+// import { AddNoticeButton } from '../../components/AddNoticeButton/AddNoticeButton';
 
-import { useState } from 'react';
+// import { useState } from 'react';
 // import ModalAddPet from 'components/ModalAddsPet/ModalAddsPet.jsx';
 import ModalAddNotice from 'components/ModalAddNotice/ModalAddNotice.jsx';
-
 
 const buttons = [
   {
@@ -40,17 +44,14 @@ const authButtons = [
 
 function FilterNoticesButton() {
   const token = useSelector(selectToken);
-  const [modalActive, setModalActive] = useState(false);
+  // const [modalActive, setModalActive] = useState(false);
 
   return (
     <Wrapper>
       <FilterList>
         {buttons.map(b => (
           <Item key={nanoid()}>
-            <Button
-              to={'/notices/' + b.link}
-              name={b.link}
-            >
+            <Button to={'/notices/' + b.link} name={b.link}>
               {b.btn}
             </Button>
           </Item>
@@ -58,24 +59,14 @@ function FilterNoticesButton() {
         {token &&
           authButtons.map(b => (
             <Item key={nanoid()}>
-              <Button
-                to={'/notices/' + b.link}
-                name={b.link}
-              >
+              <Button to={'/notices/' + b.link} name={b.link}>
                 {b.btn}
               </Button>
             </Item>
           ))}
       </FilterList>
-      <AddNoticeButton 
-      onClick={() => setModalActive(true)}
-      >
-      </AddNoticeButton>
-      <ModalAddNotice
-      active={modalActive} 
-      setActive={setModalActive}
-      >
-        </ModalAddNotice>
+
+      <ModalAddNotice></ModalAddNotice>
     </Wrapper>
   );
 }
