@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { updatePhoto } from 'redux/user/userOperations';
 import { selectUserInfo } from 'redux/user/userSelectors';
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import { getUserData } from 'redux/user/userOperations';
@@ -29,12 +30,12 @@ export const UserData = () => {
     if (!isLoggedIn) {
       return;
     }
-      dispatch(getUserData());
-    
+    dispatch(getUserData());
   }, [dispatch, isLoggedIn]);
 
   function filterData(obj) {
     let filterUserInfo = [];
+    // console.log(obj);
     if (obj) {
       for (let key in obj) {
         if (key === 'birthday') {
@@ -43,16 +44,12 @@ export const UserData = () => {
               label: key,
               value: formatBirthDate(obj[key]),
             });
-          } else {
-            filterUserInfo.push({
-              label: key,
-              value: '0000-00-00T00:00:00.000+00:00',
-            });
           }
           continue;
         }
         if (key === 'avatarURL' || key === 'favorites') {
-          continue;
+          //тут я пропускаю, потому что это массив
+          continue; // для рендера айтемов, фото туда не входит
         } else {
           filterUserInfo.push({ label: key, value: obj[key] });
         }
@@ -61,22 +58,62 @@ export const UserData = () => {
     return filterUserInfo;
   }
   const infoProfile = filterData(userInfo.user);
+  //ЛОГИКА ДЛЯ ОТПРАВКИ ФОТО
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const handleChange = e => {
+    console.log('e.target.file',e.target.files[0]);
+    setSelectedFile(e.target.files[0]);
+  };
+  const OnSumbit = async event => {
+    event.preventDefault();
+    const imageURL = new FormData();
+    imageURL.append('avatarURL', selectedFile);
+
+    console.log('formData', imageURL);
+    const newAvatar = await dispatch(updatePhoto({ imageURL }));
+    console.log('те, що на бек пішло', newAvatar);
+  };
+
   return (
     <div>
       <TitleSectionUser>My information:</TitleSectionUser>
       <CardProfile>
         <AvatarWrapper>
-          {userInfo ? (
-            <Avatar src={userAvatar} alt="User avatar" />
+          {userInfo.user ? (
+            <Avatar src={userInfo.user.avatarURL} alt="User avatar" />
           ) : (
-            <Avatar src={userInfo.avatarURL} alt="User avatar" />
+            <Avatar src={userAvatar} alt="User avatar" />
           )}
-
           <LabelEditPhoto htmlFor="photoUser">
             <HiCamera color="#F59256" size="20px" />
             Edit photo
           </LabelEditPhoto>
-          <input type="file" name="photo" id="photoUser" />
+          {/*ВАРИАНТЫ ДЛЯ РАЗМЕТКИ ФОРМЫ ОТПРАВКИ */}
+          {/* <p>
+              <input
+                type="file"
+                name="photo" id="photoUser"
+              accept="image/*,.png, .jpg"
+              onChange={handleChange}
+              />
+              <button type="submit"  onSubmit={OnSumbit} >Otghfdbnm</button>
+            </p> */}
+
+          <form onSubmit={OnSumbit} encType="multipart/form-data" method="post">
+            <p>
+              {' '}
+              <input
+                type="file"
+                name="photo"
+                id="photoUser"
+                accept="image/*,.png, .jpg"
+                onChange={handleChange}
+              />
+              <input type="submit" value="Отправить" />
+            </p>
+          </form>
+          {/*КОНЕЦ ВАРИАНТОВ */}
         </AvatarWrapper>
         <InfoWrapper>
           {infoProfile ? (
@@ -100,14 +137,3 @@ export const UserData = () => {
     </div>
   );
 };
-
-// const userInfoFromBack = [
-//   {
-//     name: 'Alena',
-//     email: 'al@gmail.com',
-//     city: 'Tokio',
-//     birthday: '2000-12-01T00:00:00.000Z',
-//     avatarURL: userAvatar,
-//     phone: '+380965749315',
-//   },
-// ];

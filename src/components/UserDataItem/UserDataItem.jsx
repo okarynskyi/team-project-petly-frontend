@@ -6,16 +6,14 @@ import {
   ValueEmailTel,
   InputUserInfo,
   StyledPencil,
-  StyledCheck, FormStyle
+  StyledCheck,
+  FormStyle,
 } from './UserDataItem.styled';
 import { CircleBtn } from 'components/common/CircleBtn.styled';
-import { useDispatch} from 'react-redux';
-// import {
-//   selectUserUpdate,
-//   selectIsDisabled,
-// } from '../../redux/user/userSelectors';
+import { useDispatch } from 'react-redux';
 import { userUpdate } from 'redux/user/userOperations';
-// import { formatBirthDate } from 'helpers/formatDate';
+import { getUserData } from 'redux/user/userOperations';
+
 function chooseTypeLink(type, value) {
   if (type === 'email') {
     return `mailto:${value}`;
@@ -27,17 +25,19 @@ function chooseTypeLink(type, value) {
 export const UserDataItem = ({ type, label, value }) => {
   const [startUpdate, setStartUpdate] = useState(false);
   const [disable, setDisable] = useState(true);
-  // const isDisabled = useSelector(selectIsDisabled);
+
   const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [city, setCity] = useState('');
-  const [birthday, setBirthday] = useState(false);
-  const [phone, setPhone] = useState(false);
-  const [email, setEmail] = useState(false);
+  const [phone, setPhone] = useState('');
+  const [birthday, setBirthday] = useState('');
+
   const dispatch = useDispatch();
 
-  const startUpdateField = event => {
+  const startUpdateField = () => {
     setStartUpdate(true);
   };
+
   const handleChange = e => {
     setDisable(false);
     switch (e.target.name) {
@@ -64,27 +64,27 @@ export const UserDataItem = ({ type, label, value }) => {
   const handleSubmit = event => {
     event.preventDefault();
     if (name) {
-      dispatch(userUpdate({ name }));
+      dispatch(userUpdate({ name })).then(dispatch(getUserData()));
       setStartUpdate(false);
       setDisable(true);
     }
     if (city) {
-      dispatch(userUpdate({ city }));
+      dispatch(userUpdate({ city })).then(dispatch(getUserData()));
       setStartUpdate(false);
       setDisable(true);
     }
     if (phone) {
-      dispatch(userUpdate({ phone }));
+      dispatch(userUpdate({ phone })).then(dispatch(getUserData()));
       setStartUpdate(false);
       setDisable(true);
     }
     if (birthday) {
-      dispatch(userUpdate({ birthday }));
+      dispatch(userUpdate({ birthday })).then(dispatch(getUserData()));
       setStartUpdate(false);
       setDisable(true);
     }
     if (email) {
-      dispatch(userUpdate({ email }));
+      dispatch(userUpdate({ email })).then(dispatch(getUserData()));
       setStartUpdate(false);
       setDisable(true);
     }

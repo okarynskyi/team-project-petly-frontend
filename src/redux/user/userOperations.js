@@ -3,6 +3,45 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://petly-backend-v11f.onrender.com/api';
 
+export const getUserData = createAsyncThunk(
+  'user/getUserData',
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get('/users');
+
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const userUpdate = createAsyncThunk(
+  'auth/userUpdate',
+  async (credentials, { rejectWithValue }) => {
+    console.log(credentials);
+    try {
+      const { data } = await axios.patch('/auth', credentials);
+      console.log(data);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+export const updatePhoto = createAsyncThunk(
+  'auth/updatePhoto',
+  async (credentials, { rejectWithValue }) => {
+    console.log('credentials з операцій', credentials);
+    try {
+      const { data } = await axios.patch('/auth', credentials);
+      console.log(data);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 export const addPet = createAsyncThunk(
   'user/addPet',
   async (post, { rejectWithValue }) => {
@@ -43,28 +82,4 @@ export const listPets = createAsyncThunk(
   }
 );
 
-export const getUserData = createAsyncThunk(
-  'user/getUserData',
-  async (_, { rejectWithValue }) => {
-    try {
-      const { data } = await axios.get('/users');
 
-      return data;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
-
-export const userUpdate = createAsyncThunk(
-  'auth/userUpdate',
-  async (credentials, { rejectWithValue }) => {
-    try {
-      const { data } = await axios.patch('/auth', credentials);
-
-      return data;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);

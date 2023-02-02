@@ -36,6 +36,7 @@ export const Avatar = styled.img`
   margin: 0 auto 70px;
   width: 233px;
   filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
+  border-radius: ${props => props.theme.radii.round};
   @media ${device.tablet} {
     margin-bottom: ${props => props.theme.space[4]}px; //30 было
   }
