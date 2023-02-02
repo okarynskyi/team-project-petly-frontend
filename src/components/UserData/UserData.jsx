@@ -79,6 +79,7 @@ export const UserData = () => {
     <div>
       <TitleSectionUser>My information:</TitleSectionUser>
       <CardProfile>
+        <div>
           {userInfo.user ? (
             <Avatar src={userInfo.user.avatarURL} alt="User avatar" />
           ) : (
@@ -108,7 +109,8 @@ export const UserData = () => {
                 Edit photo
               </LabelEditPhoto>
             )}
-          </FormEdit>
+        </FormEdit>
+        </div>
         <InfoWrapper>
           {infoProfile ? (
             <ListUserInfo>
