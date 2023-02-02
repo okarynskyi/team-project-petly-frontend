@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { device } from 'Device';
 
-
 export const Section = styled.section`
   background-color: ${p => p.theme.colors.background};
   width: 100%;
@@ -30,39 +29,6 @@ text-align: center;
   }
 `;
 
-export const NewsForm = styled.form`
-text-align: center;
-`;
-
-export const NewsInput = styled.input`
-width: 280px;
-height: 40px;
-background-color: ${p => p.theme.colors.white};
-box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
-border-radius: 20px;
-border: none;
-padding: 0 12px;
-margin-bottom: 40px;
-
-@media ${device.tablet} {
-  width: 608px;
-  height: 44px;
-  padding: 0 20px;
-  margin-bottom: 60px;
-  }
-
-@media ${device.desktop} {
-  width: 608px;
-  height: 44px;
-  }
-`;
-
-export const NewsButton = styled.button`
- width: 40px;
-  height: 40px;
-  border-radius: 20px;
-`;
-
 export const NewsListBoxUl = styled.ul`
   display: grid;
   gap: 40px;
@@ -78,7 +44,6 @@ export const NewsListBoxUl = styled.ul`
     gap: 32px;
   }
 `;
-
 
 export const Line = styled.div`
 width: 200px;
@@ -97,25 +62,6 @@ border-radius: 40px;
   }
 `;
 
-export const NewsDiv = styled.div`
-width: 280px;
-height: 300px;
-overflow: hidden;
-margin-bottom: 20px;
-
-@media ${device.tablet} {
-  width: 336px;
-  height: 276px;
-  margin-bottom: 40px;
-  }
-  
-@media ${device.desktop}{
-  width: 395px;
-  height: 254px;
-  }
-
-`;
-
 export const NewsH2 = styled.h2`
 font-family: ${p => p.theme.fonts.main};
 font-weight: ${p => p.theme.fontWeights.fw700};
@@ -124,6 +70,11 @@ line-height: 1.37;
 color: ${p => p.theme.colors.mainText};
 margin-top: 4px;
 margin-bottom: 16px;
+height: 66px;
+-webkit-line-clamp: 2;
+display: -webkit-box;
+-webkit-box-orient: vertical;
+overflow: hidden;
 `;
 
 export const NewsListText = styled.p`
@@ -132,7 +83,23 @@ font-weight: ${p => p.theme.fontWeights.fw400};
 font-size: ${p => p.theme.fontSizes.fs16};
 line-height: 1.37;
 color: ${p => p.theme.colors.newsText};
-margin-bottom: 40px;
+height: 176px;
+margin-bottom: 20px;
+-webkit-line-clamp: 8;
+display: -webkit-box;
+-webkit-box-orient: vertical;
+overflow: hidden;
+
+@media ${device.tablet} {
+  height: 132px;
+  margin-bottom: 40px;
+  -webkit-line-clamp: 6;
+  }
+  
+@media ${device.desktop}{
+  height: 110px;
+  -webkit-line-clamp: 5;
+  } 
 `;
 
 export const Div = styled.div`
@@ -153,3 +120,36 @@ font-size: ${p => p.theme.fontSizes.fs16};
 line-height: 1.37;
 color: ${p => p.theme.colors.accent};
 `;
+
+// export const NewsForm = styled.form`
+// text-align: center;
+// `;
+
+// export const NewsInput = styled.input`
+// width: 280px;
+// height: 40px;
+// background-color: ${p => p.theme.colors.white};
+// box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+// border-radius: 20px;
+// border: none;
+// padding: 0 12px;
+// margin-bottom: 40px;
+
+// @media ${device.tablet} {
+//   width: 608px;
+//   height: 44px;
+//   padding: 0 20px;
+//   margin-bottom: 60px;
+//   }
+
+// @media ${device.desktop} {
+//   width: 608px;
+//   height: 44px;
+//   }
+// `;
+
+// export const NewsButton = styled.button`
+//  width: 40px;
+//   height: 40px;
+//   border-radius: 20px;
+// `;
