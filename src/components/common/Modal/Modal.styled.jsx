@@ -8,6 +8,7 @@ backdrop-filter: blur(10px);
 position: fixed;
 top: 0;
 left: 0;
+z-index: 1000;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -35,8 +36,15 @@ transition: 0.5s all;
 export const ModalButton = styled.button`
 position: absolute;
 display: flex;
-top: 24px;
-right: 24px;
-
+top: 16px;
+right: 16px;
+background-color: transparent;
+border: 0;
+transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  :hover,
+  :focus {
+    cursor: pointer;
+  transform: scale(1.2);
+  }
 
 `
