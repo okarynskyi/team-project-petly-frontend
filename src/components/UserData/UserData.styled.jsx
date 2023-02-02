@@ -68,6 +68,9 @@ export const LabelEditPhoto = styled.label`
 export const FormEdit = styled.form`
 position: relative;
 margin-bottom: 45px;
+@media ${device.tablet} {
+    margin-bottom: 0;
+  }
 `;
 export const InputSend = styled.input`
   position: absolute;
