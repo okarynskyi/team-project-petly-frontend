@@ -4,36 +4,72 @@
 // import operations from '../../redux/notices/noticesOperations';
 // import { selectToken } from 'redux/auth/authSelectors';
 
-import { Wrapper, List } from "./NoticeCategoryItem.styled";
+import {
+  Item,
+  ImageWrapper,
+  Image,
+  CategoryName,
+  CheckBoxAddToFavorite,
+  DescriptionWrapper,
+  Title,
+  DescriptionInner,
+  DescriptionTextContainer,
+  DescriptioтText,
+  Button
+} from "./NoticeCategoryItem.styled";
 
-const NoticesCategoryItem = ({notice}) => {
+const NoticesCategoryItem = ({ notice }) => {
   const {
+    avatarURL,
     // birthday,
     // breed,
     // comments,
     // location,
     // owner,
-    name,
+    // name,
     // price,
-    sex,
-    // title,
+    // sex,
+    title,
     // _id,
   } = notice
 
-  console.log(notice)
+  console.log(avatarURL)
   // const dispatch = useDispatch();
   // const token = useSelector(selectToken);
 
 
-  return   (
-    <Wrapper>
-        <>
-          <List>
-            <h1>{name}</h1>
-            <h2>{sex}</h2>
-          </List>
-        </>
-     </Wrapper>
+  return (
+    <Item>
+      <ImageWrapper>
+        <Image
+          src={avatarURL}
+          alt="Pet"
+        />
+      </ImageWrapper>
+      <CategoryName />
+      <CheckBoxAddToFavorite/>
+      
+      <DescriptionWrapper>
+        <Title>
+          {title}
+        </Title>
+
+        <DescriptionInner>
+          <DescriptionTextContainer>
+            <DescriptioтText>Breed:</DescriptioтText>
+            <DescriptioтText>DescriptioтTextlace:</DescriptioтText>
+            <DescriptioтText>Birth date:</DescriptioтText>
+          </DescriptionTextContainer>
+          <DescriptionTextContainer>
+            <DescriptioтText>Breed:</DescriptioтText>
+            <DescriptioтText>DescriptioтTextlace:</DescriptioтText>
+            <DescriptioтText>Birth date:</DescriptioтText>
+          </DescriptionTextContainer>
+        </DescriptionInner>
+
+        <Button>Learn more</Button>
+      </DescriptionWrapper>
+    </Item>
   );
 };
 
