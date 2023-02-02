@@ -2,19 +2,16 @@
 import { PetsList } from 'components/PetsList/PetsList';
 import {
   WrapperTitlePets,
-  WrapperAddPet,
   TitleSectionPets,
 } from './PetsData.styled';
-import { AddNoticeButton } from 'components/AddNoticeButton/AddNoticeButton';
+import  ModalAddPet  from '../ModalAddsPet/ModalAddsPet';
+
 export const PetsData = () => {
   return (
     <div>
       <WrapperTitlePets>
         <TitleSectionPets>My pets:</TitleSectionPets>
-        <WrapperAddPet>
-          <p>Add pet </p>
-          <AddNoticeButton></AddNoticeButton>
-        </WrapperAddPet>
+        <ModalAddPet></ModalAddPet>
       </WrapperTitlePets>
       <PetsList></PetsList>
     </div>

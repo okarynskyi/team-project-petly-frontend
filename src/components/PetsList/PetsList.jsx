@@ -1,21 +1,18 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector} from 'react-redux';
 import { selectPetsInfo } from 'redux/user/userSelectors';
 import { formatBirthDate } from 'helpers/formatDate';
-import {removePet} from '../../redux/user/userOperations'
 import {
   CardPet,
   ImgPet,
   WrapperInfo,
   InfoPet,
-  CircleBtnTrash,
   ListPets,
-  StyledTrash,
   EmptyListPet,
 } from './PetsList.styled';
+import { DeletePet } from './DeletePet';
 
 export const PetsList = () => {
   const pets = useSelector(selectPetsInfo);
-  const dispatch = useDispatch();
 
   return (
     <>
@@ -26,11 +23,7 @@ export const PetsList = () => {
             <CardPet key={pet._id}>
               {pet.petsPhotoURL ? (<ImgPet src={pet.petsPhotoURL} alt={pet.name} />) : (<div>Заглушка</div>)}
               <WrapperInfo>
-                <CircleBtnTrash onClick={() => {
-          dispatch(removePet(pet._id));
-        }}>
-                  <StyledTrash />
-                </CircleBtnTrash>
+                <DeletePet _id={ pet._id} />
                 <InfoPet>
                   Name: <span>{pet.name}</span>{' '}
                 </InfoPet>
