@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectToken } from 'redux/auth/authSelectors';
-import { selectNoticesByCategory } from '../../redux/notices/noticesSelectors';
+
 import { nanoid } from 'nanoid';
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 
 import { Button, FilterList, Item, Wrapper } from './FilterNoticesButton.styled.jsx';
 import { useLocation } from 'react-router-dom';
@@ -40,7 +40,6 @@ const authButtons = [
 ];
 
 function FilterNoticesButton() {
-  const test = useSelector(selectNoticesByCategory);
   const token = useSelector(selectToken);
 // const unauthorizedFilterId = nanoid();
 // const authorizedFilterId = nanoid();
@@ -55,7 +54,7 @@ function FilterNoticesButton() {
       <FilterList>
         {/* {console.log(test)} */}
         {buttons.map(b => (
-          <Item key={uuidv4()}>
+          <Item key={nanoid()}>
             <Button
               to={b.link === category ? '/notices/' : b.link}
               name={b.link}
@@ -67,7 +66,7 @@ function FilterNoticesButton() {
         ))}
         {token &&
           authButtons.map(b => (
-            <Item key={uuidv4()}>
+            <Item key={nanoid()}>
               <Button
                 to={b.link === category ? '/notices/' : b.link}
                 name={b.link}
