@@ -16,7 +16,7 @@ const initialState = {
       email: null,
       birthday: null,
       phone: null,
-      city: null,
+      location: null,
       avatarURL: null,
       imageURL: null,
       favorites: [],
