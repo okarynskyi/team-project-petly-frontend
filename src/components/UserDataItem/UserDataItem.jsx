@@ -28,7 +28,7 @@ export const UserDataItem = ({ type, label, value }) => {
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [city, setCity] = useState('');
+  const [location, setLocation] = useState('');
   const [phone, setPhone] = useState('');
   const [birthday, setBirthday] = useState('');
 
@@ -47,8 +47,8 @@ export const UserDataItem = ({ type, label, value }) => {
       case 'phone':
         setPhone(e.target.value);
         break;
-      case 'city':
-        setCity(e.target.value);
+      case 'location':
+        setLocation(e.target.value);
         break;
       case 'email':
         setEmail(e.target.value);
@@ -68,8 +68,8 @@ export const UserDataItem = ({ type, label, value }) => {
       setStartUpdate(false);
       setDisable(true);
     }
-    if (city) {
-      dispatch(userUpdate({ city })).then(dispatch(getUserData()));
+    if (location) {
+      dispatch(userUpdate({ location })).then(dispatch(getUserData()));
       setStartUpdate(false);
       setDisable(true);
     }
