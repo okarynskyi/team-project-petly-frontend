@@ -23,8 +23,9 @@ const initialState = {
     },
     userPets: [],
   },
-};
-
+  isLoading: false,
+  isError: null,
+}
 const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -73,7 +74,6 @@ const userSlice = createSlice({
     [updatePhoto.rejected](state, action) {
       state.isLoading = false;
       state.isError = action.payload;
-      // console.log('stateupdateR',state)
       toast.error('Something went wrong, please try again!');
     },
   },

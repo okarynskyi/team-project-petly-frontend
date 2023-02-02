@@ -32,10 +32,8 @@ export const userUpdate = createAsyncThunk(
 export const updatePhoto = createAsyncThunk(
   'auth/updatePhoto',
   async (credentials, { rejectWithValue }) => {
-    console.log('credentials з операцій', credentials);
     try {
       const { data } = await axios.patch('/auth', credentials);
-      console.log(data);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);

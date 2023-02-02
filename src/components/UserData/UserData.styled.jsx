@@ -26,14 +26,8 @@ export const CardProfile = styled.div`
     margin-right: auto;
   }
 `;
-export const AvatarWrapper = styled.div`
-  position: relative;
-  > input {
-    display: none;
-  }
-`;
 export const Avatar = styled.img`
-  margin: 0 auto 70px;
+  margin: 0 auto ;
   width: 233px;
   filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
   border-radius: ${props => props.theme.radii.round};
@@ -70,6 +64,52 @@ export const LabelEditPhoto = styled.label`
     right: -74px;
     bottom: 32px;
   }
+`;
+export const FormEdit = styled.form`
+position: relative;
+margin-bottom: 45px;
+`;
+export const InputSend = styled.input`
+  position: absolute;
+  right: 24px;
+  bottom: -12px;
+  display: flex;
+  align-items: normal;
+  gap: ${props => props.theme.space[0]}px;
+  padding: 4px 10px;
+  font-family: ${props => props.theme.fonts.main};
+  font-size: ${props => props.theme.fontSizes.fs12};
+  line-height: 1.83;
+  color: ${props => props.theme.colors.white};
+  background-color: ${props => props.theme.colors.accent} ;
+  border-color: transparent;
+    border-radius: ${props => props.theme.radii.br40};
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  :hover,
+  :focus {
+    cursor: pointer;
+    background-color: ${props => props.theme.colors.hoverAccent};
+    transform: scale(1.2);
+  }
+  @media ${device.tablet} {
+    right: 0;
+    bottom: 0;
+  }
+  @media ${device.desktop} {
+    right: -74px;
+    bottom: 32px;
+  }
+`;
+export const Loader = styled(InputSend)`
+`;
+export const HiddenInput = styled.input`
+ opacity: 0;
+ width: 0;
+ height: 0;
+ line-height: 0;
+ overflow: hidden;
+ padding: 0;
+ margin:0;
 `;
 export const InfoWrapper = styled.div`
   position: relative;
