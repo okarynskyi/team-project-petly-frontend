@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from 'Device';
 
 // export const Wrapper = styled.div`
 //   margin-left: auto;
@@ -15,19 +16,41 @@ import styled from 'styled-components';
 
 export const Item = styled.li` /**загальний ітем нашої картки */
   position: relative;
-
+  width: 288px;
+  height: 606px;    
+  background: #FFFFFF;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
-  border-radius: 0px 0px 20px 20px;
+  border-radius: 0px 0px 40px 40px;
+  
+  @media ${device.tablet} {
+    width: 336px;
+    height: 606px;  
+  }
+  @media ${device.desktop} {
+    width: 288px;
+    height: 606px;  
+  }
+
 `;
 
 export const ImageWrapper = styled.div` /**обгортка для картинки */
   width: 100%;
-  height: 288px;
   object-fit: cover;
+  margin-bottom: 20px;
 `;
 
 export const Image = styled.img`  /**сама картинка */
-  
+ width: 288px;
+height: 288px;
+
+  @media ${device.tablet} {
+    width: 336px;
+height: 288px; 
+  }
+  @media ${device.desktop} {
+   width: 288px;
+height: 288px; 
+  }
 `;
 
 export const CategoryName = styled.p` /**назва категорії що знаходиться на картинці */
@@ -43,21 +66,51 @@ export const DescriptionWrapper = styled.div`  /**обгортка для всь
 `;
 
 export const Title = styled.h3` /**заголовок, опис картки */
-  
+font-weight: 700;
+font-size: 28px;
+line-height: 1.35;
+color: #111111;
+margin-left: 20px;
+margin-right: 37px;
+margin-bottom: 20px;
 `;
 
 export const DescriptionInner = styled.div` /**обгортка для опису */
-  
+  display: flex;
 `;
 
 export const DescriptionTextContainer = styled.div` /**обгортка для опису. В середині них буде DescriptionText */
-  
+  margin-left: 20px;
+  margin-bottom: 50px;
+`;
+
+export const DescriptionTextContainer2 = styled.div` /**обгортка для опису. В середині них буде DescriptionText */
+  margin-left: 37px;
+  margin-bottom: 50px;
 `;
 
 export const DescriptioтText = styled.p`  /**текст опису */
-  
+ font-weight: 500;
+font-size: 16px;
+line-height: 1.37;
+color: #111111;
+ margin-bottom: 8px;
 `;
 
 export const Button = styled.button` /**кнопка.  Вже напевно хтось робив, можна перевикористати*/
-  
+  width: 248px;
+  height: 38px;
+  background: #FFFFFF;
+  border: 2px solid #F59256;
+  box-shadow: 7px 4px 16px rgba(0, 0, 0, 0.08);
+  border-radius: 40px;
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 32px;
+  cursor: pointer;
+  font-weight: 500;
+font-size: 16px;
+line-height: 1.37;
+letter-spacing: 0.04em;
+color: #F59256;
 `;
