@@ -18,9 +18,9 @@ export const RegisterFormStepTwo = () => {
       </Label>
       <FormError name="name" />
       <Label>
-        <InputFormik name="city" placeholder="City" />
+        <InputFormik name="location" placeholder="Location" />
       </Label>
-      <FormError name="city" />
+      <FormError name="location" />
       <Label>
         <InputFormik name="phone" placeholder="Mobile phone" maxLength="13" />
       </Label>
