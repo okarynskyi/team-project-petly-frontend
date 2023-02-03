@@ -30,7 +30,7 @@ const NoticesCategoryItem = ({ notice }) => {
     // name,
     // price,
     // sex,
-    title,
+    // title,
     // _id,
   } = notice
 
