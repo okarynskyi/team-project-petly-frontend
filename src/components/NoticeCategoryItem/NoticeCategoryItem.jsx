@@ -17,7 +17,6 @@ import {
   Title,
   DescriptionInner,
   DescriptionTextContainer,
-  DescriptionTextContainer2,
   DescriptioтText,
   Button,
 } from "./NoticeCategoryItem.styled";
@@ -84,7 +83,7 @@ const NoticesCategoryItem = ({ notice }) => {
       
       <DescriptionWrapper>
         <Title> Сute dog looking for a home
-          {/* {title} */}
+          {title}
         </Title>
 
         <DescriptionInner>
@@ -93,7 +92,9 @@ const NoticesCategoryItem = ({ notice }) => {
             <DescriptioтText>Place:</DescriptioтText>
             <DescriptioтText>Age:</DescriptioтText>
           </DescriptionTextContainer>
+        </DescriptionInner>
 
+        <DescriptionInner>
           <DescriptionTextContainer>
             <DescriptioтText>{breed}</DescriptioтText>
             <DescriptioтText>{location}</DescriptioтText>
@@ -114,5 +115,6 @@ const NoticesCategoryItem = ({ notice }) => {
     </Item>
   );
 };
+// bchdbcjh
 
 export default NoticesCategoryItem;
