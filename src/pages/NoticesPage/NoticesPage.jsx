@@ -3,6 +3,7 @@ import FilterNoticesButton from '../../components/FilterNoticesButton/FilterNoti
 import NoticesCategoryList from '../../components/NoticesCategoriesList/NoticesCategoriesList';
 import { SearchBar } from '../../components/NoticesSearchBar/SearchBar';
 import { Box, GlobalBox, Title, Wrapper } from './NoticesPage.styled';
+import { Container } from 'components/common/Container.styled';
 // import { useDispatch } from 'react-redux';
 
 const NoticesPage = () => {
@@ -11,6 +12,7 @@ const NoticesPage = () => {
 
   return (
     <GlobalBox>
+      <Container>
       <Wrapper>
         <Box>
           <Title>Find your favorite pet</Title>
@@ -19,10 +21,12 @@ const NoticesPage = () => {
           />
           <FilterNoticesButton /> 
         </Box>
-        <NoticesCategoryList />
+          <NoticesCategoryList />
       </Wrapper>
-      <Outlet />
+        <Outlet />
+        </Container>
     </GlobalBox>
+    
   );
 };
 

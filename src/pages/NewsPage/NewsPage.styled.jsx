@@ -20,12 +20,12 @@ font-weight: ${p => p.theme.fontWeights.fw700};
 font-size: ${p => p.theme.fontSizes.fs24};
 line-height: 1.37;
 color: ${p => p.theme.colors.mainText};
-margin-top: 69px;
-margin-bottom: 40px;
+margin-bottom: 28px;
 text-align: center;
 
 @media ${device.tablet} {
-  font-size: ${p => p.theme.fontSizes.fs48}; 
+  font-size: ${p => p.theme.fontSizes.fs48};
+  margin-bottom: 40px;
   }
 `;
 
@@ -120,36 +120,3 @@ font-size: ${p => p.theme.fontSizes.fs16};
 line-height: 1.37;
 color: ${p => p.theme.colors.accent};
 `;
-
-// export const NewsForm = styled.form`
-// text-align: center;
-// `;
-
-// export const NewsInput = styled.input`
-// width: 280px;
-// height: 40px;
-// background-color: ${p => p.theme.colors.white};
-// box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
-// border-radius: 20px;
-// border: none;
-// padding: 0 12px;
-// margin-bottom: 40px;
-
-// @media ${device.tablet} {
-//   width: 608px;
-//   height: 44px;
-//   padding: 0 20px;
-//   margin-bottom: 60px;
-//   }
-
-// @media ${device.desktop} {
-//   width: 608px;
-//   height: 44px;
-//   }
-// `;
-
-// export const NewsButton = styled.button`
-//  width: 40px;
-//   height: 40px;
-//   border-radius: 20px;
-// `;

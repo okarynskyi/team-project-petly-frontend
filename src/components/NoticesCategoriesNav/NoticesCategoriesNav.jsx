@@ -1,5 +1,5 @@
 import { NavLink, Outlet  } from "react-router-dom";
-import { Container} from "../common/Container.styled";
+import { Container } from "../common/Container.styled";
 
  export const NoticesCategoryNav = () => {
 
@@ -9,7 +9,7 @@ import { Container} from "../common/Container.styled";
            <Container>
         <h3>Кнопки переходу</h3>
               <ul>
-                   <li>
+        <li>
           <NavLink to="/" >Sell</NavLink>
         </li>
         <li>
