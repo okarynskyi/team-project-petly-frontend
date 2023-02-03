@@ -16,9 +16,10 @@ import PrivateRoute from '../components/PrivateRoute';
 
 const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
+const UserPage = lazy(() => import('../pages/UserPage/UserPage'));
 const NewsPage = lazy(() => import('../pages/NewsPage/NewsPage'));
 const NoticesPage = lazy(() => import('../pages/NoticesPage/NoticesPage'));
-const UserPage = lazy(() => import('../pages/UserPage/UserPage'));
+const OurFriendsPage = lazy(()=> import('../pages/OurFriendsPage/OurFriendsPage'))
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 
 export const App = () => {
@@ -39,14 +40,6 @@ export const App = () => {
           <Routes>
             <Route path="/" element={<SharedLayout />}>
               <Route index element={<HomePage />} />
-              <Route
-                path="/news"
-                element={
-                  <PublicRoute>
-                    <NewsPage />
-                  </PublicRoute>
-                }
-              />
               <Route
                 path="/register"
                 element={
@@ -72,10 +65,26 @@ export const App = () => {
                 }
               />
               <Route
+                path="/news"
+                element={
+                  <PublicRoute>
+                    <NewsPage />
+                  </PublicRoute>
+                }
+              />
+              <Route
                 path="notices/:categoryName"
                 element={
                   <PublicRoute>
                     <NoticesPage />
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path="/friends"
+                element={
+                  <PublicRoute>
+                    <OurFriendsPage />
                   </PublicRoute>
                 }
               />
