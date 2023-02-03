@@ -41,8 +41,10 @@ const getOneNotice = createAsyncThunk(
 const addToFavorites = createAsyncThunk(
     'notices/addToFavorites',
     async (id, { rejectWithValue }) => {
+        console.log(id)
         try {
-            const {data} = await axiosInstance.post(`/notices/favorites/${id}`);
+            const { data } = await axiosInstance.post(`/notices/favorites/${id}`);
+            console.log(data)
             return data;
         } catch (error) {
             return rejectWithValue(error.message);

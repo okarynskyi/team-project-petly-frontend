@@ -34,7 +34,7 @@ export const CategoryName = styled.p` /**назва категорії що зн
   
 `;
 
-export const CheckBoxAddToFavorite = styled.div`  /**сердечко для додавання до улюбленних. Кастомний чекбокс???*/
+export const CheckBoxAddToFavorite = styled.button`  /**сердечко для додавання до улюбленних. Кастомний чекбокс???*/
   
 `;
 

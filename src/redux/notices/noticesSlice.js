@@ -11,6 +11,7 @@ const initialState = {
     favorites: [], /**масив улюбленних */
     userNotices: [], /**масив оголошень доданих користувачем */
     oneNoticeMoreInfo: null, /**додаткова інформація для одного оголошення json */
+    isFavorite: false,
     isLoading: false,
     isError: null,
 };
