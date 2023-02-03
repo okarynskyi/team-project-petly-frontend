@@ -115,5 +115,6 @@ const NoticesCategoryItem = ({ notice }) => {
     </Item>
   );
 };
+// bchdbcjh
 
 export default NoticesCategoryItem;
