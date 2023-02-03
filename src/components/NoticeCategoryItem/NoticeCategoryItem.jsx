@@ -22,6 +22,7 @@ import {
 } from "./NoticeCategoryItem.styled";
 
 const NoticesCategoryItem = ({ notice }) => {
+  console.log(notice)
   const {
     avatarURL,
     birthday,
@@ -36,6 +37,7 @@ const NoticesCategoryItem = ({ notice }) => {
     _id,
   } = notice
   const dispatch = useDispatch();
+
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const isFavorite = useSelector(selectIsFavorite);
   // const isLoggedIn = true
