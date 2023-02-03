@@ -14,8 +14,9 @@ import {
   Title,
   DescriptionInner,
   DescriptionTextContainer,
+  DescriptionTextContainer2,
   DescriptioтText,
-  Button
+  Button,
 } from "./NoticeCategoryItem.styled";
 
 const NoticesCategoryItem = ({ notice }) => {
@@ -50,23 +51,24 @@ const NoticesCategoryItem = ({ notice }) => {
       <CheckBoxAddToFavorite/>
       
       <DescriptionWrapper>
-        <Title>
-          {title}
+        <Title> Сute dog looking for a home
+          {/* {title} */}
         </Title>
 
         <DescriptionInner>
           <DescriptionTextContainer>
             <DescriptioтText>Breed:</DescriptioтText>
-            <DescriptioтText>DescriptioтTextlace:</DescriptioтText>
-            <DescriptioтText>Birth date:</DescriptioтText>
+            <DescriptioтText>Place:</DescriptioтText>
+            <DescriptioтText>Age:</DescriptioтText>
           </DescriptionTextContainer>
-          <DescriptionTextContainer>
-            <DescriptioтText>Breed:</DescriptioтText>
-            <DescriptioтText>DescriptioтTextlace:</DescriptioтText>
-            <DescriptioтText>Birth date:</DescriptioтText>
-          </DescriptionTextContainer>
-        </DescriptionInner>
 
+          <DescriptionTextContainer2>
+            <DescriptioтText>Pomeranian</DescriptioтText>
+            <DescriptioтText>Lviv</DescriptioтText>
+            <DescriptioтText>one year</DescriptioтText>
+          </DescriptionTextContainer2>
+
+        </DescriptionInner>
         <Button>Learn more</Button>
       </DescriptionWrapper>
     </Item>
