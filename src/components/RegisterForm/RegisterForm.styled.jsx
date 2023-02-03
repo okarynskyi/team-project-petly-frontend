@@ -44,6 +44,8 @@ export const RegistrBtn = styled(AccentButton)`
 `;
 
 export const NextBtn = styled(AccentButton)`
+  display: flex;
+  justify-content: center;
   margin: ${props => props.theme.space[5]}px auto;
 `;
 
