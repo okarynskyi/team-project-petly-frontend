@@ -17,7 +17,6 @@ import {
   Title,
   DescriptionInner,
   DescriptionTextContainer,
-  // DescriptionTextContainer2,
   DescriptioтText,
   Button,
 } from "./NoticeCategoryItem.styled";
@@ -33,7 +32,7 @@ const NoticesCategoryItem = ({ notice }) => {
     // name,
     // price,
     // sex,
-    // title,
+    title,
     _id,
   } = notice
   const dispatch = useDispatch();
@@ -84,7 +83,7 @@ const NoticesCategoryItem = ({ notice }) => {
       
       <DescriptionWrapper>
         <Title> Сute dog looking for a home
-          {/* {title} */}
+          {title}
         </Title>
 
         <DescriptionInner>
