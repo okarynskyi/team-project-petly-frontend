@@ -42,6 +42,7 @@ export const ImageWrapper = styled.div` /**обгортка для картин�
 export const Image = styled.img`  /**сама картинка */
  width: 288px;
 height: 288px;
+background-color: blue;
 
   @media ${device.tablet} {
     width: 336px;
@@ -54,11 +55,19 @@ height: 288px;
 `;
 
 export const CategoryName = styled.p` /**назва категорії що знаходиться на картинці */
-  
+  position: absolute;
+ top: 0;
+ padding: 20px;
+ border-radius:   0px 40px 40px  0px;
+ background: rgba(255, 255, 255, 0.6);
+backdrop-filter: blur(2px);
+margin-bottom: 20px;
 `;
 
 export const CheckBoxAddToFavorite = styled.button`  /**сердечко для додавання до улюбленних. Кастомний чекбокс???*/
-  
+   position: absolute;
+top: 0;
+
 `;
 
 export const DescriptionWrapper = styled.div`  /**обгортка для всього вмісту що знаходиться нижче */
@@ -70,13 +79,13 @@ font-weight: 700;
 font-size: 28px;
 line-height: 1.35;
 color: #111111;
-margin-left: 20px;
-margin-right: 37px;
 margin-bottom: 20px;
+margin-left: 20px;
 `;
 
 export const DescriptionInner = styled.div` /**обгортка для опису */
   display: flex;
+
 `;
 
 export const DescriptionTextContainer = styled.div` /**обгортка для опису. В середині них буде DescriptionText */
@@ -89,7 +98,7 @@ export const DescriptionTextContainer2 = styled.div` /**обгортка для 
   margin-bottom: 50px;
 `;
 
-export const DescriptioтText = styled.p`  /**текст опису */
+export const DescriptionText = styled.p`  /**текст опису */
  font-weight: 500;
 font-size: 16px;
 line-height: 1.37;

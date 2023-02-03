@@ -17,7 +17,8 @@ import {
   Title,
   DescriptionInner,
   DescriptionTextContainer,
-  DescriptioтText,
+  DescriptionTextContainer2,
+  DescriptionText,
   Button,
 } from "./NoticeCategoryItem.styled";
 
@@ -62,6 +63,15 @@ const NoticesCategoryItem = ({ notice }) => {
     toast.success('Notice removed from favorite adds.');
   };
 
+  function dateConverter(utcDate) {
+    const date = new Date(utcDate);
+    const day = date.getDay().toString().padStart(2, "0");
+    const month = date.getMonth().toString().padStart(2, "0");
+    const year = date.getFullYear();
+    const convertedDate = [day, month, year].join('/');
+    return convertedDate;
+  }
+
   return (
     <Item key={_id}>
       <ImageWrapper>
@@ -70,9 +80,9 @@ const NoticesCategoryItem = ({ notice }) => {
           alt="Pet"
         />
       </ImageWrapper>
+     
       <CategoryName>Category name</CategoryName>
 
-      
       {!isFavorite && (
         <CheckBoxAddToFavorite onClick={addToFavorite}>Like</CheckBoxAddToFavorite>
       )}
@@ -80,26 +90,25 @@ const NoticesCategoryItem = ({ notice }) => {
         <CheckBoxAddToFavorite onClick={removeFromFavorite}>DesLike</CheckBoxAddToFavorite>
       )}
 
-      
       <DescriptionWrapper>
-        <Title> Сute dog looking for a home
+        <Title> 
           {title}
         </Title>
 
         <DescriptionInner>
           <DescriptionTextContainer>
-            <DescriptioтText>Breed:</DescriptioтText>
-            <DescriptioтText>Place:</DescriptioтText>
-            <DescriptioтText>Age:</DescriptioтText>
+            <DescriptionText>Breed:</DescriptionText>
+            <DescriptionText>Place:</DescriptionText>
+            <DescriptionText>Age:</DescriptionText>
           </DescriptionTextContainer>
-        </DescriptionInner>
+        {/* </DescriptionInner>
 
-        <DescriptionInner>
-          <DescriptionTextContainer>
-            <DescriptioтText>{breed}</DescriptioтText>
-            <DescriptioтText>{location}</DescriptioтText>
-            <DescriptioтText>{birthday}</DescriptioтText>
-          </DescriptionTextContainer>
+        <DescriptionInner> */}
+          <DescriptionTextContainer2>
+            <DescriptionText>{breed}</DescriptionText>
+            <DescriptionText>{location}</DescriptionText>
+            <DescriptionText>{dateConverter(birthday)}</DescriptionText>
+          </DescriptionTextContainer2>
         </DescriptionInner>
 
       </DescriptionWrapper>
