@@ -16,7 +16,7 @@ import { device } from 'Device';
 
 export const Item = styled.li` /**загальний ітем нашої картки */
   position: relative;
-  width: 288px;
+  width: 280px;
   height: 606px;    
   background: #FFFFFF;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
@@ -50,7 +50,7 @@ height: 288px;
   }
   @media ${device.desktop} {
    width: 288px;
-height: 288px; 
+  height: 288px; 
   }
 `;
 
@@ -60,8 +60,8 @@ export const CategoryName = styled.p` /**назва категорії що зн
  padding: 20px;
  border-radius:   0px 40px 40px  0px;
  background: rgba(255, 255, 255, 0.6);
-backdrop-filter: blur(2px);
-margin-bottom: 20px;
+  backdrop-filter: blur(2px);
+  margin-bottom: 20px;
 `;
 
 export const CheckBoxAddToFavorite = styled.button`  /**сердечко для додавання до улюбленних. Кастомний чекбокс???*/
@@ -81,6 +81,9 @@ line-height: 1.35;
 color: #111111;
 margin-bottom: 20px;
 margin-left: 20px;
+width: 231px;
+height: 76px;
+overflow: hidden;
 `;
 
 export const DescriptionInner = styled.div` /**обгортка для опису */
@@ -90,7 +93,7 @@ export const DescriptionInner = styled.div` /**обгортка для опис�
 
 export const DescriptionTextContainer = styled.div` /**обгортка для опису. В середині них буде DescriptionText */
   margin-left: 20px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 `;
 
 export const DescriptionText = styled.p`  /**текст опису */
@@ -98,7 +101,9 @@ export const DescriptionText = styled.p`  /**текст опису */
 font-size: 16px;
 line-height: 1.37;
 color: #111111;
- margin-bottom: 8px;
+ &:not(:last-child){
+    margin-bottom: 8px;
+}
 `;
 
 export const Button = styled.button` /**кнопка.  Вже напевно хтось робив, можна перевикористати*/
@@ -110,11 +115,12 @@ export const Button = styled.button` /**кнопка.  Вже напевно х�
   border-radius: 40px;
   margin: 0 auto;
   display: block;
-  margin-bottom: 32px;
+  margin-bottom: 12px;
   cursor: pointer;
   font-weight: 500;
 font-size: 16px;
 line-height: 1.37;
 letter-spacing: 0.04em;
 color: #F59256;
+
 `;
