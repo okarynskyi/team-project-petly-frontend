@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 
 import operations from '../../redux/notices/noticesOperations';
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
-import { selectIsFavorite } from 'redux/notices/noticesSelectors';
+// import { selectIsFavorite } from 'redux/notices/noticesSelectors';
 
 import {
   Item,
