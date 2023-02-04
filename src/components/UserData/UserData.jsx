@@ -56,6 +56,7 @@ export const UserData = () => {
     const imageURL = new FormData();
     imageURL.append('imageURL', fileSelect);
     dispatch(updatePhoto(imageURL));
+    console.log(imageURL)
     setchangePhoto(true);
   };
 

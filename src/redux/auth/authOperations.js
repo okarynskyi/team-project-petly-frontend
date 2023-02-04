@@ -33,8 +33,6 @@ export const logIn = createAsyncThunk(
     try {
       const { data } = await axios.post('/auth/login', credentials);
       setAuthHeader(data.token);
-      console.log()
-
 
       return data;
     } catch (error) {
@@ -67,7 +65,6 @@ export const getCurrentUser = createAsyncThunk(
 
     setAuthHeader(persistedToken);
 
-
     try {
       const { data } = await axios.get('/auth/current');
 
@@ -81,7 +78,6 @@ export const getCurrentUser = createAsyncThunk(
 export const userUpgade = createAsyncThunk(
   'auth/userUpdate',
   async (credentials, { rejectWithValue }) => {
-    console.log(credentials);
     try {
       const { data } = await axios.patch('/auth', credentials);
 
