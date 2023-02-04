@@ -17,9 +17,10 @@ import {
   NextBtn,
 } from './RegisterForm.styled';
 
-export const passwordRegexp = /^[A-Za-z0-9!?#$%^&_\-*]{7,32}$/;
+export const passwordRegexp = /^\S*$/;
 export const nameRegexp = /^[a-zA-Z]{2,20}$/;
-export const phoneRegexp = /^\+380\d{9}$/;
+export const locationRegexp = /[A-Z][a-z]*,\s[A-Z][a-z]*/;
+export const phoneRegexp = /^\+[1-9]{1}[0-9]{3,14}$/;
 export const emailRegexp =
   /^[^-._]{1}[A-Za-z0-9._-]{1,}@[^-._]{1}[A-Za-z0-9.-]{0,}\.[A-Za-z]{2,4}$/;
 
@@ -41,19 +42,24 @@ export const RegisterForm = () => {
     password: '',
     confirmPassword: '',
     name: '',
-    city: '',
+    location: '',
     phone: '',
   };
 
   const schemaStepOne = yup.object({
     email: yup
       .string()
+      .trim(true)
       .min(7, 'Email must consist at least 7 symbols')
       .max(63, 'Email must contain no more than 63 symbols')
-      .matches(emailRegexp, 'Please, enter a valid e-mail')
+      .matches(
+        emailRegexp,
+        'Please, enter a valid e-mail. For example, "mango@gmail.com"'
+      )
       .required('E-mail is required'),
     password: yup
       .string()
+      .trim(true)
       .min(7, 'Password must consist at least 7 symbols')
       .max(32, 'Password must contain no more than 32 symbols')
       .matches(passwordRegexp, 'Please, enter a valid password')
@@ -77,29 +83,29 @@ export const RegisterForm = () => {
         'Please, enter a valid name. For example, "Mango" or "Poly"'
       )
       .required('Name is required'),
-    city: yup
+    location: yup
       .string()
       .matches(
-        nameRegexp,
-        'Please, enter a valid city. For example, "Ternopil" or "Zaporizhzhia"'
+        locationRegexp,
+        'Please, enter a valid location. For example, "Brovary, Kyiv" or "Akhtyrka, Sumy"'
       )
-      .required('City is required'),
+      .required('Location is required'),
     phone: yup
       .string()
       .min(13, 'Not enough of symbols entered')
       .matches(
         phoneRegexp,
-        'Please, enter the phone number in the format +380xxxxxxxxx'
+        'Please, enter the phone number in the format +xxxxxxxxxxxx'
       )
       .required('Phone is required'),
   });
 
   const handleSubmit = (
-    { name, email, password, city, phone },
+    { name, email, password, location, phone },
     { resetForm }
   ) => {
     const values = { email, password };
-    dispatch(signUp({ name, email, password, city, phone })).then(resp => {
+    dispatch(signUp({ name, email, password, location, phone })).then(resp => {
       if (resp.meta.requestStatus === 'fulfilled') {
         loginUser(values);
         resetForm();

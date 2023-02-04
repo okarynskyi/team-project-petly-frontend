@@ -12,16 +12,16 @@ export const AuthSection = styled.section`
   background-size: contain;
   background-position: bottom;
   @media ${device.tablet} {
-    padding-top: 204px;
-    height: calc(100vh - 72px);
+    padding-top: 100px;
+    height: 100vh;
     background-image: url('${backgroundTabImg}');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: bottom;
   }
   @media ${device.desktop} {
-    padding-top: 80px;
-    height: calc(100vh - 68px);
+    padding-top: 40px;
+    height: 100vh;
     background-image: url('${backgroundImg}');
     background-repeat: no-repeat;
     background-size: contain;
