@@ -8,8 +8,6 @@ const handlePending = state => {
 
 const initialState = {
     noticesByCategory: [], /**масив всіх оголошень */
-    favorites: [], /**масив улюбленних */
-    userNotices: [], /**масив оголошень доданих користувачем */
     oneNoticeMoreInfo: null, /**додаткова інформація для одного оголошення json */
     isFavorite: false,
     isLoading: false,
@@ -91,8 +89,7 @@ const noticesSlice = createSlice({
         [operations.createNotice.pending]: handlePending,
         [operations.createNotice.fulfilled](state, { payload }) {
             console.log(payload);
-            state.noticesByCategory = [payload, ...state.noticesByCategory];
-            state.userNotices = [payload, ...state.userNotices];
+            state.noticesByCategory = [...state.noticesByCategory, payload];
             state.isLoading = false;
             state.isError = null;
         },
