@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 
 import operations from '../../redux/notices/noticesOperations';
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
+import ModalNotice from '../ModalNotice/ModalNotice';
 // import { selectIsFavorite } from 'redux/notices/noticesSelectors';
 
 import {
@@ -114,15 +115,14 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner }) => {
         </DescriptionInner>
 
       </DescriptionWrapper>
-
-      {isLoggedIn ? (
-        <>
-          <Button>Learn more</Button>
-          {isOwner && <Button>Delete</Button>}
-        </>
-      ) : (
-        <Button>Learn more</Button>
-      )}
+        {isLoggedIn ? (
+          <>
+            <ModalNotice></ModalNotice>
+            {isOwner && <Button>Delete</Button>}
+          </>
+        ) : (
+          <ModalNotice></ModalNotice>
+        )}
     </Item>
   );
 };

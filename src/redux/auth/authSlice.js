@@ -52,7 +52,7 @@ const authSlice = createSlice({
       state.isLoading = true;
       state.isError = null;
     },
-    [logOut.fulfilled](state, { payload }) {
+    [logOut.fulfilled](state, _) {
       state.user = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
@@ -64,12 +64,12 @@ const authSlice = createSlice({
       state.isError = payload;
       toast.error('Something went wrong, please try again!');
     },
-      [getCurrentUser.pending](state) {
+    [getCurrentUser.pending](state) {
       state.isLoading = true;
       state.isFetchingCurrentUser = true;
     },
     [getCurrentUser.fulfilled](state, action) {
-      state.user = action.payload;
+      state.user = action.payload.user;
       state.isLoggedIn = true;
       state.isLoading = false;
       state.isFetchingCurrentUser = false;

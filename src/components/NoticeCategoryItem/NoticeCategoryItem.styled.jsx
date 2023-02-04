@@ -16,7 +16,7 @@ import { device } from 'Device';
 
 export const Item = styled.li` /**загальний ітем нашої картки */
   position: relative;
-  width: 288px;
+  width: 280px;
   height: 606px;    
   background: #FFFFFF;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
@@ -50,6 +50,7 @@ background-color: blue; // временный фон удалить когда �
   @media ${device.desktop} {
     width: 288px;
     height: 288px; 
+
   }
 `;
 
@@ -87,7 +88,7 @@ export const DescriptionInner = styled.div` /**обгортка для опис�
 
 export const DescriptionTextContainer = styled.div` /**обгортка для опису. В середині них буде DescriptionText */
   margin-left: 20px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 `;
 
 export const DescriptionText = styled.p`  /**текст опису */
@@ -107,7 +108,7 @@ export const Button = styled.button` /**кнопка.  Вже напевно х�
   border-radius: 40px;
   margin: 0 auto;
   display: block;
-  margin-bottom: 32px;
+  margin-bottom: 12px;
   cursor: pointer;
   font-weight: ${p => p.theme.fontWeights.fw500};
   font-size: ${p => p.theme.fontSizes.fs16};

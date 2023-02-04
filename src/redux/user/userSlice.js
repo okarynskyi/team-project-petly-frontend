@@ -33,6 +33,25 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   extraReducers: {
+    [addPet.pending](state) {
+      state.isLoading = true;
+      state.isError = null;
+    },
+    [addPet.fulfilled](state, { payload }) {
+      console.log('payload', payload.newPet)
+      state.profile.userPets.push(payload.newPet);
+    },
+    [addPet.rejected](state, action) {
+      state.isLoading = false;
+      state.isError = action.payload;
+    },
+    [removePet.fulfilled](state, { payload }) {
+      const index = state.profile.userPets.findIndex(
+        item => item._id === payload._id
+      );
+      state.profile.userPets.splice(index, 1);
+    },
+
     [getUserData.pending]: handlePending,
     [getUserData.fulfilled](state, { payload }) {
       state.profile.user = {

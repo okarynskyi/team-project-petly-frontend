@@ -1,10 +1,16 @@
 import { Label } from '../ModalAddNotice.styled';
+import { Field } from 'formik';
 
-export const Location = () => {
+export const Location = ({ name, placeholder, validate }) => {
   return (
     <Label>
       Location
-      <input name="location" />
+      <Field
+        type="text"
+        placeholder={placeholder}
+        name={name}
+        validate={validate}
+      />
     </Label>
   );
 };
