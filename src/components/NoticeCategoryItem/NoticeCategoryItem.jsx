@@ -21,7 +21,7 @@ import {
   Button,
 } from "./NoticeCategoryItem.styled";
 
-const NoticesCategoryItem = ({ notice }) => {
+const NoticesCategoryItem = ({ notice, isFavorite, isOwner }) => {
   console.log(notice)
   const {
     avatarURL,
@@ -39,7 +39,7 @@ const NoticesCategoryItem = ({ notice }) => {
   const dispatch = useDispatch();
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const isFavorite = useSelector(selectIsFavorite);
+  // const isFavorite = useSelector(selectIsFavorite);
   // const isLoggedIn = true
   // console.log(isLoggedIn)
 
@@ -118,7 +118,7 @@ const NoticesCategoryItem = ({ notice }) => {
       {isLoggedIn ? (
         <>
           <Button>Learn more</Button>
-          <Button>Delete</Button>
+          {isOwner && <Button>Delete</Button>}
         </>
       ) : (
         <Button>Learn more</Button>

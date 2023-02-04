@@ -57,6 +57,7 @@ const NoticesCategoryList = () => {
         <>
           <List>
               {notices.map(notice => {
+                const isOwner = notice.owner._id === user.user.id;
                 const index = notice.favorite.indexOf(user.user.id);
                 
                 if (index > -1) {
@@ -67,6 +68,7 @@ const NoticesCategoryList = () => {
                   key={notice._id}
                   notice={notice}
                   isFavorite={isFavorite}
+                  isOwner={isOwner}
                 />
 
               })}
