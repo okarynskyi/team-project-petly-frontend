@@ -5,6 +5,7 @@ import { AccentButton } from 'components/common/StyledButton/StyledButton.styled
 export const LogoutBtn = styled.button`
   font-family: ${props => props.theme.fonts.main};
   font-weight: ${props => props.theme.fontWeights.fw500};
+  font-size: 20px;
   line-height: 1.37;
   letter-spacing: 0.04em;
   color: ${props => props.theme.colors.inputText};

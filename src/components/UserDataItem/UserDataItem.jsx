@@ -11,8 +11,6 @@ import {
 } from './UserDataItem.styled';
 import { CircleBtn } from 'components/common/CircleBtn.styled';
 import { useDispatch } from 'react-redux';
-// import {  useSelector } from 'react-redux';
-// import { selectIsLoadingUser } from 'redux/user/userSelectors.js';
 import { userUpdate } from 'redux/user/userOperations';
 
 function chooseTypeLink(type, value) {
@@ -30,24 +28,6 @@ function findCity(label) {
   }
 }
 
-// function choosePattern(label) {
-//   if (label === 'location') {
-//     return `${/[A-Z][a-z]*,\s[A-Z][a-z]*/}`;
-//   }
-//   if (label === 'name') {
-//     return `${/^[a-zA-Z]{2,20}$/}`;
-//   }
-//   if (label === 'email') {
-//     return `${/^[^-._]{1}[A-Za-z0-9._-]{1,}@[^-._]{1}[A-Za-z0-9.-]{0,}\.[A-Za-z]{2,4}$/}`;
-//   }
-//   if (label === 'birthday') {
-//     return;
-//   }
-//   if (label === 'phone') {
-//     return `${/^\+380\d{9}$/}`;
-//   }
-// }
-
 export const UserDataItem = ({
   activeField,
   setActiveField,
@@ -57,7 +37,7 @@ export const UserDataItem = ({
 }) => {
   const [startUpdate, setStartUpdate] = useState(false);
   const [disable, setDisable] = useState(true);
-  // const isLoading = useSelector(selectIsLoadingUser);
+
   const [formValues, setFormValues] = useState({
     name: '',
     email: '',
@@ -108,7 +88,6 @@ export const UserDataItem = ({
             name={label}
             id={label}
             value={formValues[label]}
-            // pattern={choosePattern(label)}
             onChange={handleChange}
           />
         ): (type === 'email' || type === 'tel') ? (
@@ -118,7 +97,6 @@ export const UserDataItem = ({
         ) : (
           <ValueText>{value}</ValueText>
         )}
-
         {!disable ? (
           <CircleBtn type="submit">
             <StyledCheck />
@@ -141,4 +119,6 @@ UserDataItem.propTypes = {
   type: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   value: PropTypes.string,
+   activeField:PropTypes.string,
+  setActiveField:PropTypes.func,
 };

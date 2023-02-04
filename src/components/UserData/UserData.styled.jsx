@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { device } from 'Device';
 
 export const CardProfile = styled.div`
+position: relative;
   padding: ${props => props.theme.space[3]}px 0;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   background: ${props => props.theme.colors.white};
@@ -27,7 +28,7 @@ export const CardProfile = styled.div`
   }
 `;
 export const Avatar = styled.img`
-  margin: 0 auto ;
+  margin: 0 auto;
   width: 233px;
   filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
   border-radius: ${props => props.theme.radii.round};
@@ -66,21 +67,21 @@ export const LabelEditPhoto = styled.label`
   }
 `;
 export const FormEdit = styled.form`
-position: relative;
-margin-bottom: 45px;
-@media ${device.tablet} {
+  position: relative;
+  margin-bottom: 45px;
+  @media ${device.tablet} {
     margin-bottom: 0;
   }
 `;
 
 export const HiddenInput = styled.input`
- opacity: 0;
- width: 0;
- height: 0;
- line-height: 0;
- overflow: hidden;
- padding: 0;
- margin:0;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  line-height: 0;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
 `;
 export const InfoWrapper = styled.div`
   position: relative;
@@ -113,5 +114,30 @@ export const ItemUserInfo = styled.li`
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+`;
+
+export const LoaderPhoto = styled.div`
+position: absolute;
+bottom:50px;
+right: 60px;
+  --d: 24.6px;
+  width: 4.5px;
+  height: 4.5px;
+  border-radius: 50%;
+  color: ${props => props.theme.colors.accent};
+  animation: spinner-a90wxe 1s infinite steps(8);
+  box-shadow: calc(1 * var(--d)) calc(0 * var(--d)) 0 0,
+    calc(0.707 * var(--d)) calc(0.707 * var(--d)) 0 1.1px,
+    calc(0 * var(--d)) calc(1 * var(--d)) 0 2.2px,
+    calc(-0.707 * var(--d)) calc(0.707 * var(--d)) 0 3.4px,
+    calc(-1 * var(--d)) calc(0 * var(--d)) 0 4.5px,
+    calc(-0.707 * var(--d)) calc(-0.707 * var(--d)) 0 5.6px,
+    calc(0 * var(--d)) calc(-1 * var(--d)) 0 6.7px;
+
+  @keyframes spinner-a90wxe {
+    100% {
+      transform: rotate(1turn);
+    }
   }
 `;
