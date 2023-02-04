@@ -1,17 +1,12 @@
 import { useState, useEffect } from 'react';
 import { getNews } from 'services/apiService.js';
 import { Container } from 'components/common/Container.styled.jsx';
-// import { SearchBar } from 'components/NewsSearchBar/SearchBar';
 import { SearchBar } from '../../components/NoticesSearchBar/SearchBar';
 import {
   Section,
   NewsH1,
-  // NewsForm,
-  // NewsInput,
-  // NewsButton,
   NewsListBoxUl,
   Line,
-  // NewsDiv,
   NewsH2,
   NewsListText,
   Div,
@@ -46,14 +41,6 @@ const NewsPage = () => {
           <SearchBar
             // submitForm={search} 
           />
-            {/* <NewsForm>
-              <NewsInput type="text" name="" autocomplete="off" placeholder="Search"/>
-              <NewsButton type="submit">
-                  <img src=""
-                  alt="search"
-                   />
-              </NewsButton>
-            </NewsForm> */}
             {news && (<NewsListBoxUl>
             {news.map(item => (
                 <li key={item._id}>
@@ -69,7 +56,6 @@ const NewsPage = () => {
               </li>
               ))};
             </NewsListBoxUl>)}
-
         </Container>
       </Section>
     </main>
