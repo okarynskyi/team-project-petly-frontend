@@ -64,6 +64,15 @@ const NoticesCategoryItem = ({ notice }) => {
     toast.success('Notice removed from favorite adds.');
   };
 
+  function dateConverter(utcDate) {
+    const date = new Date(utcDate);
+    const day = date.getDay().toString().padStart(2, "0");
+    const month = date.getMonth().toString().padStart(2, "0");
+    const year = date.getFullYear();
+    const convertedDate = [day, month, year].join('/');
+    return convertedDate;
+  }
+
   return (
     <Item key={_id}>
       <ImageWrapper>
@@ -84,7 +93,7 @@ const NoticesCategoryItem = ({ notice }) => {
 
       
       <DescriptionWrapper>
-        <Title> Сute dog looking for a home
+        <Title>
           {title}
         </Title>
 
@@ -94,13 +103,13 @@ const NoticesCategoryItem = ({ notice }) => {
             <DescriptionText>Place:</DescriptionText>
             <DescriptionText>Age:</DescriptionText>
           </DescriptionTextContainer>
-        </DescriptionInner>
+        {/* </DescriptionInner>
 
-        <DescriptionInner>
+        <DescriptionInner> */}
           <DescriptionTextContainer>
             <DescriptionText>{breed}</DescriptionText>
             <DescriptionText>{location}</DescriptionText>
-            <DescriptionText>{birthday}</DescriptionText>
+            <DescriptionText>{dateConverter(birthday)}</DescriptionText>
           </DescriptionTextContainer>
         </DescriptionInner>
 

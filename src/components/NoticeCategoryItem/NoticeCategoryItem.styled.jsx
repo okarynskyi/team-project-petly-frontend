@@ -93,11 +93,6 @@ export const DescriptionTextContainer = styled.div` /**обгортка для �
   margin-bottom: 50px;
 `;
 
-export const DescriptionTextContainer2 = styled.div` /**обгортка для опису. В середині них буде DescriptionText */
-  margin-left: 37px;
-  margin-bottom: 50px;
-`;
-
 export const DescriptionText = styled.p`  /**текст опису */
  font-weight: 500;
 font-size: 16px;
