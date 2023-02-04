@@ -5,20 +5,20 @@ export const CategoryRadioBtns = ({ onChange, category }) => {
 
   return (
     <div>
-      <label category={category} value={'lost-found'}>
+      <label category={category} value={'lost/found'}>
         <input
           type="radio"
           name="category"
-          value="lost-found"
+          value="lost/found"
           onChange={onChangeHandler}
         />
         lost-found
       </label>
-      <label category={category} value={'in-good-hands'}>
+      <label category={category} value={'in good hands'}>
         <input
           type="radio"
           name="category"
-          value="in-good-hands"
+          value="in good hands"
           onChange={onChangeHandler}
         />
         in good hands

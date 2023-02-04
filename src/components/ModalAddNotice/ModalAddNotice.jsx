@@ -1,16 +1,13 @@
-// Libraries
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import 'react-datetime/css/react-datetime.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-// Common components
 import Modal from '../common/Modal/Modal';
 import { NextBtn } from './NextBtn/NextBtn';
 import { CancelBtn } from './CancelBtn/CancelBtn';
 
-// The modal`s components
 import { CategoryRadioBtns } from './CategoryRadioBtns/CategoryRadioBtns';
 import { Date } from './Date/Date';
 import { SexRadioBtns } from './SexRadioBtns/SexRadioBtns';
@@ -20,10 +17,8 @@ import { FileInput } from './FileInput/FileInput';
 import { TextInput } from './TextInput/TextInput';
 import { PriceField } from './PriceField/PriceField';
 
-// Functions
 import operations from '../../redux/notices/noticesOperations';
 
-// Styles
 import {
   WrapperAddPet,
   StyledPlus,
@@ -31,15 +26,16 @@ import {
   WrapperModalAddPet,
 } from '../ModalAddsPet/ModalAddsPet.styled';
 import { Label, Error, BtnWrapper } from './ModalAddNotice.styled';
+export const locationRegexp = /[A-Z][a-z]*,\s[A-Z][a-z]*/;
 
 const ModalAddNotice = ({ onClose }) => {
   const [modalActive, setModalActive] = useState(false);
   const dispatch = useDispatch();
 
-  const [category, setCategory] = useState('sell');
-  const [birthdate, setBirthdate] = useState('');
+  const [adopStatus, setAdopStatus] = useState('sell');
+  const [birthday, setBirthday] = useState('');
   const [sex, setSex] = useState('');
-  // const [location, setLocation] = useState('');
+  const [location, setLocation] = useState('');
   const [imgURL, setImgURL] = useState('');
   const [comments, setComments] = useState('');
 
@@ -52,7 +48,7 @@ const ModalAddNotice = ({ onClose }) => {
   const radioBtnHandlder = (value, type) => {
     switch (type) {
       case 'category':
-        setCategory(value);
+        setAdopStatus(value);
         break;
       case 'sex':
         setSex(value);
@@ -62,8 +58,8 @@ const ModalAddNotice = ({ onClose }) => {
     }
   };
 
-  const birthdateHandler = value => {
-    setBirthdate(value);
+  const birthdayHandler = value => {
+    setBirthday(value);
   };
 
   const validateTitle = value => {
@@ -72,6 +68,10 @@ const ModalAddNotice = ({ onClose }) => {
 
   const validateName = value => {
     setName(value);
+  };
+
+  const validateLocation = value => {
+    setLocation(value);
   };
 
   const validateBreed = value => {
@@ -101,24 +101,24 @@ const ModalAddNotice = ({ onClose }) => {
   };
 
   const submitForm = values => {
-    const { title, name, breed, price, comments } = values;
+    const { title, name, breed, comments, price } = values;
 
     const data = new FormData();
 
     data.append('title', title);
-    data.append('category', category);
+    data.append('adopStatus', adopStatus);
     data.append('comments', comments);
 
     price && data.append('price', price);
     name && data.append('name', name);
-    birthdate && data.append('birthdate', birthdate);
+    birthday && data.append('birthday', birthday);
     breed && data.append('breed', breed);
     sex && data.append('sex', sex);
-    // location && data.append('location', location);
+    location && data.append('location', location);
     imgURL && data.append('imgURL', imgURL);
 
     dispatch(operations.createNotice(data));
-    onClose();
+    // onClose(setModalActive);
   };
 
   const initialValues = {
@@ -126,6 +126,7 @@ const ModalAddNotice = ({ onClose }) => {
     name: '',
     breed: '',
     comments: '',
+    location: '',
     price: '',
   };
 
@@ -136,6 +137,9 @@ const ModalAddNotice = ({ onClose }) => {
       .required('Required'),
     name: Yup.string().min(2, 'Too Short!').max(16, 'Too Long!'),
     breed: Yup.string().min(2, 'Too Short!').max(24, 'Too Long!'),
+    location: Yup.string()
+      .matches(locationRegexp)
+      .required('Location is required'),
     comments: Yup.string()
       .min(8, 'Too Short!')
       .max(120, 'Too Long!')
@@ -148,13 +152,15 @@ const ModalAddNotice = ({ onClose }) => {
   const stateMachine = {
     page_1: page === 1,
     page_2: page === 2,
-    priceIsTurnedOn: category === 'sell',
+    priceIsTurnedOn: adopStatus === 'sell',
     nextButtonIsAbled:
       title.length >= 2 &&
       title.length <= 48 &&
       (name.length === 0 || (name.length >= 2 && name.length <= 24)) &&
       (breed.length === 0 || (breed.length >= 2 && breed.length <= 16)),
-    submitButtonIsAbled: comments.length >= 8 && comments.length <= 120,
+    submitButtonIsAbled:
+      (location && comments.length >= 8 && comments.length <= 120) ||
+      (!location && comments.length >= 8 && comments.length <= 120),
   };
   return (
     <main>
@@ -180,7 +186,7 @@ const ModalAddNotice = ({ onClose }) => {
                   <>
                     <CategoryRadioBtns
                       onChange={radioBtnHandlder}
-                      category={category}
+                      category={adopStatus}
                     />
                     <div>
                       <Label>
@@ -213,8 +219,8 @@ const ModalAddNotice = ({ onClose }) => {
                           id: 'birth',
                           placeholder: 'Choose date',
                         }}
-                        value={birthdate}
-                        onChange={birthdateHandler}
+                        value={birthday}
+                        onChange={birthdayHandler}
                         timeFormat={false}
                         closeOnSelect={true}
                         dateFormat="DD.MM.YYYY"
@@ -236,7 +242,16 @@ const ModalAddNotice = ({ onClose }) => {
                 {stateMachine.page_2 && (
                   <>
                     <SexRadioBtns sex={sex} onChange={radioBtnHandlder} />
-                    <Location />
+                    <Label>
+                      <Location
+                        name="location"
+                        validate={validateLocation}
+                        placeholder="Type location"
+                      />
+                      {touched.location && errors.location && (
+                        <Error>{errors.location}</Error>
+                      )}
+                    </Label>
                     {stateMachine.priceIsTurnedOn && (
                       <PriceField
                         name="price"
