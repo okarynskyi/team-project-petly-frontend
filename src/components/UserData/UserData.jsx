@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updatePhoto } from 'redux/user/userOperations';
-import { selectUserInfo, selectIsLoadingUser } from 'redux/user/userSelectors';
-import { selectIsLoggedIn } from 'redux/auth/authSelectors';
-import { getUserData } from 'redux/user/userOperations';
+import { selectUserInfo } from 'redux/user/userSelectors';
 import { formatBirthDate } from 'helpers/formatDate';
 import { checkType } from 'helpers/typeInputCheck';
 import { HiCamera } from 'react-icons/hi';
@@ -11,6 +9,7 @@ import { UserDataItem } from 'components/UserDataItem/UserDataItem';
 import { TitleSectionUser } from '../../pages/UserPage/UserPage.styled';
 import { Logout } from 'components/Logout/Logout';
 import userAvatar from '../../staticImages/userAvatar.png';
+
 import {
   CardProfile,
   ItemUserInfo,
@@ -19,23 +18,18 @@ import {
   ListUserInfo,
   InfoWrapper,
   HiddenInput,
-  InputSend,
   FormEdit,
-  Loader,
 } from './UserData.styled';
 
 export const UserData = () => {
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector(selectIsLoggedIn);
   const userInfo = useSelector(selectUserInfo);
-  const isLoading = useSelector(selectIsLoadingUser);
+  const [activeField, setActiveField] = useState(null);
+  const [changePhoto, setchangePhoto] = useState(false);
 
   useEffect(() => {
-    if (!isLoggedIn) {
-      return;
-    }
-    dispatch(getUserData());
-  }, [dispatch, isLoggedIn]);
+    setchangePhoto(false);
+  }, [userInfo]);
 
   function filterData(obj) {
     let filterUserInfo = [];
@@ -49,9 +43,6 @@ export const UserData = () => {
             });
           }
           continue;
-        }
-        if (key === 'avatarURL' || key === 'favorites') {
-          continue; 
         } else {
           filterUserInfo.push({ label: key, value: obj[key] });
         }
@@ -61,18 +52,16 @@ export const UserData = () => {
   }
   const infoProfile = filterData(userInfo.user);
 
-  const [selectedFile, setSelectedFile] = useState(null);
-  const handleChange = e => {
-    console.log('e.target.file', e.target.files[0]);
-    setSelectedFile(e.target.files[0]);
-  };
-  const OnSumbit = async event => {
-    event.preventDefault();
+  const UploadFile = async fileSelect => {
     const imageURL = new FormData();
-    imageURL.append('imageURL', selectedFile);
-    await dispatch(updatePhoto(imageURL));
-    setSelectedFile(null);
-    await dispatch(getUserData());
+    imageURL.append('imageURL', fileSelect);
+    dispatch(updatePhoto(imageURL));
+    setchangePhoto(true);
+  };
+
+  const handleChange = e => {
+    const fileSelect = e.target.files[0];
+    UploadFile(fileSelect);
   };
 
   return (
@@ -80,16 +69,13 @@ export const UserData = () => {
       <TitleSectionUser>My information:</TitleSectionUser>
       <CardProfile>
         <div>
-          {userInfo.user ? (
-            <Avatar src={userInfo.user.avatarURL} alt="User avatar" />
-          ) : (
+          {changePhoto && <h1>load..</h1>}
+          {!userInfo.avatarURL ? (
             <Avatar src={userAvatar} alt="User avatar" />
+          ) : (
+            <Avatar src={userInfo.avatarURL.avatarURL} alt="User avatar" />
           )}
-          <FormEdit
-            onSubmit={OnSumbit}
-            encType="multipart/form-data"
-            method="post"
-          >
+          <FormEdit encType="multipart/form-data" method="post">
             <HiddenInput
               type="file"
               name="photo"
@@ -97,19 +83,11 @@ export const UserData = () => {
               accept="image/*,.png, .jpg"
               onChange={handleChange}
             />
-            {selectedFile ? (
-              isLoading ? (
-                <Loader type="submit" value="Send..." />
-              ) : (
-                <InputSend type="submit" value="Send" />
-              )
-            ) : (
-              <LabelEditPhoto htmlFor="photoUser">
-                <HiCamera color="#F59256" size="20px" />
-                Edit photo
-              </LabelEditPhoto>
-            )}
-        </FormEdit>
+            <LabelEditPhoto htmlFor="photoUser">
+              <HiCamera color="#F59256" size="20px" />
+              Edit photo
+            </LabelEditPhoto>
+          </FormEdit>
         </div>
         <InfoWrapper>
           {infoProfile ? (
@@ -120,6 +98,8 @@ export const UserData = () => {
                     type={checkType(itemValue)}
                     label={itemValue.label}
                     value={itemValue.value}
+                    activeField={activeField}
+                    setActiveField={setActiveField}
                   />
                 </ItemUserInfo>
               ))}

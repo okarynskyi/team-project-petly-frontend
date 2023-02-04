@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   LabelUserInfo,
@@ -11,8 +11,9 @@ import {
 } from './UserDataItem.styled';
 import { CircleBtn } from 'components/common/CircleBtn.styled';
 import { useDispatch } from 'react-redux';
+// import {  useSelector } from 'react-redux';
+// import { selectIsLoadingUser } from 'redux/user/userSelectors.js';
 import { userUpdate } from 'redux/user/userOperations';
-import { getUserData } from 'redux/user/userOperations';
 
 function chooseTypeLink(type, value) {
   if (type === 'email') {
@@ -21,92 +22,99 @@ function chooseTypeLink(type, value) {
     return `tel:${value}`;
   }
 }
+function findCity(label) {
+  if (label === 'location') {
+    return `city`;
+  } else {
+    return `${label}`;
+  }
+}
 
-export const UserDataItem = ({ type, label, value }) => {
+// function choosePattern(label) {
+//   if (label === 'location') {
+//     return `${/[A-Z][a-z]*,\s[A-Z][a-z]*/}`;
+//   }
+//   if (label === 'name') {
+//     return `${/^[a-zA-Z]{2,20}$/}`;
+//   }
+//   if (label === 'email') {
+//     return `${/^[^-._]{1}[A-Za-z0-9._-]{1,}@[^-._]{1}[A-Za-z0-9.-]{0,}\.[A-Za-z]{2,4}$/}`;
+//   }
+//   if (label === 'birthday') {
+//     return;
+//   }
+//   if (label === 'phone') {
+//     return `${/^\+380\d{9}$/}`;
+//   }
+// }
+
+export const UserDataItem = ({
+  activeField,
+  setActiveField,
+  type,
+  label,
+  value,
+}) => {
   const [startUpdate, setStartUpdate] = useState(false);
   const [disable, setDisable] = useState(true);
-
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [location, setLocation] = useState('');
-  const [phone, setPhone] = useState('');
-  const [birthday, setBirthday] = useState('');
-
+  // const isLoading = useSelector(selectIsLoadingUser);
+  const [formValues, setFormValues] = useState({
+    name: '',
+    email: '',
+    birthday: '',
+    phone: '',
+    location: '',
+  });
   const dispatch = useDispatch();
 
-  const startUpdateField = () => {
-    setStartUpdate(true);
-  };
+  useEffect(() => {
+    setFormValues(prev => {
+      return { ...prev, [label]: value };
+    });
+  }, [label, value]);
 
   const handleChange = e => {
     setDisable(false);
-    switch (e.target.name) {
-      case 'name':
-        setName(e.target.value);
-        break;
-      case 'phone':
-        setPhone(e.target.value);
-        break;
-      case 'location':
-        setLocation(e.target.value);
-        break;
-      case 'email':
-        setEmail(e.target.value);
-        break;
-      case 'birthday':
-        setBirthday(e.target.value);
-        break;
-      default:
-        return;
-    }
+    setFormValues(prev => {
+      return {
+        ...prev,
+        [e.target.name]: e.target.value,
+      };
+    });
   };
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    if (name) {
-      dispatch(userUpdate({ name })).then(dispatch(getUserData()));
-      setStartUpdate(false);
-      setDisable(true);
-    }
-    if (location) {
-      dispatch(userUpdate({ location })).then(dispatch(getUserData()));
-      setStartUpdate(false);
-      setDisable(true);
-    }
-    if (phone) {
-      dispatch(userUpdate({ phone })).then(dispatch(getUserData()));
-      setStartUpdate(false);
-      setDisable(true);
-    }
-    if (birthday) {
-      dispatch(userUpdate({ birthday })).then(dispatch(getUserData()));
-      setStartUpdate(false);
-      setDisable(true);
-    }
-    if (email) {
-      dispatch(userUpdate({ email })).then(dispatch(getUserData()));
-      setStartUpdate(false);
-      setDisable(true);
+  const handleSubmit = e => {
+    e.preventDefault();
+    const changedField = Object.entries(formValues).find(item => item[1]);
+    dispatch(userUpdate({ [changedField[0]]: changedField[1] }));
+    setStartUpdate(false);
+    setDisable(true);
+    setActiveField(null);
+  };
+  const startUpdateField = label => {
+    if (!activeField) {
+      setStartUpdate(true);
+      setActiveField(label);
     }
   };
 
   return (
     <>
-      <LabelUserInfo htmlFor={label}>{label}:</LabelUserInfo>
+      <LabelUserInfo htmlFor={label}>{findCity(label)}:</LabelUserInfo>
       <FormStyle onSubmit={handleSubmit}>
-        {startUpdate ? (
+        {startUpdate  ? (
           <InputUserInfo
             type={type}
             name={label}
             id={label}
+            value={formValues[label]}
+            // pattern={choosePattern(label)}
             onChange={handleChange}
           />
-        ) : type === 'email' || type === 'tel' ? (
+        ): (type === 'email' || type === 'tel') ? (
           <ValueEmailTel href={chooseTypeLink(type, value)}>
             {value}
           </ValueEmailTel>
-        ) : type === 'date' && value === null ? (
-          <ValueText>{value}</ValueText>
         ) : (
           <ValueText>{value}</ValueText>
         )}
@@ -116,7 +124,11 @@ export const UserDataItem = ({ type, label, value }) => {
             <StyledCheck />
           </CircleBtn>
         ) : (
-          <CircleBtn type="button" onClick={startUpdateField}>
+          <CircleBtn
+            type="button"
+            onClick={() => startUpdateField(label)}
+            disabled={activeField && activeField !== label}
+          >
             <StyledPencil />
           </CircleBtn>
         )}
@@ -128,5 +140,5 @@ export const UserDataItem = ({ type, label, value }) => {
 UserDataItem.propTypes = {
   type: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
 };
