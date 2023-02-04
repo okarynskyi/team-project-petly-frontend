@@ -17,7 +17,7 @@ import {
   Title,
   DescriptionInner,
   DescriptionTextContainer,
-  DescriptioтText,
+  DescriptionText,
   Button,
 } from "./NoticeCategoryItem.styled";
 
@@ -90,17 +90,17 @@ const NoticesCategoryItem = ({ notice }) => {
 
         <DescriptionInner>
           <DescriptionTextContainer>
-            <DescriptioтText>Breed:</DescriptioтText>
-            <DescriptioтText>Place:</DescriptioтText>
-            <DescriptioтText>Age:</DescriptioтText>
+            <DescriptionText>Breed:</DescriptionText>
+            <DescriptionText>Place:</DescriptionText>
+            <DescriptionText>Age:</DescriptionText>
           </DescriptionTextContainer>
         </DescriptionInner>
 
         <DescriptionInner>
           <DescriptionTextContainer>
-            <DescriptioтText>{breed}</DescriptioтText>
-            <DescriptioтText>{location}</DescriptioтText>
-            <DescriptioтText>{birthday}</DescriptioтText>
+            <DescriptionText>{breed}</DescriptionText>
+            <DescriptionText>{location}</DescriptionText>
+            <DescriptionText>{birthday}</DescriptionText>
           </DescriptionTextContainer>
         </DescriptionInner>
 
