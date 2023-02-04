@@ -3,22 +3,13 @@ import axios from "axios";
 
 axios.defaults.baseURL = 'https://petly-backend-v11f.onrender.com/api';
 
-// // Utility to add JWT
-// const setAuthHeader = token => {
-//     axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
-// };
-
-// // Utility to remove JWT
-// const clearAuthHeader = () => {
-//     axiosInstance.defaults.headers.common.Authorization = '';
-// };
-
 // ендпоінт для отримання оголошень по категоріям
 const getNoticesByCategory = createAsyncThunk(
     'notices/getByCategory',
     async (categoryName, { rejectWithValue }) => {
         try {
             const { data } = await axios.get(`/notices/category/${categoryName}`);
+
             return data;
         } catch (error) {
             return rejectWithValue(error.message);
@@ -32,6 +23,7 @@ const getOneNotice = createAsyncThunk(
     async (id, { rejectWithValue }) => {
         try {
             const { data } = await axios.get(`/notices/${id}`);
+
             return data;
         } catch (error) {
             return rejectWithValue(error.message);
@@ -59,13 +51,14 @@ const getFavorites = createAsyncThunk(
     'notices/getFavorites',
     async (_, { rejectWithValue }) => {
         try {
-            const { data } = await axios.get('/notices/favorites');
+            const { data } = await axios.get('/notices/user/favorites');
+
             return data;
         } catch (error) {
             return rejectWithValue(error.message);
         }
     },
-);
+    );
 
 // delete '/notices/favorites/:noticeId' видалення оголошення авторизованого користувача доданих цим же до обраних
 const deleteFromFavorites = createAsyncThunk(
@@ -73,66 +66,72 @@ const deleteFromFavorites = createAsyncThunk(
     async (id, { rejectWithValue }) => {
         try {
             const { data } = await axios.delete(`/notices/favorites/${id}`); 
+            
             return data;
         } catch (error) {
             return rejectWithValue(error.message);
         }
     },
 );
+    
 
-// post '/notices'  додавання оголошень відповідно до обраної категорії
-const createNotice = createAsyncThunk(
-    'notices/createNotice',
-    async (credentials, { rejectWithValue }) => {
-        try {
-            const { data } = await axios.post('/notices', credentials);
-            return data;
-        } catch (error) {
-            return rejectWithValue(error.message);
-        }
-    },
-);
-
-
-// ЩЕ НЕМАЄ СТВОРЕНОГО ЕНДПОІНТА
-// get '/notices' отримання оголошень авторизованого кристувача створених цим же користувачем
-const getUserNotices = createAsyncThunk(
-    'notices/getUserNotices',
-    async (_, { rejectWithValue }) => {
-        try {
-            const { data } = await axios.get('/notices');
-            return data;
-        } catch (error) {
-            return rejectWithValue(error.message);
-        }
-    },
-);
-
-// delete '/notices/:noticeId' видалення оголошення авторизованого користувача створеного цим же користувачем
+    // delete '/notices/:noticeId' видалення оголошення авторизованого користувача створеного цим же користувачем
 const deleteUserNotice = createAsyncThunk(
     'notices/deleteUserNotice',
     async (id, { rejectWithValue }) => {
         try {
             await axios.delete(`/notices/${id}`);
+
             return id;
         } catch (error) {
             return rejectWithValue(error.message);
         }
     },
 );
+    
+    // post '/notices'  додавання оголошень відповідно до обраної категорії
+const createNotice = createAsyncThunk(
+    'notices/createNotice',
+    async (credentials, { rejectWithValue }) => {
+        try {
+            const { data } = await axios.post('/notices', credentials);
+
+            return data;
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    },
+);
+
+// get '/notices' отримання оголошень авторизованого кристувача створених цим же користувачем
+const getUserNotices = createAsyncThunk(
+    'notices/getUserNotices',
+    async (_, { rejectWithValue }) => {
+        try {
+            const { data } = await axios.get('/notices');
+
+            return data;
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    },
+);
+
 
 // для пошуку
 export const getByQuery = createAsyncThunk(
     'notice/getByQuery',
     async (query, { rejectWithValue }) => {
-      try {
-        const {data} = await axios.get(`/notices/search/find?name=${query}`);
-        return data;
-      } catch (error) {
-        return rejectWithValue(error.message);
-      }
+        try {
+            const { data } = await axios.get(`/notices/search/find?name=${query}`);
+          
+            return data;
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
     }
-  );
+);
+
 const operations = {
     getNoticesByCategory,
     getOneNotice,

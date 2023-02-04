@@ -21,7 +21,6 @@ const noticesSlice = createSlice({
         // отримання оголошень по категоріям
         [operations.getNoticesByCategory.pending]: handlePending,
         [operations.getNoticesByCategory.fulfilled](state, { payload }) {
-            // console.log(payload)
             state.noticesByCategory = payload;
             state.isLoading = false;
             state.isError = null;
@@ -35,7 +34,6 @@ const noticesSlice = createSlice({
         // отримання одного оголошення
         [operations.getOneNotice.pending]: handlePending,
         [operations.getOneNotice.fulfilled](state, { payload }) {
-            console.log(payload);
             state.oneNoticeMoreInfo = payload;
             state.isLoading = false;
             state.isError = null;
@@ -48,9 +46,7 @@ const noticesSlice = createSlice({
 
         // додавання оголошення до обраних
         [operations.addToFavorites.pending]: handlePending,
-        [operations.addToFavorites.fulfilled](state, { payload }) {
-            console.log(payload);
-            state.favorites = [payload.user.favorites, ...state.favorites];
+        [operations.addToFavorites.fulfilled](state, _) {
             state.isLoading = false;
             state.isError = null;
         },
@@ -61,8 +57,7 @@ const noticesSlice = createSlice({
 
         // отримання оголошень авторизованого користувача доданих ним же в обрані  "ЩЕ НЕ ЗРОБЛЕНИЙ БЕК"
         [operations.getFavorites.pending]: handlePending,
-        [operations.getFavorites.fulfilled](state, { payload }) {
-            console.log(payload);
+        [operations.getFavorites.fulfilled](state, _) {
             state.isLoading = false;
             state.isError = null;
         },
@@ -74,9 +69,7 @@ const noticesSlice = createSlice({
 
         // видалення оголошення авторизованого користувача доданих цим же до обраних
         [operations.deleteFromFavorites.pending]: handlePending,
-        [operations.deleteFromFavorites.fulfilled](state, { payload }) {
-            console.log(payload);
-            state.favorites = payload.user.favorites;
+        [operations.deleteFromFavorites.fulfilled](state, _) {
             state.isLoading = false;
             state.isError = null;
         },
@@ -84,11 +77,21 @@ const noticesSlice = createSlice({
             state.isLoading = false;
             state.isError = payload;
         },
+        
+        // видалення оголошення авторизованого користувача створеного цим же користувачем
+        [operations.deleteUserNotice.pending]: handlePending,
+        [operations.deleteUserNotice.fulfilled](state, _) {
+            state.isLoading = false;
+            state.isError = null;
+        },
+        [operations.deleteUserNotice.rejected](state, { payload }) {
+            state.isLoading = false;
+            state.isError = payload;
+        },
 
         // додавання оголошень відповідно до обраної категорії
         [operations.createNotice.pending]: handlePending,
         [operations.createNotice.fulfilled](state, { payload }) {
-            console.log(payload);
             state.noticesByCategory = [...state.noticesByCategory, payload];
             state.isLoading = false;
             state.isError = null;
@@ -97,17 +100,25 @@ const noticesSlice = createSlice({
             state.isLoading = false;
             state.isError = payload;
         },
+
+        // отримання оголошень авторизованого кристувача створених цим же користувачем
+        [operations.getUserNotices.pending]: handlePending,
+        [operations.getUserNotices.fulfilled](state, { payload }) {
+            state.noticesByCategory = payload;
+            state.isLoading = false;
+            state.isError = null;
+        },
+        [operations.getUserNotices.rejected](state, { payload }) {
+            state.isLoading = false;
+            state.isError = payload;
+        },
+        
         // для пошуку
-        [operations.getByQuery.fulfilled](state, {payload}) {
+        [operations.getByQuery.fulfilled](state, { payload }) {
             state.isError = null;
             state.isLoading = false;
             state.noticesByCategory = payload;
         },
-
-        // отримання оголошень авторизованого кристувача створених цим же користувачем
-
-        // видалення оголошення авторизованого користувача створеного цим же користувачем
-
     },
 });
 
