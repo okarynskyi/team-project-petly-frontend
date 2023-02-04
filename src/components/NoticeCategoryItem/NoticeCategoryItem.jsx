@@ -22,8 +22,7 @@ import {
   Button,
 } from "./NoticeCategoryItem.styled";
 
-const NoticesCategoryItem = ({ notice, isFavorite, isOwner }) => {
-  console.log(notice)
+const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
   const {
     avatarURL,
     birthday,
@@ -40,27 +39,27 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner }) => {
   const dispatch = useDispatch();
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  // const isFavorite = useSelector(selectIsFavorite);
-  // const isLoggedIn = true
-  // console.log(isLoggedIn)
 
-  // console.log(_id)
-  // const token = useSelector(selectToken);
-
-  const addToFavorite = e => {
+  const addToFavorite = async () => {
     if (!isLoggedIn) {
       return toast.error('You need to authorize before adding notices to favorite.');
-    }
-    dispatch(operations.addToFavorites(_id));
+    };
+    dispatch(operations.addToFavorites(_id))
+      .then(() => {
+        dispatch(operations.getNoticesByCategory(category));
+      })
 
     toast.success('Notice added to favorite adds.');
   };
 
-  const removeFromFavorite = e => {
+  const removeFromFavorite = async () => {
     if (!isLoggedIn) {
       return toast.error('You need to authorize before remove notices from favorite.');
-    }
-    dispatch(operations.removeFromFavorite(_id));
+    };
+    dispatch(operations.deleteFromFavorites(_id))
+      .then(() => {
+        dispatch(operations.getNoticesByCategory(category))
+      })
 
     toast.success('Notice removed from favorite adds.');
   };

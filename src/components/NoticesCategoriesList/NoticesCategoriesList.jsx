@@ -75,6 +75,7 @@ const NoticesCategoryList = () => {
                 notice={notice}
                 isFavorite={isFavorite}
                 isOwner={isOwner}
+                category={category}
               />
 
             })}
