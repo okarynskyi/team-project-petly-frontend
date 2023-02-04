@@ -3,7 +3,7 @@ import { signUp, logIn, logOut, getCurrentUser } from './authOperations';
 import { toast } from 'react-toastify';
 
 const initialState = {
-  user: { name: null, email: null, myPets: [], myFavorite: [] },
+  user: { id: null, name: null, email: null, myPets: [], myFavorite: [] },
   token: null,
   isLoggedIn: false,
   isLoading: false,
@@ -42,6 +42,7 @@ const authSlice = createSlice({
       state.token = action.payload.token;
       state.user = action.payload.user;
       console.log(state.user)
+      console.log(action.payload)
       toast.success('Successfully logged in!');
     },
     [logIn.rejected](state, action) {
