@@ -63,8 +63,8 @@ const NoticesCategoryList = () => {
             />))}
               
             {isLoggedIn && notices.map(notice => {
-              const isOwner = notice.owner._id === user.user.id;
-              const index = notice.favorite.indexOf(user.user.id);
+              const isOwner = notice.owner._id === user.id;
+              const index = notice.favorite.indexOf(user.id);
                 
               if (index > -1) {
                 isFavorite = true;
