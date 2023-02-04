@@ -11,9 +11,10 @@ import {
 } from './PetsList.styled';
 import { DeletePet } from './DeletePet';
 
+
 export const PetsList = () => {
   const pets = useSelector(selectPetsInfo);
-
+  console.log(pets);
   return (
     <>
       {pets.length === 0 && <EmptyListPet>Please, add pet.</EmptyListPet>}

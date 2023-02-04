@@ -16,6 +16,11 @@ export const CircleBtn = styled.button`
     cursor: pointer;
     border: 1px solid ${props => props.theme.colors.accent};
   }
+    :disabled {
+    cursor: pointer;
+    border: 1px solid #d0d0d0;
+    background-color: #d0d0d0;
+  }
   @media ${device.tablet} {
     width: 32px;
     height: 32px;

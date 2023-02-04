@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { WrapperQuit, ButtonQuit } from '../Logout/Logout.styled';
 import Modal from '../common/Modal/Modal';
-
 import { CircleBtnTrash, StyledTrash } from './PetsList.styled';
 import { removePet } from '../../redux/user/userOperations';
 
@@ -24,6 +23,7 @@ export const DeletePet = ({ _id }) => {
               type="button"
               onClick={() => {
                 dispatch(removePet(_id));
+                setModalActive(false)
               }}
             >
               Yes
