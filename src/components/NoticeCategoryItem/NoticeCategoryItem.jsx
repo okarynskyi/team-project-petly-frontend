@@ -5,7 +5,6 @@ import { toast } from 'react-toastify';
 
 import operations from '../../redux/notices/noticesOperations';
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
-import { selectIsFavorite } from 'redux/notices/noticesSelectors';
 
 import {
   Item,
@@ -21,8 +20,8 @@ import {
   Button,
 } from "./NoticeCategoryItem.styled";
 
-const NoticesCategoryItem = ({ notice }) => {
-  console.log(notice)
+const NoticesCategoryItem = ({ notice, isFavorite, isOwner }) => {
+  // console.log(notice)
   const {
     avatarURL,
     birthday,
@@ -39,7 +38,7 @@ const NoticesCategoryItem = ({ notice }) => {
   const dispatch = useDispatch();
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const isFavorite = useSelector(selectIsFavorite);
+  // const isFavorite = useSelector(selectIsFavorite);
   // const isLoggedIn = true
   // console.log(isLoggedIn)
 
@@ -118,7 +117,7 @@ const NoticesCategoryItem = ({ notice }) => {
       {isLoggedIn ? (
         <>
           <Button>Learn more</Button>
-          <Button>Delete</Button>
+          {isOwner && <Button>Delete</Button>}
         </>
       ) : (
         <Button>Learn more</Button>
