@@ -114,15 +114,14 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner }) => {
         </DescriptionInner>
 
       </DescriptionWrapper>
-
-      {isLoggedIn ? (
-        <>
+        {isLoggedIn ? (
+          <>
+            <Button>Learn more</Button>
+            {isOwner && <Button>Delete</Button>}
+          </>
+        ) : (
           <Button>Learn more</Button>
-          {isOwner && <Button>Delete</Button>}
-        </>
-      ) : (
-        <Button>Learn more</Button>
-      )}
+        )}
     </Item>
   );
 };
