@@ -87,5 +87,6 @@ const NoticesCategoryList = () => {
     </Wrapper>
   );
 };
+// cndkc
 export default NoticesCategoryList;
 
