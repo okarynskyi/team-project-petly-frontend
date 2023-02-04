@@ -7,66 +7,77 @@ import NoticeCategoryItem from '../../components/NoticeCategoryItem/NoticeCatego
 import {List, Wrapper,} from './NoticesCategoriesList.styled';
 
 import operations from '../../redux/notices/noticesOperations';
-import { selectNoticesByCategory, selectIsLoading, } from 'redux/notices/noticesSelectors';
+import { selectNoticesByCategory, selectIsLoading } from 'redux/notices/noticesSelectors';
+import { selectUser } from 'redux/auth/authSelectors';
 
 import { Loader } from 'components/Loader';
 
 const NoticesCategoryList = () => {
-  const notices = useSelector(selectNoticesByCategory);
-  // console.log(notices)
-  
-  const location = useLocation();
-  const category = location.pathname.split('/')[2];
-  const isLoading = useSelector(selectIsLoading);
-  // console.log(category)
-
   const dispatch = useDispatch();
+  const location = useLocation();
+
+  const notices = useSelector(selectNoticesByCategory);
+  const isLoading = useSelector(selectIsLoading);
+  const user = useSelector(selectUser);
+
+  const category = location.pathname.split('/')[2];
 
   const [search] = useSearchParams();
   
   const query = search.get('name');
 
+  let isFavorite = false;
+
 
   useEffect(() => {
-    if ( query) {
-      console.log(query)
+    if (query) {
+      // console.log(query)
       dispatch(operations.getByQuery(query));
     }
     if (category) {
-      console.log(category)
+      // console.log(category)
       // console.log(dispatch(operations.getNoticesByCategory( category)))
-        dispatch(operations.getNoticesByCategory( category ));
-    } 
-  //   if (category) {
-  //     dispatch(operations.getNoticesByCategory());
-  // } 
+      dispatch(operations.getNoticesByCategory(category));
+    }
+    //   if (category) {
+    //     dispatch(operations.getNoticesByCategory());
+    // } 
     
   }, [
     // page, 
     query, dispatch, category]);
 
-return !isLoading && notices.length === 0 ? (
-  <div>
-       <h1>Sorry, Nothing found</h1>
-     </div>
-) : (
-  <Wrapper>
-    {notices && notices.length > 0 ? (
-      <>
-        <List>
-          {notices.map(notice => (
-            <NoticeCategoryItem
-              key={notice._id}
-              notice={notice}
-            />
-          ))}
-        </List>
-      </>
-    ) : (
-      <Loader />
-    )
-    }
-  </Wrapper>
-);
+  return !isLoading && notices.length === 0 ? (
+    <div>
+      <h1>Sorry, Nothing found</h1>
+    </div>
+  ) : (
+    <Wrapper>
+      {notices && notices.length > 0 ? (
+        <>
+          <List>
+              {notices.map(notice => {
+                const index = notice.favorite.indexOf(user.user.id);
+                
+                if (index > -1) {
+                  isFavorite = true;
+                } else isFavorite = false;
+
+                return <NoticeCategoryItem
+                  key={notice._id}
+                  notice={notice}
+                  isFavorite={isFavorite}
+                />
+
+              })}
+          </List>
+        </>
+      ) : (
+        <Loader />
+      )
+      }
+    </Wrapper>
+  );
 };
 export default NoticesCategoryList;
+
