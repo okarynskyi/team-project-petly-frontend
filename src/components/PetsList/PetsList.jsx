@@ -1,4 +1,5 @@
-import { useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 import { selectPetsInfo } from 'redux/user/userSelectors';
 import { formatBirthDate } from 'helpers/formatDate';
 import {
@@ -10,21 +11,30 @@ import {
   EmptyListPet,
 } from './PetsList.styled';
 import { DeletePet } from './DeletePet';
-
+import cat from '../../staticImages/cat.jpg';
 
 export const PetsList = () => {
   const pets = useSelector(selectPetsInfo);
-  console.log(pets);
+  const [loadPet, setLoadPet] = useState();
+    useEffect(() => {
+      setLoadPet(false);
+      console.log(pets);
+  }, [pets]);
   return (
     <>
       {pets.length === 0 && <EmptyListPet>Please, add pet.</EmptyListPet>}
+      {loadPet && <h1>load..</h1>}
       {pets && (
         <ListPets>
           {pets.map(pet => (
             <CardPet key={pet._id}>
-              {pet.petsPhotoURL ? (<ImgPet src={pet.petsPhotoURL} alt={pet.name} />) : (<div>Заглушка</div>)}
+              {pet.petsPhotoURL ? (
+                <ImgPet src={pet.petsPhotoURL} alt={pet.name} />
+              ) : (
+                <ImgPet src={cat} alt={pet.name} />
+              )}
               <WrapperInfo>
-                <DeletePet _id={ pet._id} />
+                <DeletePet _id={pet._id} />
                 <InfoPet>
                   Name: <span>{pet.name}</span>{' '}
                 </InfoPet>
