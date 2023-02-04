@@ -125,6 +125,5 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner }) => {
     </Item>
   );
 };
-// bchdbcjh
 
 export default NoticesCategoryItem;
