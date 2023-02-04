@@ -8,7 +8,7 @@ import {List, Wrapper,} from './NoticesCategoriesList.styled';
 
 import operations from '../../redux/notices/noticesOperations';
 import { selectNoticesByCategory, selectIsLoading } from 'redux/notices/noticesSelectors';
-import { selectUser } from 'redux/auth/authSelectors';
+import { selectUser, selectIsLoggedIn } from 'redux/auth/authSelectors';
 
 import { Loader } from 'components/Loader';
 
@@ -18,7 +18,8 @@ const NoticesCategoryList = () => {
 
   const notices = useSelector(selectNoticesByCategory);
   const isLoading = useSelector(selectIsLoading);
-  const user = useSelector(selectUser);
+  const isLoggedIn = useSelector(selectIsLoggedIn)
+  const user = useSelector(selectUser)
 
   const category = location.pathname.split('/')[2];
 
@@ -27,7 +28,6 @@ const NoticesCategoryList = () => {
   const query = search.get('name');
 
   let isFavorite = false;
-
 
   useEffect(() => {
     if (query) {
@@ -55,23 +55,29 @@ const NoticesCategoryList = () => {
     <Wrapper>
       {notices && notices.length > 0 ? (
         <>
+            
           <List>
-              {notices.map(notice => {
-                const isOwner = notice.owner._id === user.user.id;
-                const index = notice.favorite.indexOf(user.user.id);
+            {!isLoggedIn && notices.map(notice => (<NoticeCategoryItem
+              key={notice._id}
+              notice={notice}
+            />))}
+              
+            {isLoggedIn && notices.map(notice => {
+              const isOwner = notice.owner._id === user.user.id;
+              const index = notice.favorite.indexOf(user.user.id);
                 
-                if (index > -1) {
-                  isFavorite = true;
-                } else isFavorite = false;
+              if (index > -1) {
+                isFavorite = true;
+              } else isFavorite = false;
 
-                return <NoticeCategoryItem
-                  key={notice._id}
-                  notice={notice}
-                  isFavorite={isFavorite}
-                  isOwner={isOwner}
-                />
+              return <NoticeCategoryItem
+                key={notice._id}
+                notice={notice}
+                isFavorite={isFavorite}
+                isOwner={isOwner}
+              />
 
-              })}
+            })}
           </List>
         </>
       ) : (
