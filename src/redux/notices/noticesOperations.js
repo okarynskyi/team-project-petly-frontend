@@ -121,6 +121,18 @@ const deleteUserNotice = createAsyncThunk(
     },
 );
 
+// для пошуку
+export const getByQuery = createAsyncThunk(
+    'notice/getByQuery',
+    async (query, { rejectWithValue }) => {
+      try {
+        const {data} = await axios.get(`/notices/search/find?name=${query}`);
+        return data;
+      } catch (error) {
+        return rejectWithValue(error.message);
+      }
+    }
+  );
 const operations = {
     getNoticesByCategory,
     getOneNotice,
@@ -130,6 +142,7 @@ const operations = {
     createNotice,
     getUserNotices,
     deleteUserNotice,
+    getByQuery,
 };
 
 export default operations;
