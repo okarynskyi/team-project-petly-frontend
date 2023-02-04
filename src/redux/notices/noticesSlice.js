@@ -23,7 +23,7 @@ const noticesSlice = createSlice({
         // отримання оголошень по категоріям
         [operations.getNoticesByCategory.pending]: handlePending,
         [operations.getNoticesByCategory.fulfilled](state, { payload }) {
-            console.log(payload)
+            // console.log(payload)
             state.noticesByCategory = payload;
             state.isLoading = false;
             state.isError = null;

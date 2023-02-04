@@ -1,5 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { axiosInstance } from '../../services/apiService';
+import axios from "axios";
+
+axios.defaults.baseURL = 'https://petly-backend-v11f.onrender.com/api';
 
 // // Utility to add JWT
 // const setAuthHeader = token => {
@@ -16,7 +18,7 @@ const getNoticesByCategory = createAsyncThunk(
     'notices/getByCategory',
     async (categoryName, { rejectWithValue }) => {
         try {
-            const { data } = await axiosInstance.get(`/notices/category/${categoryName}`);
+            const { data } = await axios.get(`/notices/category/${categoryName}`);
             return data;
         } catch (error) {
             return rejectWithValue(error.message);
@@ -29,7 +31,7 @@ const getOneNotice = createAsyncThunk(
     'notices/getOneNotice',
     async (id, { rejectWithValue }) => {
         try {
-            const { data } = await axiosInstance.get(`/notices/${id}`);
+            const { data } = await axios.get(`/notices/${id}`);
             return data;
         } catch (error) {
             return rejectWithValue(error.message);
@@ -43,7 +45,7 @@ const addToFavorites = createAsyncThunk(
     async (id, { rejectWithValue }) => {
         console.log(id)
         try {
-            const { data } = await axiosInstance.post(`/notices/favorites/${id}`);
+            const { data } = await axios.post(`/notices/favorites/${id}`);
             console.log(data)
             return data;
         } catch (error) {
@@ -57,7 +59,7 @@ const getFavorites = createAsyncThunk(
     'notices/getFavorites',
     async (_, { rejectWithValue }) => {
         try {
-            const { data } = await axiosInstance.get('/notices/favorites');
+            const { data } = await axios.get('/notices/favorites');
             return data;
         } catch (error) {
             return rejectWithValue(error.message);
@@ -70,7 +72,7 @@ const deleteFromFavorites = createAsyncThunk(
     'notices/deleteFromFavorites',
     async (id, { rejectWithValue }) => {
         try {
-            const { data } = await axiosInstance.delete(`/notices/favorites/${id}`); 
+            const { data } = await axios.delete(`/notices/favorites/${id}`); 
             return data;
         } catch (error) {
             return rejectWithValue(error.message);
@@ -83,7 +85,7 @@ const createNotice = createAsyncThunk(
     'notices/createNotice',
     async (credentials, { rejectWithValue }) => {
         try {
-            const { data } = await axiosInstance.post('/notices', credentials);
+            const { data } = await axios.post('/notices', credentials);
             return data;
         } catch (error) {
             return rejectWithValue(error.message);
@@ -98,7 +100,7 @@ const getUserNotices = createAsyncThunk(
     'notices/getUserNotices',
     async (_, { rejectWithValue }) => {
         try {
-            const { data } = await axiosInstance.get('/notices');
+            const { data } = await axios.get('/notices');
             return data;
         } catch (error) {
             return rejectWithValue(error.message);
@@ -111,7 +113,7 @@ const deleteUserNotice = createAsyncThunk(
     'notices/deleteUserNotice',
     async (id, { rejectWithValue }) => {
         try {
-            await axiosInstance.delete(`/notices/${id}`);
+            await axios.delete(`/notices/${id}`);
             return id;
         } catch (error) {
             return rejectWithValue(error.message);
