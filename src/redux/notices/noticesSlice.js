@@ -100,6 +100,12 @@ const noticesSlice = createSlice({
             state.isLoading = false;
             state.isError = payload;
         },
+        // для пошуку
+        [operations.getByQuery.fulfilled](state, {payload}) {
+            state.isError = null;
+            state.isLoading = false;
+            state.noticesByCategory = payload;
+        },
 
         // отримання оголошень авторизованого кристувача створених цим же користувачем
 
