@@ -13,15 +13,15 @@ export const AuthSection = styled.section`
   background-position: bottom;
   @media ${device.tablet} {
     padding-top: 100px;
-    height: 100vh;
+    height: calc(100vh - 72px);
     background-image: url('${backgroundTabImg}');
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     background-position: bottom;
   }
   @media ${device.desktop} {
     padding-top: 40px;
-    height: 100vh;
+    height: calc(100vh - 68px);
     background-image: url('${backgroundImg}');
     background-repeat: no-repeat;
     background-size: contain;

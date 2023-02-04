@@ -18,9 +18,6 @@ export const Section = styled.section`
 export const StyledContainer = styled(Container)`
   width: 100%;
 
-  @media ${device.mobile} {
-    width: 490px;
-  }
   @media ${device.tablet} {
     width: 768px;
   }

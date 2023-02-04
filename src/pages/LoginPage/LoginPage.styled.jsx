@@ -17,7 +17,7 @@ export const AuthSection = styled.section`
     height: calc(100vh - 72px);
     background-image: url('${backgroundTabImg}');
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     background-position: bottom;
   }
   @media ${device.desktop} {
