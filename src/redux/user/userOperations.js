@@ -41,10 +41,10 @@ export const updatePhoto = createAsyncThunk(
 export const addPet = createAsyncThunk(
   'user/addPet',
   async (post, { rejectWithValue }) => {
-    console.log(post);
+    console.log('oper',post);
     try {
       const { data } = await axios.post('/users/pets', post);
-
+console.log('oper data',data );
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
