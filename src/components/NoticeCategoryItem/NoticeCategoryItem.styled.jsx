@@ -80,6 +80,9 @@ export const Title = styled.h3` /**заголовок, опис картки */
   color: ${p => p.theme.colors.mainText};
   margin-bottom: 20px;
   margin-left: 20px;
+  width: 231px;
+  height: 76px;
+  overflow: hidden;
 `;
 
 export const DescriptionInner = styled.div` /**обгортка для опису */
@@ -96,7 +99,10 @@ export const DescriptionText = styled.p`  /**текст опису */
   font-size: ${p => p.theme.fontSizes.fs16};
   line-height: 1.37;
   color: ${p => p.theme.colors.mainText};
-  margin-bottom: 8px;
+ 
+ &:not(:last-child){
+    margin-bottom: 8px;
+};
 `;
 
 export const Button = styled.button` /**кнопка.  Вже напевно хтось робив, можна перевикористати*/
