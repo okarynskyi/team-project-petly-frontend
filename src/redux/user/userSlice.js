@@ -6,7 +6,13 @@ import {
   getUserData,
   userUpdate,
   updatePhoto,
+  getPets,
 } from './userOperations';
+
+const handlePending = state => {
+    state.isLoading = true;
+    state.isError = null;
+};
 
 const initialState = {
   profile: {
@@ -27,16 +33,7 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   extraReducers: {
-    [addPet.fulfilled](state, { payload }) {
-      state.userPets = [state.userPets, ...payload];
-    },
-    [removePet.fulfilled](state, { payload }) {
-       const index = state.profile.userPets.findIndex(
-        item => item._id === payload._id
-      );
-      state.profile.userPets.splice(index, 1);
-    },
-
+    [getUserData.pending]: handlePending,
     [getUserData.fulfilled](state, { payload }) {
       state.profile.user = {
         name: payload.user.name,
@@ -50,10 +47,42 @@ const userSlice = createSlice({
       };
       state.profile.userPets = [...payload.userPets];
     },
-    [userUpdate.pending](state) {
-      state.isLoading = true;
-      state.isError = null;
+    [getUserData.rejected](state, { payload }) {
+      state.isLoading = false;
+      state.isError = payload;
     },
+
+    [getPets.pending]: handlePending,
+    [getPets.fulfilled](state, { payload }) {
+      state.profile.user = payload;
+      state.isLoading = false;
+    },
+    [getPets.rejected](state, {payload}){
+      state.isLoading = false;
+      state.isError = payload;
+    },
+
+    [addPet.pending]: handlePending,
+    [addPet.fulfilled](state, { payload }) {
+      state.userPets = [state.userPets, ...payload];
+    },
+    [addPet.rejected](state, { payload }) {
+      state.isLoading = false;
+      state.isError = payload;
+    },
+    
+    [removePet.pending]: handlePending,
+    [removePet.fulfilled](state, { payload }) {
+      const index = state.profile.userPets.findIndex(
+        item => item._id === payload._id
+      );
+      state.profile.userPets.splice(index, 1);
+    },
+    [removePet.rejected](state, { payload }) {
+      state.isLoading = false;
+      state.isError = payload;
+    },
+
     [userUpdate.fulfilled](state, { payload }) {
       state.profile.user = {
         name: payload.user.name,
@@ -63,27 +92,22 @@ const userSlice = createSlice({
         location: payload.user.location,
       };
     },
-    [userUpdate.rejected](state, action) {
+    [userUpdate.rejected](state, {payload}) {
       state.isLoading = false;
-      state.isError = action.payload;
+      state.isError = payload;
     },
-    [updatePhoto.pending](state) {
-      state.isLoading = true;
-      state.isError = null;
-    },
+
+    [updatePhoto.pending]: handlePending,
     [updatePhoto.fulfilled](state, { payload }) {
       state.profile.avatarURL = {
         avatarURL: payload.user.avatarURL,
       };
     },
-    [updatePhoto.rejected](state, action) {
+    [updatePhoto.rejected](state, {payload}) {
       state.isLoading = false;
-      state.isError = action.payload;
-      toast.error(`${action.payload}`);
+      state.isError = payload;
+      toast.error(`${payload}`);
     },
-    // [listPets.fulfilled](state, { payload }) {
-    //   state.userPets = [...payload];
-    // },
   },
 });
 

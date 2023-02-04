@@ -16,66 +16,71 @@ export const getUserData = createAsyncThunk(
   }
 );
 
-export const userUpdate = createAsyncThunk(
-  'auth/userUpdate',
-  async (credentials, { rejectWithValue }) => {
+export const getPets = createAsyncThunk(
+  'user/listPets',
+  async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axios.patch('/auth', credentials);
+      const { data } = await axios.get('/users/pets');
+
       return data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data);
     }
   }
 );
-export const updatePhoto = createAsyncThunk(
-  'auth/updatePhoto',
-  async (credentials, { rejectWithValue }) => {
-    try {
-      const { data } = await axios.patch('/auth', credentials);
-      return data;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
+
 export const addPet = createAsyncThunk(
   'user/addPet',
   async (post, { rejectWithValue }) => {
-    console.log(post);
     try {
       const { data } = await axios.post('/users/pets', post);
-
+  
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
   }
 );
-
+  
 export const removePet = createAsyncThunk(
   'user/removePet',
   async (id, { rejectWithValue }) => {
     try {
       await axios.delete(`/users/pets/${id}`);
-
+  
       return id;
     } catch (error) {
       return rejectWithValue(error.message);
     }
   }
 );
+  
+export const userUpdate = createAsyncThunk(
+  'auth/userUpdate',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.patch('/auth', credentials);
 
-// export const listPets = createAsyncThunk(
-//   'user/listPets',
-//   async (_, { rejectWithValue }) => {
-//     try {
-//       const { data } = await axios.get('/users/pets');
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
-//       return data;
-//     } catch (error) {
-//       return rejectWithValue(error.response.data);
-//     }
-//   }
-// );
+export const updatePhoto = createAsyncThunk(
+  'auth/updatePhoto',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.patch('/auth', credentials);
+      
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+
 
 
