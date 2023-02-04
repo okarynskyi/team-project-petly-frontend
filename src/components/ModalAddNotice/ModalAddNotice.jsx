@@ -36,7 +36,7 @@ const ModalAddNotice = ({ onClose }) => {
   const [birthday, setBirthday] = useState('');
   const [sex, setSex] = useState('');
   const [location, setLocation] = useState('');
-  const [imgURL, setImgURL] = useState('');
+  const [avatarURL, setAvatarURL] = useState('');
   const [comments, setComments] = useState('');
 
   const [page, setPage] = useState(1);
@@ -90,7 +90,7 @@ const ModalAddNotice = ({ onClose }) => {
   };
 
   const inputFileHandler = file => {
-    setImgURL(file);
+    setAvatarURL(file);
     const reader = new FileReader();
 
     reader.onload = function (e) {
@@ -115,7 +115,7 @@ const ModalAddNotice = ({ onClose }) => {
     breed && data.append('breed', breed);
     sex && data.append('sex', sex);
     location && data.append('location', location);
-    imgURL && data.append('imgURL', imgURL);
+    avatarURL && data.append('avatarURL', avatarURL);
 
     dispatch(operations.createNotice(data));
     // onClose(setModalActive);
