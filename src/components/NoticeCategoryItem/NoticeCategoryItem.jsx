@@ -1,12 +1,9 @@
-// import { useEffect } from 'react';
-// import { useLocation, useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import operations from '../../redux/notices/noticesOperations';
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import ModalNotice from '../ModalNotice/ModalNotice';
-// import { selectIsFavorite } from 'redux/notices/noticesSelectors';
 
 import {
   Item,
@@ -22,6 +19,12 @@ import {
   Button,
 } from "./NoticeCategoryItem.styled";
 
+const categoryShelf = {
+  "sell": "sell",
+  "lost-found": "lost-found",
+  "in-good-hands": "in-good-hands",
+};
+
 const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
   const {
     avatarURL,
@@ -35,12 +38,13 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
     // sex,
     title,
     _id,
+    adopStatus,
   } = notice
   const dispatch = useDispatch();
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  const addToFavorite = async () => {
+   const addToFavorite = async () => {
     if (!isLoggedIn) {
       return toast.error('You need to authorize before adding notices to favorite.');
     };
@@ -58,8 +62,10 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
     };
     dispatch(operations.deleteFromFavorites(_id))
       .then(() => {
-        dispatch(operations.getNoticesByCategory(category))
-      })
+        if (category === categoryShelf[category]) { dispatch(operations.getNoticesByCategory(category)); };
+        if (category === "favorites-ads") { dispatch(operations.getFavorites()); };
+        if (category === "my-ads") { dispatch(operations.getUserNotices()); };
+      });
 
     toast.success('Notice removed from favorite adds.');
   };
@@ -81,7 +87,7 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
           alt="Pet"
         />
       </ImageWrapper>
-      <CategoryName>Category name</CategoryName>
+      <CategoryName>{adopStatus}</CategoryName>
 
       
       {!isFavorite && (
@@ -125,6 +131,5 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
     </Item>
   );
 };
-// bchdbcjh
 
 export default NoticesCategoryItem;
