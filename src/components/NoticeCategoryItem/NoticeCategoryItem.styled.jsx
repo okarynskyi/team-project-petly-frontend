@@ -42,11 +42,10 @@ export const ImageWrapper = styled.div`
   margin-bottom: 20px;
 `;
 
-export const Image = styled.img`
-  /**сама картинка */
-  width: 288px;
-  height: 288px;
-  background-color: blue; // временный фон удалить когда карточки на 100% готовы
+export const Image = styled.img`  /**сама картинка */
+ width: 288px;
+height: 288px;
+background-color: #D3D3D3; // временный фон удалить когда карточки на 100% готовы
 
   @media ${device.tablet} {
     width: 336px;
