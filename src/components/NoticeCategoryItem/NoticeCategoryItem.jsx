@@ -17,12 +17,14 @@ import {
   DescriptionTextContainer,
   DescriptionText,
   Button,
-} from "./NoticeCategoryItem.styled";
+  CheckBoxAddDiv,
+  CheckBoxAddLabel,
+} from './NoticeCategoryItem.styled';
 
 const categoryShelf = {
-  "sell": "sell",
-  "lost-found": "lost-found",
-  "in-good-hands": "in-good-hands",
+  sell: 'sell',
+  'lost-found': 'lost-found',
+  'in-good-hands': 'in-good-hands',
 };
 
 const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
@@ -39,41 +41,49 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
     title,
     _id,
     adopStatus,
-  } = notice
+  } = notice;
   const dispatch = useDispatch();
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-   const addToFavorite = async () => {
+  const addToFavorite = async () => {
     if (!isLoggedIn) {
-      return toast.error('You need to authorize before adding notices to favorite.');
-    };
-    dispatch(operations.addToFavorites(_id))
-      .then(() => {
-        dispatch(operations.getNoticesByCategory(category));
-      })
+      return toast.error(
+        'You need to authorize before adding notices to favorite.'
+      );
+    }
+    dispatch(operations.addToFavorites(_id)).then(() => {
+      dispatch(operations.getNoticesByCategory(category));
+    });
 
     toast.success('Notice added to favorite adds.');
   };
 
   const removeFromFavorite = async () => {
     if (!isLoggedIn) {
-      return toast.error('You need to authorize before remove notices from favorite.');
-    };
-    dispatch(operations.deleteFromFavorites(_id))
-      .then(() => {
-        if (category === categoryShelf[category]) { dispatch(operations.getNoticesByCategory(category)); };
-        if (category === "favorites-ads") { dispatch(operations.getFavorites()); };
-        if (category === "my-ads") { dispatch(operations.getUserNotices()); };
-      });
+      return toast.error(
+        'You need to authorize before remove notices from favorite.'
+      );
+    }
+    dispatch(operations.deleteFromFavorites(_id)).then(() => {
+      if (category === categoryShelf[category]) {
+        dispatch(operations.getNoticesByCategory(category));
+      }
+      if (category === 'favorites-ads') {
+        dispatch(operations.getFavorites());
+      }
+      if (category === 'my-ads') {
+        dispatch(operations.getUserNotices());
+      }
+    });
 
     toast.success('Notice removed from favorite adds.');
   };
 
   function dateConverter(utcDate) {
     const date = new Date(utcDate);
-    const day = date.getDay().toString().padStart(2, "0");
-    const month = date.getMonth().toString().padStart(2, "0");
+    const day = date.getDay().toString().padStart(2, '0');
+    const month = date.getMonth().toString().padStart(2, '0');
     const year = date.getFullYear();
     const convertedDate = [day, month, year].join('/');
     return convertedDate;
@@ -82,26 +92,31 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
   return (
     <Item key={_id}>
       <ImageWrapper>
-        <Image
-          src={avatarURL}
-          alt="Pet"
-        />
+        <Image src={avatarURL} alt="Pet" />
       </ImageWrapper>
       <CategoryName>{adopStatus}</CategoryName>
 
-      
       {!isFavorite && (
-        <CheckBoxAddToFavorite onClick={addToFavorite}>Like</CheckBoxAddToFavorite>
+        <CheckBoxAddDiv>
+          <CheckBoxAddToFavorite
+            type="checkbox"
+            onClick={addToFavorite}
+            value="None"
+            id="forLabel"
+            name="check"
+            // checked
+          />
+          <CheckBoxAddLabel for="forLabel"></CheckBoxAddLabel>
+        </CheckBoxAddDiv>
       )}
       {isFavorite && (
-        <CheckBoxAddToFavorite onClick={removeFromFavorite}>DesLike</CheckBoxAddToFavorite>
+        <CheckBoxAddToFavorite onClick={removeFromFavorite}>
+          DesLike
+        </CheckBoxAddToFavorite>
       )}
 
-      
       <DescriptionWrapper>
-        <Title>
-          {title}
-        </Title>
+        <Title>{title}</Title>
 
         <DescriptionInner>
           <DescriptionTextContainer>
@@ -109,7 +124,7 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
             <DescriptionText>Place:</DescriptionText>
             <DescriptionText>Age:</DescriptionText>
           </DescriptionTextContainer>
-        {/* </DescriptionInner>
+          {/* </DescriptionInner>
 
         <DescriptionInner> */}
           <DescriptionTextContainer>
@@ -118,16 +133,15 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
             <DescriptionText>{dateConverter(birthday)}</DescriptionText>
           </DescriptionTextContainer>
         </DescriptionInner>
-
       </DescriptionWrapper>
-        {isLoggedIn ? (
-          <>
-            <ModalNotice></ModalNotice>
-            {isOwner && <Button>Delete</Button>}
-          </>
-        ) : (
+      {isLoggedIn ? (
+        <>
           <ModalNotice></ModalNotice>
-        )}
+          {isOwner && <Button>Delete</Button>}
+        </>
+      ) : (
+        <ModalNotice></ModalNotice>
+      )}
     </Item>
   );
 };
