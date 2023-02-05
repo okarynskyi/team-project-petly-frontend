@@ -104,8 +104,7 @@ const noticesSlice = createSlice({
         // отримання оголошень авторизованого кристувача створених цим же користувачем
         [operations.getUserNotices.pending]: handlePending,
         [operations.getUserNotices.fulfilled](state, { payload }) {
-            console.log(payload) /**в масиві приходять обєкти з іншими даними */
-            state.noticesByCategory = []
+            state.noticesByCategory = payload;
             state.isLoading = false;
             state.isError = null;
         },
