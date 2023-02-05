@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
+import { useState } from 'react';
 
 import operations from '../../redux/notices/noticesOperations';
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
@@ -21,13 +22,8 @@ import {
   CheckBoxAddLabel,
 } from './NoticeCategoryItem.styled';
 
-const categoryShelf = {
-  sell: 'sell',
-  'lost-found': 'lost-found',
-  'in-good-hands': 'in-good-hands',
-};
-
 const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
+  const [favorite, setFavorite] = useState(isFavorite);
   const {
     avatarURL,
     birthday,
@@ -52,9 +48,8 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
         'You need to authorize before adding notices to favorite.'
       );
     }
-    dispatch(operations.addToFavorites(_id)).then(() => {
-      dispatch(operations.getNoticesByCategory(category));
-    });
+    dispatch(operations.addToFavorites(_id));
+    setFavorite(true)
 
     toast.success('Notice added to favorite adds.');
   };
@@ -65,17 +60,8 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
         'You need to authorize before remove notices from favorite.'
       );
     }
-    dispatch(operations.deleteFromFavorites(_id)).then(() => {
-      if (category === categoryShelf[category]) {
-        dispatch(operations.getNoticesByCategory(category));
-      }
-      if (category === 'favorites-ads') {
-        dispatch(operations.getFavorites());
-      }
-      if (category === 'my-ads') {
-        dispatch(operations.getUserNotices());
-      }
-    });
+    dispatch(operations.deleteFromFavorites(_id));
+    setFavorite(false)
 
     toast.success('Notice removed from favorite adds.');
   };
@@ -96,7 +82,7 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
       </ImageWrapper>
       <CategoryName>{adopStatus}</CategoryName>
 
-      {!isFavorite && (
+      {!favorite && (
         <CheckBoxAddDiv>
           <CheckBoxAddToFavorite
             type="checkbox"
@@ -107,13 +93,14 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
           <CheckBoxAddLabel htmlFor={_id}></CheckBoxAddLabel>
         </CheckBoxAddDiv>
       )}
-      {isFavorite && (
+      {favorite && (
         <CheckBoxAddDiv>
           <CheckBoxAddToFavorite
             type="checkbox"
             onChange={removeFromFavorite}
             id={_id}
             name="check"
+            checked
           />
           <CheckBoxAddLabel htmlFor={_id}></CheckBoxAddLabel>
         </CheckBoxAddDiv>

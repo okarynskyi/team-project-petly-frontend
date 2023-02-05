@@ -23,14 +23,14 @@ const categoryShelf = {
 const NoticesCategoryList = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-
+  
   const notices = useSelector(selectNoticesByCategory);
   const isLoading = useSelector(selectIsLoading);
   const isLoggedIn = useSelector(selectIsLoggedIn)
   const user = useSelector(selectUser)
-
+  
   const category = location.pathname.split('/')[2];
-
+  
   const [search] = useSearchParams();
   
   const query = search.get('name');
