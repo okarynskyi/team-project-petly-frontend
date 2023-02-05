@@ -10,7 +10,11 @@ export const SexRadioBtns = ({ sex, onChange }) => {
 
   return (
     <>
-      <Label>The sex</Label>
+      <Label>
+        <div>
+          The sex<span>*</span>
+        </div>
+      </Label>
       <SexRadioWrap>
         <RadioSexLabel sex={sex} value={'male'}>
           <InputRadio

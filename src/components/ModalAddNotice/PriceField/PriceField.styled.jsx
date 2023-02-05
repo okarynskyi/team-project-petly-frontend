@@ -19,7 +19,18 @@ export const InputField = styled(Field)`
   outline: none;
   transition: border-color 300ms linear;
   appearance: textfield;
-
+  border-radius: ${p => {
+    if (p.islistopen) {
+      return '20px 20px 0px 0px';
+    }
+    return '40px';
+  }};
+  border-bottom: ${p => {
+    if (p.islistopen) {
+      return 'none';
+    }
+    return '1px solid rgba(245, 146, 86, 0.5)';
+  }};
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;

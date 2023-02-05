@@ -1,11 +1,14 @@
 import { Label } from '../ModalAddNotice.styled';
-import { Field } from 'formik';
+import { InputField } from '../TextInput/TextInput.styled';
 
 export const Location = ({ name, placeholder, validate }) => {
   return (
     <Label>
-      Location
-      <Field
+      <div>
+        Location<span>*</span>:
+      </div>
+
+      <InputField
         type="text"
         placeholder={placeholder}
         name={name}

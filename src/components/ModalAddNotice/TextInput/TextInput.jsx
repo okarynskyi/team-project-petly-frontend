@@ -1,9 +1,9 @@
-import { Field } from 'formik';
+import { InputField } from './TextInput.styled';
 
 export const TextInput = ({ name, placeholder, validate }) => {
   return (
     <>
-      <Field
+      <InputField
         type="text"
         placeholder={placeholder}
         name={name}

@@ -1,12 +1,13 @@
-import { Field } from 'formik';
 import { Label, Error } from '../ModalAddNotice.styled';
+import { CommentWrap } from './CommentField.styled';
+import { Field } from 'formik';
 
 export const CommentField = ({ touched, errors, name, validate }) => {
   return (
-    <div>
+    <CommentWrap>
       <Label>
         <div>
-          Comments <span>*</span>
+          Comments<span>*</span>:
         </div>
         <Field
           as="textarea"
@@ -18,6 +19,6 @@ export const CommentField = ({ touched, errors, name, validate }) => {
           <Error>{errors.comments}</Error>
         )}
       </Label>
-    </div>
+    </CommentWrap>
   );
 };

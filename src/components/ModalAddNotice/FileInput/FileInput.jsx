@@ -1,5 +1,11 @@
 import { BsPlusLg } from 'react-icons/bs';
-import { InputFile, AddImgIcon, PrevievImg } from './FileInput.styled';
+import { Label } from '../ModalAddNotice.styled';
+import {
+  InputFileWrap,
+  InputFile,
+  AddImgIcon,
+  PrevievImg,
+} from './FileInput.styled';
 
 export const FileInput = ({ preview, onAddImg }) => {
   const fileHandler = e => {
@@ -7,9 +13,9 @@ export const FileInput = ({ preview, onAddImg }) => {
   };
 
   return (
-    <div>
-      <label>
-        Load the pet’s image
+    <InputFileWrap>
+      <Label>
+        Load the pet’s image:
         {!preview && (
           <AddImgIcon>
             <BsPlusLg />
@@ -22,7 +28,7 @@ export const FileInput = ({ preview, onAddImg }) => {
           onChange={fileHandler}
           multiple
         />
-      </label>
-    </div>
+      </Label>
+    </InputFileWrap>
   );
 };
