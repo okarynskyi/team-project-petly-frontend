@@ -18,8 +18,8 @@ export const SearchBar = ({ submitForm }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    setSearchParams({ name: input });
-     submitForm(input);
+    setSearchParams({ query: input });
+    //  submitForm(input);
     setInput('');
   };
 
@@ -33,7 +33,7 @@ export const SearchBar = ({ submitForm }) => {
         <SearchFormInput
           onChange={saveInputState}
           name="name"
-          type="name"
+          type="text"
           autocomplete="off"
           placeholder="Search"
           value={input}

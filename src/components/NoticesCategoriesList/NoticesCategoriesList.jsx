@@ -29,26 +29,30 @@ const NoticesCategoryList = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn)
   const user = useSelector(selectUser)
   
+  console.log(notices)
   const category = location.pathname.split('/')[2];
   
   const [search] = useSearchParams();
   
-  const query = search.get('name');
+  const query = search.get('query');
 
   let isFavorite = false;
-
+  // console.log("query", query)
+  // console.log("categ", category)
   useEffect(() => {
-    if (query) {
-      // console.log(query)
-      dispatch(operations.getByQuery(query));
+    // if (query) {
+    //   console.log("query", query)
+    //   console.log("categ", category)
+    //   dispatch(operations.getByQuery(query));
+      if (category) {
+        if (query) {
+          dispatch(operations.getByCategoryQuery({ category: category, query }));
+        } else 
+        {if (category === categoryShelf[category]) { dispatch(operations.getNoticesByCategory(category)); };
+        if (category === "favorites-ads") { dispatch(operations.getFavorites()); };
+        if (category === "my-ads") { dispatch(operations.getUserNotices(user.id)); };}
     }
-    if (category === categoryShelf[category]) { dispatch(operations.getNoticesByCategory(category)); };
-    if (category === "favorites-ads") { dispatch(operations.getFavorites()); };
-    if (category === "my-ads") { dispatch(operations.getUserNotices()); };
-    
-  }, [
-    // page, 
-    query, dispatch, category]);
+  }, [query, dispatch, category]);
 
   return !isLoading && notices.length === 0 ? (
     <div>

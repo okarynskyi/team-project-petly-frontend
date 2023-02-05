@@ -121,6 +121,13 @@ const noticesSlice = createSlice({
             state.isLoading = false;
             state.noticesByCategory = payload;
         },
+// для пошуку по категорії
+        [operations.getByCategoryQuery.fulfilled](state, { payload }) {
+            state.isError = null;
+            state.isLoading = false;
+            console.log(payload)
+            state.noticesByCategory = payload;
+        },
     },
 });
 

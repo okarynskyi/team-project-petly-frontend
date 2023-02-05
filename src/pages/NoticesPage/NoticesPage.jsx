@@ -4,16 +4,16 @@ import NoticesCategoryList from '../../components/NoticesCategoriesList/NoticesC
 import { SearchBar } from '../../components/NoticesSearchBar/SearchBar';
 import { Box, GlobalBox, Title, Wrapper } from './NoticesPage.styled';
 import { Container } from 'components/common/Container.styled';
-import { useDispatch } from 'react-redux';
-import operations from 'redux/notices/noticesOperations';
+// import { useDispatch } from 'react-redux';
+// import operations from 'redux/notices/noticesOperations';
 
 const NoticesPage = () => {
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const searchPets = query => {
-    dispatch(operations.getByQuery(query));
-  };
+  // const searchPets = query => {
+  //   dispatch(operations.getByQuery(query));
+  // };
 
   return (
     <GlobalBox>
@@ -22,7 +22,7 @@ const NoticesPage = () => {
         <Box>
           <Title>Find your favorite pet</Title>
           <SearchBar
-          submitForm={searchPets}
+          // submitForm={searchPets}
           />
           <FilterNoticesButton /> 
         </Box>
