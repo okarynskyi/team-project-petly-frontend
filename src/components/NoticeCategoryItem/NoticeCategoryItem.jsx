@@ -138,13 +138,14 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
           </DescriptionTextContainer>
         </DescriptionInner>
       </DescriptionWrapper>
+      
       {isLoggedIn ? (
         <>
           <ModalNotice></ModalNotice>
-          {isOwner && <Button>Delete</Button>}
+            {isOwner && <Button>Delete</Button>}
         </>
       ) : (
-        <ModalNotice></ModalNotice>
+            <ModalNotice></ModalNotice>   
       )}
     </Item>
   );

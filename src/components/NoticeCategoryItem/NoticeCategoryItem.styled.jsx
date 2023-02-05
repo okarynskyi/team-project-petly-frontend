@@ -188,6 +188,13 @@ export const DescriptionText = styled.p`
   }
 `;
 
+export const ButtonDiv = styled.div`
+  position: absolute;
+  bottom: 0;
+  /* display: flex;
+  flex-direction: column; */
+`;
+
 export const Button = styled.button`
   /**кнопка.  Вже напевно хтось робив, можна перевикористати*/
   width: 248px;
@@ -206,3 +213,4 @@ export const Button = styled.button`
   letter-spacing: 0.04em;
   color: ${p => p.theme.colors.accent};
 `;
+
