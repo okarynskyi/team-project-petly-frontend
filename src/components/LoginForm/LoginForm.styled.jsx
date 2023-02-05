@@ -24,6 +24,7 @@ export const BoxInput = styled.div`
   flex-wrap: wrap;
   gap: ${props => props.theme.space[2]}px;
 `;
+
 export const InputFormik = styled(Field)`
   width: 280px;
   padding: 11px 0 11px 14px;

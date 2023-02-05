@@ -4,30 +4,34 @@ import { toast } from 'react-toastify';
 import { HiOutlinePlus } from 'react-icons/hi';
 import { FormikWizard } from 'formik-wizard-form';
 import { schema1, schema2 } from './schemas';
+import { getCurrent } from '../../helpers/formatDate';
 import Modal from '../common/Modal/Modal';
 import { addPet } from '../../redux/user/userOperations';
 import {
   WrapperAddPet,
   StyledPlus,
   AddPetBtn,
-  WrapperModalAddPet,
+  WrapperModalAddPet,  FormAdd,
+  BowInputs,
+  InputStyled,
+  InputStyledComment,
+  TitleModal,
+  LabelStyled,
+  TextAddPhoto,
+  LabelEdd,
+  Error,
+  Preview,
 } from './ModalAddsPet.styled';
 import {
   AccentButton,
   StyledButton,
 } from 'components/common/StyledButton/StyledButton.styled';
-import {
-  FormAdd,
-  BowInputs,
-  InputStyled,InputStyledComment,
-  TitleModal,
-  LabelStyled,
-  TextAddPhoto,LabelEdd, Hidden, Error
-} from './ModalAddsPet.styled';
+import { HiddenInput } from 'components/UserData/UserData.styled';
 
 const ModalAddPet = () => {
   const [modalActive, setModalActive] = useState(false);
   const [onAddFile, setOnAddFile] = useState(null);
+  const [preview, setPreview] = useState('');
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -59,28 +63,30 @@ const ModalAddPet = () => {
         <TitleModal>Add pet</TitleModal>
         <BowInputs>
           <LabelStyled htmlFor="name">
-            Name pet
+            Name pet*
             <InputStyled
               name="name"
               type="text"
               id="name"
               placeholder="Type name pet"
             />
-            <Error name="name" component='div'/>
+            <Error name="name" component="div" />
           </LabelStyled>
           <LabelStyled>
-            Date of birth
+            Date of birth*
             <InputStyled
               name="birthday"
+              onfocus="(this.type='date')"
               type="date"
+              max={getCurrent()}
               placeholder="Type date of birth"
             />
-            <Error name="birthday" component='p'/>
+            <Error name="birthday" component="p" />
           </LabelStyled>
           <LabelStyled>
-            Breed
+            Breed*
             <InputStyled name="breed" placeholder="Type breed" />
-            <Error name="breed" component='p'/>
+            <Error name="breed" component="p" />
           </LabelStyled>
         </BowInputs>
       </>
@@ -90,6 +96,11 @@ const ModalAddPet = () => {
   const ModalAddPetTwo = () => {
     const handleChange = e => {
       setOnAddFile(e.currentTarget.files[0]);
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        setPreview(e.target.result);
+      };
+      reader.readAsDataURL(e.currentTarget.files[0]);
     };
 
     return (
@@ -97,32 +108,37 @@ const ModalAddPet = () => {
         <TitleModal>Add pet</TitleModal>
         <BowInputs>
           <div>
-            <TextAddPhoto>Add photo and some comments</TextAddPhoto>
-            <Hidden
+            <TextAddPhoto>Add photo and some comments*</TextAddPhoto>
+            <HiddenInput 
               type="file"
               name="petsPhotoURL"
               id="petsPhotoURL"
-              multiple
-              accept="image/*"
+              accept="image/png, image/jpeg, image/jpg, image/bmp"
               onChange={handleChange}
             />
-            <LabelEdd htmlFor="petsPhotoURL">
-              <HiOutlinePlus color='grey' size='70px'/>
-            </LabelEdd>
+            {!preview ? (
+              <LabelEdd htmlFor="petsPhotoURL">
+                <HiOutlinePlus color="grey" size="70px" />
+              </LabelEdd>
+            ) : (
+              <Preview src={preview} alt="Previev" />
+            )}
           </div>
           <LabelStyled htmlFor="comments">
             Comments*
-            <Error name="comments" component='p'/>
+            <Error name="comments" component="p" />
             <InputStyledComment
               name="comments"
-              type="text"
+              type="textarea"
               id="comments"
               placeholder="Type comments"
-            /></LabelStyled> 
+            />
+          </LabelStyled>
         </BowInputs>
       </>
     );
   };
+
   return (
     <main>
       <WrapperAddPet>
@@ -150,7 +166,7 @@ const ModalAddPet = () => {
             ]}
           >
             {({ renderComponent, handlePrev, handleNext, isLastStep }) => (
-              <FormAdd FormAdd encType="multipart/form-data">
+              <FormAdd encType="multipart/form-data">
                 {renderComponent()}
                 {!isLastStep ? (
                   <div>

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { UserData } from 'components/UserData/UserData';
 import { useDispatch, useSelector } from 'react-redux';
-import {selectIsLoggedIn} from '../../redux/auth/authSelectors'
+import { selectIsLoggedIn } from '../../redux/auth/authSelectors';
 import { PetsData } from 'components/PetsData/PetsData';
 import { Container } from 'components/common/Container.styled';
 import { SectionUser } from './UserPage.styled';
@@ -11,13 +11,13 @@ const UserPage = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-   useEffect(() => {
+  useEffect(() => {
     if (!isLoggedIn) {
       return;
     }
     dispatch(getUserData());
   }, [isLoggedIn, dispatch]);
- 
+
   return (
     <main>
       <Container>

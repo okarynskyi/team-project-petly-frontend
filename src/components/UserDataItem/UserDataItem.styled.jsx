@@ -3,9 +3,9 @@ import { device } from 'Device';
 import { HiPencil, HiCheck } from 'react-icons/hi';
 
 export const FormStyle = styled.form`
-display: flex;
-align-items: center;
-position: relative;
+  display: flex;
+  align-items: center;
+  position: relative;
 `;
 
 export const LabelUserInfo = styled.label`
@@ -101,7 +101,6 @@ export const StyledPencil = styled(IconPencil)`
 `;
 const IconCheck = ({ className }) => <HiCheck className={className} />;
 export const StyledCheck = styled(IconCheck)`
-
   color: ${props => props.theme.colors.accent};
   width: 13px;
   height: 13px;
@@ -125,6 +124,5 @@ export const ValidWrapper = styled.div`
   right: -200px;
   background-color: white;
   @media ${device.tablet} {
-    
   }
 `;

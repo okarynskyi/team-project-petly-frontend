@@ -12,21 +12,8 @@ import {
 import { CircleBtn } from 'components/common/CircleBtn.styled';
 import { useDispatch } from 'react-redux';
 import { userUpdate } from 'redux/user/userOperations';
-
-function chooseTypeLink(type, value) {
-  if (type === 'email') {
-    return `mailto:${value}`;
-  } else if (type === 'tel') {
-    return `tel:${value}`;
-  }
-}
-function findCity(label) {
-  if (label === 'location') {
-    return `city`;
-  } else {
-    return `${label}`;
-  }
-}
+import { getCurrent } from '../../helpers/formatDate';
+import { chooseTypeLink, findCity } from './helpersForRender';
 
 export const UserDataItem = ({
   activeField,
@@ -37,7 +24,6 @@ export const UserDataItem = ({
 }) => {
   const [startUpdate, setStartUpdate] = useState(false);
   const [disable, setDisable] = useState(true);
-
   const [formValues, setFormValues] = useState({
     name: '',
     email: '',
@@ -71,6 +57,7 @@ export const UserDataItem = ({
     setDisable(true);
     setActiveField(null);
   };
+
   const startUpdateField = label => {
     if (!activeField) {
       setStartUpdate(true);
@@ -82,15 +69,26 @@ export const UserDataItem = ({
     <>
       <LabelUserInfo htmlFor={label}>{findCity(label)}:</LabelUserInfo>
       <FormStyle onSubmit={handleSubmit}>
-        {startUpdate  ? (
-          <InputUserInfo
-            type={type}
-            name={label}
-            id={label}
-            value={formValues[label]}
-            onChange={handleChange}
-          />
-        ): (type === 'email' || type === 'tel') ? (
+        {startUpdate ? (
+          type === 'date' ? (
+            <InputUserInfo
+              type={type}
+              name={label}
+              id={label}
+              max={getCurrent()}
+              value={formValues[label]}
+              onChange={handleChange}
+            />
+          ) : (
+            <InputUserInfo
+              type={type}
+              name={label}
+              id={label}
+              value={formValues[label]}
+              onChange={handleChange}
+            />
+          )
+        ) : type === 'email' || type === 'tel' ? (
           <ValueEmailTel href={chooseTypeLink(type, value)}>
             {value}
           </ValueEmailTel>
@@ -118,7 +116,7 @@ export const UserDataItem = ({
 UserDataItem.propTypes = {
   type: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  value: PropTypes.string,
-   activeField:PropTypes.string,
-  setActiveField:PropTypes.func,
+  value: PropTypes.string.isRequired,
+  activeField: PropTypes.string,
+  setActiveField: PropTypes.func,
 };

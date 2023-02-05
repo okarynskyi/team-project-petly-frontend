@@ -8,7 +8,6 @@ export const getUserData = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await axios.get('/users');
-
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -16,54 +15,11 @@ export const getUserData = createAsyncThunk(
   }
 );
 
-export const getPets = createAsyncThunk(
-  'user/listPets',
-  async (_, { rejectWithValue }) => {
-    try {
-      const { data } = await axios.get('/users/pets');
-
-      return data;
-    } catch (error) {
-      return rejectWithValue(error.response.data);
-    }
-  }
-);
-
-export const addPet = createAsyncThunk(
-  'user/addPet',
-  async (post, { rejectWithValue }) => {
-    console.log('oper',post);
-    try {
-      const { data } = await axios.post('/users/pets', post);
-console.log('oper data',data );
-
-
-      return data;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
-  
-export const removePet = createAsyncThunk(
-  'user/removePet',
-  async (id, { rejectWithValue }) => {
-    try {
-      await axios.delete(`/users/pets/${id}`);
-  
-      return id;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
-  
 export const userUpdate = createAsyncThunk(
   'auth/userUpdate',
   async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await axios.patch('/auth', credentials);
-
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -76,13 +32,36 @@ export const updatePhoto = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await axios.patch('/auth', credentials);
-      
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
   }
 );
+export const addPet = createAsyncThunk(
+  'user/addPet',
+  async (post, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post('/users/pets', post);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+  
+export const removePet = createAsyncThunk(
+  'user/removePet',
+  async (id, { rejectWithValue }) => {
+    try {
+      await axios.delete(`/users/pets/${id}`);
+      return id;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+  
 
 
 

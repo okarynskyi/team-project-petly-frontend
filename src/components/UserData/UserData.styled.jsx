@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { device } from 'Device';
 
 export const CardProfile = styled.div`
-position: relative;
+  position: relative;
   padding: ${props => props.theme.space[3]}px 0;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   background: ${props => props.theme.colors.white};
@@ -118,9 +118,14 @@ export const ItemUserInfo = styled.li`
 `;
 
 export const LoaderPhoto = styled.div`
-position: absolute;
-bottom:50px;
-right: 60px;
+  @media screen and (max-width: 767px) {
+    position: absolute;
+    top: 230px;
+    right: 60px;
+  }
+  position: absolute;
+  bottom: 50px;
+  right: 60px;
   --d: 24.6px;
   width: 4.5px;
   height: 4.5px;

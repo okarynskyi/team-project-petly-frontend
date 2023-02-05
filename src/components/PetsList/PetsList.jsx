@@ -11,27 +11,25 @@ import {
   EmptyListPet,
 } from './PetsList.styled';
 import { DeletePet } from './DeletePet';
-import cat from '../../staticImages/cat.jpg';
+import { Loader } from '../Loader';
 
 export const PetsList = () => {
   const pets = useSelector(selectPetsInfo);
   const [loadPet, setLoadPet] = useState();
-    useEffect(() => {
-      setLoadPet(false);
+
+  useEffect(() => {
+    setLoadPet(false);
   }, [pets]);
+
   return (
     <>
       {pets.length === 0 && <EmptyListPet>Please, add pet.</EmptyListPet>}
-      {loadPet && <h1>load..</h1>}
+      {loadPet && <Loader />}
       {pets && (
         <ListPets>
           {pets.map(pet => (
             <CardPet key={pet._id}>
-              {pet.petsPhotoURL ? (
-                <ImgPet src={pet.petsPhotoURL} alt={pet.name} />
-              ) : (
-                <ImgPet src={cat} alt={pet.name} />
-              )}
+              <ImgPet src={pet.petsPhotoURL} alt={pet.name} />
               <WrapperInfo>
                 <DeletePet _id={pet._id} />
                 <InfoPet>
@@ -54,24 +52,3 @@ export const PetsList = () => {
     </>
   );
 };
-
-// const petsFromBack = [
-//   {
-//     _id: '63d6364d0ae399c680890db1',
-//     name: 'Tuzik',
-//     birthday: '2004-01-01T00:00:00.000Z',
-//     breed: 'German Shepherd',
-//     petsPhotoURL: cat,
-//     comment: 'It"s fine cat',
-//     owner: '63d597e17ca822bddfedb390',
-//   },
-//   {
-//     _id: '63d6364d0ae399c680890db2',
-//     name: 'Tuzik',
-//     birthday: '2004-01-01T00:00:00.000Z',
-//     breed: 'German Shepherd',
-//     petsPhotoURL: cat,
-//     comment: 'It"s nice cat',
-//     owner: '63d597e17ca822bddfedb390',
-//   },
-// ];

@@ -32,25 +32,15 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   extraReducers: {
-    [addPet.pending](state) {
-      state.isLoading = true;
-      state.isError = null;
-    },
+    [addPet.pending]:handlePending,
     [addPet.fulfilled](state, { payload }) {
-      console.log('payload', payload.newPet);
       state.profile.userPets.push(payload.newPet);
     },
     [addPet.rejected](state, action) {
       state.isLoading = false;
       state.isError = action.payload;
+      toast.error('Something went wrong, please try again!');
     },
-    [removePet.fulfilled](state, { payload }) {
-      const index = state.profile.userPets.findIndex(
-        item => item._id === payload._id
-      );
-      state.profile.userPets.splice(index, 1);
-    },
-
     [getUserData.pending]: handlePending,
     [getUserData.fulfilled](state, { payload }) {
       state.profile.user = {
@@ -60,8 +50,7 @@ const userSlice = createSlice({
         phone: payload.user.phone,
         location: payload.user.location,
       };
-      state.profile.avatarURL =payload.user.avatarURL;
-     
+      state.profile.avatarURL = payload.user.avatarURL;
       state.profile.userPets = [...payload.userPets];
     },
     [getUserData.rejected](state, { payload }) {
@@ -79,7 +68,7 @@ const userSlice = createSlice({
       state.isLoading = false;
       state.isError = payload;
     },
-
+    [userUpdate.pending]: handlePending,
     [userUpdate.fulfilled](state, { payload }) {
       state.profile.user = {
         name: payload.user.name,
@@ -110,7 +99,6 @@ const userSlice = createSlice({
         }
       }
     },
-
     [updatePhoto.pending]: handlePending,
     [updatePhoto.fulfilled](state, { payload }) {
       state.profile.avatarURL = payload.user.avatarURL;
@@ -118,7 +106,7 @@ const userSlice = createSlice({
     [updatePhoto.rejected](state, { payload }) {
       state.isLoading = false;
       state.isError = payload;
-      toast.error(`${payload}`);
+      toast.error('Something went wrong, please try again!');
     },
   },
 });

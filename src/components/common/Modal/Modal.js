@@ -7,7 +7,7 @@ const Modal = ({active, setActive, children}) => {
         <ModalStyled className={active ? "modal active" : "modal"} onClick={() => setActive(false)}>
                 <ModalStyledContent className={active ? "modal-content active" : "modal-content"} onClick={e => e.stopPropagation()}>
                     <ModalButton type="button" onClick={() => setActive(false)}>
-                    <HiX color="#F59256" size="44px" />
+                    <HiX color="#111111" size="34px" />
                     </ModalButton>
                     {children}
                 </ModalStyledContent>
