@@ -27,6 +27,7 @@ import {
 } from '../ModalAddsPet/ModalAddsPet.styled';
 import { Label, Error, BtnWrapper } from './ModalAddNotice.styled';
 export const locationRegexp = /[A-Z][a-z]*,\s[A-Z][a-z]*/;
+export const titleRegexp = /^[a-zA-Z\s]*$/;
 
 const ModalAddNotice = ({ onClose }) => {
   const [modalActive, setModalActive] = useState(false);
@@ -36,7 +37,7 @@ const ModalAddNotice = ({ onClose }) => {
   const [birthday, setBirthday] = useState('');
   const [sex, setSex] = useState('');
   const [location, setLocation] = useState('');
-  const [avatarURL, setAvatarURL] = useState('');
+  const [imageURL, setImageURL] = useState('');
   const [comments, setComments] = useState('');
 
   const [page, setPage] = useState(1);
@@ -90,7 +91,7 @@ const ModalAddNotice = ({ onClose }) => {
   };
 
   const inputFileHandler = file => {
-    setAvatarURL(file);
+    setImageURL(file);
     const reader = new FileReader();
 
     reader.onload = function (e) {
@@ -115,7 +116,7 @@ const ModalAddNotice = ({ onClose }) => {
     breed && data.append('breed', breed);
     sex && data.append('sex', sex);
     location && data.append('location', location);
-    avatarURL && data.append('avatarURL', avatarURL);
+    imageURL && data.append('imageURL', imageURL);
 
     dispatch(operations.createNotice(data));
     // onClose(setModalActive);
@@ -128,25 +129,43 @@ const ModalAddNotice = ({ onClose }) => {
     comments: '',
     location: '',
     price: '',
+    // sex: '',
+    // adopStatus: '',
   };
 
   const schema = Yup.object().shape({
     title: Yup.string()
+      .trim(true)
       .min(2, 'Too Short!')
       .max(48, 'Too Long!')
+      .matches(titleRegexp)
       .required('Required'),
-    name: Yup.string().min(2, 'Too Short!').max(16, 'Too Long!'),
-    breed: Yup.string().min(2, 'Too Short!').max(24, 'Too Long!'),
+    name: Yup.string()
+      .trim(true)
+      .min(2, 'Too Short!')
+      .max(16, 'Too Long!')
+      .matches(titleRegexp)
+      .required('Required'),
+    breed: Yup.string()
+      .trim()
+      .min(2, 'Too Short!')
+      .max(24, 'Too Long!')
+      .matches(titleRegexp)
+      .required('Required'),
     location: Yup.string()
-      .matches(locationRegexp)
-      .required('Location is required'),
+      .trim()
+      .matches(
+        locationRegexp,
+        'For example, "Brovary, Kyiv" or "Akhtyrka, Sumy"'
+      )
+      .required('Required'),
     comments: Yup.string()
       .min(8, 'Too Short!')
       .max(120, 'Too Long!')
       .required('Required'),
-    price: Yup.number()
-      .min(1, 'Price has to be more than 0')
-      .max(1000000, 'Price has to be less than 1 000 000'),
+    price: Yup.number().min(1, 'Price has to be more than 0'),
+    // sex: Yup.string().required('Choose sex'),
+    // adopStatus: Yup.string().required('Choose category'),
   });
 
   const stateMachine = {
