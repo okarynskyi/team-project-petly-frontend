@@ -68,26 +68,6 @@ const userSlice = createSlice({
       state.isLoading = false;
       state.isError = payload;
     },
-
-    // [getPets.pending]: handlePending,
-    // [getPets.fulfilled](state, { payload }) {
-    //   state.profile.user = payload;
-    //   state.isLoading = false;
-    // },
-    // [getPets.rejected](state, {payload}){
-    //   state.isLoading = false;
-    //   state.isError = payload;
-    // },
-
-    // [addPet.pending]: handlePending,
-    // [addPet.fulfilled](state, { payload }) {
-    //   state.userPets = [state.userPets, ...payload];
-    // },
-    // [addPet.rejected](state, { payload }) {
-    //   state.isLoading = false;
-    //   state.isError = payload;
-    // },
-
     [removePet.pending]: handlePending,
     [removePet.fulfilled](state, { payload }) {
       const index = state.profile.userPets.findIndex(
@@ -133,9 +113,7 @@ const userSlice = createSlice({
 
     [updatePhoto.pending]: handlePending,
     [updatePhoto.fulfilled](state, { payload }) {
-      state.profile.avatarURL = {
-        avatarURL: payload.user.avatarURL,
-      };
+      state.profile.avatarURL = payload.user.avatarURL;
     },
     [updatePhoto.rejected](state, { payload }) {
       state.isLoading = false;

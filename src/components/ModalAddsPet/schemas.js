@@ -14,10 +14,10 @@ export const schema1 = yup.object({
     birthday: yup.date().required('Date is required'),
   });
  export const schema2 = yup.object({
-    // petsPhotoURL: yup.string().required('Image is required'),
     comments: yup
       .string()
       .min(8, 'Comments must consist of at least 8 symbols')
       .max(120, 'Comments must contain no more than 120 symbols')
       .required('Comments is required'),
-  });
+ });
+

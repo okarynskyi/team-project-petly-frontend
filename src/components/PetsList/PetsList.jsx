@@ -18,7 +18,6 @@ export const PetsList = () => {
   const [loadPet, setLoadPet] = useState();
     useEffect(() => {
       setLoadPet(false);
-      console.log(pets);
   }, [pets]);
   return (
     <>
