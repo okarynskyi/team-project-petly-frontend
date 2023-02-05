@@ -57,12 +57,12 @@ const noticesSlice = createSlice({
 
         // отримання оголошень авторизованого користувача доданих ним же в обрані  "ЩЕ НЕ ЗРОБЛЕНИЙ БЕК"
         [operations.getFavorites.pending]: handlePending,
-        [operations.getFavorites.fulfilled](state, _) {
+        [operations.getFavorites.fulfilled](state, {payload}) {
+            state.noticesByCategory = payload.notices;
             state.isLoading = false;
             state.isError = null;
         },
         [operations.getFavorites.rejected](state, { payload }) {
-            state.favorites = [];
             state.isLoading = false;
             state.isError = payload;
         },
@@ -104,11 +104,13 @@ const noticesSlice = createSlice({
         // отримання оголошень авторизованого кристувача створених цим же користувачем
         [operations.getUserNotices.pending]: handlePending,
         [operations.getUserNotices.fulfilled](state, { payload }) {
-            state.noticesByCategory = payload;
+            console.log(payload) /**в масиві приходять обєкти з іншими даними */
+            state.noticesByCategory = []
             state.isLoading = false;
             state.isError = null;
         },
         [operations.getUserNotices.rejected](state, { payload }) {
+            state.noticesByCategory = [];
             state.isLoading = false;
             state.isError = payload;
         },

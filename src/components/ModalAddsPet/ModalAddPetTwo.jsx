@@ -4,13 +4,13 @@ import {
   InputFormik,
   Label,
 } from '../RegisterForm/RegisterForm.styled';
-// import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 export const ModalAddPetTwo = ({onAdd}) => {
-    // const [onAddFile, setOnAddFile] = useState(null);
-    //  useEffect(() => {
-    //      console.log('updattte');
-    //  }, [onAddFile]);
+    const [onAddFile, setOnAddFile] = useState(null);
+     useEffect(() => {
+         console.log('updattte');
+     }, [onAddFile]);
 
     // console.log(onAddFile);
 //   const UploadFile = async fileSelect => {
@@ -29,7 +29,7 @@ export const ModalAddPetTwo = ({onAdd}) => {
   return (
     <BoxInput>
       Add photo and some comments
-          {/* <label htmlFor="petsPhotoURL">
+          <label htmlFor="petsPhotoURL">
               <div style={{width:'100px', height:'100px'}}>image</div>
              <InputFormik
                   type="file"
@@ -42,7 +42,7 @@ export const ModalAddPetTwo = ({onAdd}) => {
                       console.log(event.currentTarget.files[0])
                   }}
       />  <ErrorMessage name="petsPhotoURL" />
-          </label> */}
+          </label>
       
       <Label>
         Date of birth

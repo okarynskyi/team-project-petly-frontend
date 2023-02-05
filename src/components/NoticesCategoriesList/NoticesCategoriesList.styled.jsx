@@ -22,3 +22,5 @@ margin-left: 16px;
     gap: 32px;
   }
 `;
+
+export default List;

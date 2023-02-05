@@ -1,16 +1,24 @@
-import { useEffect } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { lazy, Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 import NoticeCategoryItem from '../../components/NoticeCategoryItem/NoticeCategoryItem';
+import { Loader } from 'components/Loader';
 
-import {List, Wrapper,} from './NoticesCategoriesList.styled';
 
 import operations from '../../redux/notices/noticesOperations';
 import { selectNoticesByCategory, selectIsLoading } from 'redux/notices/noticesSelectors';
 import { selectUser, selectIsLoggedIn } from 'redux/auth/authSelectors';
 
-import { Loader } from 'components/Loader';
+import { Wrapper, } from './NoticesCategoriesList.styled';
+
+const List = lazy(() => import('./NoticesCategoriesList.styled'));
+
+const categoryShelf = {
+  "sell": "sell",
+  "lost-found": "lost-found",
+  "in-good-hands": "in-good-hands",
+};
 
 const NoticesCategoryList = () => {
   const dispatch = useDispatch();
@@ -34,14 +42,9 @@ const NoticesCategoryList = () => {
       // console.log(query)
       dispatch(operations.getByQuery(query));
     }
-    if (category) {
-      // console.log(category)
-      // console.log(dispatch(operations.getNoticesByCategory( category)))
-      dispatch(operations.getNoticesByCategory(category));
-    }
-    //   if (category) {
-    //     dispatch(operations.getNoticesByCategory());
-    // } 
+    if (category === categoryShelf[category]) { dispatch(operations.getNoticesByCategory(category)); };
+    if (category === "favorites-ads") { dispatch(operations.getFavorites()); };
+    if (category === "my-ads") { dispatch(operations.getUserNotices()); };
     
   }, [
     // page, 
@@ -49,36 +52,40 @@ const NoticesCategoryList = () => {
 
   return !isLoading && notices.length === 0 ? (
     <div>
-      <h1>Sorry, Nothing found</h1>
+      <h1> Поверніть єнота!!! </h1>
     </div>
   ) : (
     <Wrapper>
       {notices && notices.length > 0 ? (
         <>
-            
-          <List>
-            {!isLoggedIn && notices.map(notice => (<NoticeCategoryItem
-              key={notice._id}
-              notice={notice}
-            />))}
+          <Suspense fallback={<Loader />}>
               
-            {isLoggedIn && notices.map(notice => {
-              const isOwner = notice.owner._id === user.id;
-              const index = notice.favorite.indexOf(user.id);
-                
-              if (index > -1) {
-                isFavorite = true;
-              } else isFavorite = false;
-
-              return <NoticeCategoryItem
+            <List>
+              {!isLoggedIn && notices.map(notice => (<NoticeCategoryItem
                 key={notice._id}
                 notice={notice}
-                isFavorite={isFavorite}
-                isOwner={isOwner}
-              />
+              />))}
+              
+              {isLoggedIn && notices.map(notice => {
+                const isOwner = notice.owner._id === user.id;
+                const index = notice.favorite.indexOf(user.id);
+                
+                if (index > -1) {
+                  isFavorite = true;
+                } else isFavorite = false;
 
-            })}
-          </List>
+                return <NoticeCategoryItem
+                  key={notice._id}
+                  notice={notice}
+                  isFavorite={isFavorite}
+                  isOwner={isOwner}
+                  category={category}
+                />
+
+              })}
+            </List>
+              
+          </Suspense>
         </>
       ) : (
         <Loader />
@@ -87,6 +94,6 @@ const NoticesCategoryList = () => {
     </Wrapper>
   );
 };
-// cndkc
+
 export default NoticesCategoryList;
 

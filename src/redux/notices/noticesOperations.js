@@ -35,10 +35,9 @@ const getOneNotice = createAsyncThunk(
 const addToFavorites = createAsyncThunk(
     'notices/addToFavorites',
     async (id, { rejectWithValue }) => {
-        console.log(id)
         try {
             const { data } = await axios.post(`/notices/favorites/${id}`);
-            console.log(data)
+
             return data;
         } catch (error) {
             return rejectWithValue(error.message);
@@ -95,7 +94,7 @@ const createNotice = createAsyncThunk(
     async (credentials, { rejectWithValue }) => {
         try {
             const { data } = await axios.post('/notices', credentials);
-
+            
             return data;
         } catch (error) {
             return rejectWithValue(error.message);
@@ -108,8 +107,8 @@ const getUserNotices = createAsyncThunk(
     'notices/getUserNotices',
     async (_, { rejectWithValue }) => {
         try {
-            const { data } = await axios.get('/notices');
-
+            const { data } = await axios.get('/users/pets');
+            console.log(data)
             return data;
         } catch (error) {
             return rejectWithValue(error.message);

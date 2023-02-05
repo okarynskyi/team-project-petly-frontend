@@ -1,12 +1,9 @@
-// import { useEffect } from 'react';
-// import { useLocation, useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import operations from '../../redux/notices/noticesOperations';
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import ModalNotice from '../ModalNotice/ModalNotice';
-// import { selectIsFavorite } from 'redux/notices/noticesSelectors';
 
 import {
   Item,
@@ -20,10 +17,17 @@ import {
   DescriptionTextContainer,
   DescriptionText,
   Button,
-} from "./NoticeCategoryItem.styled";
+  CheckBoxAddDiv,
+  CheckBoxAddLabel,
+} from './NoticeCategoryItem.styled';
 
-const NoticesCategoryItem = ({ notice, isFavorite, isOwner }) => {
-  console.log(notice)
+const categoryShelf = {
+  sell: 'sell',
+  'lost-found': 'lost-found',
+  'in-good-hands': 'in-good-hands',
+};
+
+const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
   const {
     avatarURL,
     birthday,
@@ -36,39 +40,50 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner }) => {
     // sex,
     title,
     _id,
-  } = notice
+    adopStatus,
+  } = notice;
   const dispatch = useDispatch();
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  // const isFavorite = useSelector(selectIsFavorite);
-  // const isLoggedIn = true
-  // console.log(isLoggedIn)
 
-  // console.log(_id)
-  // const token = useSelector(selectToken);
-
-  const addToFavorite = e => {
+  const addToFavorite = async () => {
     if (!isLoggedIn) {
-      return toast.error('You need to authorize before adding notices to favorite.');
+      return toast.error(
+        'You need to authorize before adding notices to favorite.'
+      );
     }
-    dispatch(operations.addToFavorites(_id));
+    dispatch(operations.addToFavorites(_id)).then(() => {
+      dispatch(operations.getNoticesByCategory(category));
+    });
 
     toast.success('Notice added to favorite adds.');
   };
 
-  const removeFromFavorite = e => {
+  const removeFromFavorite = async () => {
     if (!isLoggedIn) {
-      return toast.error('You need to authorize before remove notices from favorite.');
+      return toast.error(
+        'You need to authorize before remove notices from favorite.'
+      );
     }
-    dispatch(operations.removeFromFavorite(_id));
+    dispatch(operations.deleteFromFavorites(_id)).then(() => {
+      if (category === categoryShelf[category]) {
+        dispatch(operations.getNoticesByCategory(category));
+      }
+      if (category === 'favorites-ads') {
+        dispatch(operations.getFavorites());
+      }
+      if (category === 'my-ads') {
+        dispatch(operations.getUserNotices());
+      }
+    });
 
     toast.success('Notice removed from favorite adds.');
   };
 
   function dateConverter(utcDate) {
     const date = new Date(utcDate);
-    const day = date.getDay().toString().padStart(2, "0");
-    const month = date.getMonth().toString().padStart(2, "0");
+    const day = date.getDay().toString().padStart(2, '0');
+    const month = date.getMonth().toString().padStart(2, '0');
     const year = date.getFullYear();
     const convertedDate = [day, month, year].join('/');
     return convertedDate;
@@ -77,26 +92,31 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner }) => {
   return (
     <Item key={_id}>
       <ImageWrapper>
-        <Image
-          src={avatarURL}
-          alt="Pet"
-        />
+        <Image src={avatarURL} alt="Pet" />
       </ImageWrapper>
-      <CategoryName>Category name</CategoryName>
+      <CategoryName>{adopStatus}</CategoryName>
 
-      
       {!isFavorite && (
-        <CheckBoxAddToFavorite onClick={addToFavorite}>Like</CheckBoxAddToFavorite>
+        <CheckBoxAddDiv>
+          <CheckBoxAddToFavorite
+            type="checkbox"
+            onClick={addToFavorite}
+            value="None"
+            id="forLabel"
+            name="check"
+            // checked
+          />
+          <CheckBoxAddLabel for="forLabel"></CheckBoxAddLabel>
+        </CheckBoxAddDiv>
       )}
       {isFavorite && (
-        <CheckBoxAddToFavorite onClick={removeFromFavorite}>DesLike</CheckBoxAddToFavorite>
+        <CheckBoxAddToFavorite onClick={removeFromFavorite}>
+          DesLike
+        </CheckBoxAddToFavorite>
       )}
 
-      
       <DescriptionWrapper>
-        <Title>
-          {title}
-        </Title>
+        <Title>{title}</Title>
 
         <DescriptionInner>
           <DescriptionTextContainer>
@@ -104,7 +124,7 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner }) => {
             <DescriptionText>Place:</DescriptionText>
             <DescriptionText>Age:</DescriptionText>
           </DescriptionTextContainer>
-        {/* </DescriptionInner>
+          {/* </DescriptionInner>
 
         <DescriptionInner> */}
           <DescriptionTextContainer>
@@ -113,19 +133,17 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner }) => {
             <DescriptionText>{dateConverter(birthday)}</DescriptionText>
           </DescriptionTextContainer>
         </DescriptionInner>
-
       </DescriptionWrapper>
-        {isLoggedIn ? (
-          <>
-            <ModalNotice></ModalNotice>
-            {isOwner && <Button>Delete</Button>}
-          </>
-        ) : (
+      {isLoggedIn ? (
+        <>
           <ModalNotice></ModalNotice>
-        )}
+          {isOwner && <Button>Delete</Button>}
+        </>
+      ) : (
+        <ModalNotice></ModalNotice>
+      )}
     </Item>
   );
 };
-// bchdbcjh
 
 export default NoticesCategoryItem;
