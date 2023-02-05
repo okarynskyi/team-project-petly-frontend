@@ -5,6 +5,7 @@ import { HiPencil, HiCheck } from 'react-icons/hi';
 export const FormStyle = styled.form`
 display: flex;
 align-items: center;
+position: relative;
 `;
 
 export const LabelUserInfo = styled.label`
@@ -114,5 +115,16 @@ export const StyledCheck = styled(IconCheck)`
   @media ${device.tablet} {
     width: 20px;
     height: 20px;
+  }
+`;
+export const ValidWrapper = styled.div`
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top: 0;
+  right: -200px;
+  background-color: white;
+  @media ${device.tablet} {
+    
   }
 `;

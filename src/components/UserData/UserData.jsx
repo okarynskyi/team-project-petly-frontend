@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updatePhoto } from 'redux/user/userOperations';
-import { selectUserInfo } from 'redux/user/userSelectors';
+import { selectUserInfo} from 'redux/user/userSelectors';
+// import { selectIsLoggedIn } from '../../redux/auth/authSelectors';
 import { formatBirthDate } from 'helpers/formatDate';
 import { checkType } from 'helpers/typeInputCheck';
 import { HiCamera } from 'react-icons/hi';
@@ -19,6 +20,7 @@ import {
   InfoWrapper,
   HiddenInput,
   FormEdit,
+  LoaderPhoto,
 } from './UserData.styled';
 
 export const UserData = () => {
@@ -26,6 +28,8 @@ export const UserData = () => {
   const userInfo = useSelector(selectUserInfo);
   const [activeField, setActiveField] = useState(null);
   const [changePhoto, setchangePhoto] = useState(false);
+  // const isLoading = useSelector(selectIsLoadingUser);
+  // const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
     setchangePhoto(false);
@@ -56,7 +60,7 @@ export const UserData = () => {
     const imageURL = new FormData();
     imageURL.append('imageURL', fileSelect);
     dispatch(updatePhoto(imageURL));
-    console.log(imageURL)
+    console.log(imageURL);
     setchangePhoto(true);
   };
 
@@ -69,27 +73,33 @@ export const UserData = () => {
     <div>
       <TitleSectionUser>My information:</TitleSectionUser>
       <CardProfile>
-        <div>
-          {changePhoto && <h1>load..</h1>}
-          {!userInfo.avatarURL ? (
-            <Avatar src={userAvatar} alt="User avatar" />
-          ) : (
-            <Avatar src={userInfo.avatarURL.avatarURL} alt="User avatar" />
-          )}
-          <FormEdit encType="multipart/form-data" method="post">
-            <HiddenInput
-              type="file"
-              name="photo"
-              id="photoUser"
-              accept="image/*,.png, .jpg"
-              onChange={handleChange}
-            />
-            <LabelEditPhoto htmlFor="photoUser">
-              <HiCamera color="#F59256" size="20px" />
-              Edit photo
-            </LabelEditPhoto>
-          </FormEdit>
-        </div>
+        {userInfo && (
+          <div>
+            {!userInfo.avatarURL ? (
+              <Avatar src={userAvatar} alt="User avatar" />
+            ) : (
+              <Avatar src={userInfo.avatarURL} alt="User avatar" />
+            )}
+            {changePhoto ? (
+              <LoaderPhoto></LoaderPhoto>
+            ) : (
+              <FormEdit encType="multipart/form-data" method="post">
+                <HiddenInput
+                  type="file"
+                  name="photo"
+                  id="photoUser"
+                  accept="image/*,.png, .jpg"
+                  onChange={handleChange}
+                />
+                <LabelEditPhoto htmlFor="photoUser">
+                  <HiCamera color="#F59256" size="20px" />
+                  Edit photo
+                </LabelEditPhoto>
+              </FormEdit>
+            )}
+          </div>
+        )}
+
         <InfoWrapper>
           {infoProfile ? (
             <ListUserInfo>

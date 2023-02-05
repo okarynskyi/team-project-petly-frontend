@@ -6,12 +6,11 @@ import {
   getUserData,
   userUpdate,
   updatePhoto,
-  getPets,
 } from './userOperations';
 
 const handlePending = state => {
-    state.isLoading = true;
-    state.isError = null;
+  state.isLoading = true;
+  state.isError = null;
 };
 
 const initialState = {
@@ -38,7 +37,7 @@ const userSlice = createSlice({
       state.isError = null;
     },
     [addPet.fulfilled](state, { payload }) {
-      console.log('payload', payload.newPet)
+      console.log('payload', payload.newPet);
       state.profile.userPets.push(payload.newPet);
     },
     [addPet.rejected](state, action) {
@@ -61,9 +60,8 @@ const userSlice = createSlice({
         phone: payload.user.phone,
         location: payload.user.location,
       };
-      state.profile.avatarURL = {
-        avatarURL: payload.user.avatarURL,
-      };
+      state.profile.avatarURL =payload.user.avatarURL;
+     
       state.profile.userPets = [...payload.userPets];
     },
     [getUserData.rejected](state, { payload }) {
@@ -71,25 +69,25 @@ const userSlice = createSlice({
       state.isError = payload;
     },
 
-    [getPets.pending]: handlePending,
-    [getPets.fulfilled](state, { payload }) {
-      state.profile.user = payload;
-      state.isLoading = false;
-    },
-    [getPets.rejected](state, {payload}){
-      state.isLoading = false;
-      state.isError = payload;
-    },
+    // [getPets.pending]: handlePending,
+    // [getPets.fulfilled](state, { payload }) {
+    //   state.profile.user = payload;
+    //   state.isLoading = false;
+    // },
+    // [getPets.rejected](state, {payload}){
+    //   state.isLoading = false;
+    //   state.isError = payload;
+    // },
 
-    [addPet.pending]: handlePending,
-    [addPet.fulfilled](state, { payload }) {
-      state.userPets = [state.userPets, ...payload];
-    },
-    [addPet.rejected](state, { payload }) {
-      state.isLoading = false;
-      state.isError = payload;
-    },
-    
+    // [addPet.pending]: handlePending,
+    // [addPet.fulfilled](state, { payload }) {
+    //   state.userPets = [state.userPets, ...payload];
+    // },
+    // [addPet.rejected](state, { payload }) {
+    //   state.isLoading = false;
+    //   state.isError = payload;
+    // },
+
     [removePet.pending]: handlePending,
     [removePet.fulfilled](state, { payload }) {
       const index = state.profile.userPets.findIndex(
@@ -111,9 +109,26 @@ const userSlice = createSlice({
         location: payload.user.location,
       };
     },
-    [userUpdate.rejected](state, {payload}) {
+    [userUpdate.rejected](state, { meta, payload }) {
       state.isLoading = false;
       state.isError = payload;
+      toast.error(chooseValid(Object.keys(meta.arg)[0]));
+      function chooseValid(key) {
+        switch (key) {
+          case 'email':
+            return 'Not valid. Correct, for example, "pet@gmail.com"(7-63 symbols).';
+          case 'phone':
+            return 'Phone 13 symbols, in the format +380xxxxxxxxx.';
+          case 'birthday':
+            return 'Not valid. Correct, for example, "01.01.2000"';
+          case 'name':
+            return 'Name must be in English, contain 2-20 symbols';
+          case 'location':
+            return 'Not valid. Correct, for example, "Brovary, Kyiv"';
+          default:
+            return 'Wrong!';
+        }
+      }
     },
 
     [updatePhoto.pending]: handlePending,
@@ -122,7 +137,7 @@ const userSlice = createSlice({
         avatarURL: payload.user.avatarURL,
       };
     },
-    [updatePhoto.rejected](state, {payload}) {
+    [updatePhoto.rejected](state, { payload }) {
       state.isLoading = false;
       state.isError = payload;
       toast.error(`${payload}`);
