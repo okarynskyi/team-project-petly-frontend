@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { useState } from 'react';
 
 import operations from '../../redux/notices/noticesOperations';
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
@@ -23,8 +22,13 @@ import {
   ButtonDiv,
 } from './NoticeCategoryItem.styled';
 
+const categoryShelf = {
+  "sell": "sell",
+  "lost-found": "lost-found",
+  "in-good-hands": "in-good-hands",
+};
+
 const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
-  const [favorite, setFavorite] = useState(isFavorite);
   const {
     avatarURL,
     birthday,
@@ -40,8 +44,14 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
     adopStatus,
   } = notice;
   const dispatch = useDispatch();
-
+    
   const isLoggedIn = useSelector(selectIsLoggedIn);
+    
+  const refreshingPage = (category) => {
+    if (category === categoryShelf[category]) dispatch(operations.getNoticesByCategory(category));
+    if (category === "favorites-ads") { dispatch(operations.getFavorites()); };
+    if (category === "my-ads") { dispatch(operations.getUserNotices()); };
+  };
 
   const addToFavorite = async () => {
     if (!isLoggedIn) {
@@ -49,8 +59,10 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
         'You need to authorize before adding notices to favorite.'
       );
     }
-    dispatch(operations.addToFavorites(_id));
-    setFavorite(true)
+    dispatch(operations.addToFavorites(_id))
+      .then(() => {
+        refreshingPage(category);
+      })
 
     toast.success('Notice added to favorite adds.');
   };
@@ -61,11 +73,21 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
         'You need to authorize before remove notices from favorite.'
       );
     }
-    dispatch(operations.deleteFromFavorites(_id));
-    setFavorite(false)
+    dispatch(operations.deleteFromFavorites(_id))
+      .then(() => {
+        refreshingPage(category);
+      })
 
     toast.success('Notice removed from favorite adds.');
   };
+
+  const handleRemoveNotice = () => {
+    dispatch(operations.deleteUserNotice(_id))
+      .then(() => {
+        refreshingPage(category);
+      })
+  };
+
 
   function dateConverter(utcDate) {
     const date = new Date(utcDate);
@@ -83,7 +105,7 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
       </ImageWrapper>
       <CategoryName>{adopStatus}</CategoryName>
 
-      {!favorite && (
+      {!isFavorite && (
         <CheckBoxAddDiv>
           <CheckBoxAddToFavorite
             type="checkbox"
@@ -94,7 +116,7 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
           <CheckBoxAddLabel htmlFor={_id}></CheckBoxAddLabel>
         </CheckBoxAddDiv>
       )}
-      {favorite && (
+      {isFavorite && (
         <CheckBoxAddDiv>
           <CheckBoxAddToFavorite
             type="checkbox"
@@ -131,7 +153,7 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
         {isLoggedIn ? (
           <>
             <ModalNotice></ModalNotice>
-            {isOwner && <Button>Delete</Button>}
+            {isOwner && <Button onClick={handleRemoveNotice}>Delete</Button>}
           </>
         ) : (
           <ModalNotice></ModalNotice>
