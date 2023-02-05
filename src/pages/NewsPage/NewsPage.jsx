@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getNews } from 'services/apiService.js';
 import { Container } from 'components/common/Container.styled.jsx';
-import { SearchBar } from '../../components/NoticesSearchBar/SearchBar';
+// import { SearchBar } from '../../components/NoticesSearchBar/SearchBar';
 import {
   Section,
   NewsH1,
@@ -13,9 +13,12 @@ import {
   DataP,
   A,
 } from './NewsPage.styled.jsx';
+import { SearchBar } from '../../components/NewsSearchBar/SearchBar';
 
 const NewsPage = () => {
   const [news, setNews] = useState([]);
+  const [inputValue, setInputValue] = useState('');
+  const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
     getNews()
@@ -24,7 +27,7 @@ const NewsPage = () => {
         setNews(results.news);
         // console.log(news);
       });
-  }, [news]);
+  }, []);
 
   function dateConverter(utcDate) {
     const date = new Date(utcDate);
@@ -35,17 +38,40 @@ const NewsPage = () => {
     return convertedDate;
   }
 
+  const handlerSearchInput = e => {
+    setInputValue(e.target.value);
+  };
+
+  const handlerSearchSubmit = e => {
+    e.preventDefault();
+    setSearchValue(inputValue);
+  };
+
+  const handlerSearchReset = e => {
+    e.preventDefault();
+    setInputValue('');
+    setSearchValue('');
+  };
+
+  const filtredNews = news.filter(({ title }) =>
+    title.toLowerCase().includes(searchValue.toLowerCase())
+  );
+
   return (
     <main>
       <Section>
         <Container>
           <NewsH1>News</NewsH1>
           <SearchBar
-          // submitForm={search}
+            value={inputValue}
+            onChange={handlerSearchInput}
+            onSubmit={handlerSearchSubmit}
+            onReset={handlerSearchReset}
+            searchValue={searchValue.trim()}
           />
-          {news && (
+          {filtredNews && (
             <NewsListBoxUl>
-              {news.map(item => (
+              {filtredNews.map(item => (
                 <li key={item._id}>
                   <Line></Line>
                   {/* <NewsDiv> */}
