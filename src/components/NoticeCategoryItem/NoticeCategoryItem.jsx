@@ -114,6 +114,7 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
             onChange={removeFromFavorite}
             id={_id}
             name="check"
+            checked
           />
           <CheckBoxAddLabel htmlFor={_id}></CheckBoxAddLabel>
         </CheckBoxAddDiv>
