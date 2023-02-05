@@ -41,7 +41,7 @@ export const ImageWrapper = styled.div` /**обгортка для картин�
 export const Image = styled.img`  /**сама картинка */
  width: 288px;
 height: 288px;
-background-color: blue; // временный фон удалить когда карточки на 100% готовы
+background-color: #D3D3D3; // временный фон удалить когда карточки на 100% готовы
 
   @media ${device.tablet} {
     width: 336px;
