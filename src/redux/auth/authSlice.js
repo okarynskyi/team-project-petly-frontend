@@ -78,6 +78,7 @@ const authSlice = createSlice({
     [getCurrentUser.rejected](state, action) {
       state.isFetchingCurrentUser = false;
       state.isLoading = false;
+      state.isLoggedIn = false;
       state.error = action.payload;
     },
   },
