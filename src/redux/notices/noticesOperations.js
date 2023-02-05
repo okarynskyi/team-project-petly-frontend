@@ -94,7 +94,7 @@ const createNotice = createAsyncThunk(
     async (credentials, { rejectWithValue }) => {
         try {
             const { data } = await axios.post('/notices', credentials);
-            
+
             return data;
         } catch (error) {
             return rejectWithValue(error.message);
@@ -107,8 +107,8 @@ const getUserNotices = createAsyncThunk(
     'notices/getUserNotices',
     async (_, { rejectWithValue }) => {
         try {
-            const { data } = await axios.get('/users/pets');
-            console.log(data)
+            const { data } = await axios.get('/notices');
+            
             return data;
         } catch (error) {
             return rejectWithValue(error.message);
