@@ -1,5 +1,5 @@
-import { Error } from '../ModalAddNotice.styled';
-import { Field } from 'formik';
+import { Label, Error } from '../ModalAddNotice.styled';
+import { PriceWrap, InputField } from './PriceField.styled';
 
 export const PriceField = ({
   touched,
@@ -10,12 +10,12 @@ export const PriceField = ({
   min,
 }) => {
   return (
-    <div>
-      <label>
+    <PriceWrap>
+      <Label>
         <div>
-          Price <span>*</span>
+          Price<span>*</span>:
         </div>
-        <Field
+        <InputField
           name={name}
           type="number"
           placeholder={placeholder}
@@ -23,7 +23,7 @@ export const PriceField = ({
           min={min}
         />
         {touched.price && errors.price && <Error>{errors.price}</Error>}
-      </label>
-    </div>
+      </Label>
+    </PriceWrap>
   );
 };

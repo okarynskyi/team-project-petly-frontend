@@ -1,8 +1,12 @@
-import { Formik, Form } from 'formik';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
 import 'react-datetime/css/react-datetime.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import operations from '../../redux/notices/noticesOperations';
+import { useSelector } from 'react-redux';
+import { selectToken } from '../../redux/auth/authSelectors';
+import { toast } from 'react-toastify';
 
 import Modal from '../common/Modal/Modal';
 import { NextBtn } from './NextBtn/NextBtn';
@@ -17,21 +21,28 @@ import { FileInput } from './FileInput/FileInput';
 import { TextInput } from './TextInput/TextInput';
 import { PriceField } from './PriceField/PriceField';
 
-import operations from '../../redux/notices/noticesOperations';
-
 import {
   WrapperAddPet,
   StyledPlus,
   AddPetBtn,
   WrapperModalAddPet,
 } from '../ModalAddsPet/ModalAddsPet.styled';
-import { Label, Error, BtnWrapper } from './ModalAddNotice.styled';
+import {
+  Label,
+  Error,
+  Title,
+  Subtitle,
+  FormStyled,
+  InputFieldWrap,
+  BtnWrap,
+} from './ModalAddNotice.styled';
 export const locationRegexp = /[A-Z][a-z]*,\s[A-Z][a-z]*/;
 export const titleRegexp = /^[a-zA-Z\s]*$/;
 
 const ModalAddNotice = ({ onClose }) => {
   const [modalActive, setModalActive] = useState(false);
   const dispatch = useDispatch();
+  const token = useSelector(selectToken);
 
   const [adopStatus, setAdopStatus] = useState('sell');
   const [birthday, setBirthday] = useState('');
@@ -79,7 +90,7 @@ const ModalAddNotice = ({ onClose }) => {
     setBreed(value);
   };
 
-  const validateComents = value => {
+  const validateComments = value => {
     setComments(value);
   };
   const nextPage = () => {
@@ -129,8 +140,6 @@ const ModalAddNotice = ({ onClose }) => {
     comments: '',
     location: '',
     price: '',
-    // sex: '',
-    // adopStatus: '',
   };
 
   const schema = Yup.object().shape({
@@ -164,8 +173,6 @@ const ModalAddNotice = ({ onClose }) => {
       .max(120, 'Too Long!')
       .required('Required'),
     price: Yup.number().min(1, 'Price has to be more than 0'),
-    // sex: Yup.string().required('Choose sex'),
-    // adopStatus: Yup.string().required('Choose category'),
   });
 
   const stateMachine = {
@@ -181,7 +188,16 @@ const ModalAddNotice = ({ onClose }) => {
       (location && comments.length >= 8 && comments.length <= 120) ||
       (!location && comments.length >= 8 && comments.length <= 120),
   };
-  return (
+  return !token ? (
+    <WrapperAddPet>
+      <p>Add pet </p>
+      <AddPetBtn
+        onClick={() => toast.warn('You need to register or logged in!')}
+      >
+        <StyledPlus />
+      </AddPetBtn>
+    </WrapperAddPet>
+  ) : (
     <main>
       <WrapperAddPet>
         <p>Add pet </p>
@@ -191,8 +207,8 @@ const ModalAddNotice = ({ onClose }) => {
       </WrapperAddPet>
       <Modal active={modalActive} setActive={setModalActive}>
         <WrapperModalAddPet>
-          <h3>Add pet</h3>
-          <p>Fill the fields below, please.</p>
+          <Title>Add pet</Title>
+          <Subtitle>Fill the fields below, please.</Subtitle>
           <Formik
             initialValues={initialValues}
             validationSchema={schema}
@@ -200,17 +216,17 @@ const ModalAddNotice = ({ onClose }) => {
             validateOnChange
           >
             {({ errors, touched }) => (
-              <Form encType="multipart/form-data">
+              <FormStyled encType="multipart/form-data">
                 {stateMachine.page_1 && (
                   <>
                     <CategoryRadioBtns
                       onChange={radioBtnHandlder}
                       category={adopStatus}
                     />
-                    <div>
+                    <InputFieldWrap>
                       <Label>
                         <div>
-                          Title of ad <span>*</span>
+                          Title of ad<span>*</span>
                         </div>
                         <TextInput
                           name="title"
@@ -255,7 +271,7 @@ const ModalAddNotice = ({ onClose }) => {
                           <Error>{errors.breed}</Error>
                         )}
                       </Label>
-                    </div>{' '}
+                    </InputFieldWrap>{' '}
                   </>
                 )}
                 {stateMachine.page_2 && (
@@ -286,11 +302,11 @@ const ModalAddNotice = ({ onClose }) => {
                       touched={touched}
                       errors={errors}
                       name="comments"
-                      validate={validateComents}
+                      validate={validateComments}
                     />
                   </>
                 )}
-                <BtnWrapper>
+                <BtnWrap>
                   {stateMachine.page_1 && stateMachine.nextButtonIsAbled && (
                     <NextBtn onClick={nextPage} />
                   )}
@@ -309,8 +325,8 @@ const ModalAddNotice = ({ onClose }) => {
                   ) : (
                     <CancelBtn onClick={prevPage} text="Back" />
                   )}
-                </BtnWrapper>
-              </Form>
+                </BtnWrap>
+              </FormStyled>
             )}
           </Formik>
         </WrapperModalAddPet>

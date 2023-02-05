@@ -1,37 +1,43 @@
+import {
+  RadioBtnWrap,
+  LabelRadioBtn,
+  InputRadio,
+} from './CategoryRadioBtns.styled';
+
 export const CategoryRadioBtns = ({ onChange, category }) => {
   const onChangeHandler = e => {
     onChange(e.target.value, 'category');
   };
 
   return (
-    <div>
-      <label category={category} value={'lost/found'}>
-        <input
+    <RadioBtnWrap>
+      <LabelRadioBtn category={category} value={'lost/found'}>
+        <InputRadio
           type="radio"
           name="category"
           value="lost/found"
           onChange={onChangeHandler}
         />
         lost-found
-      </label>
-      <label category={category} value={'in good hands'}>
-        <input
+      </LabelRadioBtn>
+      <LabelRadioBtn category={category} value={'in good hands'}>
+        <InputRadio
           type="radio"
           name="category"
           value="in good hands"
           onChange={onChangeHandler}
         />
         in good hands
-      </label>
-      <label category={category} value={'sell'}>
-        <input
+      </LabelRadioBtn>
+      <LabelRadioBtn category={category} value={'sell'}>
+        <InputRadio
           type="radio"
           name="category"
           value="sell"
           onChange={onChangeHandler}
         />
         sell
-      </label>
-    </div>
+      </LabelRadioBtn>
+    </RadioBtnWrap>
   );
 };
