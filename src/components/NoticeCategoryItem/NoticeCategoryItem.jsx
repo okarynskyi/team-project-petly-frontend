@@ -22,7 +22,7 @@ import {
 } from './NoticeCategoryItem.styled';
 
 const categoryShelf = {
-  sell: 'sell',
+  "sell": 'sell',
   'lost-found': 'lost-found',
   'in-good-hands': 'in-good-hands',
 };
@@ -100,7 +100,7 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
         <CheckBoxAddDiv>
           <CheckBoxAddToFavorite
             type="checkbox"
-            onClick={addToFavorite}
+            onChange={addToFavorite}
             id="check"
             name="check"
           />
@@ -108,9 +108,16 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
         </CheckBoxAddDiv>
       )}
       {isFavorite && (
-        <CheckBoxAddToFavorite onClick={removeFromFavorite}>
-          DesLike
-        </CheckBoxAddToFavorite>
+        <CheckBoxAddDiv>
+          <CheckBoxAddLabel htmlFor="check"></CheckBoxAddLabel>
+          <CheckBoxAddToFavorite
+            type="checkbox"
+            onChange={removeFromFavorite}
+            checked
+            name='check'
+          >
+          </CheckBoxAddToFavorite>
+        </CheckBoxAddDiv>
       )}
 
       <DescriptionWrapper>
