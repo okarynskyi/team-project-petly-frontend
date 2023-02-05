@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { setAuthHeader } from 'redux/auth/authOperations';
+// import { setAuthHeader } from 'redux/auth/authOperations';
 
 axios.defaults.baseURL = 'https://petly-backend-v11f.onrender.com/api';
 
@@ -109,7 +109,7 @@ const getUserNotices = createAsyncThunk(
     async (_, { rejectWithValue }) => {
         try {
             const { data } = await axios.get('/users/pets');
-            console.log(data)
+            // console.log(data)
             return data;
         } catch (error) {
             return rejectWithValue(error.message);
@@ -137,9 +137,9 @@ export const getByCategoryQuery = createAsyncThunk(
     'notice/getByCategoryQuery',
   
     async ({ category, query }, thunkApi) => {
-      let path;
-        path = `${category}`;
-        console.log(path);
+    //   let path;
+    //     path = `${category}`;
+        // console.log(path);
     //   }
       try {
         // const state = thunkApi.getState();
@@ -149,7 +149,7 @@ export const getByCategoryQuery = createAsyncThunk(
         const {data} = await axios.get(`/notices/search/find?category=${category}&query=${query}`
         // , {params: {  category }, }
         );
-        console.log(data);
+        // console.log(data);
         return data;
       } catch (error) {
         return thunkApi.rejectWithValue(error.status);

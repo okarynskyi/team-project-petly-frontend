@@ -12,7 +12,7 @@ const NoticesPage = () => {
   // const dispatch = useDispatch();
 
   // const searchPets = query => {
-  //   dispatch(operations.getByQuery(query));
+  //   dispatch(operations.getByCategoryQuery({ category: category, query }));
   // };
 
   return (

@@ -29,7 +29,7 @@ const NoticesCategoryList = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn)
   const user = useSelector(selectUser)
   
-  console.log(notices)
+  // console.log(notices)
   const category = location.pathname.split('/')[2];
   
   const [search] = useSearchParams();
@@ -50,7 +50,7 @@ const NoticesCategoryList = () => {
         } else 
         {if (category === categoryShelf[category]) { dispatch(operations.getNoticesByCategory(category)); };
         if (category === "favorites-ads") { dispatch(operations.getFavorites()); };
-        if (category === "my-ads") { dispatch(operations.getUserNotices(user.id)); };}
+        if (category === "my-ads") { dispatch(operations.getUserNotices()); };}
     }
   }, [query, dispatch, category]);
 

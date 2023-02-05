@@ -126,7 +126,7 @@ const noticesSlice = createSlice({
             state.isError = null;
             state.isLoading = false;
             console.log(payload)
-            state.noticesByCategory = payload;
+            state.noticesByCategory = payload.filteredNotices;
         },
     },
 });
