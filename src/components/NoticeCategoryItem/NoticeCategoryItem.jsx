@@ -101,12 +101,10 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
           <CheckBoxAddToFavorite
             type="checkbox"
             onClick={addToFavorite}
-            value="None"
-            id="forLabel"
+            id="check"
             name="check"
-            // checked
           />
-          <CheckBoxAddLabel for="forLabel"></CheckBoxAddLabel>
+          <CheckBoxAddLabel htmlFor="check"></CheckBoxAddLabel>
         </CheckBoxAddDiv>
       )}
       {isFavorite && (
