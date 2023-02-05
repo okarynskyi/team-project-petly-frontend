@@ -20,6 +20,7 @@ import {
   Button,
   CheckBoxAddDiv,
   CheckBoxAddLabel,
+  ButtonDiv,
 } from './NoticeCategoryItem.styled';
 
 const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
@@ -125,14 +126,17 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
           </DescriptionTextContainer>
         </DescriptionInner>
       </DescriptionWrapper>
-      {isLoggedIn ? (
-        <>
+
+      <ButtonDiv>
+        {isLoggedIn ? (
+          <>
+            <ModalNotice></ModalNotice>
+            {isOwner && <Button>Delete</Button>}
+          </>
+        ) : (
           <ModalNotice></ModalNotice>
-          {isOwner && <Button>Delete</Button>}
-        </>
-      ) : (
-        <ModalNotice></ModalNotice>
-      )}
+        )}
+      </ButtonDiv>
     </Item>
   );
 };
