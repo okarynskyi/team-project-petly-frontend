@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import operations from '../../redux/notices/noticesOperations';
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import ModalNotice from '../ModalNotice/ModalNotice';
-
+import { dateConverter } from 'helpers/formatDate';
 import {
   Item,
   ImageWrapper,
@@ -87,16 +87,6 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
         refreshingPage(category);
       })
   };
-
-
-  function dateConverter(utcDate) {
-    const date = new Date(utcDate);
-    const day = date.getDay().toString().padStart(2, '0');
-    const month = date.getMonth().toString().padStart(2, '0');
-    const year = date.getFullYear();
-    const convertedDate = [day, month, year].join('/');
-    return convertedDate;
-  }
 
   return (
     <Item key={_id}>
