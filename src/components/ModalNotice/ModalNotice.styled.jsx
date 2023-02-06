@@ -39,14 +39,19 @@ export const Button = styled.button`
 // done
 
 export const ModalBox = styled.div`
-  min-width: 280px;
+  width: 280px;
   padding: 60px 20px 40px;
-  position: relative;
+  border-radius: 20px;
   top: 5%;
+  height: 530px;
+  overflow-x: hidden;
+  overflow-y: scroll;
 
   @media ${device.tablet} {
+    width: 704px;
     padding: 32px 40px 32px 20px;
     top: 10%;
+    overflow-y: hidden; 
 }
 `;
 // done
