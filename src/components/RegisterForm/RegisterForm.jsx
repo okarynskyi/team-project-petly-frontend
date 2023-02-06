@@ -12,6 +12,7 @@ import {
   AuthWrapper,
   FormFormik,
   Question,
+  BtnWrap,
   BackBtn,
   RegistrBtn,
   NextBtn,
@@ -143,14 +144,12 @@ export const RegisterForm = () => {
                     Next
                   </NextBtn>
                 ) : (
-                  <>
-                    <RegistrBtn type="submit" size="180px">
-                      Register
-                    </RegistrBtn>
-                    <BackBtn type="button" size="180px" onClick={handlePrev}>
+                  <BtnWrap>
+                    <RegistrBtn type="submit">Register</RegistrBtn>
+                    <BackBtn type="button" onClick={handlePrev}>
                       Back
                     </BackBtn>
-                  </>
+                  </BtnWrap>
                 )}
               </FormFormik>
               <Question>

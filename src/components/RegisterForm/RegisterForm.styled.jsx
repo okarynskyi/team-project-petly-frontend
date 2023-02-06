@@ -24,7 +24,24 @@ export const FormFormik = styled(Form)`
     font-weight: ${props => props.theme.fontWeights.fw500};
     letter-spacing: 0.04em;
   }
-  @media ${device.tablet} {
+  @media (min-width: 768px) {
+    > button {
+      width: 458px;
+    }
+  }
+`;
+
+export const BtnWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  button {
+    width: 280px;
+    letter-spacing: 0.04em;
+  }
+  @media (min-width: 768px) {
     > button {
       width: 458px;
     }
@@ -37,10 +54,12 @@ export const BackBtn = styled(AccentButton)`
   color: ${props => props.theme.colors.mainText};
   background-color: ${props => props.theme.colors.background};
   border: ${props => props.theme.borders.main};
+  width: 458px;
 `;
 
 export const RegistrBtn = styled(AccentButton)`
   margin-top: ${props => props.theme.space[5]}px;
+  width: 458px;
 `;
 
 export const NextBtn = styled(AccentButton)`
