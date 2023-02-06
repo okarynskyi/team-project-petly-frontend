@@ -60,7 +60,7 @@ const NoticesCategoryList = () => {
         if (category === "my-ads") { dispatch(operations.getUserNotices({query})); };}
     }
   }, [query, dispatch, category]);
-  {console.log(notices)}
+  
   return !isLoading && notices.length===0 ? (
     
     <div>

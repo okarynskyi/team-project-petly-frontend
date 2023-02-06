@@ -138,19 +138,19 @@ const getUserNotices = createAsyncThunk(
 );
 
 
-// для пошуку
-export const getByQuery = createAsyncThunk(
-    'notice/getByQuery',
-    async (query, { rejectWithValue }) => {
-        try {
-            const { data } = await axios.get(`/notices/search/find?query=${query}`);
+// // для пошуку
+// export const getByQuery = createAsyncThunk(
+//     'notice/getByQuery',
+//     async (query, { rejectWithValue }) => {
+//         try {
+//             const { data } = await axios.get(`/notices/search/find?query=${query}`);
           
-            return data;
-        } catch (error) {
-            return rejectWithValue(error.message);
-        }
-    }
-);
+//             return data;
+//         } catch (error) {
+//             return rejectWithValue(error.message);
+//         }
+//     }
+// );
 
 // Get by category query
 // export const getByCategoryQuery = createAsyncThunk(
@@ -186,7 +186,7 @@ const operations = {
     createNotice,
     getUserNotices,
     deleteUserNotice,
-    getByQuery,
+    // getByQuery,
     // getByCategoryQuery,
 };
 
