@@ -37,7 +37,7 @@ export function getCurrent() {
 export function dateConverter(utcDate) {
   const date = new Date(utcDate);
   const day = (date.getDay()+1).toString().padStart(2, '0');
-  const month = date.getMonth().toString().padStart(2, '0');
+  const month = (date.getMonth()+1).toString().padStart(2, '0');
   const year = date.getFullYear();
   const convertedDate = [day, month, year].join('/');
   return convertedDate;
