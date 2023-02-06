@@ -117,11 +117,11 @@ const noticesSlice = createSlice({
         },
         
         // для пошуку
-        [operations.getByQuery.fulfilled](state, { payload }) {
-            state.isError = null;
-            state.isLoading = false;
-            state.noticesByCategory = payload;
-        },
+        // [operations.getByQuery.fulfilled](state, { payload }) {
+        //     state.isError = null;
+        //     state.isLoading = false;
+        //     state.noticesByCategory = payload;
+        // },
 // для пошуку по категорії
         // [operations.getByCategoryQuery.fulfilled](state, { payload }) {
         //     state.isError = null;
