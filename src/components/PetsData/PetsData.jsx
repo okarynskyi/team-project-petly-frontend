@@ -1,4 +1,3 @@
-// import { useState, useEffect } from "react";
 import { PetsList } from 'components/PetsList/PetsList';
 import {
   WrapperTitlePets,

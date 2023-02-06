@@ -14,7 +14,7 @@ export const AuthSection = styled.section`
 
   @media ${device.tablet} {
     padding-top: 204px;
-    height: calc(100vh - 72px);
+    height: calc(100vh + 82px);
     background-image: url('${backgroundTabImg}');
     background-repeat: no-repeat;
     background-size: cover;

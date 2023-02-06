@@ -1,16 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updatePhoto } from 'redux/user/userOperations';
-import { selectUserInfo} from 'redux/user/userSelectors';
-// import { selectIsLoggedIn } from '../../redux/auth/authSelectors';
-import { formatBirthDate } from 'helpers/formatDate';
-import { checkType } from 'helpers/typeInputCheck';
+import { selectUserInfo } from 'redux/user/userSelectors';
+import { filterData, checkType  } from './helpersForRender';
 import { HiCamera } from 'react-icons/hi';
 import { UserDataItem } from 'components/UserDataItem/UserDataItem';
-import { TitleSectionUser } from '../../pages/UserPage/UserPage.styled';
 import { Logout } from 'components/Logout/Logout';
 import userAvatar from '../../staticImages/userAvatar.png';
-
+import { TitleSectionUser } from '../../pages/UserPage/UserPage.styled';
 import {
   CardProfile,
   ItemUserInfo,
@@ -28,39 +25,17 @@ export const UserData = () => {
   const userInfo = useSelector(selectUserInfo);
   const [activeField, setActiveField] = useState(null);
   const [changePhoto, setchangePhoto] = useState(false);
-  // const isLoading = useSelector(selectIsLoadingUser);
-  // const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
     setchangePhoto(false);
   }, [userInfo]);
 
-  function filterData(obj) {
-    let filterUserInfo = [];
-    if (obj) {
-      for (let key in obj) {
-        if (key === 'birthday') {
-          if (obj[key]) {
-            filterUserInfo.push({
-              label: key,
-              value: formatBirthDate(obj[key]),
-            });
-          }
-          continue;
-        } else {
-          filterUserInfo.push({ label: key, value: obj[key] });
-        }
-      }
-    }
-    return filterUserInfo;
-  }
   const infoProfile = filterData(userInfo.user);
 
   const UploadFile = async fileSelect => {
     const imageURL = new FormData();
     imageURL.append('imageURL', fileSelect);
     dispatch(updatePhoto(imageURL));
-    console.log(imageURL);
     setchangePhoto(true);
   };
 
@@ -88,7 +63,7 @@ export const UserData = () => {
                   type="file"
                   name="photo"
                   id="photoUser"
-                  accept="image/*,.png, .jpg"
+                  accept="image/png, image/jpeg, image/jpg, image/bmp"
                   onChange={handleChange}
                 />
                 <LabelEditPhoto htmlFor="photoUser">
@@ -99,7 +74,6 @@ export const UserData = () => {
             )}
           </div>
         )}
-
         <InfoWrapper>
           {infoProfile ? (
             <ListUserInfo>

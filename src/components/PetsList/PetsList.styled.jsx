@@ -36,6 +36,7 @@ export const CardPet = styled.li`
 `;
 export const ImgPet = styled.img`
   border-radius: ${props => props.theme.radii.br20};
+  width: 240px;
   @media ${device.tablet} {
     border-radius: ${props => props.theme.radii.br40};
     width: 160px;
