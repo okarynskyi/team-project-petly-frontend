@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import {  useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { HiOutlinePlus } from 'react-icons/hi';
@@ -7,6 +7,7 @@ import { schema1, schema2 } from './schemas';
 import { getCurrent } from '../../helpers/formatDate';
 import Modal from '../common/Modal/Modal';
 import { addPet } from '../../redux/user/userOperations';
+// import { selectPetsInfo } from '../../redux/user/userSelectors';
 import {
   WrapperAddPet,
   StyledPlus,
@@ -30,17 +31,23 @@ import { HiddenInput } from 'components/UserData/UserData.styled';
 
 const ModalAddPet = () => {
   const [modalActive, setModalActive] = useState(false);
+    // const [addPet, setAddPet] = useState(false);
   const [onAddFile, setOnAddFile] = useState(null);
   const [preview, setPreview] = useState('');
   const dispatch = useDispatch();
-
+  // const petsInfo = useSelector(selectPetsInfo);
   const initialValues = {
     name: '',
     birthday: '',
     breed: '',
     comments: '',
   };
-
+//   useEffect(() => {
+//     if (petsInfo) {
+//       return;
+//    }
+//       window.location.reload();
+// }, [petsInfo])
   const handleSubmit = ({ name, birthday, breed, comments }, fn) => {
     const data = new FormData();
     data.append('name', name);
@@ -55,7 +62,7 @@ const ModalAddPet = () => {
     dispatch(addPet(data));
     fn.resetForm();
     setModalActive(false);
-    window.location.reload();
+
   };
 
   const ModalAddPetOne = () => {

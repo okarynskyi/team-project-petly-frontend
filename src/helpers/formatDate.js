@@ -31,6 +31,5 @@ export function getCurrent() {
   const normaYear = now.getFullYear();
   const normaMonth = day_of_the_month(now);
   const normaDate = day_of_the_day(now);
-  console.log(`${normaYear}-${normaMonth}-${normaDate}`);
   return `${normaYear}-${normaMonth}-${normaDate}`;
 }
