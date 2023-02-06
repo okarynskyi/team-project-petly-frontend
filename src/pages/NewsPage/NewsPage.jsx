@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getNews } from 'services/apiService.js';
 import { Container } from 'components/common/Container.styled.jsx';
-// import { SearchBar } from '../../components/NoticesSearchBar/SearchBar';
 import {
   Section,
   NewsH1,
@@ -14,6 +13,7 @@ import {
   A,
 } from './NewsPage.styled.jsx';
 import { SearchBar } from '../../components/NewsSearchBar/SearchBar';
+import { dateConverter } from 'helpers/formatDate.js';
 
 const NewsPage = () => {
   const [news, setNews] = useState([]);
@@ -29,14 +29,14 @@ const NewsPage = () => {
       });
   }, []);
 
-  function dateConverter(utcDate) {
-    const date = new Date(utcDate);
-    const day = date.getDay().toString().padStart(2, '0');
-    const month = date.getMonth().toString().padStart(2, '0');
-    const year = date.getFullYear();
-    const convertedDate = [day, month, year].join('/');
-    return convertedDate;
-  }
+  // function dateConverter(utcDate) {
+  //   const date = new Date(utcDate);
+  //   const day = (date.getDay()+1).toString().padStart(2, '0');
+  //   const month = date.getMonth().toString().padStart(2, '0');
+  //   const year = date.getFullYear();
+  //   const convertedDate = [day, month, year].join('/');
+  //   return convertedDate;
+  // }
 
   const handlerSearchInput = e => {
     setInputValue(e.target.value);
