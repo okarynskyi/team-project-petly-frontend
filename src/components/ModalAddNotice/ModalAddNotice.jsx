@@ -133,6 +133,11 @@ const ModalAddNotice = ({ onClose }) => {
     setModalActive(false);
   };
 
+  function openModal () {
+    setModalActive(true)
+    document.body.style.overflow = 'hidden';
+  }
+
   const initialValues = {
     title: '',
     name: '',
@@ -201,7 +206,7 @@ const ModalAddNotice = ({ onClose }) => {
     <main>
       <WrapperAddPet>
         <p>Add pet </p>
-        <AddPetBtn onClick={() => setModalActive(true)}>
+        <AddPetBtn onClick={() => openModal()}>
           <StyledPlus />
         </AddPetBtn>
       </WrapperAddPet>

@@ -65,6 +65,11 @@ const ModalAddPet = () => {
 
   };
 
+  function openModal () {
+    setModalActive(true)
+    document.body.style.overflow = 'hidden';
+  }
+
   const ModalAddPetOne = () => {
     return (
       <>
@@ -150,7 +155,7 @@ const ModalAddPet = () => {
     <main>
       <WrapperAddPet>
         <p>Add pet </p>
-        <AddPetBtn onClick={() => setModalActive(true)}>
+        <AddPetBtn onClick={() => openModal()}>
           <StyledPlus />
         </AddPetBtn>
       </WrapperAddPet>
