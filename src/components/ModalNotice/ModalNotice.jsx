@@ -1,39 +1,82 @@
 import Modal from '../common/Modal/Modal';
-// import operations from '../../redux/notices/noticesOperations';
-// import { addToFavorites, deleteFromFavorites } from '../../redux/notices/noticesOperations';
-// import { useDispatch } from 'react-redux';
-import { Button, ImgModal, FilterTitleBox, FitlerTitle, ModalTitle, ModalList, ModalListItem } from './ModalNotice.styled';
+// import { useEffect } from 'react';
+// import addToFavorites from '../../redux/notices/noticesOperations';
+// import deleteUserNotice from '../../redux/notices/noticesOperations';
+// import deleteFromFavorites from '../../redux/notices/noticesOperations';
+import { useSelector } from 'react-redux';
+import { Button, ImgModal, FilterTitleBox, FitlerTitle, Items, Text, ModalTitle, TextWrapper, ContactText, ButtonText, ContactItem, Btn, FirstList, ButtonsList, SecondList, ListWrapper, WrapperForDesc, ImageWrapper, ListItemDescr, ButtonTel, PetsFavoriteSvg, CommentSpan, Comment } from './ModalNotice.styled';
 import { useState } from 'react';
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
+import heart from '../../staticImages/heart.svg';
 import { ModalBox } from './ModalNotice.styled';
 
-const ModalNotice = ({ notice = {}, closeModal, getBtnInfo, token, path }) => {
-  const [modalActive, setModalActive] = useState(false);
+const ModalNotice = ( ) => {
+
+const [modalActive, setModalActive] = useState(false);
+// const dispatch = useDispatch();
+// const favoriteNotice = useSelector(state => state.auth.user.favorites);
+const isAuth = useSelector(state => state.auth.token);
+  // const [isFavorite, setIsFavorite] = useState(null);
+  
+  //  const findFavoriteNotice = noticeId => {
+  //   if (!isAuth) return;
+  //   const finedNotice = favoriteNotice.find(el => el === noticeId);
+  //   return finedNotice;
+  // };
+  // useEffect(() => {
+    // setIsFavorite(findFavoriteNotice(data._id));
+    // eslint-disable-next-line
+  // }, [favoriteNotice, data._id]);
+
+  // const corectData = str => {
+  //   const data = new Date(str).getDate();
+  //   const month = new Date(str).getMonth() + 1;
+  //   const year = new Date(str).getFullYear();
+  //   return (
+  //     (data < 10 ? '0' + data.toString() + '.' : data.toString() + '.') +
+  //     (month < 10 ? '0' + month.toString() : month.toString()) +
+  //     '.' +
+  //     year.toString()
+  //   );
+  // };
+  const handleClick = () => {
+    if (!isAuth) {
+      toast.error('You must be logged in!');
+      return;
+    }
+  };
+
+  // const fixedStatus = str => {
+  //   if (str === 'for-free') {
+  //     console.log(str);
+  //     const fixStr = str.replaceAll(str, 'in good hands');
+  //     return fixStr[0].toUpperCase() + fixStr.slice(1);
+  //   }
+  //   return str[0].toUpperCase() + str.slice(1);
+  // };
+
+  // const {
+  //   _id,
+  //   avatarURL,
+  //   birthday,
+  //   breed,
+  //   comments,
+  //   // own,
+  //   location,
+  //   owner,
+  //   name,
+  //   favorite,
+  //   price,
+  //   sex,
+  //   title,
+  //   category,
+  //   // adopStatus,
+  // } = notice;
+  
   // const noItem = '-------------';
   // const noPrice = '0';
 
-  //  const {
-  //   _id,
-  //   avatarURL,
-  //   favorite,
-  //   title,
-  //   category,
-  //   name,
-  //   birthday,
-  //   breed,
-  //   location,
-  //   sex,
-  //   owner,
-  //   comments,
-  //   price,
-  //   own,
-  // } = notice;
   // const dispatch = useDispatch();
-
-  // const delNotice = id => {
-  //   dispatch(deleteUserNotice(id));
-  //   closeModal();
-  // };
 
   // const handleFavorite = async id => {
   //   if (!Boolean(token)) {
@@ -53,54 +96,122 @@ const ModalNotice = ({ notice = {}, closeModal, getBtnInfo, token, path }) => {
   // };
 
   return (
-    <>
+    <div position="relative">
       <Button onClick={() => setModalActive(true)}>Learn more</Button>
-        <Modal 
+      <Modal 
       active={modalActive} 
-      setActive={setModalActive}>
+        setActive={setModalActive}>
         <ModalBox>
-          <div position="relative">
-            <ImgModal alt="" width="50" height="50" />
-            <FilterTitleBox>
-              <FitlerTitle>for sale</FitlerTitle>
-            </FilterTitleBox>
-          </div>
+          {/* div */}
+          <WrapperForDesc>
+            <ImageWrapper>
+              <FilterTitleBox>
+                {/* <FitlerTitle>{category}</FitlerTitle> */}
+                <FitlerTitle>category</FitlerTitle>
+              </FilterTitleBox>
+              <ImgModal src="" alt="Pet" />
+            </ImageWrapper>
+
+            <div>
+              <ModalTitle>titledog</ModalTitle>
+              <ListWrapper>
+                <FirstList>
+                  <Items>
+                    <Text>Name:</Text>
+                  </Items>
+                  <Items>
+                    <Text>Birthday:</Text>
+                  </Items>
+                  <Items>
+                    <Text>Breed:</Text>
+                  </Items>
+                  <Items>
+                    <Text>Location:</Text>
+                  </Items>
+                  <Items>
+                    <Text>The sex:</Text>
+                  </Items>
+                  <Items>
+                    <Text>Email:</Text>
+                  </Items>
+                  <Items>
+                    <Text>Phone:</Text>
+                  </Items>
+                  <Items>
+                    <Text>Price:</Text>
+                  </Items>
+                </FirstList>
+                <SecondList>
+                  <Items>
+                    <ListItemDescr>Name</ListItemDescr>
+                  </Items>
+                  <Items>
+                    <ListItemDescr>birthday</ListItemDescr>
+                  </Items>
+                  <Items>
+                    <ListItemDescr>breed</ListItemDescr>
+                  </Items>
+                  <Items>
+                    <ListItemDescr>location</ListItemDescr>
+                  </Items>
+                  <Items>
+                    <ListItemDescr>sex</ListItemDescr>
+                  </Items>
+                  <Items>
+                    <ListItemDescr>email</ListItemDescr>
+                  </Items>
+                  <Items>
+                    <ListItemDescr>phone</ListItemDescr>
+                  </Items>
+                  {/* {data.price ? ( */}
+                  <Items>
+                    <ListItemDescr>price</ListItemDescr>
+                    </Items>
+                     {/* ) : null} */}
+                </SecondList>
+              </ListWrapper>
+            </div>
+          </WrapperForDesc>
           <div>
-            <ModalTitle>Cute dog looking for a home</ModalTitle>
-            <ModalList>
-              <ModalListItem>
-                <p>Name:</p>
-                <p>Clyde</p>
-              </ModalListItem>
-              <ModalListItem>
-                <p>Birthday:</p>
-                <p>12.10.2019</p>
-              </ModalListItem>
-              <ModalListItem>
-                <p>Breed:</p>
-                <p>Schnauzer mix</p>
-              </ModalListItem>
-              <ModalListItem>
-                <p>Location:</p>
-                <p>LA</p>
-              </ModalListItem>
-              <ModalListItem>
-                <p>The sex:</p>
-                <p>male</p>
-              </ModalListItem>
-              <ModalListItem>
-                <p>Email:</p>
-                <p>xxx@gmail.com</p>
-              </ModalListItem>
-              <ModalListItem>
-                <p>Phone:</p>
-                <p>+380971234567</p>
-              </ModalListItem>
-            </ModalList>
+          <Comment>
+            <CommentSpan>Comments:</CommentSpan>comments
+          </Comment>
           </div>
-          </ModalBox>
+          <ButtonsList>
+            <ContactItem>
+              <ButtonTel>href=""
+                <ContactText>Contact</ContactText>
+              </ButtonTel>
+            </ContactItem>
+            <li>
+               {/* {isFavorite ? ( */}
+              <Btn
+                type="button">
+                <TextWrapper>
+                  <ButtonText>Remove from</ButtonText>
+                  <PetsFavoriteSvg><use href={heart + '#heart-button'}></use></PetsFavoriteSvg>
+                </TextWrapper>
+              </Btn>
+                {/* ) : isAuth ? ( */}
+              <Btn type="button">
+                <TextWrapper>
+                  <ButtonText>Add to</ButtonText>
+                  <PetsFavoriteSvg><use href={heart + '#heart-button'}></use></PetsFavoriteSvg>
+                </TextWrapper>
+              </Btn>      
+                {/* ) : ( */}
+              <Btn type="button" onClick={handleClick}>
+                <TextWrapper>
+                  <ButtonText>Add to</ButtonText>
+                  <PetsFavoriteSvg><use href={heart + '#heart-button'}></use></PetsFavoriteSvg>
+                </TextWrapper>
+                </Btn>
+                {/* )} */}
+            </li>
+          </ButtonsList>
+        </ModalBox>
        </Modal>
-    </>
+    </div>
   );
 };
 
