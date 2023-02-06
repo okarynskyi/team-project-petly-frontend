@@ -55,12 +55,15 @@ export const UserDataItem = ({
     const emaill = formValues.email;
     const nik = emaill.indexOf('@');
     const validNik = emaill.slice(0, nik);
-    if (validNik.length <= 1) {
+    if (formValues.email && validNik.length <= 1) {
       toast.error('Before "@" must be more than 1 symbol');
       return;
     }
-       if (formValues.email) {
-       toast.warn('ATTENTION!Now this is your new login email.');
+    const number = formValues.phone;
+    const validStart = number.slice(0, 4);
+    if (validStart !== '+380') {
+      toast.error('Must start with "+380"');
+      return;
     }
     const changedField = Object.entries(formValues).find(item => item[1]);
     dispatch(userUpdate({ [changedField[0]]: changedField[1] }));
