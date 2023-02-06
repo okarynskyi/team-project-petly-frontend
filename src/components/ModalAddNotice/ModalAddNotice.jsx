@@ -130,7 +130,7 @@ const ModalAddNotice = ({ onClose }) => {
     imageURL && data.append('imageURL', imageURL);
 
     dispatch(operations.createNotice(data));
-    // onClose(setModalActive);
+    setModalActive(false);
   };
 
   const initialValues = {
