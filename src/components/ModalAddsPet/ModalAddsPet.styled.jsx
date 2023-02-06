@@ -99,7 +99,7 @@ export const LabelEdd = styled.label`
   align-items: center;
   justify-content: center;
   width: 208px;
-  max-height: 208px;
+  height: 208px;
   background: ${props => props.theme.colors.background};
   border-radius: ${props => props.theme.radii.br20};
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -109,12 +109,12 @@ export const LabelEdd = styled.label`
   }
   @media ${device.tablet} {
     width: 182px;
-    max-height: 182px;
+    height: 182px;
   }
 `;
 export const Preview = styled.img`
   width: 208px;
-   max-height: 208px;
+  height: 208px;
   @media ${device.tablet} {
     width: 182px;
      height: 182px;
