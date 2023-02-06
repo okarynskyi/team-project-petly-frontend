@@ -17,7 +17,7 @@ import {
   InfoWrapper,
   HiddenInput,
   FormEdit,
-  LoaderPhoto,
+  LoaderPhoto, WrapperUserData
 } from './UserData.styled';
 
 export const UserData = () => {
@@ -45,7 +45,7 @@ export const UserData = () => {
   };
 
   return (
-    <div>
+    <WrapperUserData>
       <TitleSectionUser>My information:</TitleSectionUser>
       <CardProfile>
         {userInfo && (
@@ -95,6 +95,6 @@ export const UserData = () => {
           <Logout />
         </InfoWrapper>
       </CardProfile>
-    </div>
+    </WrapperUserData>
   );
 };

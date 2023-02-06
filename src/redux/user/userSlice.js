@@ -85,7 +85,7 @@ const userSlice = createSlice({
       function chooseValid(key) {
         switch (key) {
           case 'email':
-            return 'Not valid. Correct, for example, "pet@gmail.com"(7-63 symbols).';
+            return 'Not valid ("pet@gmail.com"(7-63 symbols)) or alredy in use. ';
           case 'phone':
             return 'Phone 13 symbols, in the format +380xxxxxxxxx.';
           case 'birthday':

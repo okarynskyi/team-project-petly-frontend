@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { device } from 'Device';
 
+export const WrapperUserData = styled.div`
+
+`;
+
 export const CardProfile = styled.div`
   position: relative;
   padding: ${props => props.theme.space[3]}px 0;
@@ -8,6 +12,7 @@ export const CardProfile = styled.div`
   background: ${props => props.theme.colors.white};
   border-radius: ${props => props.theme.radii.br20};
   @media ${device.tablet} {
+     width: 704px;
     display: flex;
     align-items: center;
     justify-content: space-between;
