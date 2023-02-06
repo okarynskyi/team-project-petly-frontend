@@ -1,27 +1,28 @@
-import {  useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import { HiOutlinePlus } from 'react-icons/hi';
+import { HiOutlinePlus, HiX } from 'react-icons/hi';
 import { FormikWizard } from 'formik-wizard-form';
 import { schema1, schema2 } from './schemas';
 import { getCurrent } from '../../helpers/formatDate';
-import Modal from '../common/Modal/Modal';
+import { ModalUser } from './Modal';
 import { addPet } from '../../redux/user/userOperations';
-// import { selectPetsInfo } from '../../redux/user/userSelectors';
 import {
   WrapperAddPet,
   StyledPlus,
   AddPetBtn,
-  WrapperModalAddPet,  FormAdd,
+  WrapperModalAddPet,
+  FormAdd,
   BowInputs,
   InputStyled,
-  InputStyledComment,
+  StyledComment,
   TitleModal,
   LabelStyled,
   TextAddPhoto,
   LabelEdd,
   Error,
   Preview,
+  ModalButton,
 } from './ModalAddsPet.styled';
 import {
   AccentButton,
@@ -31,23 +32,23 @@ import { HiddenInput } from 'components/UserData/UserData.styled';
 
 const ModalAddPet = () => {
   const [modalActive, setModalActive] = useState(false);
-    // const [addPet, setAddPet] = useState(false);
   const [onAddFile, setOnAddFile] = useState(null);
   const [preview, setPreview] = useState('');
   const dispatch = useDispatch();
-  // const petsInfo = useSelector(selectPetsInfo);
+
   const initialValues = {
     name: '',
     birthday: '',
     breed: '',
     comments: '',
   };
-//   useEffect(() => {
-//     if (petsInfo) {
-//       return;
-//    }
-//       window.location.reload();
-// }, [petsInfo])
+
+  const handleKeyDown = e => {
+    if (e.code === 'Escape') {
+      setModalActive(false);
+    }
+  };
+  window.addEventListener('keydown', handleKeyDown);
   const handleSubmit = ({ name, birthday, breed, comments }, fn) => {
     const data = new FormData();
     data.append('name', name);
@@ -61,14 +62,10 @@ const ModalAddPet = () => {
     }
     dispatch(addPet(data));
     fn.resetForm();
+    setPreview(null);
     setModalActive(false);
-
+    document.body.style.overflow = 'auto';
   };
-
-  function openModal () {
-    setModalActive(true)
-    document.body.style.overflow = 'hidden';
-  }
 
   const ModalAddPetOne = () => {
     return (
@@ -121,7 +118,7 @@ const ModalAddPet = () => {
         <BowInputs>
           <div>
             <TextAddPhoto>Add photo and some comments*</TextAddPhoto>
-            <HiddenInput 
+            <HiddenInput
               type="file"
               name="petsPhotoURL"
               id="petsPhotoURL"
@@ -139,10 +136,10 @@ const ModalAddPet = () => {
           <LabelStyled htmlFor="comments">
             Comments*
             <Error name="comments" component="p" />
-            <InputStyledComment
+            <StyledComment
               name="comments"
-              type="textarea"
               id="comments"
+             wrap="hard"
               placeholder="Type comments"
             />
           </LabelStyled>
@@ -155,67 +152,86 @@ const ModalAddPet = () => {
     <main>
       <WrapperAddPet>
         <p>Add pet </p>
-        <AddPetBtn onClick={() => openModal()}>
+        <AddPetBtn
+          onClick={() => {
+            setModalActive(true);
+            document.body.style.overflow = 'hidden';
+          }}
+        >
           <StyledPlus />
         </AddPetBtn>
       </WrapperAddPet>
-      <Modal active={modalActive} setActive={setModalActive}>
-        <WrapperModalAddPet>
-          <FormikWizard
-            initialValues={initialValues}
-            onSubmit={handleSubmit}
-            validateOnNext
-            activeStepIndex={0}
-            steps={[
-              {
-                component: ModalAddPetOne,
-                validationSchema: schema1,
-              },
-              {
-                component: ModalAddPetTwo,
-                validationSchema: schema2,
-              },
-            ]}
+      {modalActive && (
+        <ModalUser>
+          <WrapperModalAddPet>
+            <FormikWizard
+              initialValues={initialValues}
+              onSubmit={handleSubmit}
+              validateOnNext
+              activeStepIndex={0}
+              steps={[
+                {
+                  component: ModalAddPetOne,
+                  validationSchema: schema1,
+                },
+                {
+                  component: ModalAddPetTwo,
+                  validationSchema: schema2,
+                },
+              ]}
+            >
+              {({ renderComponent, handlePrev, handleNext, isLastStep }) => (
+                <FormAdd encType="multipart/form-data">
+                  {renderComponent()}
+                  {!isLastStep ? (
+                    <div>
+                      <AccentButton
+                        type="button"
+                        size="180px"
+                        onClick={handleNext}
+                      >
+                        Next
+                      </AccentButton>
+                      <StyledButton
+                        type="button"
+                        size="180px"
+                        onClick={() => {
+                          setModalActive(false);
+                          document.body.style.overflow = 'auto';
+                        }}
+                      >
+                        Cancel
+                      </StyledButton>
+                    </div>
+                  ) : (
+                    <div>
+                      <AccentButton type="submit" size="180px">
+                        Done
+                      </AccentButton>
+                      <StyledButton
+                        type="button"
+                        size="180px"
+                        onClick={handlePrev}
+                      >
+                        Back
+                      </StyledButton>
+                    </div>
+                  )}
+                </FormAdd>
+              )}
+            </FormikWizard>
+          </WrapperModalAddPet>
+          <ModalButton
+            type="button"
+            onClick={() => {
+              setModalActive(false);
+              document.body.style.overflow = 'auto';
+            }}
           >
-            {({ renderComponent, handlePrev, handleNext, isLastStep }) => (
-              <FormAdd encType="multipart/form-data">
-                {renderComponent()}
-                {!isLastStep ? (
-                  <div>
-                    <AccentButton
-                      type="button"
-                      size="180px"
-                      onClick={handleNext}
-                    >
-                      Next
-                    </AccentButton>
-                    <StyledButton
-                      type="button"
-                      size="180px"
-                      onClick={() => setModalActive(false)}
-                    >
-                      Cancel
-                    </StyledButton>
-                  </div>
-                ) : (
-                  <div>
-                    <AccentButton type="submit" size="180px">
-                      Done
-                    </AccentButton>
-                    <StyledButton
-                      type="button"
-                      size="180px"
-                      onClick={handlePrev}
-                    >
-                      Back
-                    </StyledButton>
-                  </div>
-                )}
-              </FormAdd>
-            )}
-          </FormikWizard>
-        </WrapperModalAddPet>
-      </Modal>
+            <HiX color="#111111" size="34px" />
+          </ModalButton>
+        </ModalUser>
+      )}
     </main>
   );
 };

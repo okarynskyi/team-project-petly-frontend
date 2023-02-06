@@ -64,12 +64,15 @@ export const InputStyled = styled(InputFormik)`
     width: 448px;
   }
 `;
-export const InputStyledComment = styled(InputStyled)`
+export const StyledComment = styled.textarea`
+  margin-top: ${props => props.theme.space[1]}px;
+  width: 240px;
+  font-weight: ${props => props.theme.fontWeights.fw500};
+  letter-spacing: 0.04em;
   min-height: 100px;
   border-radius: ${props => props.theme.radii.br20};
-  ::placeholder {
-    transform: translateY(-25px);
-  }
+  padding: 16px;
+  resize: none;
   @media ${device.tablet} {
     width: 394px;
   }
@@ -105,7 +108,7 @@ export const LabelEdd = styled.label`
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
   :hover {
     cursor: pointer;
-    transform: scale(1.2);
+    transform: scale(0.8);
   }
   @media ${device.tablet} {
     width: 182px;
@@ -117,18 +120,25 @@ export const Preview = styled.img`
   height: 208px;
   @media ${device.tablet} {
     width: 182px;
-     height: 182px;
+    height: 182px;
   }
 `;
 export const WrapperModalAddPet = styled.div`
-  width: 240px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  padding: 40px 20px;
+  overflow-y: auto;
+  width: 100%;
   padding-top: ${props => props.theme.space[3]}px;
   @media ${device.mobileOnly} {
     max-height: 510px;
   }
   @media ${device.tablet} {
-    width: 568px;
-    padding-bottom: ${props => props.theme.space[3]}px;
+    width: 620px;
+    max-height: 570px;
+    padding: 40px 75px;
   }
 `;
 export const TitleModal = styled.h3`
@@ -185,5 +195,19 @@ export const StyledPlus = styled(IconPlus)`
   @media ${device.tablet} {
     width: 24px;
     height: 24px;
+  }
+`;
+export const ModalButton = styled.button`
+  position: absolute;
+  display: flex;
+  top: 16px;
+  right: 16px;
+  background-color: transparent;
+  border: 0;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  :hover,
+  :focus {
+    cursor: pointer;
+    transform: scale(1.2);
   }
 `;
