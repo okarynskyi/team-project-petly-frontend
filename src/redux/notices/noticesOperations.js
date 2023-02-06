@@ -7,12 +7,20 @@ axios.defaults.baseURL = 'https://petly-backend-v11f.onrender.com/api';
 // ендпоінт для отримання оголошень по категоріям
 const getNoticesByCategory = createAsyncThunk(
     'notices/getByCategory',
-    async (categoryName, { rejectWithValue }) => {
+    async ({ category, query }, { rejectWithValue }) => {
+        console.log(category)
+        // console.log(query)
+        // console.log(query)
         try {
-            const { data } = await axios.get(`/notices/category/${categoryName}`);
-
+            if (query===null) {
+            const { data } = await axios.get(`/notices/category/${category}`);
             return data;
-        } catch (error) {
+        }
+            else {
+                const { data } = await axios.get(`/notices/category/${category}?query=${query}`);
+            return data;
+        }} 
+         catch (error) {
             return rejectWithValue(error.message);
         }
     },
@@ -49,11 +57,17 @@ const addToFavorites = createAsyncThunk(
 // get '/notices/favorites' отримання оголошень авторизованого користувача доданих ним же в обрані
 const getFavorites = createAsyncThunk(
     'notices/getFavorites',
-    async (_, { rejectWithValue }) => {
+    async ({query}, { rejectWithValue }) => {
         try {
-            const { data } = await axios.get('/notices/user/favorites');
+            if (query===null) {
+            const { data } = await axios.get(`/notices/user/favorites`);
+
+            return data;}
+            else {
+                const { data } = await axios.get(`/notices/user/favorites?query=${query}`);
 
             return data;
+            }
         } catch (error) {
             return rejectWithValue(error.message);
         }
@@ -106,11 +120,17 @@ const createNotice = createAsyncThunk(
 // get '/notices' отримання оголошень авторизованого кристувача створених цим же користувачем
 const getUserNotices = createAsyncThunk(
     'notices/getUserNotices',
-    async (_, { rejectWithValue }) => {
-        try {
-            const { data } = await axios.get('/notices');
+    async ({query}, { rejectWithValue }) => {
+        try {if (query===null) {
+            const { data } = await axios.get(`/notices`);
 
             return data;
+        } else {
+            const { data } = await axios.get(`/notices?query=${query}`);
+
+            return data;
+        }
+            
         } catch (error) {
             return rejectWithValue(error.message);
         }
@@ -133,29 +153,29 @@ export const getByQuery = createAsyncThunk(
 );
 
 // Get by category query
-export const getByCategoryQuery = createAsyncThunk(
-    'notice/getByCategoryQuery',
+// export const getByCategoryQuery = createAsyncThunk(
+//     'notice/getByCategoryQuery',
   
-    async ({ category, query }, thunkApi) => {
-    //   let path;
-    //     path = `${category}`;
-        // console.log(path);
-    //   }
-      try {
-        // const state = thunkApi.getState();
-        // const persistedToken = state.auth.token;
-        // setAuthHeader(persistedToken);
+//     async ({ category, query }, thunkApi) => {
+//     //   let path;
+//     //     path = `${category}`;
+//         // console.log(path);
+//     //   }
+//       try {
+//         // const state = thunkApi.getState();
+//         // const persistedToken = state.auth.token;
+//         // setAuthHeader(persistedToken);
   
-        const {data} = await axios.get(`/notices/search/find?category=${category}&query=${query}`
-        // , {params: {  category }, }
-        );
-        // console.log(data);
-        return data;
-      } catch (error) {
-        return thunkApi.rejectWithValue(error.status);
-      }
-    }
-  );
+//         const {data} = await axios.get(`/notices/category/${category}?query=${query}`
+//         // , {params: {  category }, }
+//         );
+//         // console.log(data);
+//         return data;
+//       } catch (error) {
+//         return thunkApi.rejectWithValue(error.status);
+//       }
+//     }
+//   );
 
 const operations = {
     getNoticesByCategory,
@@ -167,7 +187,7 @@ const operations = {
     getUserNotices,
     deleteUserNotice,
     getByQuery,
-    getByCategoryQuery,
+    // getByCategoryQuery,
 };
 
 export default operations;
