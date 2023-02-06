@@ -2,17 +2,23 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const AuthNavStyled = styled.ul`
-  height: 35px;
-  &:not(:first-child) {
-    margin-left: 12px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  @media (min-width: 768px) {
+    gap: 20px;
+  }
+  // height: 35px;
+  // &:not(:first-child) {
+  //   margin-left: 12px;
 
-    @media screen and (min-width: 1280px) {
-      margin-left: 20px;
-    }
-  }
-  @media screen and (min-width: 768px) {
-    height: 47px;
-  }
+  //   @media screen and (min-width: 1280px) {
+  //     margin-left: 20px;
+  //   }
+  // }
+  // @media screen and (min-width: 768px) {
+  //   height: 47px;
+  // }
 `;
 
 export const ButtonAuthLink = styled(NavLink)`

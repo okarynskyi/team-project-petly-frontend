@@ -2,11 +2,12 @@ import styled from 'styled-components';
 import { HiX } from 'react-icons/hi';
 
 export const NavStyled = styled.nav`
-  position: absolute;
+  position: fixed;
   background-color: ${props => props.theme.colors.background};
   z-index: 50;
   padding: 16px 20px;
   width: 100%;
+  height: 100%;
   top: 0;
   right: 50%;
   transform: translateX(50%);
@@ -51,7 +52,6 @@ export const BtnClose = styled.button`
 export const CloseIcon = styled(HiX)`
   width: 32px;
   height: 32px;
-
 `;
 
 export const BackDrop = styled.div`
