@@ -2,7 +2,9 @@ import styled from 'styled-components';
 import { device } from 'Device';
 
 export const WrapperUserData = styled.div`
-
+ @media ${device.tablet} {
+     width: 704px;
+  }
 `;
 
 export const CardProfile = styled.div`
