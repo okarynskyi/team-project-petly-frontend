@@ -1,99 +1,88 @@
 import Modal from '../common/Modal/Modal';
-// import { useEffect } from 'react';
 // import addToFavorites from '../../redux/notices/noticesOperations';
 // import deleteUserNotice from '../../redux/notices/noticesOperations';
 // import deleteFromFavorites from '../../redux/notices/noticesOperations';
-import { useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 import { Button, ImgModal, FilterTitleBox, FitlerTitle, Items, Text, ModalTitle, TextWrapper, ContactText, ButtonText, ContactItem, Btn, FirstList, ButtonsList, SecondList, ListWrapper, WrapperForDesc, ImageWrapper, ListItemDescr, ButtonTel, PetsFavoriteSvg, CommentSpan, Comment } from './ModalNotice.styled';
 import { useState } from 'react';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
+// import operations from '../../redux/notices/noticesOperations';
+// import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import heart from '../../staticImages/heart.svg';
 import { ModalBox } from './ModalNotice.styled';
 
-const ModalNotice = ( ) => {
+// const categoryShelf = {
+//   "sell": "sell",
+//   "lost-found": "lost-found",
+//   "in-good-hands": "in-good-hands",
+// };
 
-const [modalActive, setModalActive] = useState(false);
-// const dispatch = useDispatch();
-// const favoriteNotice = useSelector(state => state.auth.user.favorites);
-const isAuth = useSelector(state => state.auth.token);
-  // const [isFavorite, setIsFavorite] = useState(null);
-  
-  //  const findFavoriteNotice = noticeId => {
-  //   if (!isAuth) return;
-  //   const finedNotice = favoriteNotice.find(el => el === noticeId);
-  //   return finedNotice;
+const ModalNotice = ({ notice, isFavorite, isOwner, category }) => {
+  const {
+    avatarURL,
+    birthday,
+    breed,
+    comments,
+    location,
+    // owner,
+    name,
+    price,
+    sex,
+    title,
+    // _id,
+    adopStatus,
+  } = notice;
+
+  const [modalActive, setModalActive] = useState(false);
+  // const dispatch = useDispatch();
+
+  // const isLoggedIn = useSelector(selectIsLoggedIn);
+
+  // const refreshingPage = (category) => {
+  //   if (category === categoryShelf[category]) dispatch(operations.getNoticesByCategory(category));
+  //   if (category === "favorites-ads") { dispatch(operations.getFavorites()); };
+  //   if (category === "my-ads") { dispatch(operations.getUserNotices()); };
   // };
-  // useEffect(() => {
-    // setIsFavorite(findFavoriteNotice(data._id));
-    // eslint-disable-next-line
-  // }, [favoriteNotice, data._id]);
 
-  // const corectData = str => {
-  //   const data = new Date(str).getDate();
-  //   const month = new Date(str).getMonth() + 1;
-  //   const year = new Date(str).getFullYear();
-  //   return (
-  //     (data < 10 ? '0' + data.toString() + '.' : data.toString() + '.') +
-  //     (month < 10 ? '0' + month.toString() : month.toString()) +
-  //     '.' +
-  //     year.toString()
-  //   );
-  // };
-  const handleClick = () => {
-    if (!isAuth) {
-      toast.error('You must be logged in!');
-      return;
-    }
-  };
-
-  // const fixedStatus = str => {
-  //   if (str === 'for-free') {
-  //     console.log(str);
-  //     const fixStr = str.replaceAll(str, 'in good hands');
-  //     return fixStr[0].toUpperCase() + fixStr.slice(1);
+  // const addToFavorite = async () => {
+  //   if (!isLoggedIn) {
+  //     return toast.error(
+  //       'You need to authorize before adding notices to favorite.'
+  //     );
   //   }
-  //   return str[0].toUpperCase() + str.slice(1);
+  //   dispatch(operations.addToFavorites(_id))
+  //     .then(() => {
+  //       refreshingPage(category);
+  //     })
+
+  //   toast.success('Notice added to favorite adds.');
   // };
 
-  // const {
-  //   _id,
-  //   avatarURL,
-  //   birthday,
-  //   breed,
-  //   comments,
-  //   // own,
-  //   location,
-  //   owner,
-  //   name,
-  //   favorite,
-  //   price,
-  //   sex,
-  //   title,
-  //   category,
-  //   // adopStatus,
-  // } = notice;
+  // const removeFromFavorite = async () => {
+  //   if (!isLoggedIn) {
+  //     return toast.error(
+  //       'You need to authorize before remove notices from favorite.'
+  //     );
+  //   }
+  //   dispatch(operations.deleteFromFavorites(_id))
+  //     .then(() => {
+  //       refreshingPage(category);
+  //     })
+
+  //   toast.success('Notice removed from favorite adds.');
+  // };
+
+  function dateConverter(utcDate) {
+    const date = new Date(utcDate);
+    const day = date.getDay().toString().padStart(2, '0');
+    const month = date.getMonth().toString().padStart(2, '0');
+    const year = date.getFullYear();
+    const convertedDate = [day, month, year].join('/');
+    return convertedDate;
+  }
   
   // const noItem = '-------------';
   // const noPrice = '0';
-
-  // const dispatch = useDispatch();
-
-  // const handleFavorite = async id => {
-  //   if (!Boolean(token)) {
-  //     toast.warn('You are not a registered user!');
-  //     return;
-  //   }
-  //   if (favorite) {
-  //     const { payload } = await dispatch(deleteFromFavorites(id));
-  //     if (payload === id && path === 'favorite') {
-  //       await dispatch(deleteFromFavorites(id));
-  //       closeModal();
-  //     }
-  //   } else {
-  //     dispatch(addToFavorites(id));
-  //   }
-  //   return;
-  // };
 
   return (
     <div position="relative">
@@ -106,14 +95,13 @@ const isAuth = useSelector(state => state.auth.token);
           <WrapperForDesc>
             <ImageWrapper>
               <FilterTitleBox>
-                {/* <FitlerTitle>{category}</FitlerTitle> */}
-                <FitlerTitle>category</FitlerTitle>
+                <FitlerTitle>{adopStatus}</FitlerTitle>
               </FilterTitleBox>
-              <ImgModal src="" alt="Pet" />
+              <ImgModal src={avatarURL} alt="Pet" />
             </ImageWrapper>
 
             <div>
-              <ModalTitle>titledog</ModalTitle>
+              <ModalTitle>{title}</ModalTitle>
               <ListWrapper>
                 <FirstList>
                   <Items>
@@ -143,19 +131,19 @@ const isAuth = useSelector(state => state.auth.token);
                 </FirstList>
                 <SecondList>
                   <Items>
-                    <ListItemDescr>Name</ListItemDescr>
+                    <ListItemDescr>{name}</ListItemDescr>
                   </Items>
                   <Items>
-                    <ListItemDescr>birthday</ListItemDescr>
+                    <ListItemDescr>{dateConverter(birthday)}</ListItemDescr>
                   </Items>
                   <Items>
-                    <ListItemDescr>breed</ListItemDescr>
+                    <ListItemDescr>{breed}</ListItemDescr>
                   </Items>
                   <Items>
-                    <ListItemDescr>location</ListItemDescr>
+                    <ListItemDescr>{location}</ListItemDescr>
                   </Items>
                   <Items>
-                    <ListItemDescr>sex</ListItemDescr>
+                    <ListItemDescr>{sex}</ListItemDescr>
                   </Items>
                   <Items>
                     <ListItemDescr>email</ListItemDescr>
@@ -165,7 +153,7 @@ const isAuth = useSelector(state => state.auth.token);
                   </Items>
                   {/* {data.price ? ( */}
                   <Items>
-                    <ListItemDescr>price</ListItemDescr>
+                    <ListItemDescr>{price}</ListItemDescr>
                     </Items>
                      {/* ) : null} */}
                 </SecondList>
@@ -174,7 +162,7 @@ const isAuth = useSelector(state => state.auth.token);
           </WrapperForDesc>
           <div>
           <Comment>
-            <CommentSpan>Comments:</CommentSpan>comments
+            <CommentSpan>Comments:</CommentSpan>{comments}
           </Comment>
           </div>
           <ButtonsList>
@@ -200,7 +188,7 @@ const isAuth = useSelector(state => state.auth.token);
                 </TextWrapper>
               </Btn>      
                 {/* ) : ( */}
-              <Btn type="button" onClick={handleClick}>
+              <Btn type="button">
                 <TextWrapper>
                   <ButtonText>Add to</ButtonText>
                   <PetsFavoriteSvg><use href={heart + '#heart-button'}></use></PetsFavoriteSvg>

@@ -152,11 +152,13 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
       <ButtonDiv>
         {isLoggedIn ? (
           <>
-            <ModalNotice></ModalNotice>
+            <ModalNotice key={notice._id}
+                notice={notice}></ModalNotice>
             {isOwner && <Button onClick={handleRemoveNotice}>Delete</Button>}
           </>
         ) : (
-          <ModalNotice></ModalNotice>
+          <ModalNotice key={notice._id}
+                notice={notice}></ModalNotice>
         )}
       </ButtonDiv>
     </Item>
