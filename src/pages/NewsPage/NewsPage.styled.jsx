@@ -91,7 +91,7 @@ export const NewsListText = styled.p`
   overflow: hidden;
 
 @media ${device.tablet} {
-  height: 132px;
+  height: 130px;
   margin-bottom: 40px;
   -webkit-line-clamp: 6;
   }
