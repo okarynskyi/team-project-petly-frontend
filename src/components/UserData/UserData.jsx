@@ -17,7 +17,7 @@ import {
   InfoWrapper,
   HiddenInput,
   FormEdit,
-  LoaderPhoto, WrapperUserData
+  LoaderPhoto, WrapperUserData, Photo
 } from './UserData.styled';
 
 export const UserData = () => {
@@ -49,7 +49,7 @@ export const UserData = () => {
       <TitleSectionUser>My information:</TitleSectionUser>
       <CardProfile>
         {userInfo && (
-          <div>
+          <Photo>
             {!userInfo.avatarURL ? (
               <Avatar src={userAvatar} alt="User avatar" />
             ) : (
@@ -72,7 +72,7 @@ export const UserData = () => {
                 </LabelEditPhoto>
               </FormEdit>
             )}
-          </div>
+          </Photo>
         )}
         <InfoWrapper>
           {infoProfile ? (
