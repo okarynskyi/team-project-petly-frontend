@@ -32,7 +32,7 @@ const ModalNotice = ({ notice, isFavorite, isOwner, category }) => {
     // _id,
     adopStatus,
   } = notice;
-
+  
   const [modalActive, setModalActive] = useState(false);
   // const dispatch = useDispatch();
 
@@ -83,10 +83,13 @@ const ModalNotice = ({ notice, isFavorite, isOwner, category }) => {
   
   // const noItem = '-------------';
   // const noPrice = '0';
-
+function openModal () {
+  setModalActive(true)
+  document.body.style.overflow = 'hidden';
+}
   return (
     <div position="relative">
-      <Button onClick={() => setModalActive(true)}>Learn more</Button>
+      <Button onClick={() => openModal()}>Learn more</Button>
       <Modal 
       active={modalActive} 
         setActive={setModalActive}>

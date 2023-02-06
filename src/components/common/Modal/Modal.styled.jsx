@@ -8,6 +8,8 @@ backdrop-filter: blur(10px);
 position: fixed;
 top: 0;
 left: 0;
+overflow-y: scroll;
+overflow-x: hidden;
 z-index: 1000;
 display: flex;
 align-items: center;
