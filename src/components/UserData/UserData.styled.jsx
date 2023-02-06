@@ -4,11 +4,15 @@ import { device } from 'Device';
 export const WrapperUserData = styled.div`
  @media ${device.tablet} {
      width: 704px;
+     position: relative;
   }
+`;
+export const Photo = styled.div`
+ position: relative;
 `;
 
 export const CardProfile = styled.div`
-  position: relative;
+margin: 0 auto;
   padding: ${props => props.theme.space[3]}px 0;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   background: ${props => props.theme.colors.white};
@@ -21,7 +25,6 @@ export const CardProfile = styled.div`
     flex-direction: row-reverse;
     /* gap: 52px; */
     padding: 24px ${props => props.theme.space[5]}px 24px 0;
-    box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
     border-radius: ${props => props.theme.radii.br40};
   }
   @media ${device.desktop} {
