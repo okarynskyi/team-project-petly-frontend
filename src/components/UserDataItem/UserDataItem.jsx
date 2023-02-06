@@ -14,6 +14,7 @@ import { useDispatch } from 'react-redux';
 import { userUpdate } from 'redux/user/userOperations';
 import { getCurrent } from '../../helpers/formatDate';
 import { chooseTypeLink, findCity } from './helpersForRender';
+import { toast } from 'react-toastify';
 
 export const UserDataItem = ({
   activeField,
@@ -51,6 +52,16 @@ export const UserDataItem = ({
 
   const handleSubmit = e => {
     e.preventDefault();
+    const emaill = formValues.email;
+    const nik = emaill.indexOf('@');
+    const validNik = emaill.slice(0, nik);
+    if (validNik.length <= 1) {
+      toast.error('Before "@" must be more than 1 symbol');
+      return;
+    }
+       if (formValues.email) {
+       toast.warn('ATTENTION!Now this is your new login email.');
+    }
     const changedField = Object.entries(formValues).find(item => item[1]);
     dispatch(userUpdate({ [changedField[0]]: changedField[1] }));
     setStartUpdate(false);
@@ -116,7 +127,7 @@ export const UserDataItem = ({
 UserDataItem.propTypes = {
   type: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   activeField: PropTypes.string,
   setActiveField: PropTypes.func,
 };

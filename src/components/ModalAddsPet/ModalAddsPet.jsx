@@ -55,6 +55,7 @@ const ModalAddPet = () => {
     dispatch(addPet(data));
     fn.resetForm();
     setModalActive(false);
+    window.location.reload();
   };
 
   const ModalAddPetOne = () => {
@@ -76,7 +77,6 @@ const ModalAddPet = () => {
             Date of birth*
             <InputStyled
               name="birthday"
-              onfocus="(this.type='date')"
               type="date"
               max={getCurrent()}
               placeholder="Type date of birth"
