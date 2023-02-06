@@ -7,8 +7,8 @@ import operations from '../../redux/notices/noticesOperations';
 import { useSelector } from 'react-redux';
 import { selectToken } from '../../redux/auth/authSelectors';
 import { toast } from 'react-toastify';
-
-import Modal from '../common/Modal/Modal';
+import { ModalUser } from '../ModalAddsPet/Modal';
+// import Modal from '../common/Modal/Modal';
 import { NextBtn } from './NextBtn/NextBtn';
 import { CancelBtn } from './CancelBtn/CancelBtn';
 
@@ -20,12 +20,13 @@ import { CommentField } from './CommentField/CommentField';
 import { FileInput } from './FileInput/FileInput';
 import { TextInput } from './TextInput/TextInput';
 import { PriceField } from './PriceField/PriceField';
-
+import { HiX } from 'react-icons/hi';
 import {
   WrapperAddPet,
   StyledPlus,
   AddPetBtn,
   WrapperModalAddPet,
+  ModalButton,
 } from '../ModalAddsPet/ModalAddsPet.styled';
 import {
   Label,
@@ -133,11 +134,6 @@ const ModalAddNotice = ({ onClose }) => {
     setModalActive(false);
   };
 
-  function openModal () {
-    setModalActive(true)
-    document.body.style.overflow = 'hidden';
-  }
-
   const initialValues = {
     title: '',
     name: '',
@@ -206,136 +202,162 @@ const ModalAddNotice = ({ onClose }) => {
     <main>
       <WrapperAddPet>
         <p>Add pet </p>
-        <AddPetBtn onClick={() => openModal()}>
+        <AddPetBtn
+          onClick={() => {
+            setModalActive(true);
+            document.body.style.overflow = 'hidden';
+          }}
+        >
           <StyledPlus />
         </AddPetBtn>
       </WrapperAddPet>
-      <Modal active={modalActive} setActive={setModalActive}>
-        <WrapperModalAddPet>
-          <Title>Add pet</Title>
-          <Subtitle>Fill the fields below, please.</Subtitle>
-          <Formik
-            initialValues={initialValues}
-            validationSchema={schema}
-            onSubmit={values => submitForm(values)}
-            validateOnChange
-          >
-            {({ errors, touched }) => (
-              <FormStyled encType="multipart/form-data">
-                {stateMachine.page_1 && (
-                  <>
-                    <CategoryRadioBtns
-                      onChange={radioBtnHandlder}
-                      category={adopStatus}
-                    />
-                    <InputFieldWrap>
-                      <Label>
-                        <div>
-                          Title of ad<span>*</span>
-                        </div>
-                        <TextInput
-                          name="title"
-                          validate={validateTitle}
-                          placeholder="Type title"
-                        />
-                        {touched.title && errors.title && (
-                          <Error>{errors.title}</Error>
-                        )}
-                      </Label>
-                      <Label>
-                        Name pet
-                        <TextInput
-                          name="name"
-                          validate={validateName}
-                          placeholder="Type name pet"
-                        />
-                        {touched.name && errors.name && (
-                          <Error>{errors.name}</Error>
-                        )}
-                      </Label>
-                      <Date
-                        inputProps={{
-                          readOnly: true,
-                          id: 'birth',
-                          placeholder: 'Choose date',
-                        }}
-                        value={birthday}
-                        onChange={birthdayHandler}
-                        timeFormat={false}
-                        closeOnSelect={true}
-                        dateFormat="DD.MM.YYYY"
+      {modalActive && (
+        <ModalUser>
+          <WrapperModalAddPet>
+            <Title>Add pet</Title>
+            <Subtitle>Fill the fields below, please.</Subtitle>
+            <Formik
+              initialValues={initialValues}
+              validationSchema={schema}
+              onSubmit={values => submitForm(values)}
+              validateOnChange
+            >
+              {({ errors, touched }) => (
+                <FormStyled encType="multipart/form-data">
+                  {stateMachine.page_1 && (
+                    <>
+                      <CategoryRadioBtns
+                        onChange={radioBtnHandlder}
+                        category={adopStatus}
                       />
-                      <Label>
-                        Breed
-                        <TextInput
-                          name="breed"
-                          validate={validateBreed}
-                          placeholder="Type breed"
+                      <InputFieldWrap>
+                        <Label>
+                          <div>
+                            Title of ad<span>*</span>
+                          </div>
+                          <TextInput
+                            name="title"
+                            validate={validateTitle}
+                            placeholder="Type title"
+                          />
+                          {touched.title && errors.title && (
+                            <Error>{errors.title}</Error>
+                          )}
+                        </Label>
+                        <Label>
+                          Name pet
+                          <TextInput
+                            name="name"
+                            validate={validateName}
+                            placeholder="Type name pet"
+                          />
+                          {touched.name && errors.name && (
+                            <Error>{errors.name}</Error>
+                          )}
+                        </Label>
+                        <Date
+                          inputProps={{
+                            readOnly: true,
+                            id: 'birth',
+                            placeholder: 'Choose date',
+                          }}
+                          value={birthday}
+                          onChange={birthdayHandler}
+                          timeFormat={false}
+                          closeOnSelect={true}
+                          dateFormat="DD.MM.YYYY"
                         />
-                        {touched.breed && errors.breed && (
-                          <Error>{errors.breed}</Error>
+                        <Label>
+                          Breed
+                          <TextInput
+                            name="breed"
+                            validate={validateBreed}
+                            placeholder="Type breed"
+                          />
+                          {touched.breed && errors.breed && (
+                            <Error>{errors.breed}</Error>
+                          )}
+                        </Label>
+                      </InputFieldWrap>{' '}
+                    </>
+                  )}
+                  {stateMachine.page_2 && (
+                    <>
+                      <SexRadioBtns sex={sex} onChange={radioBtnHandlder} />
+                      <Label>
+                        <Location
+                          name="location"
+                          validate={validateLocation}
+                          placeholder="Type location"
+                        />
+                        {touched.location && errors.location && (
+                          <Error>{errors.location}</Error>
                         )}
                       </Label>
-                    </InputFieldWrap>{' '}
-                  </>
-                )}
-                {stateMachine.page_2 && (
-                  <>
-                    <SexRadioBtns sex={sex} onChange={radioBtnHandlder} />
-                    <Label>
-                      <Location
-                        name="location"
-                        validate={validateLocation}
-                        placeholder="Type location"
-                      />
-                      {touched.location && errors.location && (
-                        <Error>{errors.location}</Error>
+                      {stateMachine.priceIsTurnedOn && (
+                        <PriceField
+                          name="price"
+                          placeholder="Type the price"
+                          required={true}
+                          min="1"
+                          touched={touched}
+                          errors={errors}
+                        />
                       )}
-                    </Label>
-                    {stateMachine.priceIsTurnedOn && (
-                      <PriceField
-                        name="price"
-                        placeholder="Type the price"
-                        required={true}
-                        min="1"
+                      <FileInput
+                        preview={preview}
+                        onAddImg={inputFileHandler}
+                      />
+                      <CommentField
                         touched={touched}
                         errors={errors}
+                        name="comments"
+                        validate={validateComments}
                       />
+                    </>
+                  )}
+                  <BtnWrap>
+                    {stateMachine.page_1 && stateMachine.nextButtonIsAbled && (
+                      <NextBtn onClick={nextPage} />
                     )}
-                    <FileInput preview={preview} onAddImg={inputFileHandler} />
-                    <CommentField
-                      touched={touched}
-                      errors={errors}
-                      name="comments"
-                      validate={validateComments}
-                    />
-                  </>
-                )}
-                <BtnWrap>
-                  {stateMachine.page_1 && stateMachine.nextButtonIsAbled && (
-                    <NextBtn onClick={nextPage} />
-                  )}
-                  {stateMachine.page_1 && !stateMachine.nextButtonIsAbled && (
-                    <NextBtn onClick={nextPage} disabled={true} />
-                  )}
-                  {stateMachine.page_2 && stateMachine.submitButtonIsAbled && (
-                    <NextBtn type="submit" text="Done" />
-                  )}
-                  {stateMachine.page_2 && !stateMachine.submitButtonIsAbled && (
-                    <NextBtn type="submit" text="Done" disabled={true} />
-                  )}
+                    {stateMachine.page_1 && !stateMachine.nextButtonIsAbled && (
+                      <NextBtn onClick={nextPage} disabled={true} />
+                    )}
+                    {stateMachine.page_2 &&
+                      stateMachine.submitButtonIsAbled && (
+                        <NextBtn type="submit" text="Done" />
+                      )}
+                    {stateMachine.page_2 &&
+                      !stateMachine.submitButtonIsAbled && (
+                        <NextBtn type="submit" text="Done" disabled={true} />
+                      )}
 
-                  {stateMachine.page_1 ? (
-                    <CancelBtn onClick={onClose} />
-                  ) : (
-                    <CancelBtn onClick={prevPage} text="Back" />
-                  )}
-                </BtnWrap>
-              </FormStyled>
-            )}
-          </Formik>
-        </WrapperModalAddPet>
-      </Modal>
+                    {stateMachine.page_1 ? (
+                      <CancelBtn
+                        onClick={() => {
+                          setModalActive(false);
+                          document.body.style.overflow = 'hidden';
+                        }}
+                      />
+                    ) : (
+                      <CancelBtn onClick={prevPage} text="Back" />
+                    )}
+                  </BtnWrap>
+                </FormStyled>
+              )}
+            </Formik>
+          </WrapperModalAddPet>
+          <ModalButton
+            type="button"
+            onClick={() => {
+              setModalActive(false);
+              document.body.style.overflow = 'auto';
+            }}
+          >
+            <HiX color="#111111" size="34px" />
+          </ModalButton>
+        </ModalUser>
+      )}
     </main>
   );
 };

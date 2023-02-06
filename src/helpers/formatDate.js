@@ -13,7 +13,7 @@ export const formatAgeMonth = date => {
 };
 
 export const formatAgeYears = date => {
-  formatDistanceToNowStrict(new Date(date), {
+ return formatDistanceToNowStrict(new Date(date), {
     //2 years
     unit: 'year',
     roundingMethod: 'ceil',
