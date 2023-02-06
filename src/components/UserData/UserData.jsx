@@ -31,7 +31,7 @@ export const UserData = () => {
   }, [userInfo]);
 
   const infoProfile = filterData(userInfo.user);
-
+  
   const UploadFile = async fileSelect => {
     const imageURL = new FormData();
     imageURL.append('imageURL', fileSelect);

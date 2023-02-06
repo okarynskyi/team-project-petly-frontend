@@ -64,7 +64,8 @@ export const InputStyled = styled(InputFormik)`
     width: 448px;
   }
 `;
-export const StyledComment = styled.textarea`
+
+export const StyledComment = styled(InputFormik)`
   margin-top: ${props => props.theme.space[1]}px;
   width: 240px;
   font-weight: ${props => props.theme.fontWeights.fw500};

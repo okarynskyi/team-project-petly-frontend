@@ -139,7 +139,7 @@ const ModalAddPet = () => {
             <StyledComment
               name="comments"
               id="comments"
-             wrap="hard"
+            //  wrap="hard"
               placeholder="Type comments"
             />
           </LabelStyled>
