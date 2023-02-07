@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { Form } from 'formik';
-
+import { device } from 'Device';
+import {
+  WrapperAddPet,
+  AddPetBtn,
+} from '../../components/ModalAddsPet/ModalAddsPet.styled';
 export const Label = styled.label`
   position: relative;
   display: flex;
@@ -78,5 +82,50 @@ export const BtnWrap = styled.div`
     justify-content: center;
     align-items: center;
     gap: 20px;
+  }
+`;
+export const WrapperAddNotice = styled(WrapperAddPet)`
+  position: fixed;
+  top: 450px;
+  right: 30px;
+  /* z-index: 100; */
+  /* :hidden {
+  display:none;
+} */
+  @media ${device.tablet} {
+    position: static;
+    width: 135px;
+    gap: 12px;
+  }
+`;
+export const AddPetNotice = styled(AddPetBtn)`
+  width: 80px;
+  height: 80px;
+  @media ${device.tablet} {
+    position: static;
+    width: 44px;
+    height: 44px;
+  }
+`;
+export const TextAdd = styled.p`
+  color: white;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  @media ${device.tablet} {
+    display: none;
+  }
+`;
+export const TextAddLeft = styled.p`
+  display: none;
+  @media ${device.tablet} {
+    display: block;
+    width: 80px;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 27px;
+    color: #111111;
   }
 `;

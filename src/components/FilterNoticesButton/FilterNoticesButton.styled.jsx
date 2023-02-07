@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
+
 export const Wrapper = styled.div`
   position: relative;
   display: flex;
-  padding-top: 40px;
-  padding-bottom: 60px;
+  /* padding-top: 40px;*/
+  margin-bottom: 60px; 
   justify-content: space-between;
   align-items: center;
 `;
