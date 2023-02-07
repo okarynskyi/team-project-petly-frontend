@@ -11,6 +11,7 @@ import { selectNoticesByCategory, selectIsLoading, selectIsNoticeAdded } from 'r
 import { selectUser, selectIsLoggedIn } from 'redux/auth/authSelectors';
 
 import { Wrapper, List } from './NoticesCategoriesList.styled';
+// import defaultImg from ''
 
 const categoryShelf = {
   "sell": "sell",
@@ -39,10 +40,6 @@ const NoticesCategoryList = () => {
   // console.log("query", query)
   // console.log("categ", category)
   useEffect(() => {
-    // if (query) {
-    //   console.log("query", query)
-    //   console.log("categ", category)
-    //   dispatch(operations.getByQuery(query));
       if (category) {
         if (category === categoryShelf[category] && query) {
           dispatch(operations.getNoticesByCategory({ category: category, query }));
@@ -63,7 +60,8 @@ const NoticesCategoryList = () => {
   return !isLoading && notices.length===0 ? (
     
     <div>
-      <h1> Поверніть єнота!!! </h1>
+      <h1> Sorry, nothing found!!! </h1>
+      <img src="https://lifeimg.pravda.com/images/doc/c/5/c55cc96-kit-755.jpg" alt="defaut" />
     </div>
   ) : (
     <Wrapper>
