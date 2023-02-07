@@ -11,8 +11,8 @@ const HomePage = () => {
           <MainPage>
             <MainTitle>Take good care of your small pets</MainTitle>
             <MainImage
-              src={womanImg.large}
               srcSet={`${womanImg.small} 320w, ${womanImg.medium} 768w, ${womanImg.large} 1280w`}
+              src={womanImg.medium}
               alt="woman"
             />
           </MainPage>

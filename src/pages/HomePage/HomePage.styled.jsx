@@ -13,15 +13,11 @@ export const Section = styled.section`
   background-image: url('${backgroundImg.mob}');
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: left 52px;
+  background-position: 50% 100%;
 
   @media ${device.tablet} and (${device.beforeDesktop}) {
-    width: 100%;
     height: 1193px;
     background-image: url('${backgroundImg.tab}');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: bottom -2px;
   }
   @media ${device.desktop} {
     position: fixed;
@@ -29,9 +25,7 @@ export const Section = styled.section`
     min-height: 690px;
     margin-top: 20px;
     background-image: url('${backgroundImg.desk}');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: left 160px;
+    background-size: 1178px 538px;
   }
 `;
 
@@ -45,11 +39,9 @@ export const MainPage = styled.div`
   padding-top: 60px;
   margin: 0 auto;
 
-  @media ${device.tablet} and (${device.beforeDesktop}){
-    width: 768px;
+  @media ${device.tablet} and (${device.beforeDesktop}) {
+    width: 704px;
     height: 100%;
-    text-align: center;
-    display: flex;
     justify-content: space-between;
     padding-left: 32px;
     padding-right: 32px;
@@ -58,15 +50,13 @@ export const MainPage = styled.div`
   @media ${device.desktop} {
     width: 1280px;
     flex-direction: row;
-    padding-left: 16px;
-    padding-right: 16px;
   }
 `;
 
 export const MainImage = styled.img`
-  width: 100%;
+  width: 280px;
   display: block;
-  height: 337px;
+  height: 327px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 58px;
