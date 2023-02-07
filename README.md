@@ -2,7 +2,7 @@
 
 Welcome to our team MVP (minimum viable product)
 
-[Our project](https://okarynskyi.github.io/team-project-petly-frontend/).
+[Our project](https://okarynskyi.github.io/team-project-petly-frontend/)
 
 ![Home page](./assets/home.png)
 
