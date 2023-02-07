@@ -3,42 +3,10 @@ import { device } from 'Device';
 
 import EmailTo from 'components/common/EmailTo/EmailTo';
 import CallTo from 'components/common/CallTo/CallTo';
-// import { ReactComponent as IconClose } from '../../staticImages/close.svg';
 // import { ReactComponent as Favorite } from '../../staticImages/heart.svg';
-// import { ReactComponent as Delete } from '../../staticImages/delete.svg';
-
-export const Button = styled.button`
-  width: 248px;
-  height: 38px;
-  background: ${p => p.theme.colors.white};
-  border: ${p => p.theme.borders.main};
-  border-radius: ${p => p.theme.radii.br40};
-  align-items: center;
-  font-family: ${p => p.theme.fonts.main};
-  font-weight: ${p => p.theme.fontWeights.fw500};
-  font-size: ${p => p.theme.fontSizes.fs16};
-  line-height: 22px;
-  letter-spacing: 0.04em;
-  color: ${p => p.theme.colors.accent};
-  margin: auto 16px 12px 16px;
- 
-  &:last-of-type {
-    margin-bottom: 32px;
-  }
-
-  @media ${device.tablet} {
-    margin-right: 44px;
-    margin-left: 44px;
-  }
-
-  @media ${device.desktop} {
-    margin-right: 20px;
-    margin-left: 20px;
-  }
-`;
-// done
 
 export const ModalBox = styled.div`
+  background: ${p => p.theme.colors.white};
   width: 280px;
   padding: 60px 20px 40px;
   border-radius: 20px;
@@ -100,6 +68,7 @@ export const FitlerTitle = styled.p`
   font-size: ${p => p.theme.fontSizes.fs12};
   line-height: 16px;
   margin: 0;
+  color: ${p => p.theme.colors.mainText};
 `
 // done
 
@@ -180,6 +149,7 @@ export const Text = styled.p`
   font-size: ${p => p.theme.fontSizes.fs14};
   margin: 0;
   line-height: 19px;
+  color: ${p => p.theme.colors.black};
 
   @media ${device.tablet} {
     line-height: 22px;
@@ -193,6 +163,7 @@ export const ListItemDescr = styled.p`
   font-size: ${p => p.theme.fontSizes.fs14};
   margin: 0;
   line-height: 19px;
+  color: ${p => p.theme.colors.black};
 
   @media ${device.tablet} {
     line-height: 22px;
@@ -208,6 +179,7 @@ export const Comment = styled.p`
   line-height: 19px;
   magrin: 0;
   padding-top: 28px;
+  color: ${p => p.theme.colors.black};
 
   @media ${device.tablet} {
     line-height: 24px;

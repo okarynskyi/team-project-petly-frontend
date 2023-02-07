@@ -3,7 +3,7 @@ import Modal from '../common/Modal/Modal';
 // import deleteUserNotice from '../../redux/notices/noticesOperations';
 // import deleteFromFavorites from '../../redux/notices/noticesOperations';
 // import { useDispatch, useSelector } from 'react-redux';
-import { Button, ImgModal, FilterTitleBox, FitlerTitle, Items, Text, ModalTitle, TextWrapper, ContactText, ButtonText, ContactItem, Btn, FirstList, ButtonsList, SecondList, ListWrapper, WrapperForDesc, ImageWrapper, ListItemDescr, ButtonTel, PetsFavoriteSvg, CommentSpan, Comment } from './ModalNotice.styled';
+import { ImgModal, FilterTitleBox, FitlerTitle, Items, Text, ModalTitle, TextWrapper, ContactText, ButtonText, ContactItem, Btn, FirstList, ButtonsList, SecondList, ListWrapper, WrapperForDesc, ImageWrapper, ListItemDescr, ButtonTel, PetsFavoriteSvg, CommentSpan, Comment } from './ModalNotice.styled';
 import { useState } from 'react';
 // import { toast } from 'react-toastify';
 // import operations from '../../redux/notices/noticesOperations';
@@ -82,8 +82,8 @@ function openModal () {
 }
   return (
     <div position="relative">
-      <Button onClick={() => openModal()}>Learn more</Button>
-      <Modal 
+      <div onClick={() => openModal()}>Learn more</div>
+      <Modal
       active={modalActive} 
         setActive={setModalActive}>
         <ModalBox>

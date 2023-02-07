@@ -15,11 +15,16 @@ import {
   DescriptionInner,
   DescriptionTextContainer,
   DescriptionText,
-  Button,
+  // Button,
   AddToFavoriteBtn,
   RemoveFromFavoriteBtn,
   ButtonDiv,
   SvgWrapper,
+  // CheckBoxAddDiv,
+  // CheckBoxAddLabel,
+  ButtonsWrapper,
+  Trash,
+  StyledTrash,
 } from './NoticeCategoryItem.styled';
 
 const categoryShelf = {
@@ -129,9 +134,13 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
       <ButtonDiv>
         {isLoggedIn ? (
           <>
-            <ModalNotice key={notice._id}
+            <ButtonsWrapper>
+              <Trash>
+                <ModalNotice key={notice._id}
                 notice={notice}></ModalNotice>
-            {isOwner && <Button onClick={handleRemoveNotice}>Delete</Button>}
+              </Trash>
+            {isOwner && <Trash onClick={handleRemoveNotice}>Delete <StyledTrash></StyledTrash></Trash>}
+              </ButtonsWrapper>
           </>
         ) : (
           <ModalNotice key={notice._id}
