@@ -7,8 +7,8 @@ const handlePending = state => {
 };
 
 const initialState = {
-    noticesByCategory: [], /**масив всіх оголошень */
-    oneNoticeMoreInfo: null, /**додаткова інформація для одного оголошення json */
+    noticesByCategory: [],
+    oneNoticeMoreInfo: null,
     isFavorite: false,
     isLoading: false,
     isError: null,
@@ -59,7 +59,6 @@ const noticesSlice = createSlice({
         // отримання оголошень авторизованого користувача доданих ним же в обрані  "ЩЕ НЕ ЗРОБЛЕНИЙ БЕК"
         [operations.getFavorites.pending]: handlePending,
         [operations.getFavorites.fulfilled](state, {payload}) {
-            console.log(payload)
             state.noticesByCategory = payload.notices;
             state.isLoading = false;
             state.isError = null;
@@ -116,20 +115,6 @@ const noticesSlice = createSlice({
             state.isLoading = false;
             state.isError = payload;
         },
-        
-        // для пошуку
-        // [operations.getByQuery.fulfilled](state, { payload }) {
-        //     state.isError = null;
-        //     state.isLoading = false;
-        //     state.noticesByCategory = payload;
-        // },
-// для пошуку по категорії
-        // [operations.getByCategoryQuery.fulfilled](state, { payload }) {
-        //     state.isError = null;
-        //     state.isLoading = false;
-        //     console.log(payload)
-        //     state.noticesByCategory = payload;
-        // },
     },
 });
 
