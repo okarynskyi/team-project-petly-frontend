@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import operations from '../../redux/notices/noticesOperations';
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import ModalNotice from '../ModalNotice/ModalNotice';
-import { dateConverter } from 'helpers/formatDate';
+import { formatAgeYears } from 'helpers/formatDate';
 import {
   Item,
   ImageWrapper,
@@ -134,7 +134,7 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
           <DescriptionTextContainer>
             <DescriptionText>{breed}</DescriptionText>
             <DescriptionText>{location}</DescriptionText>
-            <DescriptionText>{dateConverter(birthday)}</DescriptionText>
+            <DescriptionText>{formatAgeYears(birthday)}</DescriptionText>
           </DescriptionTextContainer>
         </DescriptionInner>
       </DescriptionWrapper>

@@ -4,16 +4,8 @@ export const formatBirthDate = date => {
   return format(Date.parse(date), 'dd.MM.yyyy'); //10.10.2003
 };
 
-export const formatAgeMonth = date => {
-  formatDistanceToNowStrict(new Date(date), {
-    //2 month
-    unit: 'month',
-    roundingMethod: 'ceil',
-  });
-};
-
-export const formatAgeYears = date => {
-  formatDistanceToNowStrict(new Date(date), {
+export function formatAgeYears(date) {
+  return formatDistanceToNowStrict(new Date(date), {
     //2 years
     unit: 'year',
     roundingMethod: 'ceil',
@@ -34,11 +26,16 @@ export function getCurrent() {
   return `${normaYear}-${normaMonth}-${normaDate}`;
 }
 
+// export function dateConverter(utcDate) {
+//   const date = new Date(utcDate);
+//   const day = (date.getDay()).toString().padStart(2, '0');
+//   const month = (date.getMonth()).toString().padStart(2, '0');
+//   const year = date.getFullYear();
+//   const convertedDate = [day, month, year].join('/');
+//   return convertedDate;
+// }
+
 export function dateConverter(utcDate) {
-  const date = new Date(utcDate);
-  const day = (date.getDay()+1).toString().padStart(2, '0');
-  const month = (date.getMonth()+1).toString().padStart(2, '0');
-  const year = date.getFullYear();
-  const convertedDate = [day, month, year].join('/');
-  return convertedDate;
+  const date = format(new Date(utcDate), "dd/MM/yyyy");
+  return date;
 }
