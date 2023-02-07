@@ -140,12 +140,6 @@ export const CheckBoxAddToFavorite = styled.input`
   &:hover + ${CheckBoxAddLabel}:after {
     opacity: 1;
   }
-  &:checked + ${CheckBoxAddLabel}:before {
-    opacity: 0;
-  }
-  &:checked + ${CheckBoxAddLabel}:after {
-    opacity: 1;
-  }
 `;
 
 export const DescriptionWrapper = styled.div`

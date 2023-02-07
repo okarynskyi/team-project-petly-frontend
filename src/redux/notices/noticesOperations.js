@@ -8,7 +8,6 @@ axios.defaults.baseURL = 'https://petly-backend-v11f.onrender.com/api';
 const getNoticesByCategory = createAsyncThunk(
     'notices/getByCategory',
     async ({ category, query }, { rejectWithValue }) => {
-        console.log(category)
         // console.log(query)
         // console.log(query)
         try {

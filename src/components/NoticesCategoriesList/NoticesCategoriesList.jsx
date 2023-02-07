@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useSearchParams } from 'react-router-dom';
 
@@ -7,12 +7,10 @@ import { Loader } from 'components/Loader';
 
 
 import operations from '../../redux/notices/noticesOperations';
-import { selectNoticesByCategory, selectIsLoading } from 'redux/notices/noticesSelectors';
+import { selectNoticesByCategory, selectIsLoading, selectIsNoticeAdded } from 'redux/notices/noticesSelectors';
 import { selectUser, selectIsLoggedIn } from 'redux/auth/authSelectors';
 
-import { Wrapper, } from './NoticesCategoriesList.styled';
-
-const List = lazy(() => import('./NoticesCategoriesList.styled'));
+import { Wrapper, List } from './NoticesCategoriesList.styled';
 
 const categoryShelf = {
   "sell": "sell",
@@ -27,6 +25,7 @@ const NoticesCategoryList = () => {
   const notices = useSelector(selectNoticesByCategory);
   const isLoading = useSelector(selectIsLoading);
   const isLoggedIn = useSelector(selectIsLoggedIn)
+  const isNoticeAdded = useSelector(selectIsNoticeAdded)
   const user = useSelector(selectUser)
   
   // console.log(notices)
@@ -59,7 +58,7 @@ const NoticesCategoryList = () => {
         if (category === "favorites-ads") { dispatch(operations.getFavorites({query})); };
         if (category === "my-ads") { dispatch(operations.getUserNotices({query})); };}
     }
-  }, [query, dispatch, category]);
+  }, [query, dispatch, category, isNoticeAdded]);
   
   return !isLoading && notices.length===0 ? (
     
@@ -69,9 +68,7 @@ const NoticesCategoryList = () => {
   ) : (
     <Wrapper>
       {notices && notices.length > 0 ? (
-        <>
-          <Suspense fallback={<Loader />}>
-              
+        <>              
             <List>
               {!isLoggedIn && notices.map(notice => (<NoticeCategoryItem
                 key={notice._id}
@@ -96,8 +93,6 @@ const NoticesCategoryList = () => {
 
               })}
             </List>
-              
-          </Suspense>
         </>
       ) : (
         <Loader />
