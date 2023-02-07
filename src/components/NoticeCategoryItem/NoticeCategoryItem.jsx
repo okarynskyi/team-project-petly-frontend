@@ -23,7 +23,7 @@ import {
   // CheckBoxAddDiv,
   // CheckBoxAddLabel,
   ButtonsWrapper,
-  Trash,
+  StyledButton,
   StyledTrash,
 } from './NoticeCategoryItem.styled';
 
@@ -135,16 +135,18 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
         {isLoggedIn ? (
           <>
             <ButtonsWrapper>
-              <Trash>
+              <StyledButton>
                 <ModalNotice key={notice._id}
-                notice={notice}></ModalNotice>
-              </Trash>
-            {isOwner && <Trash onClick={handleRemoveNotice}>Delete <StyledTrash></StyledTrash></Trash>}
+                  notice={notice}></ModalNotice>
+              </StyledButton>
+            {isOwner && <StyledButton onClick={handleRemoveNotice}>Delete <StyledTrash></StyledTrash></StyledButton>}
               </ButtonsWrapper>
           </>
         ) : (
-          <ModalNotice key={notice._id}
+            <StyledButton>
+              <ModalNotice key={notice._id}
                 notice={notice}></ModalNotice>
+          </StyledButton>
         )}
       </ButtonDiv>
     </Item>

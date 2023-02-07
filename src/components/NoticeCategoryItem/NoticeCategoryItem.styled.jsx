@@ -9,7 +9,7 @@ export const ButtonsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
 `
-export const Trash = styled.div`
+export const StyledButton = styled.div`
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -57,7 +57,7 @@ export const StyledTrash = styled(Delete)`
   margin-right: 9px;
   transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  ${Trash}:hover & {
+  ${StyledButton}:hover & {
     fill: ${p => p.theme.colors.hoverAccent};
   }
 `;
