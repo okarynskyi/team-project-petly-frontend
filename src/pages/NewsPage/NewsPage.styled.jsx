@@ -83,8 +83,8 @@ export const NewsListText = styled.p`
   font-size: ${p => p.theme.fontSizes.fs16};
   line-height: 1.37;
   color: ${p => p.theme.colors.newsText};
-  height: 176px;
-  margin-bottom: 20px;
+  height: 174px;
+  margin-bottom: 22px;
   -webkit-line-clamp: 8;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -92,7 +92,7 @@ export const NewsListText = styled.p`
 
 @media ${device.tablet} {
   height: 130px;
-  margin-bottom: 40px;
+  margin-bottom: 42px;
   -webkit-line-clamp: 6;
   }
   
@@ -119,4 +119,5 @@ export const A = styled.a`
   font-size: ${p => p.theme.fontSizes.fs16};
   line-height: 1.37;
   color: ${p => p.theme.colors.accent};
+  text-decoration: underline;
 `;
