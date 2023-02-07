@@ -21,7 +21,7 @@ import {
 export const passwordRegexp = /^\S*$/;
 export const nameRegexp = /^[a-zA-Z]{2,20}$/;
 export const locationRegexp = /[A-Z][a-z]*,\s[A-Z][a-z]*/;
-export const phoneRegexp = /^\+[1-9]{1}[0-9]{3,14}$/;
+export const phoneRegexp = /^\+380\d{9}$/;
 export const emailRegexp =
   /^[^-._]{1}[A-Za-z0-9._-]{1,}@[^-._]{1}[A-Za-z0-9.-]{0,}\.[A-Za-z]{2,4}$/;
 
@@ -96,7 +96,7 @@ export const RegisterForm = () => {
       .min(13, 'Not enough of symbols entered')
       .matches(
         phoneRegexp,
-        'Please, enter the phone number in the format +xxxxxxxxxxxx'
+        'Please, enter the phone number in the format +38xxxxxxxxxx'
       )
       .required('Phone is required'),
   });
