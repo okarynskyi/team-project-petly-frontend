@@ -89,10 +89,14 @@ export const WrapperAddNotice = styled(WrapperAddPet)`
   top: 450px;
   right: 30px;
   z-index: 100;
-  display: ${props => props.hidden === true ? 'none' : 'block'} ;
+  display: ${props => (props.hidden === true ? 'none' : 'block')};
   @media ${device.tablet} {
     position: static;
     width: 135px;
+      display: flex;
+    align-items: center;
+    flex-direction: row;
+   
     gap: 12px;
   }
 `;
@@ -117,8 +121,7 @@ export const TextAdd = styled.p`
 export const TextAddLeft = styled.p`
   display: none;
   @media ${device.tablet} {
-    display: block;
-    width: 80px;
+    display: inline;
     font-family: 'Manrope';
     font-style: normal;
     font-weight: 500;

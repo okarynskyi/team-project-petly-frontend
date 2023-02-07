@@ -149,7 +149,7 @@ const ModalAddPet = () => {
   };
 
   return (
-    <main>
+    <div>
       <WrapperAddPet>
         <p>Add pet </p>
         <AddPetBtn
@@ -232,7 +232,7 @@ const ModalAddPet = () => {
           </ModalButton>
         </ModalUser>
       )}
-    </main>
+    </div>
   );
 };
 export default ModalAddPet;
