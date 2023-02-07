@@ -10,6 +10,8 @@ import { useState } from 'react';
 // import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import heart from '../../staticImages/heart.svg';
 import { ModalBox } from './ModalNotice.styled';
+import petNotFound from '../../staticImages/petNotFound.jpg';
+import { dateConverter } from '../../helpers/formatDate';
 
 // const categoryShelf = {
 //   "sell": "sell",
@@ -24,7 +26,7 @@ const ModalNotice = ({ notice, isFavorite, isOwner, category }) => {
     breed,
     comments,
     location,
-    // owner,
+    owner,
     name,
     price,
     sex,
@@ -34,6 +36,8 @@ const ModalNotice = ({ notice, isFavorite, isOwner, category }) => {
   } = notice;
   
   const [modalActive, setModalActive] = useState(false);
+  // const noItem = '-----------------------';
+  // const noPrice = '0';
   // const dispatch = useDispatch();
 
   // const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -72,17 +76,6 @@ const ModalNotice = ({ notice, isFavorite, isOwner, category }) => {
   //   toast.success('Notice removed from favorite adds.');
   // };
 
-  function dateConverter(utcDate) {
-    const date = new Date(utcDate);
-    const day = date.getDay().toString().padStart(2, '0');
-    const month = date.getMonth().toString().padStart(2, '0');
-    const year = date.getFullYear();
-    const convertedDate = [day, month, year].join('/');
-    return convertedDate;
-  }
-  
-  // const noItem = '-------------';
-  // const noPrice = '0';
 function openModal () {
   setModalActive(true)
   document.body.style.overflow = 'hidden';
@@ -94,13 +87,12 @@ function openModal () {
       active={modalActive} 
         setActive={setModalActive}>
         <ModalBox>
-          {/* div */}
           <WrapperForDesc>
             <ImageWrapper>
               <FilterTitleBox>
                 <FitlerTitle>{adopStatus}</FitlerTitle>
               </FilterTitleBox>
-              <ImgModal src={avatarURL} alt="Pet" />
+              <ImgModal src={avatarURL || petNotFound} alt="Pet" />
             </ImageWrapper>
 
             <div>
@@ -129,7 +121,7 @@ function openModal () {
                     <Text>Phone:</Text>
                   </Items>
                   <Items>
-                    <Text>Price:</Text>
+                    {price && <Text>Sell: </Text>}
                   </Items>
                 </FirstList>
                 <SecondList>
@@ -149,55 +141,52 @@ function openModal () {
                     <ListItemDescr>{sex}</ListItemDescr>
                   </Items>
                   <Items>
-                    <ListItemDescr>email</ListItemDescr>
+                    <ListItemDescr href={`mailto:${owner.name}`}>{owner.email}</ListItemDescr>
                   </Items>
                   <Items>
-                    <ListItemDescr>phone</ListItemDescr>
+                    <ListItemDescr href={`tel:${owner.phone}`}>{owner.phone}</ListItemDescr>
                   </Items>
-                  {/* {data.price ? ( */}
-                  <Items>
-                    <ListItemDescr>{price}</ListItemDescr>
+                    <Items>
+                    {price && <ListItemDescr>{price}$</ListItemDescr>}
                     </Items>
-                     {/* ) : null} */}
                 </SecondList>
               </ListWrapper>
             </div>
           </WrapperForDesc>
           <div>
           <Comment>
-            <CommentSpan>Comments:</CommentSpan>{comments}
+            <CommentSpan>Comments: </CommentSpan>{comments}
           </Comment>
           </div>
           <ButtonsList>
             <ContactItem>
-              <ButtonTel>href=""
+              <ButtonTel href={`tel:${owner.phone}`}>
                 <ContactText>Contact</ContactText>
               </ButtonTel>
             </ContactItem>
             <li>
-               {/* {isFavorite ? ( */}
+                {/* {!isFavorite && ( */}
               <Btn
-                type="button">
+                type="button"
+                >
                 <TextWrapper>
                   <ButtonText>Remove from</ButtonText>
                   <PetsFavoriteSvg><use href={heart + '#heart-button'}></use></PetsFavoriteSvg>
                 </TextWrapper>
-              </Btn>
-                {/* ) : isAuth ? ( */}
+                </Btn>
+                {/* )} */}
               <Btn type="button">
                 <TextWrapper>
                   <ButtonText>Add to</ButtonText>
                   <PetsFavoriteSvg><use href={heart + '#heart-button'}></use></PetsFavoriteSvg>
                 </TextWrapper>
               </Btn>      
-                {/* ) : ( */}
               <Btn type="button">
                 <TextWrapper>
                   <ButtonText>Add to</ButtonText>
                   <PetsFavoriteSvg><use href={heart + '#heart-button'}></use></PetsFavoriteSvg>
                 </TextWrapper>
                 </Btn>
-                {/* )} */}
             </li>
           </ButtonsList>
         </ModalBox>

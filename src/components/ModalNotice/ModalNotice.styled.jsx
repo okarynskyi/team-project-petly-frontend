@@ -107,7 +107,7 @@ export const ImgModal = styled.img`
   width: 240px;
   height: 240px;
   border-radius: 0px 0px 40px 40px;
-  background: ${p => p.theme.colors.accent};
+  object-fit: cover;
 
   @media ${device.tablet} {
     width: 290px;
