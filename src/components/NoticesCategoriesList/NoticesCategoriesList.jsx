@@ -45,16 +45,24 @@ const NoticesCategoryList = () => {
     //   console.log("categ", category)
     //   dispatch(operations.getByQuery(query));
       if (category) {
-        if (query) {
-          dispatch(operations.getByCategoryQuery({ category: category, query }));
-        } else 
-        {if (category === categoryShelf[category]) { dispatch(operations.getNoticesByCategory(category)); };
-        if (category === "favorites-ads") { dispatch(operations.getFavorites()); };
-        if (category === "my-ads") { dispatch(operations.getUserNotices()); };}
+        if (category === categoryShelf[category] && query) {
+          dispatch(operations.getNoticesByCategory({ category: category, query }));
+        } 
+        if (category === "favorites-ads" && query) {
+          dispatch(operations.getFavorites({query}))
+        }
+        if (category === "my-ads" && query) {
+          dispatch(operations.getUserNotices({query}))
+        }
+        else 
+        {if (category === categoryShelf[category]) { dispatch(operations.getNoticesByCategory({ category: category, query })); };
+        if (category === "favorites-ads") { dispatch(operations.getFavorites({query})); };
+        if (category === "my-ads") { dispatch(operations.getUserNotices({query})); };}
     }
   }, [query, dispatch, category]);
-
-  return !isLoading && notices.length === 0 ? (
+  
+  return !isLoading && notices.length===0 ? (
+    
     <div>
       <h1> Поверніть єнота!!! </h1>
     </div>

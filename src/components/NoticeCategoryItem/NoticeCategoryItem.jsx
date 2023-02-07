@@ -46,11 +46,11 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
   const dispatch = useDispatch();
     
   const isLoggedIn = useSelector(selectIsLoggedIn);
-    
+    let query = null;
   const refreshingPage = (category) => {
-    if (category === categoryShelf[category]) dispatch(operations.getNoticesByCategory(category));
-    if (category === "favorites-ads") { dispatch(operations.getFavorites()); };
-    if (category === "my-ads") { dispatch(operations.getUserNotices()); };
+    if (category === categoryShelf[category]) dispatch(operations.getNoticesByCategory({category, query}));
+    if (category === "favorites-ads") { dispatch(operations.getFavorites({query})); };
+    if (category === "my-ads") { dispatch(operations.getUserNotices({query})); };
   };
 
   const addToFavorite = async () => {

@@ -34,6 +34,7 @@ export const StyledBtn = styled.button`
   border: none;
   transition: color 250ms linear;
   cursor: pointer;
+  color: black;
 
   &:hover,
   &:focus {

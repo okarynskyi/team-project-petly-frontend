@@ -61,7 +61,7 @@ export const UserDataItem = ({
     }
     const number = formValues.phone;
     const validStart = number.slice(0, 4);
-    if (validStart !== '+380') {
+    if (formValues.phone && validStart !== '+380') {
       toast.error('Must start with "+380"');
       return;
     }

@@ -58,6 +58,7 @@ const noticesSlice = createSlice({
         // отримання оголошень авторизованого користувача доданих ним же в обрані  "ЩЕ НЕ ЗРОБЛЕНИЙ БЕК"
         [operations.getFavorites.pending]: handlePending,
         [operations.getFavorites.fulfilled](state, {payload}) {
+            console.log(payload)
             state.noticesByCategory = payload.notices;
             state.isLoading = false;
             state.isError = null;
@@ -104,6 +105,7 @@ const noticesSlice = createSlice({
         // отримання оголошень авторизованого кристувача створених цим же користувачем
         [operations.getUserNotices.pending]: handlePending,
         [operations.getUserNotices.fulfilled](state, { payload }) {
+            console.log(payload)
             state.noticesByCategory = payload;
             state.isLoading = false;
             state.isError = null;
@@ -115,18 +117,18 @@ const noticesSlice = createSlice({
         },
         
         // для пошуку
-        [operations.getByQuery.fulfilled](state, { payload }) {
-            state.isError = null;
-            state.isLoading = false;
-            state.noticesByCategory = payload;
-        },
+        // [operations.getByQuery.fulfilled](state, { payload }) {
+        //     state.isError = null;
+        //     state.isLoading = false;
+        //     state.noticesByCategory = payload;
+        // },
 // для пошуку по категорії
-        [operations.getByCategoryQuery.fulfilled](state, { payload }) {
-            state.isError = null;
-            state.isLoading = false;
-            console.log(payload)
-            state.noticesByCategory = payload.filteredNotices;
-        },
+        // [operations.getByCategoryQuery.fulfilled](state, { payload }) {
+        //     state.isError = null;
+        //     state.isLoading = false;
+        //     console.log(payload)
+        //     state.noticesByCategory = payload;
+        // },
     },
 });
 
