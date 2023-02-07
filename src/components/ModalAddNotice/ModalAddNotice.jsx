@@ -40,7 +40,7 @@ import {
 export const locationRegexp = /[A-Z][a-z]*,\s[A-Z][a-z]*/;
 export const titleRegexp = /^[a-zA-Z\s]*$/;
 
-const ModalAddNotice = ({ onClose }) => {
+const ModalAddNotice = () => {
   const [modalActive, setModalActive] = useState(false);
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
@@ -113,7 +113,7 @@ const ModalAddNotice = ({ onClose }) => {
     reader.readAsDataURL(file);
   };
 
-  const submitForm = (values) => {
+  const submitForm = values => {
     const { title, name, breed, comments, price } = values;
 
     const data = new FormData();
@@ -130,12 +130,11 @@ const ModalAddNotice = ({ onClose }) => {
     location && data.append('location', location);
     imageURL && data.append('imageURL', imageURL);
 
-    dispatch(operations.createNotice(data))
-      .then(() => {
-        operations.getNoticesByCategory(adopStatus)
-      })
-    console.log(adopStatus)
-    setModalActive(false)
+    dispatch(operations.createNotice(data)).then(() => {
+      operations.getNoticesByCategory(adopStatus);
+    });
+    console.log(adopStatus);
+    setModalActive(false);
   };
 
   const initialValues = {
@@ -197,7 +196,7 @@ const ModalAddNotice = ({ onClose }) => {
     <WrapperAddPet>
       <p>Add pet </p>
       <AddPetBtn
-        onClick={() => toast.warn('You need to register or logged in!')}
+        onClick={() => toast.error('You need to register or logged in!')}
       >
         <StyledPlus />
       </AddPetBtn>
