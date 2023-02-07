@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { device } from 'Device';
 
 export const Section = styled.section`
@@ -23,9 +23,9 @@ export const NewsH1 = styled.h1`
   margin-bottom: 28px;
   text-align: center;
 
-@media ${device.tablet} {
-  font-size: ${p => p.theme.fontSizes.fs48};
-  margin-bottom: 40px;
+  @media ${device.tablet} {
+    font-size: ${p => p.theme.fontSizes.fs48};
+    margin-bottom: 40px;
   }
 `;
 
@@ -33,10 +33,12 @@ export const NewsListBoxUl = styled.ul`
   display: grid;
   gap: 40px;
   justify-content: center;
+  margin-top: 40px;
 
   @media ${device.tablet} {
     grid-template-columns: 1fr 1fr;
     gap: 32px 60px;
+    margin-top: 60px;
   }
 
   @media ${device.desktop} {
@@ -48,17 +50,17 @@ export const NewsListBoxUl = styled.ul`
 export const Line = styled.div`
   width: 200px;
   height: 4px;
-  background: linear-gradient(90deg, #FF634E 0%, #FFDF48 105.44%);
+  background: linear-gradient(90deg, #ff634e 0%, #ffdf48 105.44%);
   border-radius: 40px;
 
-@media ${device.tablet} {
-  width: 280px;
-  height: 8px;
+  @media ${device.tablet} {
+    width: 280px;
+    height: 8px;
   }
 
-@media ${device.desktop}{
-  width: 340px;
-  height: 8px;
+  @media ${device.desktop} {
+    width: 340px;
+    height: 8px;
   }
 `;
 
@@ -90,16 +92,16 @@ export const NewsListText = styled.p`
   -webkit-box-orient: vertical;
   overflow: hidden;
 
-@media ${device.tablet} {
-  height: 130px;
-  margin-bottom: 42px;
-  -webkit-line-clamp: 6;
+  @media ${device.tablet} {
+    height: 130px;
+    margin-bottom: 42px;
+    -webkit-line-clamp: 6;
   }
-  
-@media ${device.desktop}{
-  height: 110px;
-  -webkit-line-clamp: 5;
-  } 
+
+  @media ${device.desktop} {
+    height: 110px;
+    -webkit-line-clamp: 5;
+  }
 `;
 
 export const Div = styled.div`
