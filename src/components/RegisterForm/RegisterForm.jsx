@@ -19,6 +19,7 @@ import {
 } from './RegisterForm.styled';
 
 export const passwordRegexp = /^\S*$/;
+export const spaceRegexp = /^\S*\S+$/;
 export const nameRegexp = /^[a-zA-Z]{2,20}$/;
 export const locationRegexp = /[A-Z][a-z]*,\s[A-Z][a-z]*/;
 export const phoneRegexp = /^\+380\d{9}$/;
@@ -50,13 +51,13 @@ export const RegisterForm = () => {
   const schemaStepOne = yup.object({
     email: yup
       .string()
-      .trim(true)
       .min(7, 'Email must consist at least 7 symbols')
       .max(63, 'Email must contain no more than 63 symbols')
       .matches(
         emailRegexp,
         'Please, enter a valid e-mail. For example, "mango@gmail.com"'
       )
+      .matches(spaceRegexp, 'Please, enter a valid e-mail without spaces')
       .required('E-mail is required'),
     password: yup
       .string()
