@@ -88,10 +88,8 @@ export const WrapperAddNotice = styled(WrapperAddPet)`
   position: fixed;
   top: 450px;
   right: 30px;
-  /* z-index: 100; */
-  /* :hidden {
-  display:none;
-} */
+  z-index: 100;
+  display: ${props => props.hidden === true ? 'none' : 'block'} ;
   @media ${device.tablet} {
     position: static;
     width: 135px;
