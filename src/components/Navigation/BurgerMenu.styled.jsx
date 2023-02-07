@@ -44,6 +44,7 @@ export const BtnClose = styled.button`
   border: none;
   background: transparent;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  color: ${props => props.theme.colors.mainText};
   :hover {
     cursor: pointer;
     transform: scale(1.2);
