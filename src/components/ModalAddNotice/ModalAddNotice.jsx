@@ -22,9 +22,7 @@ import { TextInput } from './TextInput/TextInput';
 import { PriceField } from './PriceField/PriceField';
 import { HiX } from 'react-icons/hi';
 import {
-  WrapperAddPet,
   StyledPlus,
-  AddPetBtn,
   WrapperModalAddPet,
   ModalButton,
 } from '../ModalAddsPet/ModalAddsPet.styled';
@@ -36,6 +34,10 @@ import {
   FormStyled,
   InputFieldWrap,
   BtnWrap,
+  WrapperAddNotice,
+  AddPetNotice,
+  TextAdd,
+  TextAddLeft,
 } from './ModalAddNotice.styled';
 export const locationRegexp = /[A-Z][a-z]*,\s[A-Z][a-z]*/;
 export const titleRegexp = /^[a-zA-Z\s]*$/;
@@ -57,6 +59,7 @@ const ModalAddNotice = () => {
   const [name, setName] = useState('');
   const [breed, setBreed] = useState('');
   const [preview, setPreview] = useState('');
+  const [isHidden, setisHidden] = useState(false);
 
   const radioBtnHandlder = (value, type) => {
     switch (type) {
@@ -131,7 +134,7 @@ const ModalAddNotice = () => {
     imageURL && data.append('imageURL', imageURL);
 
     dispatch(operations.createNotice(data));
-
+    setisHidden(false);
     setModalActive(false);
   };
 
@@ -195,27 +198,30 @@ const ModalAddNotice = () => {
       (!location && comments.length >= 8 && comments.length <= 120),
   };
   return !token ? (
-    <WrapperAddPet>
-      <p>Add pet </p>
-      <AddPetBtn
+    <WrapperAddNotice>
+      <TextAddLeft>Add pet </TextAddLeft>
+      <AddPetNotice
         onClick={() => toast.error('You need to register or logged in!')}
       >
         <StyledPlus />
-      </AddPetBtn>
-    </WrapperAddPet>
+        <TextAdd>Add pet </TextAdd>
+      </AddPetNotice>
+    </WrapperAddNotice>
   ) : (
-    <main>
-      <WrapperAddPet>
-        <p>Add pet </p>
-        <AddPetBtn
+    <>
+      <WrapperAddNotice hidden={isHidden}>
+        <TextAddLeft>Add pet </TextAddLeft>
+        <AddPetNotice
           onClick={() => {
             setModalActive(true);
             document.body.style.overflow = 'hidden';
+            setisHidden(true);
           }}
         >
           <StyledPlus />
-        </AddPetBtn>
-      </WrapperAddPet>
+          <TextAdd>Add pet </TextAdd>
+        </AddPetNotice>
+      </WrapperAddNotice>
       {modalActive && (
         <ModalUser>
           <WrapperModalAddPet>
@@ -363,7 +369,7 @@ const ModalAddNotice = () => {
           </ModalButton>
         </ModalUser>
       )}
-    </main>
+    </>
   );
 };
 export default ModalAddNotice;
