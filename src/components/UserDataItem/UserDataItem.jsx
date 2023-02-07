@@ -15,7 +15,8 @@ import { userUpdate } from 'redux/user/userOperations';
 import { getCurrent } from '../../helpers/formatDate';
 import { chooseTypeLink, findCity } from './helpersForRender';
 import { toast } from 'react-toastify';
-
+export const nameRegexp = /^[a-zA-Z]{2,20}$/;
+export const locationRegexp = /[A-Z][a-z]*,\s[A-Z][a-z]*/;
 export const UserDataItem = ({
   activeField,
   setActiveField,
@@ -63,6 +64,10 @@ export const UserDataItem = ({
     const validStart = number.slice(0, 4);
     if (formValues.phone && validStart !== '+380') {
       toast.error('Must start with "+380"');
+      return;
+    }
+     if (formValues.name && (formValues.name.length < 2 || formValues.name.length > 20 )) {
+       toast.error('Name must be in English, contain 2-20 symbols');
       return;
     }
     const changedField = Object.entries(formValues).find(item => item[1]);

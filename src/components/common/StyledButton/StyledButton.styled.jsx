@@ -14,7 +14,7 @@ export const StyledButton = styled.button`
   font-size: ${props => props.theme.fontSizes.fs20};
   line-height: 1.35;
   transition: color 250ms linear, border 250ms linear;
-
+  color: ${props => props.theme.colors.mainText};
   &:hover,
   &:focus {
     border: ${props => props.theme.borders.accent};

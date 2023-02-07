@@ -2,23 +2,23 @@ import styled from 'styled-components';
 import { device } from 'Device';
 
 export const WrapperUserData = styled.div`
- @media ${device.tablet} {
-     width: 704px;
-     position: relative;
+  @media ${device.tablet} {
+    width: 704px;
+    position: relative;
   }
 `;
 export const Photo = styled.div`
- position: relative;
+  position: relative;
 `;
 
 export const CardProfile = styled.div`
-margin: 0 auto;
+  margin: 0 auto;
   padding: ${props => props.theme.space[3]}px 0;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   background: ${props => props.theme.colors.white};
   border-radius: ${props => props.theme.radii.br20};
   @media ${device.tablet} {
-     width: 704px;
+    width: 704px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -39,7 +39,8 @@ margin: 0 auto;
 `;
 export const Avatar = styled.img`
   margin: 0 auto;
-  width: 233px;
+  height: auto;
+  max-width: 233px;
   filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
   border-radius: ${props => props.theme.radii.round};
   @media ${device.tablet} {
