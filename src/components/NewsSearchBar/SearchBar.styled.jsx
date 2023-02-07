@@ -6,7 +6,6 @@ export const StyledForm = styled.form`
   margin-right: auto;
   width: 100%;
   position: relative;
-  margin-bottom: 60px;
 
   @media screen and (min-width: 768px) {
     width: 608px;
