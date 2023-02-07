@@ -25,7 +25,6 @@ const NewsPage = () => {
       .then(data => data.data)
       .then(results => {
         setNews(results.news);
-        // console.log(news);
       });
   }, []);
 
@@ -65,10 +64,8 @@ const NewsPage = () => {
               {filtredNews.map(item => (
                 <li key={item._id}>
                   <Line></Line>
-                  {/* <NewsDiv> */}
                   <NewsH2>{item.title}</NewsH2>
                   <NewsListText>{item.description}</NewsListText>
-                  {/* </NewsDiv> */}
                   <Div>
                     <DataP>{dateConverter(item.date)}</DataP>
                     <A href={item.url} target="_blank">
