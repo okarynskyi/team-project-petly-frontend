@@ -142,39 +142,43 @@ const ModalAddNotice = () => {
     comments: '',
     location: '',
     price: '',
+    // sex: '',
+    // birthday: '',
   };
 
   const schema = Yup.object().shape({
     title: Yup.string()
       .trim(true)
-      .min(2, 'Too Short!')
-      .max(48, 'Too Long!')
-      .matches(titleRegexp)
-      .required('Required'),
+      .min(2, 'Too short!')
+      .max(48, 'Too long!')
+      .matches(titleRegexp, 'Must contain only letters and spaces')
+      .required('Title is required'),
     name: Yup.string()
       .trim(true)
-      .min(2, 'Too Short!')
-      .max(16, 'Too Long!')
-      .matches(titleRegexp)
-      .required('Required'),
+      .min(2, 'Too short!')
+      .max(16, 'Too long!')
+      .matches(titleRegexp, 'Must contain only letters and spaces')
+      .required('Name is required'),
     breed: Yup.string()
       .trim()
-      .min(2, 'Too Short!')
-      .max(24, 'Too Long!')
-      .matches(titleRegexp)
-      .required('Required'),
+      .min(2, 'Too short!')
+      .max(24, 'Too long!')
+      .matches(titleRegexp, 'Must contain only letters and spaces')
+      .required('Breed is required'),
     location: Yup.string()
       .trim()
       .matches(
         locationRegexp,
         'For example, "Brovary, Kyiv" or "Akhtyrka, Sumy"'
       )
-      .required('Required'),
+      .required('Location is required'),
     comments: Yup.string()
-      .min(8, 'Too Short!')
-      .max(120, 'Too Long!')
-      .required('Required'),
+      .min(8, 'Too short!')
+      .max(120, 'Too long!')
+      .required('Comments is required'),
     price: Yup.number().min(1, 'Price has to be more than 0'),
+    // sex: Yup.string().required('Choose sex'),
+    // birthday: Yup.date().required('Choose date of birth'),
   });
 
   const stateMachine = {
