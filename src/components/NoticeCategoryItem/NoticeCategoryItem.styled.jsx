@@ -1,6 +1,79 @@
 import styled from 'styled-components';
 import { device } from 'Device';
 import { ReactComponent as Icon } from 'staticImages/heart.svg';
+// import heart from '../../staticImages/heart.svg';
+// import heart2 from '../../staticImages/heart2.svg';
+import { ReactComponent as Delete } from '../../staticImages/delete.svg';
+
+export const ButtonsWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`
+export const Trash = styled.div`
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  width: 248px;
+  height: 38px;
+  background: ${p => p.theme.colors.white};
+  border: ${p => p.theme.borders.main};
+  border-radius: ${p => p.theme.radii.br40};
+  align-items: center;
+  font-family: ${p => p.theme.fonts.main};
+  font-weight: ${p => p.theme.fontWeights.fw500};
+  font-size: ${p => p.theme.fontSizes.fs16};
+  line-height: 22px;
+  letter-spacing: 0.04em;
+  transition: color, border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  color: ${p => p.theme.colors.accent};
+  margin: auto 16px 12px 16px;
+ 
+  &:only-of-type {
+    margin-bottom: 32px;
+  }
+
+  &:hover,
+  :focus  {
+    border: ${p => p.theme.borders.accent};
+    color: ${p => p.theme.colors.hoverAccent};
+  }
+
+  @media ${device.tablet} {
+    margin-right: 44px;
+    margin-left: 44px;
+  }
+
+  @media ${device.desktop} {
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+`;
+
+export const StyledTrash = styled(Delete)`
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin-left: 9px;
+  margin-right: 9px;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  ${Trash}:hover & {
+    fill: ${p => p.theme.colors.hoverAccent};
+  }
+`;
+
+// export const Wrapper = styled.div`
+//   margin-left: auto;
+//   margin-right: auto;
+//   display: flex;
+// `;
+
+// export const List = styled.ul`
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   width: 280px;
+// `;
 
 export const Item = styled.li`
   /**загальний ітем нашої картки */
@@ -24,14 +97,14 @@ export const Item = styled.li`
 export const ImageWrapper = styled.div`
   /**обгортка для картинки */
   width: 100%;
-  object-fit: cover;
   margin-bottom: 20px;
 `;
 
 export const Image = styled.img`  /**сама картинка */
  width: 288px;
-height: 288px;
-background-color: #D3D3D3; // временный фон удалить когда карточки на 100% готовы
+  height: 288px;
+  object-fit: cover;
+  background-color: #D3D3D3; // временный фон удалить когда карточки на 100% готовы
 
   @media ${device.tablet} {
     width: 336px;
@@ -134,25 +207,7 @@ export const DescriptionText = styled.p`
 export const ButtonDiv = styled.div`
  position: absolute;
  bottom: 0;
+ display: block;
  /* display: flex;
  flex-direction: column; */
-`;
-
-export const Button = styled.button`
-  /**кнопка.  Вже напевно хтось робив, можна перевикористати*/
-  width: 248px;
-  height: 38px;
-  background: #ffffff;
-  border: ${p => p.theme.borders.main};
-  box-shadow: 7px 4px 16px rgba(0, 0, 0, 0.08);
-  border-radius: 40px;
-  margin: 0 auto;
-  display: block;
-  margin-bottom: 12px;
-  cursor: pointer;
-  font-weight: ${p => p.theme.fontWeights.fw500};
-  font-size: ${p => p.theme.fontSizes.fs16};
-  line-height: 1.37;
-  letter-spacing: 0.04em;
-  color: ${p => p.theme.colors.accent};
 `;
