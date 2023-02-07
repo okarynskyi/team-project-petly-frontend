@@ -1,15 +1,15 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectToken } from 'redux/auth/authSelectors';
-
 import { nanoid } from 'nanoid';
-
 import {
   Button,
   FilterList,
   Item,
   Wrapper,
-} from './NoticesCategoriesNav.styled.jsx';
+  AuthLinks,
+  CommonLinks,
+} from './NoticesCategoriesNav.styled';
 import ModalAddNotice from 'components/ModalAddNotice/ModalAddNotice.jsx';
 
 const buttons = [
@@ -18,12 +18,12 @@ const buttons = [
     link: 'sell',
   },
   {
-    btn: 'lost/found',
-    link: 'lost-found',
-  },
-  {
     btn: 'in good hands',
     link: 'in-good-hands',
+  },
+  {
+    btn: 'lost/found',
+    link: 'lost-found',
   },
   
 ];
@@ -46,23 +46,26 @@ function NoticesCategoriesNav() {
   return (
     <Wrapper>
       <FilterList>
-        {buttons.map(b => (
-          <Item key={nanoid()}>
-            <Button to={'/notices/' + b.link} name={b.link}>
-              {b.btn}
-            </Button>
-          </Item>
-        ))}
-        {token &&
-          authButtons.map(b => (
+        <CommonLinks>
+          {buttons.map(b => (
             <Item key={nanoid()}>
               <Button to={'/notices/' + b.link} name={b.link}>
                 {b.btn}
               </Button>
             </Item>
           ))}
+        </CommonLinks>
+        <AuthLinks>
+          {token &&
+            authButtons.map(b => (
+              <Item key={nanoid()}>
+                <Button to={'/notices/' + b.link} name={b.link}>
+                  {b.btn}
+                </Button>
+              </Item>
+            ))}
+        </AuthLinks>
       </FilterList>
-
       <ModalAddNotice></ModalAddNotice>
     </Wrapper>
   );
