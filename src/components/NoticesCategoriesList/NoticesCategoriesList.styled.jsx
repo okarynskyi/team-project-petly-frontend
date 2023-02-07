@@ -21,6 +21,12 @@ margin-left: 16px;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 32px;
   }
-`;
+`
+export const NotFound = styled.img`
+margin-left: auto;
+  margin-right: auto;
+  max-width: 500px;
+`
+  ;
 
 export default List;

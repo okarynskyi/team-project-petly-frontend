@@ -10,8 +10,8 @@ import operations from '../../redux/notices/noticesOperations';
 import { selectNoticesByCategory, selectIsLoading, selectIsNoticeAdded } from 'redux/notices/noticesSelectors';
 import { selectUser, selectIsLoggedIn } from 'redux/auth/authSelectors';
 
-import { Wrapper, List } from './NoticesCategoriesList.styled';
-// import defaultImg from ''
+import { Wrapper, List, NotFound } from './NoticesCategoriesList.styled';
+import notFound from "../../staticImages/notice/notFound.jpg"
 
 const categoryShelf = {
   "sell": "sell",
@@ -28,8 +28,7 @@ const NoticesCategoryList = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn)
   const isNoticeAdded = useSelector(selectIsNoticeAdded)
   const user = useSelector(selectUser)
-  
-  // console.log(notices)
+ 
   const category = location.pathname.split('/')[2];
   
   const [search] = useSearchParams();
@@ -37,8 +36,7 @@ const NoticesCategoryList = () => {
   const query = search.get('query');
 
   let isFavorite = false;
-  // console.log("query", query)
-  // console.log("categ", category)
+
   useEffect(() => {
       if (category) {
         if (category === categoryShelf[category] && query) {
@@ -58,11 +56,10 @@ const NoticesCategoryList = () => {
   }, [query, dispatch, category, isNoticeAdded]);
   
   return !isLoading && notices.length===0 ? (
-    
-    <div>
-      <h1> Sorry, nothing found!!! </h1>
-      <img src="https://lifeimg.pravda.com/images/doc/c/5/c55cc96-kit-755.jpg" alt="defaut" />
-    </div>
+  <div>
+    <NotFound src={notFound} alt="defaut" />
+  </div>
+      // <imgNotFound src={notFound} alt="defaut" />
   ) : (
     <Wrapper>
       {notices && notices.length > 0 ? (

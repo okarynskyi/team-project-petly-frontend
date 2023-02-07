@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import FilterNoticesButton from '../../components/FilterNoticesButton/FilterNoticesButton';
+import NoticesCategoriesNav from '../../components/NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesCategoryList from '../../components/NoticesCategoriesList/NoticesCategoriesList';
 import { SearchBar } from '../../components/NoticesSearchBar/SearchBar';
 import { Box, GlobalBox, Title, Wrapper } from './NoticesPage.styled';
@@ -24,6 +24,7 @@ const NoticesPage = () => {
     e.preventDefault();
     setInput('');
     setSearchValue('');
+    setSearchParams({ query: "" });
   };
 
   const handlerSearchInput = e => {
@@ -43,7 +44,7 @@ const NoticesPage = () => {
           onReset={handlerSearchReset}
           searchValue={searchValue.trim()}
           />
-          <FilterNoticesButton /> 
+          <NoticesCategoriesNav /> 
         </Box>
           <NoticesCategoryList />
       </Wrapper>
