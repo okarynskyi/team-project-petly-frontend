@@ -1,34 +1,71 @@
-import { NavLink, Outlet  } from "react-router-dom";
-import { Container } from "../common/Container.styled";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { selectToken } from 'redux/auth/authSelectors';
 
- export const NoticesCategoryNav = () => {
+import { nanoid } from 'nanoid';
+
+import {
+  Button,
+  FilterList,
+  Item,
+  Wrapper,
+} from './NoticesCategoriesNav.styled.jsx';
+import ModalAddNotice from 'components/ModalAddNotice/ModalAddNotice.jsx';
+
+const buttons = [
+  {
+    btn: 'sell',
+    link: 'sell',
+  },
+  {
+    btn: 'lost/found',
+    link: 'lost-found',
+  },
+  {
+    btn: 'in good hands',
+    link: 'in-good-hands',
+  },
+  
+];
+
+const authButtons = [
+  {
+    btn: 'favorite ads',
+    link: 'favorites-ads',
+  },
+  {
+    btn: 'my ads',
+    link: 'my-ads',
+  },
+];
+
+function NoticesCategoriesNav() {
+  const token = useSelector(selectToken);
+  // const [modalActive, setModalActive] = useState(false);
 
   return (
- 
-      <>
-           <Container>
-        <h3>Кнопки переходу</h3>
-              <ul>
-        <li>
-          <NavLink to="/" >Sell</NavLink>
-        </li>
-        <li>
-          <NavLink to="lost-found" >Lost and found</NavLink>
-        </li>
-        <li>
-          <NavLink to= "in-good-hands" >In good hands</NavLink>
-                  </li>
-                  <li>
-          <NavLink to="favorites-ads" >Favorite</NavLink>
-        </li>
-        <li>
-          <NavLink to= "my-ads" >My ads</NavLink>
-        </li>
-        </ul>
-      </Container>
-      <Outlet />
-    </>
-     
-   
+    <Wrapper>
+      <FilterList>
+        {buttons.map(b => (
+          <Item key={nanoid()}>
+            <Button to={'/notices/' + b.link} name={b.link}>
+              {b.btn}
+            </Button>
+          </Item>
+        ))}
+        {token &&
+          authButtons.map(b => (
+            <Item key={nanoid()}>
+              <Button to={'/notices/' + b.link} name={b.link}>
+                {b.btn}
+              </Button>
+            </Item>
+          ))}
+      </FilterList>
+
+      <ModalAddNotice></ModalAddNotice>
+    </Wrapper>
   );
-};
+}
+
+export default NoticesCategoriesNav;

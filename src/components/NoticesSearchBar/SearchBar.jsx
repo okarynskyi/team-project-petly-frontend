@@ -17,7 +17,6 @@ export const SearchBar = ({
           onChange={onChange}
           name="name"
           type="text"
-          autocomplete="off"
           placeholder="Search"
           value={value}
         />
