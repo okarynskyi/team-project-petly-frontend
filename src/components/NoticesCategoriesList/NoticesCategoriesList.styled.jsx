@@ -25,7 +25,15 @@ margin-left: 16px;
 export const NotFound = styled.img`
 margin-left: auto;
   margin-right: auto;
-  max-width: 500px;
+  @media ${device.mobile} {
+    max-width: 250px;
+  };
+  @media ${device.tablet} {
+    max-width: 400px;
+  };
+  @media ${device.tablet} {
+    max-width: 450px;
+  };
 `
   ;
 

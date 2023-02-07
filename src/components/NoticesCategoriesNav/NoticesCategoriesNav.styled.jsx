@@ -4,11 +4,17 @@ import { device } from 'Device';
 
 export const Wrapper = styled.div`
   position: relative;
-  margin-bottom: 60px;
+ 
+  @media ${device.mobileOnly} {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
   @media ${device.tablet} {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    margin-top: 40px;
+    margin-bottom: 60px;
   }
 `;
 

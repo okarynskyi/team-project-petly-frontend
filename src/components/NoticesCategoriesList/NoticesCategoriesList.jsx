@@ -56,10 +56,9 @@ const NoticesCategoryList = () => {
   }, [query, dispatch, category, isNoticeAdded]);
   
   return !isLoading && notices.length===0 ? (
-  <div>
-    <NotFound src={notFound} alt="defaut" />
-  </div>
-      // <imgNotFound src={notFound} alt="defaut" />
+    <Wrapper>
+    <NotFound src={notFound} alt="defaut"/>
+  </Wrapper>
   ) : (
     <Wrapper>
       {notices && notices.length > 0 ? (
@@ -85,7 +84,6 @@ const NoticesCategoryList = () => {
                   isOwner={isOwner}
                   category={category}
                 />
-
               })}
             </List>
         </>
