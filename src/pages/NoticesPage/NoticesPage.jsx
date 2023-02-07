@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import NoticesCategoriesNav from '../../components/NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesCategoryList from '../../components/NoticesCategoriesList/NoticesCategoriesList';
-import { SearchBar } from '../../components/NoticesSearchBar/SearchBar';
+import { SearchBar } from '../../components/NewsSearchBar/SearchBar';
 import { Box, GlobalBox, Title, Wrapper } from './NoticesPage.styled';
 import { Container } from 'components/common/Container.styled';
 import { useState } from 'react';
