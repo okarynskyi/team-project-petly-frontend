@@ -101,7 +101,7 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
   return (
     <Item key={_id}>
       <ImageWrapper>
-        <Image src={avatarURL} alt="Pet" />
+        <Image src={avatarURL} alt="Pet" loading='lazy'/>
       </ImageWrapper>
       <CategoryName>{adopStatus}</CategoryName>
 
