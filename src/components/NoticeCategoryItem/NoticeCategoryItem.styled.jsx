@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import { device } from 'Device';
 import { ReactComponent as Icon } from 'staticImages/heart.svg';
-// import heart from '../../staticImages/heart.svg';
-// import heart2 from '../../staticImages/heart2.svg';
 import { ReactComponent as Delete } from '../../staticImages/delete.svg';
 
 export const ButtonsWrapper = styled.div`
@@ -61,19 +59,6 @@ export const StyledTrash = styled(Delete)`
     fill: ${p => p.theme.colors.hoverAccent};
   }
 `;
-
-// export const Wrapper = styled.div`
-//   margin-left: auto;
-//   margin-right: auto;
-//   display: flex;
-// `;
-
-// export const List = styled.ul`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   width: 280px;
-// `;
 
 export const Item = styled.li`
   /**загальний ітем нашої картки */
@@ -152,14 +137,10 @@ export const SvgWrapper = styled.div`
 
 export const AddToFavoriteBtn = styled(Icon)`
   cursor: pointer;
-  &:hover,
-  &:focus {
-    fill: orange;
-  }
 `;
 
 export const RemoveFromFavoriteBtn = styled(Icon)`
-  fill: orange;
+  fill: #F59256;
   cursor: pointer;
 `;
 

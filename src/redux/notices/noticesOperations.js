@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-// import { setAuthHeader } from 'redux/auth/authOperations';
 
 axios.defaults.baseURL = 'https://petly-backend-v11f.onrender.com/api';
 
@@ -8,8 +7,6 @@ axios.defaults.baseURL = 'https://petly-backend-v11f.onrender.com/api';
 const getNoticesByCategory = createAsyncThunk(
     'notices/getByCategory',
     async ({ category, query }, { rejectWithValue }) => {
-        // console.log(query)
-        // console.log(query)
         try {
             if (query===null) {
             const { data } = await axios.get(`/notices/category/${category}`);
@@ -136,46 +133,6 @@ const getUserNotices = createAsyncThunk(
     },
 );
 
-
-// // для пошуку
-// export const getByQuery = createAsyncThunk(
-//     'notice/getByQuery',
-//     async (query, { rejectWithValue }) => {
-//         try {
-//             const { data } = await axios.get(`/notices/search/find?query=${query}`);
-          
-//             return data;
-//         } catch (error) {
-//             return rejectWithValue(error.message);
-//         }
-//     }
-// );
-
-// Get by category query
-// export const getByCategoryQuery = createAsyncThunk(
-//     'notice/getByCategoryQuery',
-  
-//     async ({ category, query }, thunkApi) => {
-//     //   let path;
-//     //     path = `${category}`;
-//         // console.log(path);
-//     //   }
-//       try {
-//         // const state = thunkApi.getState();
-//         // const persistedToken = state.auth.token;
-//         // setAuthHeader(persistedToken);
-  
-//         const {data} = await axios.get(`/notices/category/${category}?query=${query}`
-//         // , {params: {  category }, }
-//         );
-//         // console.log(data);
-//         return data;
-//       } catch (error) {
-//         return thunkApi.rejectWithValue(error.status);
-//       }
-//     }
-//   );
-
 const operations = {
     getNoticesByCategory,
     getOneNotice,
@@ -185,8 +142,6 @@ const operations = {
     createNotice,
     getUserNotices,
     deleteUserNotice,
-    // getByQuery,
-    // getByCategoryQuery,
 };
 
 export default operations;

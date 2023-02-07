@@ -15,13 +15,10 @@ import {
   DescriptionInner,
   DescriptionTextContainer,
   DescriptionText,
-  // Button,
   AddToFavoriteBtn,
   RemoveFromFavoriteBtn,
   ButtonDiv,
   SvgWrapper,
-  // CheckBoxAddDiv,
-  // CheckBoxAddLabel,
   ButtonsWrapper,
   StyledButton,
   StyledTrash,
@@ -38,12 +35,7 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
     avatarURL,
     birthday,
     breed,
-    // comments,
     location,
-    // owner,
-    // name,
-    // price,
-    // sex,
     title,
     _id,
     adopStatus,
@@ -120,9 +112,7 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
             <DescriptionText>Place:</DescriptionText>
             <DescriptionText>Age:</DescriptionText>
           </DescriptionTextContainer>
-          {/* </DescriptionInner>
-
-        <DescriptionInner> */}
+          
           <DescriptionTextContainer>
             <DescriptionText>{breed}</DescriptionText>
             <DescriptionText>{location}</DescriptionText>
