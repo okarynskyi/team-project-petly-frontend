@@ -10,16 +10,16 @@ import {
   ImageWrapper,
   Image,
   CategoryName,
-  CheckBoxAddToFavorite,
   DescriptionWrapper,
   Title,
   DescriptionInner,
   DescriptionTextContainer,
   DescriptionText,
   Button,
-  CheckBoxAddDiv,
-  CheckBoxAddLabel,
+  AddToFavoriteBtn,
+  RemoveFromFavoriteBtn,
   ButtonDiv,
+  SvgWrapper,
 } from './NoticeCategoryItem.styled';
 
 const categoryShelf = {
@@ -96,27 +96,14 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
       <CategoryName>{adopStatus}</CategoryName>
 
       {!isFavorite && (
-        <CheckBoxAddDiv>
-          <CheckBoxAddToFavorite
-            type="checkbox"
-            onChange={addToFavorite}
-            id={_id}
-            name="check"
-          />
-          <CheckBoxAddLabel htmlFor={_id}></CheckBoxAddLabel>
-        </CheckBoxAddDiv>
+        <SvgWrapper>
+          <AddToFavoriteBtn onClick={addToFavorite}/>
+        </SvgWrapper>
       )}
       {isFavorite && (
-        <CheckBoxAddDiv>
-          <CheckBoxAddToFavorite
-            type="checkbox"
-            onChange={removeFromFavorite}
-            id={_id}
-            name="check"
-            checked
-          />
-          <CheckBoxAddLabel htmlFor={_id}></CheckBoxAddLabel>
-        </CheckBoxAddDiv>
+        <SvgWrapper>
+          <RemoveFromFavoriteBtn onClick={removeFromFavorite}/>
+        </SvgWrapper>
       )}
 
       <DescriptionWrapper>

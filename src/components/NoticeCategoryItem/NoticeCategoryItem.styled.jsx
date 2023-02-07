@@ -1,20 +1,6 @@
 import styled from 'styled-components';
 import { device } from 'Device';
-import heart from '../../staticImages/heart.svg';
-import heart2 from '../../staticImages/heart2.svg';
-
-// export const Wrapper = styled.div`
-//   margin-left: auto;
-//   margin-right: auto;
-//   display: flex;
-// `;
-
-// export const List = styled.ul`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   width: 280px;
-// `;
+import { ReactComponent as Icon } from 'staticImages/heart.svg';
 
 export const Item = styled.li`
   /**загальний ітем нашої картки */
@@ -78,68 +64,30 @@ export const CategoryName = styled.p`
   line-height: 16px;
 `;
 
-export const CheckBoxAddDiv = styled.div``;
-
-export const CheckBoxAddLabel = styled.label`
+export const SvgWrapper = styled.div`
   position: absolute;
-  top: 12px;
   right: 12px;
-  padding: 12px;
+  top: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+`;
+
+export const AddToFavoriteBtn = styled(Icon)`
   cursor: pointer;
-
-  &:before {
-    content: '';
-    display: block;
-    width: 44px;
-    height: 44px;
-    border-radius: 50px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(2px);
-    background-image: url(${heart});
-    background-repeat: no-repeat;
-    background-position: center;
-    z-index: 1;
-    opacity: 1;
-  }
-
-  &:after {
-    content: '';
-    display: block;
-    width: 44px;
-    height: 44px;
-    border-radius: 50px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(2px);
-    background-image: url(${heart2});
-    background-repeat: no-repeat;
-    background-position: center;
-    z-index: 2;
-    opacity: 0;
+  &:hover,
+  &:focus {
+    fill: orange;
   }
 `;
 
-export const CheckBoxAddToFavorite = styled.input`
-  /**сердечко для додавання до улюбленних. Кастомний чекбокс???*/
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 40px;
-  height: 40px;
-  border-radius: 50px;
-  appearance: none;
-
-  &:hover + ${CheckBoxAddLabel}:before {
-    opacity: 0;
-  }
-  &:hover + ${CheckBoxAddLabel}:after {
-    opacity: 1;
-  }
+export const RemoveFromFavoriteBtn = styled(Icon)`
+  fill: orange;
+  cursor: pointer;
 `;
 
 export const DescriptionWrapper = styled.div`
