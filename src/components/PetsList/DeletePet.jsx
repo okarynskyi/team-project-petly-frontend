@@ -10,7 +10,7 @@ export const DeletePet = ({ _id }) => {
   const [modalActive, setModalActive] = useState(false);
 
   return (
-    <main>
+    <>
       <CircleBtnTrash onClick={() => setModalActive(true)}>
         <StyledTrash />
       </CircleBtnTrash>
@@ -34,6 +34,6 @@ export const DeletePet = ({ _id }) => {
           </div>
         </WrapperQuit>
       </Modal>
-    </main>
+    </>
   );
 };

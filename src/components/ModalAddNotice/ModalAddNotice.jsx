@@ -59,7 +59,7 @@ const ModalAddNotice = () => {
   const [name, setName] = useState('');
   const [breed, setBreed] = useState('');
   const [preview, setPreview] = useState('');
-  const [isHidden, setisHidden] = useState(false);
+ 
 
   const radioBtnHandlder = (value, type) => {
     switch (type) {
@@ -134,7 +134,6 @@ const ModalAddNotice = () => {
     imageURL && data.append('imageURL', imageURL);
 
     dispatch(operations.createNotice(data));
-    setisHidden(false);
     setModalActive(false);
   };
 
@@ -198,7 +197,7 @@ const ModalAddNotice = () => {
       (!location && comments.length >= 8 && comments.length <= 120),
   };
   return !token ? (
-    <WrapperAddNotice>
+    <WrapperAddNotice hidden={modalActive}>
       <TextAddLeft>Add pet </TextAddLeft>
       <AddPetNotice
         onClick={() => toast.error('You need to register or logged in!')}
@@ -209,13 +208,12 @@ const ModalAddNotice = () => {
     </WrapperAddNotice>
   ) : (
     <>
-      <WrapperAddNotice hidden={isHidden}>
+      <WrapperAddNotice hidden={modalActive}>
         <TextAddLeft>Add pet </TextAddLeft>
         <AddPetNotice
           onClick={() => {
             setModalActive(true);
             document.body.style.overflow = 'hidden';
-            setisHidden(true);
           }}
         >
           <StyledPlus />
