@@ -1,52 +1,44 @@
-import { useState } from 'react';
-
-import {
-  HeaderSearchBar,
-  IconSearch,
-  SearchForm,
-  SearchFormButton,
-  SearchFormButtonLabel,
-  SearchFormInput,
-} from './SearchBar.styled.jsx';
-
+import { AiOutlineSearch } from 'react-icons/ai';
+import { TiDeleteOutline } from 'react-icons/ti';
+import { StyledForm, StyledInput, StyledBtn } from '../../components/NewsSearchBar/SearchBar.styled';
 import PropTypes from 'prop-types';
-import { useSearchParams } from 'react-router-dom';
 
-export const SearchBar = ({ submitForm }) => {
-  const [input, setInput] = useState('');
-  const [, setSearchParams] = useSearchParams();
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    setSearchParams({ query: input });
-    //  submitForm(input);
-    setInput('');
-  };
-
-  const saveInputState = e => {
-    setInput(e.target.value);
-  };
+export const SearchBar = ({ 
+  value,
+  onChange,
+  onSubmit,
+  onReset,
+  searchValue, }) => {
 
   return (
-    <HeaderSearchBar>
-      <SearchForm onSubmit={handleSubmit}>
-        <SearchFormInput
-          onChange={saveInputState}
+      <StyledForm onSubmit={onSubmit} onReset={onReset}>
+        <StyledInput
+          onChange={onChange}
           name="name"
           type="text"
           autocomplete="off"
           placeholder="Search"
-          value={input}
+          value={value}
         />
-        <SearchFormButton type="submit">
-          <SearchFormButtonLabel>Search</SearchFormButtonLabel>
-          <IconSearch />
-        </SearchFormButton>
-      </SearchForm>
-    </HeaderSearchBar>
+        {!searchValue && (
+        <StyledBtn type="submit">
+          <AiOutlineSearch />
+        </StyledBtn>
+      )}
+      {searchValue && (
+        <StyledBtn type="reset">
+          <TiDeleteOutline />
+        </StyledBtn>
+      )}
+      </StyledForm>
   );
 };
 
 SearchBar.propTypes = {
-  submitForm: PropTypes.func,
-};
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onReset: PropTypes.func.isRequired,
+  searchValue: PropTypes.string.isRequired,
+}

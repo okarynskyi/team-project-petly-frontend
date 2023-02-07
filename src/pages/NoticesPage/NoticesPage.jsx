@@ -4,16 +4,31 @@ import NoticesCategoryList from '../../components/NoticesCategoriesList/NoticesC
 import { SearchBar } from '../../components/NoticesSearchBar/SearchBar';
 import { Box, GlobalBox, Title, Wrapper } from './NoticesPage.styled';
 import { Container } from 'components/common/Container.styled';
-// import { useDispatch } from 'react-redux';
-// import operations from 'redux/notices/noticesOperations';
+import { useState } from 'react';
+
+import { useSearchParams } from 'react-router-dom';
 
 const NoticesPage = () => {
 
-  // const dispatch = useDispatch();
+  const [input, setInput] = useState('');
+  const [searchValue, setSearchValue] = useState('');
+  const [, setSearchParams] = useSearchParams();
 
-  // const searchPets = query => {
-  //   dispatch(operations.getByCategoryQuery({ category: category, query }));
-  // };
+  const handlerSearchSubmit = e => {
+    e.preventDefault();
+    setSearchParams({ query: input });
+    setSearchValue(input);
+  };
+
+  const handlerSearchReset = e => {
+    e.preventDefault();
+    setInput('');
+    setSearchValue('');
+  };
+
+  const handlerSearchInput = e => {
+    setInput(e.target.value);
+  };
 
   return (
     <GlobalBox>
@@ -22,7 +37,11 @@ const NoticesPage = () => {
         <Box>
           <Title>Find your favorite pet</Title>
           <SearchBar
-          // submitForm={searchPets}
+          value={input}
+          onChange={handlerSearchInput}
+          onSubmit={handlerSearchSubmit}
+          onReset={handlerSearchReset}
+          searchValue={searchValue.trim()}
           />
           <FilterNoticesButton /> 
         </Box>
