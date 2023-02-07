@@ -92,12 +92,12 @@ const noticesSlice = createSlice({
 
         // додавання оголошень відповідно до обраної категорії
         [operations.createNotice.pending]: handlePending,
-        [operations.createNotice.fulfilled](state, { payload }) {
-            state.noticesByCategory = [...state.noticesByCategory, payload];
+        [operations.createNotice.fulfilled](state, _) {
             state.isLoading = false;
             state.isError = null;
         },
         [operations.createNotice.rejected](state, { payload }) {
+            state.isNoticeAdded = false;
             state.isLoading = false;
             state.isError = payload;
         },

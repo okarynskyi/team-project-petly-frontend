@@ -15,7 +15,7 @@ export const Section = styled.section`
   background-size: cover;
   background-position: left 52px;
 
-  @media ${device.tablet} and ${device.beforeDesktop} {
+  @media ${device.tablet} and (${device.beforeDesktop}) {
     width: 100%;
     height: 1193px;
     background-image: url('${backgroundImg.tab}');
@@ -45,7 +45,7 @@ export const MainPage = styled.div`
   padding-top: 60px;
   margin: 0 auto;
 
-  @media ${device.tablet} and ${device.beforeDesktop} {
+  @media ${device.tablet} and (${device.beforeDesktop}){
     width: 768px;
     height: 100%;
     text-align: center;
@@ -70,7 +70,7 @@ export const MainImage = styled.img`
   margin-left: auto;
   margin-right: auto;
   margin-top: 58px;
-  @media ${device.tablet} and ${device.beforeDesktop} {
+  @media ${device.tablet} and (${device.beforeDesktop}) {
     width: 645px;
     height: 715px;
   }

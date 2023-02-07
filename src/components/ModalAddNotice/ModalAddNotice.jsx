@@ -1,7 +1,7 @@
+import { useState } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import 'react-datetime/css/react-datetime.css';
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import operations from '../../redux/notices/noticesOperations';
 import { useSelector } from 'react-redux';
@@ -113,7 +113,7 @@ const ModalAddNotice = ({ onClose }) => {
     reader.readAsDataURL(file);
   };
 
-  const submitForm = values => {
+  const submitForm = (values) => {
     const { title, name, breed, comments, price } = values;
 
     const data = new FormData();
@@ -130,8 +130,12 @@ const ModalAddNotice = ({ onClose }) => {
     location && data.append('location', location);
     imageURL && data.append('imageURL', imageURL);
 
-    dispatch(operations.createNotice(data));
-    setModalActive(false);
+    dispatch(operations.createNotice(data))
+      .then(() => {
+        operations.getNoticesByCategory(adopStatus)
+      })
+    console.log(adopStatus)
+    setModalActive(false)
   };
 
   const initialValues = {
