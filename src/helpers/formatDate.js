@@ -5,7 +5,7 @@ export const formatBirthDate = date => {
 };
 
 export function formatAgeYears(date) {
-  if(date === undefined) {
+  if(date === null) {
     return "Unknown"
   }
   return formatDistanceToNowStrict(new Date(date), {
