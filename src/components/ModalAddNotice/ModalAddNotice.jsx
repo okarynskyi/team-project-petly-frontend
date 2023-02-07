@@ -130,10 +130,8 @@ const ModalAddNotice = () => {
     location && data.append('location', location);
     imageURL && data.append('imageURL', imageURL);
 
-    dispatch(operations.createNotice(data)).then(() => {
-      operations.getNoticesByCategory(adopStatus);
-    });
-    console.log(adopStatus);
+    dispatch(operations.createNotice(data));
+
     setModalActive(false);
   };
 

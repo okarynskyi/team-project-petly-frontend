@@ -12,6 +12,7 @@ const initialState = {
     isFavorite: false,
     isLoading: false,
     isError: null,
+    isNoticeAdded: false,
 };
 
 const noticesSlice = createSlice({
@@ -93,6 +94,7 @@ const noticesSlice = createSlice({
         // додавання оголошень відповідно до обраної категорії
         [operations.createNotice.pending]: handlePending,
         [operations.createNotice.fulfilled](state, _) {
+            state.isNoticeAdded = true;
             state.isLoading = false;
             state.isError = null;
         },
@@ -105,7 +107,6 @@ const noticesSlice = createSlice({
         // отримання оголошень авторизованого кристувача створених цим же користувачем
         [operations.getUserNotices.pending]: handlePending,
         [operations.getUserNotices.fulfilled](state, { payload }) {
-            console.log(payload)
             state.noticesByCategory = payload;
             state.isLoading = false;
             state.isError = null;

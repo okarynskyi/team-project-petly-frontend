@@ -5,3 +5,4 @@ export const selectOneNoticeMoreInfo = state => state.notices.oneNoticeMoreInfo;
 export const selectIsFavorite= state => state.notices.isFavorite;
 export const selectIsLoading = state => state.notices.isLoading;
 export const selectIsError = state => state.notices.isError;
+export const selectIsNoticeAdded = state => state.notices.isNoticeAdded;
