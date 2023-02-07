@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/team-project-petly-frontend/static/css/main.91f4132a.css",
-    "main.js": "/team-project-petly-frontend/static/js/main.b0281839.js",
+    "main.js": "/team-project-petly-frontend/static/js/main.6041b0f0.js",
     "static/js/472.25306688.chunk.js": "/team-project-petly-frontend/static/js/472.25306688.chunk.js",
     "static/js/335.00dab3bb.chunk.js": "/team-project-petly-frontend/static/js/335.00dab3bb.chunk.js",
     "static/js/531.62ec7775.chunk.js": "/team-project-petly-frontend/static/js/531.62ec7775.chunk.js",
-    "static/js/224.d7e187e9.chunk.js": "/team-project-petly-frontend/static/js/224.d7e187e9.chunk.js",
-    "static/css/437.109c56d5.chunk.css": "/team-project-petly-frontend/static/css/437.109c56d5.chunk.css",
-    "static/js/437.055245b2.chunk.js": "/team-project-petly-frontend/static/js/437.055245b2.chunk.js",
+    "static/js/437.687eb9b2.chunk.js": "/team-project-petly-frontend/static/js/437.687eb9b2.chunk.js",
+    "static/css/619.ed658ffa.chunk.css": "/team-project-petly-frontend/static/css/619.ed658ffa.chunk.css",
+    "static/js/619.680f0362.chunk.js": "/team-project-petly-frontend/static/js/619.680f0362.chunk.js",
     "static/js/466.dbec6c2f.chunk.js": "/team-project-petly-frontend/static/js/466.dbec6c2f.chunk.js",
     "static/js/280.fef1bf2b.chunk.js": "/team-project-petly-frontend/static/js/280.fef1bf2b.chunk.js",
     "static/js/694.62e0077e.chunk.js": "/team-project-petly-frontend/static/js/694.62e0077e.chunk.js",
@@ -28,15 +28,16 @@
     "static/media/male.svg": "/team-project-petly-frontend/static/media/male.6d6a24f88bfb0a15b019aa2e40279318.svg",
     "static/media/female.svg": "/team-project-petly-frontend/static/media/female.d2454870b648a0372abeaa1db8f9e28e.svg",
     "index.html": "/team-project-petly-frontend/index.html",
+    "static/media/delete.svg": "/team-project-petly-frontend/static/media/delete.a9c93200dc28818290240916a9c7bc59.svg",
     "static/media/heart.svg": "/team-project-petly-frontend/static/media/heart.088e3f72fed817ff974113d686654395.svg",
     "main.91f4132a.css.map": "/team-project-petly-frontend/static/css/main.91f4132a.css.map",
-    "main.b0281839.js.map": "/team-project-petly-frontend/static/js/main.b0281839.js.map",
+    "main.6041b0f0.js.map": "/team-project-petly-frontend/static/js/main.6041b0f0.js.map",
     "472.25306688.chunk.js.map": "/team-project-petly-frontend/static/js/472.25306688.chunk.js.map",
     "335.00dab3bb.chunk.js.map": "/team-project-petly-frontend/static/js/335.00dab3bb.chunk.js.map",
     "531.62ec7775.chunk.js.map": "/team-project-petly-frontend/static/js/531.62ec7775.chunk.js.map",
-    "224.d7e187e9.chunk.js.map": "/team-project-petly-frontend/static/js/224.d7e187e9.chunk.js.map",
-    "437.109c56d5.chunk.css.map": "/team-project-petly-frontend/static/css/437.109c56d5.chunk.css.map",
-    "437.055245b2.chunk.js.map": "/team-project-petly-frontend/static/js/437.055245b2.chunk.js.map",
+    "437.687eb9b2.chunk.js.map": "/team-project-petly-frontend/static/js/437.687eb9b2.chunk.js.map",
+    "619.ed658ffa.chunk.css.map": "/team-project-petly-frontend/static/css/619.ed658ffa.chunk.css.map",
+    "619.680f0362.chunk.js.map": "/team-project-petly-frontend/static/js/619.680f0362.chunk.js.map",
     "466.dbec6c2f.chunk.js.map": "/team-project-petly-frontend/static/js/466.dbec6c2f.chunk.js.map",
     "280.fef1bf2b.chunk.js.map": "/team-project-petly-frontend/static/js/280.fef1bf2b.chunk.js.map",
     "694.62e0077e.chunk.js.map": "/team-project-petly-frontend/static/js/694.62e0077e.chunk.js.map",
@@ -47,6 +48,6 @@
   },
   "entrypoints": [
     "static/css/main.91f4132a.css",
-    "static/js/main.b0281839.js"
+    "static/js/main.6041b0f0.js"
   ]
 }
