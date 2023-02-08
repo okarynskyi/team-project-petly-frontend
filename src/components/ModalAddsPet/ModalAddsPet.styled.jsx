@@ -48,6 +48,9 @@ export const BowInputs = styled(BoxInput)`
   }
 `;
 export const Error = styled(ErrorText)`
+  position: absolute;
+  left: 0;
+  bottom: -20%;
   text-align: start;
   margin-top: ${props => props.theme.space[0]}px;
   color: ${props => props.theme.colors.accent};
@@ -80,6 +83,7 @@ export const StyledComment = styled(InputFormik)`
 `;
 
 export const LabelStyled = styled.label`
+  position: relative;
   font-family: ${props => props.theme.fonts.main};
   font-weight: ${props => props.theme.fontWeights.fw500};
   font-size: ${props => props.theme.fontSizes.fs18};

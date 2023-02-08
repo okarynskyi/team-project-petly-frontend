@@ -10,6 +10,7 @@ import {
   ErrorText,
   Question,
   BoxInput,
+  InputWrapper,
 } from './LoginForm.styled';
 import { AccentButton } from 'components/common/StyledButton/StyledButton.styled';
 
@@ -53,20 +54,24 @@ export const LoginForm = () => {
     >
       <FormFormik autoComplete="off">
         <BoxInput>
-          <InputFormik
-            type="text"
-            name="email"
-            id={loginId}
-            placeholder="Email"
-          />
-          <ErrorText name="email" component="p" />
-          <InputFormik
-            type="password"
-            name="password"
-            id={passwordIdLogg}
-            placeholder="Password"
-          />
-          <ErrorText name="password" component="p" />
+          <InputWrapper>
+            <InputFormik
+              type="text"
+              name="email"
+              id={loginId}
+              placeholder="Email"
+            />
+            <ErrorText name="email" component="p" />
+          </InputWrapper>
+          <InputWrapper>
+            <InputFormik
+              type="password"
+              name="password"
+              id={passwordIdLogg}
+              placeholder="Password"
+            />
+            <ErrorText name="password" component="p" />
+          </InputWrapper>
         </BoxInput>
         <AccentButton type="submit" size="280px">
           Login

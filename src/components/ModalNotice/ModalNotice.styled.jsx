@@ -164,7 +164,7 @@ export const Comment = styled.p`
   font-weight: ${p => p.theme.fontWeights.fw600};
   font-size: ${p => p.theme.fontSizes.fs14};
   line-height: 19px;
-  magrin: 0;
+  margin: 0;
   padding-top: 28px;
   color: ${p => p.theme.colors.black};
 

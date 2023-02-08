@@ -4,6 +4,7 @@ import { device } from 'Device';
 import { AccentButton } from '../common/StyledButton/StyledButton.styled';
 
 export const Label = styled.label`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -12,9 +13,9 @@ export const Label = styled.label`
   font-weight: 500;
   span {
     min-width: 120px;
-    margin-right: ${props => props.theme.space[2]}px;
+    margin-right: ${props => props.theme.space[10]}px;
   }
-`;
+`; 
 
 export const FormFormik = styled(Form)`
   width: 100%;
@@ -73,7 +74,7 @@ export const BoxInput = styled.div`
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: ${props => props.theme.space[2]}px;
+  gap: ${props => props.theme.space[3]}px;
 `;
 export const InputFormik = styled(Field)`
   width: 280px;
@@ -99,8 +100,10 @@ export const InputFormik = styled(Field)`
   }
 `;
 export const ErrorText = styled.p`
+  position: absolute;
+  left: 15px;
+  top: -17px;
   width: 100%;
-  text-align: center;
   font-size: ${props => props.theme.fontSizes.fs14};
   color: ${props => props.theme.colors.accent};
 `;

@@ -25,6 +25,10 @@ export const BoxInput = styled.div`
   gap: ${props => props.theme.space[2]}px;
 `;
 
+export const InputWrapper = styled.div`
+  position: relative;
+`;
+
 export const InputFormik = styled(Field)`
   width: 280px;
   padding: 11px 0 11px 14px;
@@ -49,8 +53,10 @@ export const InputFormik = styled(Field)`
   }
 `;
 export const ErrorText = styled(ErrorMessage)`
+  position: absolute;
+  left: 15px;
+  top: -17px;
   width: 100%;
-  text-align: center;
   font-size: ${props => props.theme.fontSizes.fs14};
   color: ${props => props.theme.colors.accent};
 `;
