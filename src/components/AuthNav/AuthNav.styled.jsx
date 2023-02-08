@@ -40,7 +40,14 @@ export const ButtonAuthLink = styled(NavLink)`
     border: ${p => p.theme.borders.auth};
     color: ${p => p.theme.colors.white};
     cursor: pointer;
+   
   }
+  &:hover,
+  &:focus {
+      background-color: ${props => props.theme.colors.accent};
+      color: ${props => props.theme.colors.white};
+      cursor: pointer;
+    }
 
   &:not(:first-child) {
     margin-left: 12px;
