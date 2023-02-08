@@ -24,8 +24,8 @@ export const PetsList = () => {
   return (
     <>
       {pets.length === 0 && <EmptyListPet>Please, add pet.</EmptyListPet>}
-      {loadPet && <Loader />}
-      {pets && (
+      {!loadPet ?
+      (pets && (
         <ListPets>
           {pets.map(pet => (
             <CardPet key={pet._id}>
@@ -48,7 +48,7 @@ export const PetsList = () => {
             </CardPet>
           ))}
         </ListPets>
-      )}
+      )) : (<Loader />)}
     </>
   );
 };
