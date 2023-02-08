@@ -5,7 +5,7 @@ import { device } from 'Device';
 export const Wrapper = styled.div`
   position: relative;
  
-  @media ${device.mobileOnly} {
+  @media ${device.mobile} {
     margin-top: 30px;
     margin-bottom: 30px;
   }
