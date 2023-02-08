@@ -18,11 +18,15 @@ export const RegisterFormStepOne = () => {
         <FormError name="email" />
       </Label>
       <Label>
-        <InputFormik name="password" placeholder="Password" />
+        <InputFormik name="password" type="password" placeholder="Password" />
         <FormError name="password" />
       </Label>
       <Label>
-        <InputFormik name="confirmPassword" placeholder="Confirm password" />
+        <InputFormik
+          name="confirmPassword"
+          type="password"
+          placeholder="Confirm password"
+        />
         <FormError name="confirmPassword" />
       </Label>
     </BoxInput>
