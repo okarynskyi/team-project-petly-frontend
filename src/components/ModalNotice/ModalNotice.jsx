@@ -144,7 +144,7 @@ function openModal () {
 
           <ButtonsList>
             <ContactItem>
-              <ButtonTel href={`tel:${owner.phone}`}>
+              <ButtonTel phone={owner?.phone}>
                 <ContactText>Contact</ContactText>
               </ButtonTel>
             </ContactItem>
