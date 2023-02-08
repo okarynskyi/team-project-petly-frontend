@@ -3,7 +3,7 @@ import { device } from 'Device';
 
 import EmailTo from 'components/common/EmailTo/EmailTo';
 import CallTo from 'components/common/CallTo/CallTo';
-// import { ReactComponent as Favorite } from '../../staticImages/heart.svg';
+import { ReactComponent as Favorite } from '../../staticImages/heart2.svg';
 
 export const ModalBox = styled.div`
   background: ${p => p.theme.colors.white};
@@ -21,8 +21,7 @@ export const ModalBox = styled.div`
     top: 10%;
     overflow-y: hidden; 
 }
-`;
-// done
+`
 
 export const WrapperForDesc = styled.div`
   width: 240px;
@@ -32,8 +31,7 @@ export const WrapperForDesc = styled.div`
     gap: 20px;
     width: auto;
   }
-`;
-// done
+`
 
 export const ImageWrapper = styled.div`
   position: relative;
@@ -45,8 +43,7 @@ export const ImageWrapper = styled.div`
     width: 290px;
     height: 330px;
   }
-`;
-// done
+`
 
 export const FilterTitleBox = styled.div`
   display: flex;
@@ -60,7 +57,6 @@ export const FilterTitleBox = styled.div`
   top: 20px;
   backdrop-filter: blur(2px);
 `
-// done
 
 export const FitlerTitle = styled.p`
   font-family: ${p => p.theme.fonts.main};
@@ -70,7 +66,6 @@ export const FitlerTitle = styled.p`
   margin: 0;
   color: ${p => p.theme.colors.mainText};
 `
-// done
 
 export const ImgModal = styled.img`
   width: 240px;
@@ -83,7 +78,6 @@ export const ImgModal = styled.img`
     height: 330px;
   }
   `
-// done
 
 export const ModalTitle = styled.h2`
   width: 195px; 
@@ -102,7 +96,6 @@ export const ModalTitle = styled.h2`
     padding-top: 0;
   }
 `
-// done
 
 export const ListWrapper = styled.div`
   display: flex;
@@ -113,8 +106,7 @@ export const ListWrapper = styled.div`
     padding-top: 20px;
     gap: 55px;
   }
-`;
-// done
+`
 
 export const FirstList = styled.ul`
   list-style: none;
@@ -124,15 +116,13 @@ export const FirstList = styled.ul`
   &:last-child {
     padding-bottom: 0px;
   }
-`;
-// done
+`
 
 export const SecondList = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
-`;
-// done
+`
 
 export const Items = styled.li`
   padding-bottom: 8px;
@@ -140,8 +130,7 @@ export const Items = styled.li`
   &:last-child {
     padding-bottom: 0;
   }
-`;
-// done
+`
 
 export const Text = styled.p`
   font-family: ${p => p.theme.fonts.main};
@@ -155,8 +144,7 @@ export const Text = styled.p`
     line-height: 22px;
     font-size: ${p => p.theme.fontSizes.fs16};
   }
-`;
-// done
+`
 
 export const ListItemDescr = styled.p`
   font-weight: ${p => p.theme.fontWeights.fw500};
@@ -170,7 +158,6 @@ export const ListItemDescr = styled.p`
     font-size: ${p => p.theme.fontSizes.fs16};
   }
 `
-// done
 
 export const Comment = styled.p`
   font-family: ${p => p.theme.fonts.main};
@@ -185,8 +172,7 @@ export const Comment = styled.p`
     line-height: 24px;
     font-size: ${p => p.theme.fontSizes.fs16};
   }
-`;
-// done
+`
 
 export const CommentSpan = styled.span`
   font-family: ${p => p.theme.fonts.main};
@@ -197,8 +183,7 @@ export const CommentSpan = styled.span`
     line-height: 24px;
     font-size: ${p => p.theme.fontSizes.fs16};
   }
-`;
-// done
+`
 
 export const ButtonsList = styled.ul`
   list-style: none;
@@ -217,7 +202,6 @@ export const ButtonsList = styled.ul`
     padding-top: 32px;
   }
 `
-// done
 
 export const ContactItem = styled.li`
   width: 240px;
@@ -232,12 +216,10 @@ export const ContactItem = styled.li`
     width: 160px;
   }
 `
-// done
 
 export const Tel = styled(CallTo)`
   text-decoration: none;
-`;
-// done
+`
 
 export const ButtonTel = styled(CallTo)`
   color: white;
@@ -245,8 +227,7 @@ export const ButtonTel = styled(CallTo)`
   &:focus {
     color: white;
   }
-`;
-// done
+`
 
 export const Email = styled(EmailTo)``;
 
@@ -255,19 +236,18 @@ export const Btn = styled.button`
   height: 40px;
   border-radius: 40px;
   border: 2px solid rgb(245, 146, 86);
+  background: ${p => p.theme.colors.white};
 
   @media ${device.tablet} {
     width: 160px;
   }
 `
-// done
 
 export const TextWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 `
-// done
 
 export const ContactText = styled.p`
   font-family: ${p => p.theme.fonts.main};
@@ -277,7 +257,6 @@ export const ContactText = styled.p`
   margin: 0;
   color: ${p => p.theme.colors.white};
 ` 
-// done
 
 export const ButtonText = styled.p`
   font-family: ${p => p.theme.fonts.main};
@@ -288,13 +267,8 @@ export const ButtonText = styled.p`
   padding-right: 10px;
   color: ${p => p.theme.colors.mainText};
 `
-// done
 
-export const PetsFavoriteSvg = styled.svg`
+export const PetsFavoriteSvg = styled(Favorite)`
   width: 16px;
   height: 16px;
-  
-  @media ${device.tablet} {
-    align-items: center;
-  }
-`;
+`
