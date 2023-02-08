@@ -5,7 +5,7 @@ export const FormError = ({ name }) => {
   return (
     <ErrorMessage
       name={name}
-      render={message => <ErrorText>{message}</ErrorText>}
+      render={() => <ErrorText>valid {name} is required</ErrorText>}
     />
   );
 };
@@ -15,16 +15,16 @@ export const RegisterFormStepTwo = () => {
     <BoxInput>
       <Label>
         <InputFormik name="name" placeholder="Name" />
+        <FormError name="name" />
       </Label>
-      <FormError name="name" />
       <Label>
-        <InputFormik name="location" placeholder="Location" />
+        <InputFormik name="location" placeholder="Location. Example: City, Region" />
+        <FormError name="location" />
       </Label>
-      <FormError name="location" />
       <Label>
-        <InputFormik name="phone" placeholder="Mobile phone" maxLength="13" />
+        <InputFormik name="phone" placeholder="Mobile phone. Example +380 ..." maxLength="13" />
+        <FormError name="phone" />
       </Label>
-      <FormError name="phone" />
     </BoxInput>
   );
 };
