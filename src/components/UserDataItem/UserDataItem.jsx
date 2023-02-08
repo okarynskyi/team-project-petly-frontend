@@ -70,6 +70,10 @@ export const UserDataItem = ({
        toast.error('Name must be in English, contain 2-20 symbols');
       return;
     }
+    if (formValues.location && (formValues.location.length < 4 || formValues.location.length > 40 )) {
+       toast.error('City must be in English, contain no more than 40 symbols');
+      return;
+    }
     const changedField = Object.entries(formValues).find(item => item[1]);
     dispatch(userUpdate({ [changedField[0]]: changedField[1] }));
     setStartUpdate(false);
