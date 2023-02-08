@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const InputFileWrap = styled.div`
   position: relative;
-  margin-top: 20px;
+  margin-top: 10px;
   label {
     display: inline-block;
   }
@@ -16,19 +16,18 @@ export const InputFile = styled.input`
 `;
 
 export const AddImgIcon = styled.span`
-  width: 116px;
-  height: 116px;
+  width: 71px;
+  height: 71px;
   background: #fdf7f2;
   border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 8px;
+  margin-top: 4px;
   cursor: pointer;
   @media (min-width: 768px) {
-    margin-top: 12px;
-    width: 140px;
-    height: 140px;
+    width: 71px;
+    height: 71px;
   }
   svg {
     width: 43px;

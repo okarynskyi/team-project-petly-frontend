@@ -1,6 +1,5 @@
 import { Label, Error } from '../ModalAddNotice.styled';
-import { CommentWrap } from './CommentField.styled';
-import { Field } from 'formik';
+import { CommentWrap, CommentInputField } from './CommentField.styled';
 
 export const CommentField = ({ touched, errors, name, validate }) => {
   return (
@@ -9,7 +8,7 @@ export const CommentField = ({ touched, errors, name, validate }) => {
         <div>
           Comments<span>*</span>:
         </div>
-        <Field
+        <CommentInputField
           as="textarea"
           placeholder="Type comment"
           name={name}

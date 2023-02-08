@@ -2,10 +2,7 @@ import styled from 'styled-components';
 import { Field } from 'formik';
 
 export const PriceWrap = styled.div`
-  margin-top: 16px;
-  @media (min-width: 768px) {
-    margin-top: 28px;
-  }
+  margin-top: 10px;
 `;
 
 export const InputField = styled(Field)`
