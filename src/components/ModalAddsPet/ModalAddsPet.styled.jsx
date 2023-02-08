@@ -44,7 +44,7 @@ export const BowInputs = styled(BoxInput)`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: ${props => props.theme.space[3]}px;
+    gap: 6px;
   }
 `;
 export const Error = styled(ErrorText)`
@@ -124,7 +124,7 @@ export const Preview = styled.img`
     height: 182px;
   }
 `;
-export const WrapperModalAddPet = styled.div`
+export const WrapperModalAddPet1 = styled.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -134,11 +134,29 @@ export const WrapperModalAddPet = styled.div`
   width: 100%;
   padding-top: ${props => props.theme.space[3]}px;
   @media ${device.mobileOnly} {
-    max-height: 510px;
+    max-height: 530px;
   }
   @media ${device.tablet} {
     width: 620px;
     max-height: 570px;
+    padding: 40px 75px;
+  }
+`;
+export const WrapperModalAddPet2 = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  padding: 40px 20px;
+  overflow-y: auto;
+  width: 100%;
+  padding-top: ${props => props.theme.space[3]}px;
+  @media ${device.mobileOnly} {
+    max-height: 670px;
+  }
+  @media ${device.tablet} {
+    width: 620px;
+    max-height: 662px;
     padding: 40px 75px;
   }
 `;
@@ -210,5 +228,23 @@ export const ModalButton = styled.button`
   :focus {
     cursor: pointer;
     transform: scale(1.2);
+  }
+`;
+export const WrapperModalAddPet = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  padding: 40px 20px;
+  overflow-y: auto;
+  width: 100%;
+  padding-top: ${props => props.theme.space[3]}px;
+  @media ${device.mobileOnly} {
+    max-height: 510px;
+  }
+  @media ${device.tablet} {
+    width: 620px;
+    max-height: 570px;
+    padding: 40px 75px;
   }
 `;
