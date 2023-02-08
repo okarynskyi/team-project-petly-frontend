@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { BoxLink } from '../EmailTo/EmailTo.styled';
+import { BoxLink } from './CallTo.styled';
 
 export default function CallTo({ phone, children }) {
   return <BoxLink href={`tel:${phone}`}>{children}</BoxLink>;

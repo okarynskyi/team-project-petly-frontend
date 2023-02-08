@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import { HiOutlinePlus, HiX } from 'react-icons/hi';
-import { FormikWizard } from 'formik-wizard-form';
+import { HiX, HiOutlinePlus } from 'react-icons/hi';
 import { schema1, schema2 } from './schemas';
 import { getCurrent } from '../../helpers/formatDate';
 import { ModalUser } from './Modal';
@@ -11,11 +10,11 @@ import {
   WrapperAddPet,
   StyledPlus,
   AddPetBtn,
-  WrapperModalAddPet,
+  WrapperModalAddPet1,
+  WrapperModalAddPet2,
   FormAdd,
   BowInputs,
   InputStyled,
-  StyledComment,
   TitleModal,
   LabelStyled,
   TextAddPhoto,
@@ -29,80 +28,123 @@ import {
   StyledButton,
 } from 'components/common/StyledButton/StyledButton.styled';
 import { HiddenInput } from 'components/UserData/UserData.styled';
-
+import { Formik } from 'formik';
+import {ModalContent, ModalContent2} from '../ModalAddsPet/Modal.styled'
 const ModalAddPet = () => {
   const [modalActive, setModalActive] = useState(false);
-  const [onAddFile, setOnAddFile] = useState(null);
-  const [preview, setPreview] = useState('');
-  const dispatch = useDispatch();
-
-  const initialValues = {
+  const [datat, setDatat] = useState({
     name: '',
     birthday: '',
     breed: '',
     comments: '',
-  };
-
-  const handleKeyDown = e => {
-    if (e.code === 'Escape') {
-      setModalActive(false);
-    }
-  };
-  window.addEventListener('keydown', handleKeyDown);
-  const handleSubmit = ({ name, birthday, breed, comments }, fn) => {
-    const data = new FormData();
-    data.append('name', name);
-    data.append('birthday', birthday);
-    data.append('breed', breed);
-    data.append('imageURL', onAddFile);
-    data.append('comments', comments);
-    if (!onAddFile) {
-      toast.error('photo is requare');
-      return;
-    }
-    dispatch(addPet(data));
-    fn.resetForm();
+  });
+  const [currentStep, setCurrentStep] = useState(0);
+  const [preview, setPreview] = useState('');
+  const dispatch = useDispatch();
+  const [onAddFile, setOnAddFile] = useState(null);
+  const makeRequest = formData => {
+    dispatch(addPet(formData));
+    setOnAddFile(null);
     setPreview(null);
-    setModalActive(false);
     document.body.style.overflow = 'auto';
   };
 
-  const ModalAddPetOne = () => {
-    return (
-      <>
-        <TitleModal>Add pet</TitleModal>
-        <BowInputs>
-          <LabelStyled htmlFor="name">
-            Name pet*
-            <InputStyled
-              name="name"
-              type="text"
-              id="name"
-              placeholder="Type name pet"
-            />
-            <Error name="name" component="div" />
-          </LabelStyled>
-          <LabelStyled>
-            Date of birth*
-            <InputStyled
-              name="birthday"
-              type="date"
-              max={getCurrent()}
-              placeholder="Type date of birth"
-            />
-            <Error name="birthday" component="p" />
-          </LabelStyled>
-          <LabelStyled>
-            Breed*
-            <InputStyled name="breed" placeholder="Type breed" />
-            <Error name="breed" component="p" />
-          </LabelStyled>
-        </BowInputs>
-      </>
-    );
+  const handleNextStep = (newData, final = false) => {
+    setDatat(prev => ({ ...prev, ...newData }));
+    if (final) {
+      const newInfo = new FormData();
+      newInfo.append('name', newData.name);
+      newInfo.append('birthday', newData.birthday);
+      newInfo.append('breed', newData.breed);
+      newInfo.append('imageURL', onAddFile);
+      newInfo.append('comments', newData.comments);
+      if (!onAddFile) {
+        toast.error('photo is requare');
+        return;
+      }
+      makeRequest(newInfo);
+      setModalActive(false);
+      setDatat({
+        name: '',
+        birthday: '',
+        breed: '',
+        comments: '',
+      });
+      setCurrentStep(0);
+      return;
+    }
+    setCurrentStep(prev => prev + 1);
+  };
+  const handlePrevStep = newData => {
+    setDatat(prev => ({ ...prev, ...newData }));
+    setCurrentStep(prev => prev - 1);
   };
 
-  const ModalAddPetTwo = () => {
+  const ModalAddPetOne = props => {
+    const handleSubmit = values => {
+      props.next(values);
+    };
+    return (
+      <Formik
+        validationSchema={schema1}
+        initialValues={props.data}
+        onSubmit={handleSubmit}
+      >
+        {() => (
+          <FormAdd>
+            <TitleModal>Add pet</TitleModal>
+            <BowInputs>
+              <LabelStyled htmlFor="name">
+                Name pet*
+                <InputStyled
+                  name="name"
+                  type="text"
+                  id="name"
+                  placeholder="Type name pet"
+                />
+                <Error name="name" component="div" />
+              </LabelStyled>
+              <LabelStyled>
+                Date of birth*
+                <InputStyled
+                  name="birthday"
+                  type="date"
+                  max={getCurrent()}
+                  placeholder="Type date of birth"
+                />
+                <Error name="birthday" component="p" />
+              </LabelStyled>
+              <LabelStyled>
+                Breed*
+                <InputStyled name="breed" placeholder="Type breed" />
+                <Error name="breed" component="p" />
+              </LabelStyled>
+            </BowInputs>
+            <div>
+              <AccentButton type="submit" size="180px">
+                Next
+              </AccentButton>
+              <StyledButton
+                type="button"
+                size="180px"
+                onClick={() => {
+                  setModalActive(false);
+                  document.body.style.overflow = 'auto';
+                }}
+              >
+                Cancel
+              </StyledButton>
+            </div>
+          </FormAdd>
+        )}
+      </Formik>
+    );
+  };
+  const ModalAddPetTwo = props => {
+    const handleSubmit = values => {
+      console.log(values);
+      props.next(values, true);
+    };
     const handleChange = e => {
       setOnAddFile(e.currentTarget.files[0]);
       const reader = new FileReader();
@@ -113,41 +155,59 @@ const ModalAddPet = () => {
     };
 
     return (
-      <>
-        <TitleModal>Add pet</TitleModal>
-        <BowInputs>
-          <div>
-            <TextAddPhoto>Add photo and some comments*</TextAddPhoto>
-            <HiddenInput
-              type="file"
-              name="petsPhotoURL"
-              id="petsPhotoURL"
-              accept="image/png, image/jpeg, image/jpg, image/bmp"
-              onChange={handleChange}
-            />
-            {!preview ? (
-              <LabelEdd htmlFor="petsPhotoURL">
-                <HiOutlinePlus color="grey" size="70px" />
-              </LabelEdd>
-            ) : (
-              <Preview src={preview} alt="Previev" />
-            )}
-          </div>
-          <LabelStyled htmlFor="comments">
-            Comments*
-            <Error name="comments" component="p" />
-            <StyledComment
-              name="comments"
-              id="comments"
-            //  wrap="hard"
-              placeholder="Type comments"
-            />
-          </LabelStyled>
-        </BowInputs>
-      </>
+      <Formik
+        validationSchema={schema2}
+        initialValues={props.data}
+        onSubmit={handleSubmit}
+      >
+        {formProps => (
+          <FormAdd>
+            <TitleModal>Add pet</TitleModal>
+            <BowInputs>
+              <div>
+                <TextAddPhoto >Add photo and some comments*</TextAddPhoto>
+                <HiddenInput
+                  type="file"
+                  name="petsPhotoURL"
+                  id="petsPhotoURL"
+                  accept="image/png, image/jpeg, image/jpg, image/bmp"
+                  onChange={handleChange}
+                />
+                {!preview ? (
+                  <LabelEdd htmlFor="petsPhotoURL">
+                    <HiOutlinePlus color="grey" size="70px" />
+                  </LabelEdd>
+                ) : (
+                  <Preview src={preview} alt="Previev" />
+                )}
+              </div>
+              <LabelStyled>
+                Comments*
+                <InputStyled name="comments" placeholder="Type comments" style={{height:'100px'} } />
+                <Error name="comments" component="p" />
+              </LabelStyled>
+            </BowInputs>
+            <div>
+              <AccentButton type="submit" size="180px">
+                Done
+              </AccentButton>
+              <StyledButton
+                type="button"
+                size="180px"
+                onClick={() => props.prev(formProps.values)}
+              >
+                Back
+              </StyledButton>
+            </div>
+          </FormAdd>
+        )}
+      </Formik>
     );
   };
-
+  const steps = [
+    <ModalAddPetOne next={handleNextStep} data={datat} />,
+    <ModalAddPetTwo next={handleNextStep} prev={handlePrevStep} data={datat} />,
+  ];
   return (
     <div>
       <WrapperAddPet>
@@ -163,64 +223,12 @@ const ModalAddPet = () => {
       </WrapperAddPet>
       {modalActive && (
         <ModalUser>
-          <WrapperModalAddPet>
-            <FormikWizard
-              initialValues={initialValues}
-              onSubmit={handleSubmit}
-              validateOnNext
-              activeStepIndex={0}
-              steps={[
-                {
-                  component: ModalAddPetOne,
-                  validationSchema: schema1,
-                },
-                {
-                  component: ModalAddPetTwo,
-                  validationSchema: schema2,
-                },
-              ]}
-            >
-              {({ renderComponent, handlePrev, handleNext, isLastStep }) => (
-                <FormAdd encType="multipart/form-data">
-                  {renderComponent()}
-                  {!isLastStep ? (
-                    <div>
-                      <AccentButton
-                        type="button"
-                        size="180px"
-                        onClick={handleNext}
-                      >
-                        Next
-                      </AccentButton>
-                      <StyledButton
-                        type="button"
-                        size="180px"
-                        onClick={() => {
-                          setModalActive(false);
-                          document.body.style.overflow = 'auto';
-                        }}
-                      >
-                        Cancel
-                      </StyledButton>
-                    </div>
-                  ) : (
-                    <div>
-                      <AccentButton type="submit" size="180px">
-                        Done
-                      </AccentButton>
-                      <StyledButton
-                        type="button"
-                        size="180px"
-                        onClick={handlePrev}
-                      >
-                        Back
-                      </StyledButton>
-                    </div>
-                  )}
-                </FormAdd>
-              )}
-            </FormikWizard>
-          </WrapperModalAddPet>
+          {currentStep === 0 ? (
+            <ModalContent> <WrapperModalAddPet1>{steps[0]}</WrapperModalAddPet1></ModalContent>
+           
+          ) : (
+           <ModalContent2><WrapperModalAddPet2>{steps[1]}</WrapperModalAddPet2></ModalContent2> 
+          )}
           <ModalButton
             type="button"
             onClick={() => {

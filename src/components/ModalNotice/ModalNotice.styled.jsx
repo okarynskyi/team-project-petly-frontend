@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { device } from 'Device';
-
 import EmailTo from 'components/common/EmailTo/EmailTo';
 import CallTo from 'components/common/CallTo/CallTo';
 import { ReactComponent as Favorite } from '../../staticImages/heart2.svg';
@@ -146,11 +145,15 @@ export const Text = styled.p`
   }
 `
 
-export const ListItemDescr = styled.p`
+export const ListItemDescr = styled.p.attrs(props => ({
+  textDecoration: props.isNotDecorated ? 'underline' : 'none', 
+}))`
+  text-decoration: underline;
   font-weight: ${p => p.theme.fontWeights.fw500};
   font-size: ${p => p.theme.fontSizes.fs14};
   margin: 0;
   line-height: 19px;
+  text-decoration: ${props => props.textDecoration};
   color: ${p => p.theme.colors.black};
 
   @media ${device.tablet} {
@@ -217,19 +220,19 @@ export const ContactItem = styled.li`
   }
 `
 
-export const Tel = styled(CallTo)`
-  text-decoration: none;
-`
+export const Email = styled(EmailTo)``
+
+export const Tel = styled(CallTo)``
 
 export const ButtonTel = styled(CallTo)`
+  text-decoration: none;
   color: white;
+
   &:hover,
   &:focus {
     color: white;
   }
 `
-
-export const Email = styled(EmailTo)``;
 
 export const Btn = styled.button`
   width: 240px;
