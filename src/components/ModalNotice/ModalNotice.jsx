@@ -8,7 +8,6 @@ import operations from '../../redux/notices/noticesOperations';
 import { ModalBox } from './ModalNotice.styled';
 import petNotFound from '../../staticImages/petNotFound.jpg';
 import { dateConverter } from '../../helpers/formatDate';
-// import refreshingPage from '../NoticeCategoryItem/NoticeCategoryItem';
 
 const ModalNotice = ({ notice, isFavorite, category }) => {
   const {
@@ -58,7 +57,7 @@ const ModalNotice = ({ notice, isFavorite, category }) => {
 
     toast.success('Pet removed from favorites.');
   };
-
+  
 function openModal () {
   setModalActive(true)
   document.body.style.overflow = 'hidden';
@@ -76,7 +75,7 @@ function openModal () {
               <FilterTitleBox>
                 <FitlerTitle>{adopStatus}</FitlerTitle>
               </FilterTitleBox>
-              <ImgModal src={avatarURL || petNotFound} alt="Pet" />
+              <ImgModal src={avatarURL || petNotFound} alt="Pet" loading='lazy'/>
             </ImageWrapper>
 
             <div>
@@ -113,7 +112,7 @@ function openModal () {
                     <ListItemDescr>{name}</ListItemDescr>
                   </Items>
                   <Items>
-                    <ListItemDescr>{dateConverter(birthday)}</ListItemDescr>
+                    <ListItemDescr>{(birthday) ? dateConverter(birthday) : "Unknown"}</ListItemDescr>
                   </Items>
                   <Items>
                     <ListItemDescr>{breed}</ListItemDescr>
@@ -125,10 +124,10 @@ function openModal () {
                     <ListItemDescr>{sex}</ListItemDescr>
                   </Items>
                   <Items>
-                    <ListItemDescr><Email email={owner?.email}>{owner.email}</Email></ListItemDescr>
+                    <ListItemDescr isNotDecorated={true}><Email email={owner?.email}>{owner.email}</Email></ListItemDescr>
                   </Items>
                   <Items>
-                    <ListItemDescr><Tel phone={owner?.phone}>{owner.phone}</Tel></ListItemDescr>
+                    <ListItemDescr isNotDecorated={true}><Tel phone={owner?.phone} >{owner.phone}</Tel></ListItemDescr>
                   </Items>
                     <Items>
                     {price && <ListItemDescr>{price}$</ListItemDescr>}

@@ -145,12 +145,15 @@ export const Text = styled.p`
   }
 `
 
-export const ListItemDescr = styled.p`
+export const ListItemDescr = styled.p.attrs(props => ({
+  textDecoration: props.isNotDecorated ? 'underline' : 'none', 
+}))`
   text-decoration: underline;
   font-weight: ${p => p.theme.fontWeights.fw500};
   font-size: ${p => p.theme.fontSizes.fs14};
   margin: 0;
   line-height: 19px;
+  text-decoration: ${props => props.textDecoration};
   color: ${p => p.theme.colors.black};
 
   @media ${device.tablet} {
