@@ -271,6 +271,16 @@ export const ButtonText = styled.p`
   color: ${p => p.theme.colors.mainText};
 `
 
+export const ModalNoticeWrapper = styled.div`
+  border: transparent;
+  width: 248px;
+  height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: ${p => p.theme.radii.br40};
+`
+
 export const PetsFavoriteSvg = styled(Favorite)`
   width: 16px;
   height: 16px;
