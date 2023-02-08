@@ -29,7 +29,7 @@ import {
 } from 'components/common/StyledButton/StyledButton.styled';
 import { HiddenInput } from 'components/UserData/UserData.styled';
 import { Formik } from 'formik';
-import {ModalContent, ModalContent2} from '../ModalAddsPet/Modal.styled'
+import { ModalContent, ModalContent2 } from '../ModalAddsPet/Modal.styled';
 const ModalAddPet = () => {
   const [modalActive, setModalActive] = useState(false);
   const [datat, setDatat] = useState({
@@ -48,7 +48,12 @@ const ModalAddPet = () => {
     setPreview(null);
     document.body.style.overflow = 'auto';
   };
-
+  const handleKeyDown = e => {
+    if (e.code === 'Escape') {
+      setModalActive(false);
+    }
+  };
+  window.addEventListener('keydown', handleKeyDown);
   const handleNextStep = (newData, final = false) => {
     setDatat(prev => ({ ...prev, ...newData }));
     if (final) {
@@ -165,7 +170,7 @@ const ModalAddPet = () => {
             <TitleModal>Add pet</TitleModal>
             <BowInputs>
               <div>
-                <TextAddPhoto >Add photo and some comments*</TextAddPhoto>
+                <TextAddPhoto>Add photo and some comments*</TextAddPhoto>
                 <HiddenInput
                   type="file"
                   name="petsPhotoURL"
@@ -183,7 +188,11 @@ const ModalAddPet = () => {
               </div>
               <LabelStyled>
                 Comments*
-                <InputStyled name="comments" placeholder="Type comments" style={{height:'100px'} } />
+                <InputStyled
+                  name="comments"
+                  placeholder="Type comments"
+                  style={{ height: '100px' }}
+                />
                 <Error name="comments" component="p" />
               </LabelStyled>
             </BowInputs>
@@ -224,20 +233,37 @@ const ModalAddPet = () => {
       {modalActive && (
         <ModalUser>
           {currentStep === 0 ? (
-            <ModalContent> <WrapperModalAddPet1>{steps[0]}</WrapperModalAddPet1></ModalContent>
-           
+            <ModalContent>
+              {' '}
+              <WrapperModalAddPet1>
+                {steps[0]}{' '}
+                <ModalButton
+                  type="button"
+                  onClick={() => {
+                    setModalActive(false);
+                    document.body.style.overflow = 'auto';
+                  }}
+                >
+                  <HiX color="#111111" size="34px" />
+                </ModalButton>
+              </WrapperModalAddPet1>
+            </ModalContent>
           ) : (
-           <ModalContent2><WrapperModalAddPet2>{steps[1]}</WrapperModalAddPet2></ModalContent2> 
+            <ModalContent2>
+              <WrapperModalAddPet2>
+                {steps[1]}{' '}
+                <ModalButton
+                  type="button"
+                  onClick={() => {
+                    setModalActive(false);
+                    document.body.style.overflow = 'auto';
+                  }}
+                >
+                  <HiX color="#111111" size="34px" />
+                </ModalButton>
+              </WrapperModalAddPet2>
+            </ModalContent2>
           )}
-          <ModalButton
-            type="button"
-            onClick={() => {
-              setModalActive(false);
-              document.body.style.overflow = 'auto';
-            }}
-          >
-            <HiX color="#111111" size="34px" />
-          </ModalButton>
         </ModalUser>
       )}
     </div>
