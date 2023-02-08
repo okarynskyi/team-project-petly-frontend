@@ -1,25 +1,16 @@
 import Modal from '../common/Modal/Modal';
-// import addToFavorites from '../../redux/notices/noticesOperations';
-// import deleteUserNotice from '../../redux/notices/noticesOperations';
-// import deleteFromFavorites from '../../redux/notices/noticesOperations';
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ImgModal, FilterTitleBox, FitlerTitle, Items, Text, ModalTitle, TextWrapper, ContactText, ButtonText, ContactItem, Btn, FirstList, ButtonsList, SecondList, ListWrapper, WrapperForDesc, ImageWrapper, ListItemDescr, ButtonTel, PetsFavoriteSvg, CommentSpan, Comment } from './ModalNotice.styled';
 import { useState } from 'react';
-// import { toast } from 'react-toastify';
-// import operations from '../../redux/notices/noticesOperations';
-// import { selectIsLoggedIn } from 'redux/auth/authSelectors';
-import heart from '../../staticImages/heart.svg';
+import { selectIsLoggedIn } from 'redux/auth/authSelectors';
+import { toast } from 'react-toastify';
+import operations from '../../redux/notices/noticesOperations';
 import { ModalBox } from './ModalNotice.styled';
 import petNotFound from '../../staticImages/petNotFound.jpg';
 import { dateConverter } from '../../helpers/formatDate';
+// import refreshingPage from '../NoticeCategoryItem/NoticeCategoryItem';
 
-// const categoryShelf = {
-//   "sell": "sell",
-//   "lost-found": "lost-found",
-//   "in-good-hands": "in-good-hands",
-// };
-
-const ModalNotice = ({ notice, isFavorite, isOwner, category }) => {
+const ModalNotice = ({ notice, isFavorite, category }) => {
   const {
     avatarURL,
     birthday,
@@ -31,55 +22,48 @@ const ModalNotice = ({ notice, isFavorite, isOwner, category }) => {
     price,
     sex,
     title,
-    // _id,
+    _id,
     adopStatus,
   } = notice;
-  
+
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
   const [modalActive, setModalActive] = useState(false);
-  // const noItem = '-----------------------';
-  // const noPrice = '0';
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const isLoggedIn = useSelector(selectIsLoggedIn);
+  const addToFavorite = async () => {
+    if (!isLoggedIn) {
+      return toast.error(
+        'You need to authorize before adding pets to favorites.'
+      );
+    }
+    dispatch(operations.addToFavorites(_id))
+      // .then(() => {
+      //   refreshingPage(category);
+      // })
 
-  // const refreshingPage = (category) => {
-  //   if (category === categoryShelf[category]) dispatch(operations.getNoticesByCategory(category));
-  //   if (category === "favorites-ads") { dispatch(operations.getFavorites()); };
-  //   if (category === "my-ads") { dispatch(operations.getUserNotices()); };
-  // };
+    toast.success('Pet added to favorites.');
+  };
 
-  // const addToFavorite = async () => {
-  //   if (!isLoggedIn) {
-  //     return toast.error(
-  //       'You need to authorize before adding notices to favorite.'
-  //     );
-  //   }
-  //   dispatch(operations.addToFavorites(_id))
-  //     .then(() => {
-  //       refreshingPage(category);
-  //     })
+  const removeFromFavorite = async () => {
+    if (!isLoggedIn) {
+      return toast.error(
+        'You need to authorize before removing pets from favorites.'
+      );
+    }
+    dispatch(operations.deleteFromFavorites(_id))
+      // .then(() => {
+      //   refreshingPage(category);
+      // })
 
-  //   toast.success('Notice added to favorite adds.');
-  // };
-
-  // const removeFromFavorite = async () => {
-  //   if (!isLoggedIn) {
-  //     return toast.error(
-  //       'You need to authorize before remove notices from favorite.'
-  //     );
-  //   }
-  //   dispatch(operations.deleteFromFavorites(_id))
-  //     .then(() => {
-  //       refreshingPage(category);
-  //     })
-
-  //   toast.success('Notice removed from favorite adds.');
-  // };
+    toast.success('Pet removed from favorites.');
+  };
 
 function openModal () {
   setModalActive(true)
   document.body.style.overflow = 'hidden';
-}
+  }
+  
   return (
     <div position="relative">
       <div onClick={() => openModal()}>Learn more</div>
@@ -158,6 +142,7 @@ function openModal () {
             <CommentSpan>Comments: </CommentSpan>{comments}
           </Comment>
           </div>
+
           <ButtonsList>
             <ContactItem>
               <ButtonTel href={`tel:${owner.phone}`}>
@@ -165,28 +150,22 @@ function openModal () {
               </ButtonTel>
             </ContactItem>
             <li>
-                {/* {!isFavorite && ( */}
-              <Btn
-                type="button"
-                >
-                <TextWrapper>
-                  <ButtonText>Remove from</ButtonText>
-                  <PetsFavoriteSvg><use href={heart + '#heart-button'}></use></PetsFavoriteSvg>
-                </TextWrapper>
-                </Btn>
-                {/* )} */}
-              <Btn type="button">
-                <TextWrapper>
+              {!isFavorite && (
+                <Btn onClick={addToFavorite}>
+                  <TextWrapper>
                   <ButtonText>Add to</ButtonText>
-                  <PetsFavoriteSvg><use href={heart + '#heart-button'}></use></PetsFavoriteSvg>
+                  <PetsFavoriteSvg></PetsFavoriteSvg>
                 </TextWrapper>
-              </Btn>      
-              <Btn type="button">
-                <TextWrapper>
-                  <ButtonText>Add to</ButtonText>
-                  <PetsFavoriteSvg><use href={heart + '#heart-button'}></use></PetsFavoriteSvg>
+          </Btn>
+      )}
+      {isFavorite && (
+                <Btn onClick={removeFromFavorite}>
+                  <TextWrapper>
+                  <ButtonText></ButtonText>
+                  <PetsFavoriteSvg></PetsFavoriteSvg>
                 </TextWrapper>
-                </Btn>
+                </Btn> 
+       )}
             </li>
           </ButtonsList>
         </ModalBox>
