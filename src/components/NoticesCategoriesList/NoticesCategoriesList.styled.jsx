@@ -12,6 +12,7 @@ margin-left: 16px;
   display: grid;
   gap: 32px;
   justify-content: center;
+  margin-bottom: 32px;
 
   @media ${device.tablet} {
     grid-template-columns: 1fr 1fr; 
