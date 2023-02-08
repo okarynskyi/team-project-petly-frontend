@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 
 export const SexRadioWrap = styled.div`
-  margin-top: 16px;
-  margin-bottom: 16px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   display: flex;
   gap: 40px;
   @media (min-width: 768px) {
-    margin-top: 28px;
     gap: 80px;
   }
 `;
@@ -15,7 +14,6 @@ export const RadioSexLabel = styled.label`
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 12px;
   cursor: pointer;
   color: ${p => {
     if (p.sex === p.value) {
@@ -35,8 +33,8 @@ export const RadioSexLabel = styled.label`
 
   @media (min-width: 768px) {
     svg {
-      width: 60px;
-      height: 60px;
+      width: 40px;
+      height: 40px;
     }
   }
 `;

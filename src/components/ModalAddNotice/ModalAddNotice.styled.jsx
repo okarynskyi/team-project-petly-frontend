@@ -5,6 +5,7 @@ import {
   WrapperAddPet,
   AddPetBtn,
 } from '../../components/ModalAddsPet/ModalAddsPet.styled';
+
 export const Label = styled.label`
   position: relative;
   display: flex;
@@ -22,15 +23,32 @@ export const Label = styled.label`
     gap: 12px;
   }
 `;
+export const LabelBreed = styled.label`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 
+  font-size: 18px;
+  line-height: calc(26 / 18);
+  color: #111111;
+  span {
+    color: #f59256;
+  }
+  @media (min-width: 768px) {
+    margin-bottom: 20px;
+    font-size: 24px;
+    line-height: calc(26 / 24);
+    gap: 12px;
+  }
+`;
 export const Error = styled.div`
   position: absolute;
   left: 0;
   bottom: -20%;
-  color: red;
+  color: #f59256;
   font-size: 12px;
 `;
-
 export const Title = styled.h3`
   font-size: 24px;
   line-height: calc(33 / 24);
@@ -41,9 +59,8 @@ export const Title = styled.h3`
     line-height: calc(49 / 36);
   }
 `;
-
 export const Subtitle = styled.p`
-  margin-top: 20px;
+  margin-top: 10px;
   font-size: 16px;
   line-height: calc(22 / 16) 22px;
   text-align: center;
@@ -54,30 +71,28 @@ export const Subtitle = styled.p`
     line-height: calc(27 / 20);
   }
 `;
-
 export const FormStyled = styled(Form)`
-  margin-top: 20px;
-  @media (min-width: 768px) {
-    margin-top: 28px;
-  }
+  margin-top: 10px;
 `;
-
 export const InputFieldWrap = styled.div`
-  margin-top: 32px;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 6px;
   @media (min-width: 768px) {
-    gap: 28px;
+    margin-top: 20px;
+    gap: 16px;
+  }
+  
   }
 `;
-
 export const BtnWrap = styled.div`
   margin-top: 40px;
   display: flex;
   flex-direction: column;
   gap: 12px;
   @media (min-width: 768px) {
+    margin-top: 20px;
     flex-direction: row-reverse;
     justify-content: center;
     align-items: center;
@@ -130,13 +145,12 @@ export const TextAddLeft = styled.p`
     color: #111111;
   }
 `;
-
 export const ModalContent3 = styled.div`
   position: absolute;
-  top: 50%;
+  top: 8%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  min-height: 670px;
+  transform: translate(-50%, -5%);
+  height: 100%;
 
   width: 280px;
   max-width: 100%;
@@ -145,6 +159,20 @@ export const ModalContent3 = styled.div`
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
   @media ${device.tablet} {
-    width: 662px;
+    width: 608px;
+    height: 95%;
+  }
+`;
+export const WrapperModalAddNotice = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 20px;
+  overflow-y: auto;
+  width: 100%;
+
+  @media ${device.tablet} {
+    width: 608px;
+    padding: 10px 75px;
   }
 `;

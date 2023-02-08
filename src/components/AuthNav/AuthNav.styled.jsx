@@ -26,7 +26,7 @@ export const ButtonAuthLink = styled(NavLink)`
   min-width: ${props => props.size};
   padding: 8px 41px;
   text-align: center;
-  font-size: ${p => p.theme.fontSizes.fs20};
+  font-size: ${p => p.theme.fontSizes.fs14};
   font-weight: ${p => p.theme.fontWeights.fw500};
   background-color: ${p => p.theme.colors.background};
   color: ${p => p.theme.colors.mainText};
@@ -40,14 +40,13 @@ export const ButtonAuthLink = styled(NavLink)`
     border: ${p => p.theme.borders.auth};
     color: ${p => p.theme.colors.white};
     cursor: pointer;
-   
   }
   &:hover,
   &:focus {
-      background-color: ${props => props.theme.colors.accent};
-      color: ${props => props.theme.colors.white};
-      cursor: pointer;
-    }
+    background-color: ${props => props.theme.colors.accent};
+    color: ${props => props.theme.colors.white};
+    cursor: pointer;
+  }
 
   &:not(:first-child) {
     margin-left: 12px;
@@ -58,6 +57,7 @@ export const ButtonAuthLink = styled(NavLink)`
   }
 
   @media screen and (min-width: 768px) {
+    font-size: ${p => p.theme.fontSizes.fs20};
     height: 47px;
   }
 `;

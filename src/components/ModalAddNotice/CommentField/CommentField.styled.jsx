@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Field } from 'formik';
 
 export const CommentWrap = styled.div`
-  margin-top: 20px;
+  margin-top: 10px;
 `;
 
 export const CommentInputField = styled(Field)`
