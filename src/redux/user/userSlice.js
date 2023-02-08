@@ -5,7 +5,7 @@ import {
   removePet,
   getUserData,
   userUpdate,
-  updatePhoto,
+  updatePhoto, getUserPets
 } from './userOperations';
 
 const handlePending = state => {
@@ -57,10 +57,18 @@ const userSlice = createSlice({
       state.isLoading = false;
       state.isError = payload;
     },
+    [getUserPets.pending]: handlePending,
+    [getUserPets.fulfilled](state, { payload }) {
+      state.profile.userPets = payload.userPets;
+    },
+    [getUserPets.rejected](state, { payload }) {
+      state.isLoading = false;
+      state.isError = payload;
+    },
     [removePet.pending]: handlePending,
     [removePet.fulfilled](state, { payload }) {
       const index = state.profile.userPets.findIndex(
-        item => item._id === payload._id
+        item => item._id === payload
       );
       state.profile.userPets.splice(index, 1);
     },

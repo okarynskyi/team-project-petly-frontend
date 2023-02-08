@@ -15,6 +15,18 @@ export const getUserData = createAsyncThunk(
   }
 );
 
+export const getUserPets = createAsyncThunk(
+  'user/getUserPets',
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get('/users/pets');
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 export const userUpdate = createAsyncThunk(
   'auth/userUpdate',
   async (credentials, { rejectWithValue }) => {
@@ -52,10 +64,10 @@ export const addPet = createAsyncThunk(
   
 export const removePet = createAsyncThunk(
   'user/removePet',
-  async (id, { rejectWithValue }) => {
+  async (_id, { rejectWithValue }) => {
     try {
-      await axios.delete(`/users/pets/${id}`);
-      return id;
+      await axios.delete(`/users/pets/${_id}`);
+      return _id;
     } catch (error) {
       return rejectWithValue(error.message);
     }
