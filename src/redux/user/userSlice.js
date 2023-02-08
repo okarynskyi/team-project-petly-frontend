@@ -60,7 +60,7 @@ const userSlice = createSlice({
     [removePet.pending]: handlePending,
     [removePet.fulfilled](state, { payload }) {
       const index = state.profile.userPets.findIndex(
-        item => item._id === payload._id
+        item => item._id === payload
       );
       state.profile.userPets.splice(index, 1);
     },
