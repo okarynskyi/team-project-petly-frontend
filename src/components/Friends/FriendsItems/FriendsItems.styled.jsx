@@ -34,6 +34,12 @@ export const StyledTitle = styled.a`
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   color: ${p => p.theme.colors.accent};
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    color: ${p => p.theme.colors.hoverAccent};
+  }
 
   @media ${device.tablet} {
     font-size: ${p => p.theme.fontSizes.fs16};
@@ -118,6 +124,12 @@ export const StyledLink = styled.a.attrs(props => ({
   align-items: center;
   text-decoration: ${props => props.textDecoration};
   color: ${p => p.theme.colors.black};
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    color: ${p => p.theme.colors.hoverAccent};
+  }
 
    @media ${device.tablet} {
     font-size: ${p => p.theme.fontSizes.fs14};
