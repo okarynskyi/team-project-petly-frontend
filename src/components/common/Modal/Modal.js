@@ -4,6 +4,14 @@ import { HiX} from 'react-icons/hi';
 
 const Modal = ({active, setActive, children}) => {
 
+    const handleKeyDown = e => {
+        if (e.code === 'Escape') {
+            setActive(false);
+            document.body.style.overflow = '';
+        }
+      };
+      window.addEventListener('keydown', handleKeyDown);
+      
     function closeModal () {
         setActive(false)
         document.body.style.overflow = '';

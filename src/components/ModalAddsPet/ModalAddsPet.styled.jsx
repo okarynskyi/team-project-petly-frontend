@@ -16,6 +16,8 @@ export const FormAdd = styled(FormFormik)`
       width: 240px;
       font-weight: ${props => props.theme.fontWeights.fw500};
       letter-spacing: 0.04em;
+      /* overflow-y: scroll;
+      overflow-x: hidden; */
       &:not(:last-child) {
         margin-bottom: 12px;
       }
@@ -129,7 +131,7 @@ export const Preview = styled.img`
   }
 `;
 export const WrapperModalAddPet1 = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   height: 100%;
@@ -147,7 +149,7 @@ export const WrapperModalAddPet1 = styled.div`
   }
 `;
 export const WrapperModalAddPet2 = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   height: 100%;
