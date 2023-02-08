@@ -4,6 +4,7 @@ import { device } from 'Device';
 export const Wrapper = styled.div`
 margin-left: auto;
   margin-right: auto;
+  margin-bottom: 32px;
 `;
 
 export const List = styled.ul`
@@ -12,7 +13,6 @@ margin-left: 16px;
   display: grid;
   gap: 32px;
   justify-content: center;
-  margin-bottom: 32px;
 
   @media ${device.tablet} {
     grid-template-columns: 1fr 1fr; 
