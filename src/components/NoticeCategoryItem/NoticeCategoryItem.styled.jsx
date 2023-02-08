@@ -113,6 +113,7 @@ export const CategoryName = styled.p`
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(2px);
   display: flex;
+  justify-content: center;
   align-items: center;
   font-family: ${p => p.theme.fonts.main};
   font-size: ${p => p.theme.fontSizes.fs12};
