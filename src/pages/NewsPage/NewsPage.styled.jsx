@@ -122,4 +122,10 @@ export const A = styled.a`
   line-height: 1.37;
   color: ${p => p.theme.colors.accent};
   text-decoration: underline;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  :focus  {
+    color: ${p => p.theme.colors.hoverAccent};
+  }
 `;

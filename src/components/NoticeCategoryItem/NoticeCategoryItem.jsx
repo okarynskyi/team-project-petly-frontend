@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 
 import operations from '../../redux/notices/noticesOperations';
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
+import petNotFound from '../../staticImages/petNotFound.jpg';
 import ModalNotice from '../ModalNotice/ModalNotice';
 import { formatAgeYears } from 'helpers/formatDate';
 import {
@@ -88,7 +89,7 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
   return (
     <Item key={_id}>
       <ImageWrapper>
-        <Image src={avatarURL} alt="Pet" loading='lazy'/>
+        <Image src={avatarURL || petNotFound} alt="Pet" loading='lazy' />
       </ImageWrapper>
       <CategoryName>{adopStatus}</CategoryName>
 
