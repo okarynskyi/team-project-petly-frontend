@@ -31,6 +31,7 @@ export const InputUserInfo = styled.input`
   border-radius: ${props => props.theme.radii.br40};
   border: 1px solid ${props => props.theme.colors.inputBackground};
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  
   @media ${device.tablet} {
     font-size: ${props => props.theme.fontSizes.fs18};
     line-height: 1.39;

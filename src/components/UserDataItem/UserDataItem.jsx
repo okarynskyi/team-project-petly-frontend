@@ -15,8 +15,7 @@ import { userUpdate } from 'redux/user/userOperations';
 import { getCurrent } from '../../helpers/formatDate';
 import { chooseTypeLink, findCity } from './helpersForRender';
 import { toast } from 'react-toastify';
-export const nameRegexp = /^[a-zA-Z]{2,20}$/;
-export const locationRegexp = /[A-Z][a-z]*,\s[A-Z][a-z]*/;
+
 export const UserDataItem = ({
   activeField,
   setActiveField,
@@ -58,6 +57,10 @@ export const UserDataItem = ({
     const validNik = emaill.slice(0, nik);
     if (formValues.email && validNik.length <= 1) {
       toast.error('Before "@" must be more than 1 symbol');
+      return;
+    }
+      if (formValues.email && formValues.email.length > 22) {
+      toast.error('Email must be least than 22 symbols');
       return;
     }
     const number = formValues.phone;

@@ -1,55 +1,45 @@
 import styled from 'styled-components';
 import { device } from 'Device';
+
 export const ModalBackdrop = styled.div`
-display: flex;
-z-index: 1000;
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  align-items: center;
-justify-content: center;
   overflow-y: scroll;
   overflow-x: hidden;
-  @media screen and (max-width: 767px) {
-  }
-  @media ${device.tablet} {
-  }
 `;
 export const ModalContent = styled.div`
-
   position: absolute;
-  /* top: 50%;
+  top: 5%;
   left: 50%;
-  transform: translate(-50%, -50%); */
-  min-height: 530px;
-
+  transform: translate(-50%, -5%);
+  height: 530px;
   width: 280px;
-  max-width: 100%;
   background: #ffffff;
   border-radius: 20px;
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
   @media ${device.tablet} {
+    height: 570px;
     width: 620px;
   }
 `;
 export const ModalContent2 = styled.div`
   position: absolute;
-  /* top: 50%;
+  top: 5%;
   left: 50%;
-  transform: translate(-50%, -50%); */
-  min-height: 670px;
-
+  transform: translate(-50%, -5%);
+  height: 670px;
   width: 280px;
-  max-width: 100%;
   background: #ffffff;
   border-radius: 20px;
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
   @media ${device.tablet} {
-    width: 662px;
+    height: 662px;
+    width: 608px;
   }
 `;
