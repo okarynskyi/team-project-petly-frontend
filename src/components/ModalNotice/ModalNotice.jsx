@@ -1,6 +1,6 @@
 import Modal from '../common/Modal/Modal';
 import { useDispatch, useSelector } from 'react-redux';
-import { ImgModal, FilterTitleBox, FitlerTitle, Items, Text, ModalTitle, TextWrapper, ContactText, ButtonText, ContactItem, Btn, FirstList, ButtonsList, SecondList, ListWrapper, WrapperForDesc, ImageWrapper, ListItemDescr, ButtonTel, PetsFavoriteSvg, CommentSpan, Comment } from './ModalNotice.styled';
+import { ImgModal, FilterTitleBox, FitlerTitle, Items, Text, ModalTitle, Email, Tel, TextWrapper, ContactText, ButtonText, ContactItem, Btn, FirstList, ButtonsList, SecondList, ListWrapper, WrapperForDesc, ImageWrapper, ListItemDescr, ButtonTel, PetsFavoriteSvg, CommentSpan, Comment } from './ModalNotice.styled';
 import { useState } from 'react';
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import { toast } from 'react-toastify';
@@ -125,10 +125,10 @@ function openModal () {
                     <ListItemDescr>{sex}</ListItemDescr>
                   </Items>
                   <Items>
-                    <ListItemDescr href={`mailto:${owner.name}`}>{owner.email}</ListItemDescr>
+                    <ListItemDescr><Email email={owner?.email}>{owner.email}</Email></ListItemDescr>
                   </Items>
                   <Items>
-                    <ListItemDescr href={`tel:${owner.phone}`}>{owner.phone}</ListItemDescr>
+                    <ListItemDescr><Tel phone={owner?.phone}>{owner.phone}</Tel></ListItemDescr>
                   </Items>
                     <Items>
                     {price && <ListItemDescr>{price}$</ListItemDescr>}
