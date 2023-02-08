@@ -1,22 +1,29 @@
 import styled from 'styled-components';
 import { device } from 'Device';
 export const ModalBackdrop = styled.div`
+display: flex;
+z-index: 1000;
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
+  align-items: center;
+justify-content: center;
+  overflow-y: scroll;
+  overflow-x: hidden;
   @media screen and (max-width: 767px) {
   }
   @media ${device.tablet} {
   }
 `;
 export const ModalContent = styled.div`
+
   position: absolute;
-  top: 50%;
+  /* top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
   min-height: 530px;
 
   width: 280px;
@@ -31,9 +38,9 @@ export const ModalContent = styled.div`
 `;
 export const ModalContent2 = styled.div`
   position: absolute;
-  top: 50%;
+  /* top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
   min-height: 670px;
 
   width: 280px;
