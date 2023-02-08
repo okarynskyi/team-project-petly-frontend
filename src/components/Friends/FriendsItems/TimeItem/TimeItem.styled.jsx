@@ -16,14 +16,19 @@ export const StyledTimeWrapper = styled(StyledListItem)`
   cursor: default;
 `
 export const StyledTimeTitle = styled(StyledItemTitle).attrs(props => ({
-  color: props.isOpen ? '#F59256' : '#000000',
+  color: props.isOpen ? '#FF6101' : '#000000',
 }))`
   font-family: ${p => p.theme.fonts.main};
   font-weight: ${p => p.theme.fontWeights.fw500};
   font-size: ${p => p.theme.fontSizes.fs12};
   line-height: 16px;
   align-items: center;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   color: ${props => props.color};
+
+  &:hover {
+    color: ${p => p.theme.colors.hoverAccent};
+  }
 
    @media ${device.tablet} {
     font-size: ${p => p.theme.fontSizes.fs14};
@@ -37,7 +42,7 @@ export const StyledTimeTitle = styled(StyledItemTitle).attrs(props => ({
 `
 
 export const StyledTimeBox = styled.p.attrs(props => ({
-  color: props.isOpen ? '#F59256' : '#000000',
+  color: props.isOpen ? '#FF6101' : '#000000',
 }))`
   transition: color cubic: '250ms cubic-bezier(0.4, 0, 0.2, 1)';
   font-family: ${p => p.theme.fonts.main};
@@ -45,7 +50,14 @@ export const StyledTimeBox = styled.p.attrs(props => ({
   font-size: ${p => p.theme.fontSizes.fs12};
   line-height: 16px;
   align-items: center;
+  height|: 38px;
+  width: 138px;
   color: ${props => props.color};
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  ${StyledTimeWrapper}:hover & {
+    color: ${p => p.theme.colors.hoverAccent};
+  }
 
   @media ${device.tablet} {
     font-size: ${p => p.theme.fontSizes.fs14};

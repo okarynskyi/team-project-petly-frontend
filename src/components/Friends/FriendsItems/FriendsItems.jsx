@@ -16,7 +16,6 @@ function FriendsItems({
   url,
   workDays,
   addressUrl,
-  _id,
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const prevScrollY = useRef(0);
@@ -105,7 +104,6 @@ FriendsItems.propTypes = {
   imageUrl: PropTypes.string,
   url: PropTypes.string,
   title: PropTypes.string.isRequired,
-  _id: PropTypes.string.isRequired,
   address: PropTypes.string,
   email: PropTypes.string,
   phone: PropTypes.string,
