@@ -18,7 +18,7 @@ export const ModalContent = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   min-height: 530px;
- 
+
   width: 280px;
   max-width: 100%;
   background: #ffffff;
@@ -35,7 +35,7 @@ export const ModalContent2 = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   min-height: 670px;
- 
+
   width: 280px;
   max-width: 100%;
   background: #ffffff;

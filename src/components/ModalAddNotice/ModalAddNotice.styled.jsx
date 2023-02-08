@@ -93,10 +93,10 @@ export const WrapperAddNotice = styled(WrapperAddPet)`
   @media ${device.tablet} {
     position: static;
     width: 135px;
-      display: flex;
+    display: flex;
     align-items: center;
     flex-direction: row;
-   
+
     gap: 12px;
   }
 `;
@@ -128,5 +128,23 @@ export const TextAddLeft = styled.p`
     font-size: 20px;
     line-height: 27px;
     color: #111111;
+  }
+`;
+
+export const ModalContent3 = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-height: 670px;
+
+  width: 280px;
+  max-width: 100%;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  @media ${device.tablet} {
+    width: 662px;
   }
 `;
