@@ -269,6 +269,7 @@ export const ButtonText = styled.p`
   margin: 0;
   padding-right: 10px;
   color: ${p => p.theme.colors.mainText};
+  cursor: pointer;
 `
 
 export const ModalNoticeWrapper = styled.div`
