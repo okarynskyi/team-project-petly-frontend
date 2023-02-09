@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const SexRadioWrap = styled.div`
-  margin-top: 10px;
+  margin-top: 4px;
   margin-bottom: 10px;
   display: flex;
   gap: 40px;
@@ -33,8 +33,8 @@ export const RadioSexLabel = styled.label`
 
   @media (min-width: 768px) {
     svg {
-      width: 40px;
-      height: 40px;
+      width: 20px;
+      height: 20px;
     }
   }
 `;

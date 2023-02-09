@@ -60,7 +60,7 @@ export const Title = styled.h3`
   }
 `;
 export const Subtitle = styled.p`
-  margin-top: 10px;
+  margin-top: 4px;
   font-size: 16px;
   line-height: calc(22 / 16) 22px;
   text-align: center;
@@ -150,7 +150,7 @@ export const ModalContent3 = styled.div`
   top: 8%;
   left: 50%;
   transform: translate(-50%, -5%);
-  height: 100%;
+  height: 100vh;
 
   width: 280px;
   max-width: 100%;
@@ -160,7 +160,7 @@ export const ModalContent3 = styled.div`
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
   @media ${device.tablet} {
     width: 608px;
-    height: 95%;
+    height: 100vh;
   }
 `;
 export const WrapperModalAddNotice = styled.div`
