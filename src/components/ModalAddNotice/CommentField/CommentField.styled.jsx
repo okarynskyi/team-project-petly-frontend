@@ -12,22 +12,12 @@ export const CommentInputField = styled(Field)`
   line-height: calc(19 / 14);
   color: rgba(27, 27, 27, 0.6);
   background-color: #fdf7f2;
+  border-radius: 10px;
   border: 1px solid rgba(245, 146, 86, 0.5);
   outline: none;
   transition: border-color 300ms linear;
   appearance: textfield;
-  border-radius: ${p => {
-    if (p.islistopen) {
-      return '20px 20px 0px 0px';
-    }
-    return '20px';
-  }};
-  border-bottom: ${p => {
-    if (p.islistopen) {
-      return 'none';
-    }
-    return '1px solid rgba(245, 146, 86, 0.5)';
-  }};
+
   :focus {
     border-color: #f59256;
   }

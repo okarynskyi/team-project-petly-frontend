@@ -132,13 +132,14 @@ const ModalAddNotice = () => {
     imageURL && data.append('imageURL', imageURL);
 
     if (!sex) {
-      toast.error('Choose sex!');
+      toast.error('Choose sex: male or female.');
       return;
     }
 
     const handleKeyDown = e => {
       if (e.code === 'Escape') {
         setModalActive(false);
+        document.body.style.overflow = 'auto';
       }
     };
     window.addEventListener('keydown', handleKeyDown);
