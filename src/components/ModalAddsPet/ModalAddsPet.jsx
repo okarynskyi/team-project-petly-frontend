@@ -191,7 +191,7 @@ const ModalAddPet = () => {
                 <InputStyled
                   name="comments"
                   placeholder="Type comments"
-                  style={{ height: '100px' }}
+                  style={{ height: '110px' }}
                 />
                 <Error name="comments" component="p" />
               </LabelStyled>

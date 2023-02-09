@@ -1,6 +1,6 @@
 import Modal from '../common/Modal/Modal';
 import { useDispatch, useSelector } from 'react-redux';
-import { ImgModal, FilterTitleBox, FitlerTitle, Items, Text, ModalTitle, Email, Tel, TextWrapper, ContactText, ButtonText, ContactItem, Btn, FirstList, ButtonsList, SecondList, ListWrapper, WrapperForDesc, ImageWrapper, ListItemDescr, ButtonTel, PetsFavoriteSvg, CommentSpan, Comment } from './ModalNotice.styled';
+import { ModalNoticeWrapper, ImgModal, FilterTitleBox, FitlerTitle, Items, Text, ModalTitle, Email, Tel, TextWrapper, ContactText, ButtonText, ContactItem, Btn, FirstList, ButtonsList, SecondList, ListWrapper, WrapperForDesc, ImageWrapper, ListItemDescr, ButtonTel, PetsFavoriteSvg, CommentSpan, Comment } from './ModalNotice.styled';
 import { useState } from 'react';
 import { selectIsLoggedIn, selectUser } from 'redux/auth/authSelectors';
 import { toast } from 'react-toastify';
@@ -74,7 +74,7 @@ const ModalNotice = () => {
   
   return (
     <div position="relative">
-      <div onClick={() => openModal()}>Learn more</div>
+      <ModalNoticeWrapper onClick={() => openModal()}>Learn more</ModalNoticeWrapper>
       <Modal
         active={modalActive}
         setActive={setModalActive}>

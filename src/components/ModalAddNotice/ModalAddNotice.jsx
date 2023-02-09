@@ -21,13 +21,10 @@ import { FileInput } from './FileInput/FileInput';
 import { TextInput } from './TextInput/TextInput';
 import { PriceField } from './PriceField/PriceField';
 import { HiX } from 'react-icons/hi';
-import {
-  StyledPlus,
-  WrapperModalAddPet,
-  ModalButton,
-} from '../ModalAddsPet/ModalAddsPet.styled';
+import { StyledPlus, ModalButton } from '../ModalAddsPet/ModalAddsPet.styled';
 import {
   Label,
+  LabelBreed,
   Error,
   Title,
   Subtitle,
@@ -39,6 +36,7 @@ import {
   TextAdd,
   TextAddLeft,
   ModalContent3,
+  WrapperModalAddNotice,
 } from './ModalAddNotice.styled';
 export const locationRegexp = /[A-Z][a-z]*,\s[A-Z][a-z]*/;
 export const titleRegexp = /^[a-zA-Z\s]*$/;
@@ -134,13 +132,14 @@ const ModalAddNotice = () => {
     imageURL && data.append('imageURL', imageURL);
 
     if (!sex) {
-      toast.error('Choose sex!');
+      toast.error('Choose sex: male or female.');
       return;
     }
 
     const handleKeyDown = e => {
       if (e.code === 'Escape') {
         setModalActive(false);
+        document.body.style.overflow = 'auto';
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -238,7 +237,7 @@ const ModalAddNotice = () => {
           {modalActive && (
             <ModalUser>
               <ModalContent3>
-                <WrapperModalAddPet>
+                <WrapperModalAddNotice>
                   <Title>Add pet</Title>
                   <Subtitle>Fill the fields below, please.</Subtitle>
                   <Formik
@@ -292,7 +291,7 @@ const ModalAddNotice = () => {
                                 closeOnSelect={true}
                                 dateFormat="DD.MM.YYYY"
                               />
-                              <Label>
+                              <LabelBreed>
                                 Breed
                                 <TextInput
                                   name="breed"
@@ -302,7 +301,7 @@ const ModalAddNotice = () => {
                                 {touched.breed && errors.breed && (
                                   <Error>{errors.breed}</Error>
                                 )}
-                              </Label>
+                              </LabelBreed>
                             </InputFieldWrap>{' '}
                           </>
                         )}
@@ -380,7 +379,7 @@ const ModalAddNotice = () => {
                       </FormStyled>
                     )}
                   </Formik>
-                </WrapperModalAddPet>
+                </WrapperModalAddNotice>
                 <ModalButton
                   type="button"
                   onClick={() => {

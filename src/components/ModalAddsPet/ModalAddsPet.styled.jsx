@@ -16,8 +16,6 @@ export const FormAdd = styled(FormFormik)`
       width: 240px;
       font-weight: ${props => props.theme.fontWeights.fw500};
       letter-spacing: 0.04em;
-      /* overflow-y: scroll;
-      overflow-x: hidden; */
       &:not(:last-child) {
         margin-bottom: 12px;
       }
@@ -131,38 +129,30 @@ export const Preview = styled.img`
   }
 `;
 export const WrapperModalAddPet1 = styled.div`
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   height: 100%;
-  padding: 40px 20px;
+  padding: 30px 20px;
   overflow-y: auto;
   width: 100%;
-  padding-top: ${props => props.theme.space[3]}px;
-  @media ${device.mobileOnly} {
-    max-height: 530px;
-  }
   @media ${device.tablet} {
     width: 620px;
-    max-height: 570px;
+    height: 100%;
     padding: 40px 75px;
   }
 `;
 export const WrapperModalAddPet2 = styled.div`
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   height: 100%;
-  padding: 40px 20px;
+  padding: 20px 20px;
   overflow-y: auto;
   width: 100%;
-  padding-top: ${props => props.theme.space[3]}px;
-  @media ${device.mobileOnly} {
-    max-height: 670px;
-  }
   @media ${device.tablet} {
     width: 620px;
-    max-height: 662px;
+    height: 100%;
     padding: 40px 75px;
   }
 `;

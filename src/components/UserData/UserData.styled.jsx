@@ -23,7 +23,6 @@ export const CardProfile = styled.div`
     align-items: center;
     justify-content: space-between;
     flex-direction: row-reverse;
-    /* gap: 52px; */
     padding: 24px ${props => props.theme.space[5]}px 24px 0;
     border-radius: ${props => props.theme.radii.br40};
   }
