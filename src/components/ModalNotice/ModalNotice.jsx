@@ -1,15 +1,16 @@
-import Modal from '../common/Modal/Modal';
-import { useDispatch, useSelector } from 'react-redux';
-import { ModalNoticeWrapper, ImgModal, FilterTitleBox, FitlerTitle, Items, Text, ModalTitle, Email, Tel, TextWrapper, ContactText, ButtonText, ContactItem, Btn, FirstList, ButtonsList, SecondList, ListWrapper, WrapperForDesc, ImageWrapper, ListItemDescr, ButtonTel, PetsFavoriteSvg, CommentSpan, Comment } from './ModalNotice.styled';
 import { useState } from 'react';
-import { selectIsLoggedIn, selectUser } from 'redux/auth/authSelectors';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import operations from '../../redux/notices/noticesOperations';
-import { selectOneNoticeMoreInfo, selectIsLoading } from '../../redux/notices/noticesSelectors';
-import { ModalBox } from './ModalNotice.styled';
-import petNotFound from '../../staticImages/petNotFound.jpg';
-import { dateConverter } from '../../helpers/formatDate';
+
 import { Loader } from 'components/Loader';
+import Modal from 'components/common/Modal/Modal';
+import { selectIsLoggedIn, selectUser } from 'redux/auth/authSelectors';
+import operations from 'redux/notices/noticesOperations';
+import { selectOneNoticeMoreInfo, selectIsLoading } from 'redux/notices/noticesSelectors';
+import { dateConverter } from 'helpers/formatDate';
+import { normalizeCategoryName } from 'helpers/noticesCategoryShelf';
+import { ModalNoticeWrapper, ImgModal, FilterTitleBox, FitlerTitle, Items, Text, ModalTitle, Email, Tel, TextWrapper, ContactText, ButtonText, ContactItem, Btn, FirstList, ButtonsList, SecondList, ListWrapper, WrapperForDesc, ImageWrapper, ListItemDescr, ButtonTel, PetsFavoriteSvg, CommentSpan, Comment, ModalBox } from './ModalNotice.styled';
+import petNotFound from 'staticImages/petNotFound.jpg';
 
 const ModalNotice = () => {
   const [modalActive, setModalActive] = useState(false);
@@ -82,7 +83,7 @@ const ModalNotice = () => {
           <WrapperForDesc>
             <ImageWrapper>
               <FilterTitleBox>
-                <FitlerTitle>{adopStatus}</FitlerTitle>
+                <FitlerTitle>{normalizeCategoryName[adopStatus]}</FitlerTitle>
               </FilterTitleBox>
               {isLoading ? (
                 <Loader />

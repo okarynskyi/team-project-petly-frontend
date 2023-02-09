@@ -6,6 +6,7 @@ import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import petNotFound from '../../staticImages/petNotFound.jpg';
 import ModalNotice from '../ModalNotice/ModalNotice';
 import { formatAgeYears } from 'helpers/formatDate';
+import { categoryShelf, normalizeCategoryName } from 'helpers/noticesCategoryShelf';
 import {
   Item,
   ImageWrapper,
@@ -24,12 +25,6 @@ import {
   StyledButton,
   StyledTrash,
 } from './NoticeCategoryItem.styled';
-
-const categoryShelf = {
-  "sell": "sell",
-  "lost-found": "lost-found",
-  "in-good-hands": "in-good-hands",
-};
 
 const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
   const {
@@ -96,7 +91,7 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
       <ImageWrapper>
         <Image src={avatarURL || petNotFound} alt="Pet" loading='lazy' />
       </ImageWrapper>
-      <CategoryName>{adopStatus}</CategoryName>
+      <CategoryName>{normalizeCategoryName[adopStatus]}</CategoryName>
 
       {!isFavorite && (
         <SvgWrapper>
