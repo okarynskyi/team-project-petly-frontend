@@ -12,7 +12,7 @@ import {
   DataP,
   A,
 } from './NewsPage.styled.jsx';
-import { SearchBar } from '../../components/NewsSearchBar/SearchBar';
+import { SearchBar } from '../../components/common/SearchBar/SearchBar';
 import { dateConverter } from 'helpers/formatDate.js';
 
 const NewsPage = () => {
