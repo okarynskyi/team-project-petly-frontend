@@ -2,14 +2,24 @@ import Modal from '../common/Modal/Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { ImgModal, FilterTitleBox, FitlerTitle, Items, Text, ModalTitle, Email, Tel, TextWrapper, ContactText, ButtonText, ContactItem, Btn, FirstList, ButtonsList, SecondList, ListWrapper, WrapperForDesc, ImageWrapper, ListItemDescr, ButtonTel, PetsFavoriteSvg, CommentSpan, Comment } from './ModalNotice.styled';
 import { useState } from 'react';
-import { selectIsLoggedIn } from 'redux/auth/authSelectors';
+import { selectIsLoggedIn, selectUser } from 'redux/auth/authSelectors';
 import { toast } from 'react-toastify';
 import operations from '../../redux/notices/noticesOperations';
+import { selectOneNoticeMoreInfo, selectIsLoading } from '../../redux/notices/noticesSelectors';
 import { ModalBox } from './ModalNotice.styled';
 import petNotFound from '../../staticImages/petNotFound.jpg';
 import { dateConverter } from '../../helpers/formatDate';
+import { Loader } from 'components/Loader';
 
-const ModalNotice = ({ notice, isFavorite, category }) => {
+const ModalNotice = () => {
+  const [modalActive, setModalActive] = useState(false);
+  
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const noticeMoreInfo = useSelector(selectOneNoticeMoreInfo);
+  const userId = useSelector(selectUser);
+  const isLoading = useSelector(selectIsLoading)
+
   const {
     avatarURL,
     birthday,
@@ -23,12 +33,11 @@ const ModalNotice = ({ notice, isFavorite, category }) => {
     title,
     _id,
     adopStatus,
-  } = notice;
+    favorite,
+  } = noticeMoreInfo;
 
-  const isLoggedIn = useSelector(selectIsLoggedIn);
-
-  const [modalActive, setModalActive] = useState(false);
-  const dispatch = useDispatch();
+  const index = favorite?.indexOf(userId.id);
+  const isFavorite = (index > -1 ? true : false);
 
   const addToFavorite = async () => {
     if (!isLoggedIn) {
@@ -37,11 +46,11 @@ const ModalNotice = ({ notice, isFavorite, category }) => {
       );
     }
     dispatch(operations.addToFavorites(_id))
-      // .then(() => {
-      //   refreshingPage(category);
-      // })
-
-    toast.success('Pet added to favorites.');
+      .then(() => {
+        dispatch(operations.getOneNotice(_id))
+        
+        toast.success('Pet added to favorites.');
+      })
   };
 
   const removeFromFavorite = async () => {
@@ -51,23 +60,23 @@ const ModalNotice = ({ notice, isFavorite, category }) => {
       );
     }
     dispatch(operations.deleteFromFavorites(_id))
-      // .then(() => {
-      //   refreshingPage(category);
-      // })
-
-    toast.success('Pet removed from favorites.');
+      .then(() => {
+        dispatch(operations.getOneNotice(_id))
+    
+        toast.success('Pet removed from favorites.');
+      })
   };
   
-function openModal () {
-  setModalActive(true)
-  document.body.style.overflow = 'hidden';
-  }
+  function openModal() {
+    setModalActive(true)
+    document.body.style.overflow = 'hidden';
+  };
   
   return (
     <div position="relative">
       <div onClick={() => openModal()}>Learn more</div>
       <Modal
-      active={modalActive} 
+        active={modalActive}
         setActive={setModalActive}>
         <ModalBox>
           <WrapperForDesc>
@@ -75,9 +84,12 @@ function openModal () {
               <FilterTitleBox>
                 <FitlerTitle>{adopStatus}</FitlerTitle>
               </FilterTitleBox>
-              <ImgModal src={avatarURL || petNotFound} alt="Pet" loading='lazy'/>
+              {isLoading ? (
+                <Loader />
+              ) : (
+                <ImgModal src={avatarURL || petNotFound} alt="Pet" loading='lazy' />
+              )}
             </ImageWrapper>
-
             <div>
               <ModalTitle>{title}</ModalTitle>
               <ListWrapper>
@@ -124,22 +136,22 @@ function openModal () {
                     <ListItemDescr>{sex}</ListItemDescr>
                   </Items>
                   <Items>
-                    <ListItemDescr isNotDecorated={true}><Email email={owner?.email}>{owner.email}</Email></ListItemDescr>
+                    <ListItemDescr isNotDecorated={true}><Email email={owner?.email}>{owner?.email}</Email></ListItemDescr>
                   </Items>
                   <Items>
-                    <ListItemDescr isNotDecorated={true}><Tel phone={owner?.phone} >{owner.phone}</Tel></ListItemDescr>
+                    <ListItemDescr isNotDecorated={true}><Tel phone={owner?.phone} >{owner?.phone}</Tel></ListItemDescr>
                   </Items>
-                    <Items>
+                  <Items>
                     {price && <ListItemDescr>{price}$</ListItemDescr>}
-                    </Items>
+                  </Items>
                 </SecondList>
               </ListWrapper>
             </div>
           </WrapperForDesc>
           <div>
-          <Comment>
-            <CommentSpan>Comments: </CommentSpan>{comments}
-          </Comment>
+            <Comment>
+              <CommentSpan>Comments: </CommentSpan>{comments}
+            </Comment>
           </div>
 
           <ButtonsList>
@@ -152,23 +164,23 @@ function openModal () {
               {!isFavorite && (
                 <Btn onClick={addToFavorite}>
                   <TextWrapper>
-                  <ButtonText>Add to</ButtonText>
-                  <PetsFavoriteSvg></PetsFavoriteSvg>
-                </TextWrapper>
-          </Btn>
-      )}
-      {isFavorite && (
+                    <ButtonText>Add to</ButtonText>
+                    <PetsFavoriteSvg/>
+                  </TextWrapper>
+                </Btn>
+              )}
+              {isFavorite && (
                 <Btn onClick={removeFromFavorite}>
                   <TextWrapper>
-                  <ButtonText></ButtonText>
-                  <PetsFavoriteSvg></PetsFavoriteSvg>
-                </TextWrapper>
-                </Btn> 
-       )}
+                    <ButtonText>Remove from</ButtonText>
+                    <PetsFavoriteSvg/>
+                  </TextWrapper>
+                </Btn>
+              )}
             </li>
           </ButtonsList>
         </ModalBox>
-       </Modal>
+      </Modal>
     </div>
   );
 };

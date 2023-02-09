@@ -8,7 +8,7 @@ const handlePending = state => {
 
 const initialState = {
     noticesByCategory: [],
-    oneNoticeMoreInfo: null,
+    oneNoticeMoreInfo: [],
     isFavorite: false,
     isLoading: false,
     isError: null,
@@ -56,7 +56,7 @@ const noticesSlice = createSlice({
             state.isError = payload;
         },
 
-        // отримання оголошень авторизованого користувача доданих ним же в обрані  "ЩЕ НЕ ЗРОБЛЕНИЙ БЕК"
+        // отримання оголошень авторизованого користувача доданих ним же в обрані
         [operations.getFavorites.pending]: handlePending,
         [operations.getFavorites.fulfilled](state, {payload}) {
             state.noticesByCategory = payload.notices;

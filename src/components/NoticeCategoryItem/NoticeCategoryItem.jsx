@@ -44,7 +44,8 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
   const dispatch = useDispatch();
     
   const isLoggedIn = useSelector(selectIsLoggedIn);
-    let query = null;
+  let query = null;
+  
   const refreshingPage = (category) => {
     if (category === categoryShelf[category]) dispatch(operations.getNoticesByCategory({category, query}));
     if (category === "favorites-ads") { dispatch(operations.getFavorites({query})); };
@@ -79,7 +80,11 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
     toast.success('Notice removed from favorite adds.');
   };
 
-  const handleRemoveNotice = () => {
+  const onChangeOpenModal = () => {
+    dispatch(operations.getOneNotice(_id))
+  };
+
+  const removeNotice = () => {
     dispatch(operations.deleteUserNotice(_id))
       .then(() => {
         refreshingPage(category);
@@ -126,17 +131,15 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
         {isLoggedIn ? (
           <>
             <ButtonsWrapper>
-              <StyledButton>
-                <ModalNotice key={notice._id}
-                  notice={notice}></ModalNotice>
+              <StyledButton onClick={onChangeOpenModal}>
+                <ModalNotice />
               </StyledButton>
-            {isOwner && <StyledButton onClick={handleRemoveNotice}>Delete <StyledTrash></StyledTrash></StyledButton>}
-              </ButtonsWrapper>
+              {isOwner && <StyledButton onClick={removeNotice}>Delete <StyledTrash /></StyledButton>}
+            </ButtonsWrapper>
           </>
         ) : (
-            <StyledButton>
-              <ModalNotice key={notice._id}
-                notice={notice}></ModalNotice>
+            <StyledButton onClick={onChangeOpenModal}>
+              <ModalNotice/>
           </StyledButton>
         )}
       </ButtonDiv>
