@@ -7,10 +7,10 @@ export const Section = styled.section`
   height: 100%;
   padding: 42px 0 100px;
   @media ${device.tablet} {
-    padding: 88px 0 100px;
+    padding: 90px 0 100px;
   }
   @media ${device.desktop} {
-    padding: 60px 0 100px;
+    padding: 70px 0 200px;
   }
 `;
 
