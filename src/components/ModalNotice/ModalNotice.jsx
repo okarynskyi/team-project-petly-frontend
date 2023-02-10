@@ -117,7 +117,7 @@ const ModalNotice = () => {
                     <Text>Phone:</Text>
                   </Items>
                   <Items>
-                    {price && <Text>Sell: </Text>}
+                    {price && <Text>Price: </Text>}
                   </Items>
                 </FirstList>
                 <SecondList>
@@ -156,11 +156,11 @@ const ModalNotice = () => {
           </div>
 
           <ButtonsList>
-            <ContactItem>
-              <ButtonTel phone={owner?.phone}>
+            <ButtonTel phone={owner?.phone}>
+              <ContactItem>
                 <ContactText>Contact</ContactText>
+              </ContactItem>
               </ButtonTel>
-            </ContactItem>
             <li>
               {!isFavorite && (
                 <Btn onClick={addToFavorite}>

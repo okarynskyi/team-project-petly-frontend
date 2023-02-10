@@ -26,8 +26,9 @@ export const AccountBtn = styled(NavLink)`
   }
 
   @media (min-width: 768px) {
-    padding: 11px 28px;
+    padding: 12px 28px;
     font-size: ${p => p.theme.fontSizes.fs16};
+    justify-content: center;
   }
 
   div {

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
-import noLogo from '../../../staticImages/noLogo.png';
+import petNotFound from '../../../staticImages/petNotFound.jpg';
 import TimeItem from './TimeItem/TimeItem';
 import { StyledItem, StyledTitle, StyledWrapper, ImgWrapper, StyledImg, StyledList, StyledNoInfo, StyledListItem, StyledLink, StyledItemTitle } from './FriendsItems.styled';
 
@@ -46,7 +46,7 @@ function FriendsItems({
       </StyledTitle>
       <StyledWrapper>
         <ImgWrapper>
-          <StyledImg src={imageUrl || noLogo} alt={title} />
+          <StyledImg src={imageUrl || petNotFound} alt={title} />
         </ImgWrapper>
         <StyledList>
           <TimeItem
