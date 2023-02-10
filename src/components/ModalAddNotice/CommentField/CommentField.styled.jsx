@@ -16,9 +16,25 @@ export const CommentInputField = styled(Field)`
   border: 1px solid rgba(245, 146, 86, 0.5);
   outline: none;
   transition: border-color 300ms linear;
-  appearance: textfield;
 
   :focus {
     border-color: #f59256;
+  }
+`;
+
+export const LabelComment = styled.label`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 18px;
+  line-height: calc(26 / 18);
+  color: #111111;
+  span {
+    color: #f59256;
+  }
+  @media (min-width: 768px) {
+    font-size: 24px;
+    line-height: calc(26 / 24);
   }
 `;
