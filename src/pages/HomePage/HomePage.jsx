@@ -22,7 +22,7 @@ const HomePage = () => {
           <MainPage>
             <div>
               <TextReason>
-                Because of the war, many <b>Animals</b> in Ukraine lost their
+                Because of the war, many <b>Pets</b> in Ukraine lost their
                 people.
               </TextReason>
               <Description>
@@ -31,7 +31,7 @@ const HomePage = () => {
               <MainTitle>OUR MISSION:</MainTitle>
               <WrapperMission>
                 <p>
-                  to connecting <b>People</b> and <b>Animals</b> so that no a
+                  to connecting <b>Owners</b> and <b>Pets</b> so that no a
                   single Tail isn't left alone.
                 </p>
               </WrapperMission>

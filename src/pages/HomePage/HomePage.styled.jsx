@@ -17,7 +17,6 @@ export const Section = styled.section`
   @media ${device.tablet} {
     background-image: url('${backgroundImg.tab}');
     padding-top: 120px;
-    background-position: 50% 100%;
   }
   @media ${device.desktop} {
     padding-top: 60px;
@@ -76,12 +75,12 @@ export const MainImage = styled.img`
 export const MainTitle = styled.h1`
   font-family: ${props => props.theme.fonts.logo};
   font-size: ${p => p.theme.fontSizes.fs24};
-  font-weight: 700;
+  font-weight: ${props => props.theme.fontWeights.fw700};
   line-height: 1.4;
   text-align: center;
   @media ${device.tablet} {
     font-size: 56px;
-    margin-bottom: 20px;
+    margin-bottom: ${props => props.theme.space[3]}px;
   }
   @media ${device.desktop} {
     font-size: 50px;
@@ -90,7 +89,7 @@ export const MainTitle = styled.h1`
 
 export const Description = styled.p`
   font-size: ${p => p.theme.fontSizes.fs18};
-  font-weight: 500;
+  font-weight: ${props => props.theme.fontWeights.fw500};
   line-height: 22px;
   margin-bottom: 16px;
   padding-right: 55px;
@@ -104,8 +103,8 @@ export const Description = styled.p`
   @media ${device.desktop} {
     padding: 0;
     text-align: center;
-    margin-bottom: 40px;
-    font-size: 32px;
+    margin-bottom: ${props => props.theme.space[5]}px;
+    font-size: ${p => p.theme.fontSizes.fs32};
     line-height: 1.17;
   }
 `;
@@ -113,7 +112,7 @@ export const TextReason = styled(Description)`
   padding-left: 74px;
   padding-right: 0;
   @media ${device.tablet} {
-    margin-bottom: 16px;
+    margin-bottom: ${props => props.theme.space[2]}px;
     padding-left: 110px;
   }
   @media ${device.desktop} {
@@ -122,19 +121,19 @@ export const TextReason = styled(Description)`
 `;
 
 export const WrapperMission = styled.div`
-  margin-bottom: 8px;
+  margin-bottom: ${props => props.theme.space[1]}px;
   width: 100%;
   height: auto;
   padding: 10px;
   border: 1px solid rgba(248, 191, 112, 0.856);
-  border-radius: 20px;
+  border-radius: ${props => props.theme.radii.br20};
   box-shadow: inset 0 0 15px 10px rgba(248, 191, 112, 0.856);
   > p {
     font-size: 26px;
     text-align: center;
   }
   @media ${device.tablet} {
-    margin-bottom: 16px;
+    margin-bottom: ${props => props.theme.space[2]}px;
     > p {
       font-size: 42px;
     }
@@ -159,9 +158,9 @@ export const BoxDonat = styled.div`
   align-items: center;
   gap: 6px;
   font-size: ${p => p.theme.fontSizes.fs18};
-  font-weight: 500;
+  font-weight: ${props => props.theme.fontWeights.fw500};
   line-height: 22px;
-   color: #ffffffe8;
+  color: #ffffffe8;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
   :hover,
   :focus {
@@ -170,11 +169,11 @@ export const BoxDonat = styled.div`
   }
   @media ${device.tablet} {
     font-size: ${p => p.theme.fontSizes.fs24};
-    top: 650px;
+    top: 600px;
     left: 36px;
   }
   @media ${device.desktop} {
-    top: 500px;
+    top: 510px;
     left: 280px;
   }
 `;
