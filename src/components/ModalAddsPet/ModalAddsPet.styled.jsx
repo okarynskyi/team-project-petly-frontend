@@ -192,6 +192,9 @@ export const AddPetBtn = styled(CircleBtn)`
     transform: scale(1.2);
   }
   @media ${device.tablet} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 40px;
     height: 40px;
   }
@@ -202,11 +205,13 @@ export const StyledPlus = styled(IconPlus)`
   width: 24px;
   height: 24px;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  :hover,
-  :focus {
+
+  ${AddPetBtn}:hover &,
+  :focus & {
     cursor: pointer;
     transform: scale(1.2);
   }
+
   @media ${device.tablet} {
     width: 24px;
     height: 24px;
