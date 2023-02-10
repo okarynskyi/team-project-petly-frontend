@@ -18,7 +18,7 @@ export const CardProfile = styled.div`
   background: ${props => props.theme.colors.white};
   border-radius: ${props => props.theme.radii.br20};
   @media ${device.tablet} {
-    width: 704px;
+    /* width: 704px; */
     display: flex;
     align-items: center;
     justify-content: space-between;

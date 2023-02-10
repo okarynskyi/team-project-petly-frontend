@@ -22,15 +22,15 @@ export const TitleSectionUser = styled.h2`
 `;
 
 export const SectionUser = styled.section`
-
   padding-top: 52px;
+`;
+export const WrapperDesctop = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   flex-direction: column;
   gap: ${props => props.theme.space[5]}px;
   @media ${device.desktop} {
-     width: 704px;
     flex-direction: row;
   }
 `;

@@ -50,8 +50,8 @@ export const BowInputs = styled(BoxInput)`
 export const Error = styled(ErrorText)`
   position: absolute;
   left: 0;
-  bottom: -20%;
-  text-align: start;
+  top: 12px;
+  text-align: center;
   margin-top: ${props => props.theme.space[0]}px;
   color: ${props => props.theme.colors.accent};
   @media ${device.tablet} {
