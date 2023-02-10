@@ -12,7 +12,7 @@ import { normalizeCategoryName } from 'helpers/noticesCategoryShelf';
 import { ModalNoticeWrapper, ImgModal, FilterTitleBox, FitlerTitle, Items, Text, ModalTitle, Email, Tel, TextWrapper, ContactText, ButtonText, ContactItem, Btn, FirstList, ButtonsList, SecondList, ListWrapper, WrapperForDesc, ImageWrapper, ListItemDescr, ButtonTel, PetsFavoriteSvg, CommentSpan, Comment, ModalBox } from './ModalNotice.styled';
 import petNotFound from 'staticImages/petNotFound.jpg';
 
-const ModalNotice = () => {
+const ModalNotice = ({refreshingPage}) => {
   const [modalActive, setModalActive] = useState(false);
   
   const dispatch = useDispatch();
@@ -20,7 +20,6 @@ const ModalNotice = () => {
   const noticeMoreInfo = useSelector(selectOneNoticeMoreInfo);
   const userId = useSelector(selectUser);
   const isLoading = useSelector(selectIsLoading)
-
   const {
     avatarURL,
     birthday,
@@ -36,7 +35,6 @@ const ModalNotice = () => {
     adopStatus,
     favorite,
   } = noticeMoreInfo;
-
   const index = favorite?.indexOf(userId.id);
   const isFavorite = (index > -1 ? true : false);
 
@@ -52,6 +50,9 @@ const ModalNotice = () => {
         
         toast.success('Pet added to favorites.');
       })
+      .then(() => {
+        refreshingPage();
+      })
   };
 
   const removeFromFavorite = async () => {
@@ -65,6 +66,9 @@ const ModalNotice = () => {
         dispatch(operations.getOneNotice(_id))
     
         toast.success('Pet removed from favorites.');
+      })
+      .then(() => {
+        refreshingPage();
       })
   };
   
