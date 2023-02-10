@@ -39,6 +39,18 @@ export const UserDataItem = ({
       return { ...prev, [label]: value };
     });
   }, [label, value]);
+  // const activeInput = document.querySelector(`#${activeField}`);
+  // const handleClickOutside = event => {
+    //          console.log(startUpdate);
+    // if (activeField && !startUpdate ) {
+    // if (event.target !== activeInput) {
+    //   setStartUpdate(false);
+    //   setDisable(true);
+    //   setActiveField(null);
+    // }
+    // }
+  // };
+  // window.addEventListener('mouseup', handleClickOutside);
 
   const handleChange = e => {
     setDisable(false);
@@ -59,7 +71,7 @@ export const UserDataItem = ({
       toast.error('Before "@" must be more than 1 symbol');
       return;
     }
-      if (formValues.email && formValues.email.length > 22) {
+    if (formValues.email && formValues.email.length > 22) {
       toast.error('Email must be least than 22 symbols');
       return;
     }
@@ -69,12 +81,18 @@ export const UserDataItem = ({
       toast.error('Must start with "+380"');
       return;
     }
-     if (formValues.name && (formValues.name.length < 2 || formValues.name.length > 20 )) {
-       toast.error('Name must be in English, contain 2-20 symbols');
+    if (
+      formValues.name &&
+      (formValues.name.length < 2 || formValues.name.length > 20)
+    ) {
+      toast.error('Name must be in English, contain 2-20 symbols');
       return;
     }
-    if (formValues.location && (formValues.location.length < 4 || formValues.location.length > 40 )) {
-       toast.error('City must be in English, contain no more than 40 symbols');
+    if (
+      formValues.location &&
+      (formValues.location.length < 4 || formValues.location.length > 40)
+    ) {
+      toast.error('City must be in English, contain no more than 40 symbols');
       return;
     }
     const changedField = Object.entries(formValues).find(item => item[1]);
@@ -128,7 +146,9 @@ export const UserDataItem = ({
         ) : (
           <CircleBtn
             type="button"
-            onClick={() => startUpdateField(label)}
+            onClick={() => {
+              startUpdateField(label);
+            }}
             disabled={activeField && activeField !== label}
           >
             <StyledPencil />

@@ -13,7 +13,7 @@ export const ModalBackdrop = styled.div`
 `;
 export const ModalContent = styled.div`
   position: absolute;
-  top: 5%;
+  top: 15%;
   left: 50%;
   transform: translate(-50%, -5%);
   height: 530px;
@@ -29,7 +29,7 @@ export const ModalContent = styled.div`
 `;
 export const ModalContent2 = styled.div`
   position: absolute;
-  top: 5%;
+  top: 15%;
   left: 50%;
   transform: translate(-50%, -5%);
   height: 670px;
