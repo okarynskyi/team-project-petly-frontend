@@ -4,7 +4,14 @@ import { device } from 'Device';
 export const Wrapper = styled.div`
 margin-left: auto;
   margin-right: auto;
-  margin-bottom: 32px;
+  margin-bottom: 100px;
+
+  @media ${device.tablet} {
+    margin-bottom: 100px;
+  }
+  @media ${device.desktop} {
+    margin-bottom: 200px;
+  }
 `;
 
 export const List = styled.ul`

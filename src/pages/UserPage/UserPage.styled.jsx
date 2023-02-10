@@ -30,6 +30,7 @@ export const WrapperDesctop = styled.div`
   justify-content: space-between;
   flex-direction: column;
   gap: ${props => props.theme.space[5]}px;
+  margin-bottom: 40px;
   @media ${device.desktop} {
     flex-direction: row;
   }
