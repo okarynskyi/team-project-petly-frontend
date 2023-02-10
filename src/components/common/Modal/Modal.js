@@ -11,10 +11,11 @@ const Modal = ({active, setActive, children}) => {
         }
       };
       window.addEventListener('keydown', handleKeyDown);
-      
+     
     function closeModal () {
         setActive(false)
         document.body.style.overflow = '';
+
       }
     return (
         <ModalStyled className={active ? "modal active" : "modal"} onClick={() => closeModal() }>

@@ -37,10 +37,9 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
     adopStatus,
   } = notice;
   const dispatch = useDispatch();
-    
   const isLoggedIn = useSelector(selectIsLoggedIn);
   let query = null;
-  
+
   const refreshingPage = (category) => {
     if (category === categoryShelf[category]) dispatch(operations.getNoticesByCategory({category, query}));
     if (category === "favorites-ads") { dispatch(operations.getFavorites({query})); };
@@ -127,7 +126,9 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
           <>
             <ButtonsWrapper>
               <StyledButton onClick={onChangeOpenModal}>
-                <ModalNotice />
+                <ModalNotice
+                refreshingPage={() => {refreshingPage(category)}}
+                />
               </StyledButton>
               {isOwner && <StyledButton onClick={removeNotice}>Delete <StyledTrash /></StyledButton>}
             </ButtonsWrapper>
