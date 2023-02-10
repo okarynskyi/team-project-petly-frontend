@@ -5,19 +5,14 @@ import { useLocation, useSearchParams } from 'react-router-dom';
 import NoticeCategoryItem from '../../components/NoticeCategoryItem/NoticeCategoryItem';
 import { Loader } from 'components/Loader';
 
-
 import operations from '../../redux/notices/noticesOperations';
 import { selectNoticesByCategory, selectIsLoading, selectIsNoticeAdded } from 'redux/notices/noticesSelectors';
 import { selectUser, selectIsLoggedIn } from 'redux/auth/authSelectors';
 
+import { categoryShelf } from 'helpers/noticesCategoryShelf';
 import { Wrapper, List, NotFound } from './NoticesCategoriesList.styled';
 import notFound from "../../staticImages/notice/notFound.jpg"
 
-const categoryShelf = {
-  "sell": "sell",
-  "lost-found": "lost-found",
-  "in-good-hands": "in-good-hands",
-};
 
 const NoticesCategoryList = () => {
   const dispatch = useDispatch();
