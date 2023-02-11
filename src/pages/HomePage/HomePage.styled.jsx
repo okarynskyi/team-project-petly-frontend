@@ -43,14 +43,14 @@ export const MainPage = styled.div`
     justify-content: space-between;
     background-image: url('${decorRigth}'), url('${decorLeft}');
     background-size: 110px, 110px;
-    background-position: top left, top 110px right;
+    background-position: top left, top 110px left 605px;
   }
   @media ${device.desktop} {
     align-items: flex-start;
     flex-direction: row;
     background-image: none;
     > div {
-      padding-top: 30px;
+      padding-top: 10px;
     }
   }
 `;
@@ -81,7 +81,7 @@ export const MainTitle = styled.h1`
   margin-bottom: ${props => props.theme.space[1]}px;
   @media ${device.tablet} {
     font-size: 52px;
-    margin-bottom: ${props => props.theme.space[3]}px;
+    margin-bottom: 0;
   }
   @media ${device.desktop} {
     font-size: 48px;
@@ -96,15 +96,15 @@ export const Description = styled.p`
   padding-right: 55px;
   padding-left: 10px;
   @media ${device.tablet} {
-    font-size: 36px;
+    font-size: 32px;
     line-height: 1.35;
     margin-bottom: ${props => props.theme.space[5]}px;
-    padding-right: 65px;
+    padding-right: 80px;
   }
   @media ${device.desktop} {
     padding: 0;
     text-align: center;
-    font-size: ${p => p.theme.fontSizes.fs28};
+    font-size: ${p => p.theme.fontSizes.fs24};
     line-height: 1.17;
   }
 `;
@@ -151,7 +151,7 @@ export const Donat = styled.a`
 `;
 export const BoxDonat = styled.div`
   position: absolute;
-  top: 350px;
+  top: 330px;
   left: 16px;
   display: flex;
   flex-direction: column;
@@ -169,11 +169,11 @@ export const BoxDonat = styled.div`
   }
   @media ${device.tablet} {
     font-size: ${p => p.theme.fontSizes.fs24};
-    top: 600px;
+    top: 465px;
     left: 36px;
   }
   @media ${device.desktop} {
-    top: 510px;
+    top: 380px;
     left: 280px;
   }
 `;
