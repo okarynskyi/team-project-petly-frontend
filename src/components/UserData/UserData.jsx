@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updatePhoto } from 'redux/user/userOperations';
 import { selectUserInfo } from 'redux/user/userSelectors';
-import { filterData, checkType  } from './helpersForRender';
+import { filterData, checkType } from './helpersForRender';
 import { HiCamera } from 'react-icons/hi';
 import { UserDataItem } from 'components/UserDataItem/UserDataItem';
 import { Logout } from 'components/Logout/Logout';
@@ -17,21 +17,28 @@ import {
   InfoWrapper,
   HiddenInput,
   FormEdit,
-  LoaderPhoto, WrapperUserData, Photo
+  LoaderPhoto,
+  WrapperUserData,
+  Photo,
 } from './UserData.styled';
 
 export const UserData = () => {
   const dispatch = useDispatch();
   const userInfo = useSelector(selectUserInfo);
   const [activeField, setActiveField] = useState(null);
+  const [infoProfile, setInfoProfile] = useState(null);
   const [changePhoto, setchangePhoto] = useState(false);
 
+
   useEffect(() => {
-    setchangePhoto(false);
+   setchangePhoto(false);
+    if (userInfo) {
+      const infoProfile = filterData(userInfo.user);
+      setInfoProfile(infoProfile);
+    }
   }, [userInfo]);
 
-  const infoProfile = filterData(userInfo.user);
-  
+
   const UploadFile = async fileSelect => {
     const imageURL = new FormData();
     imageURL.append('imageURL', fileSelect);
