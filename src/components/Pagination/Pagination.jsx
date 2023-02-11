@@ -1,5 +1,4 @@
 import * as React from 'react';
-// import { useLocation } from 'react-router-dom';
 import { PaginationNotice } from './PaginationNotice.styled';
 
 const PaginationNotices = ({ page, totalPages, setSearch, search }) => {
@@ -31,9 +30,6 @@ const PaginationNotices = ({ page, totalPages, setSearch, search }) => {
         }, 1300);
       }}
       boundaryCount={1}
-      // showFirstButton
-      // showLastButton
-      // size="large"
     />
   );
 };

@@ -4,12 +4,10 @@ import { useLocation, useSearchParams } from 'react-router-dom';
 
 import NoticeCategoryItem from '../../components/NoticeCategoryItem/NoticeCategoryItem';
 import { Loader } from 'components/Loader';
-
 import operations from '../../redux/notices/noticesOperations';
 import { selectNoticesByCategory, selectIsLoading, selectIsNoticeAdded, selectTotalPages } from 'redux/notices/noticesSelectors';
 import { selectUser, selectIsLoggedIn } from 'redux/auth/authSelectors';
 import PaginationNotices from 'components/Pagination/Pagination';
-
 import { categoryShelf } from 'helpers/noticesCategoryShelf';
 import { Wrapper, List, NotFound } from './NoticesCategoriesList.styled';
 import notFound from "../../staticImages/notice/notFound.jpg"
@@ -25,11 +23,8 @@ const NoticesCategoryList = () => {
   const isNoticeAdded = useSelector(selectIsNoticeAdded)
   const user = useSelector(selectUser)
   const selectTotalPage = useSelector(selectTotalPages);
-console.log(selectTotalPage)
   const category = location.pathname.split('/')[2];
-  
   const [search, setSearch] = useSearchParams();
-  
   const query = search.get('query');
   const page = search.get('page');
 
@@ -82,7 +77,7 @@ console.log(selectTotalPage)
                   isFavorite={isFavorite}
                   isOwner={isOwner}
                   category={category}
-                  page={page}
+                  // page={page}
                 />
               })}
             </List>
