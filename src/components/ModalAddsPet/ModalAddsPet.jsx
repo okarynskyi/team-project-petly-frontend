@@ -42,18 +42,26 @@ const ModalAddPet = () => {
   const [preview, setPreview] = useState('');
   const dispatch = useDispatch();
   const [onAddFile, setOnAddFile] = useState(null);
+
   const makeRequest = formData => {
     dispatch(addPet(formData));
     setOnAddFile(null);
     setPreview(null);
     document.body.style.overflow = 'auto';
+    modalCloseEscapeRemove();
   };
-  const handleKeyDown = e => {
+    const modalCloseEscape = () => {
+      const handleKeyDown = e => {
     if (e.code === 'Escape') {
       setModalActive(false);
     }
   };
   window.addEventListener('keydown', handleKeyDown);
+  }
+  const modalCloseEscapeRemove = () => {
+  window.addEventListener('keydown', modalCloseEscape);
+  }
+
   const handleNextStep = (newData, final = false) => {
     setDatat(prev => ({ ...prev, ...newData }));
     if (final) {
@@ -135,6 +143,7 @@ const ModalAddPet = () => {
                 onClick={() => {
                   setModalActive(false);
                   document.body.style.overflow = 'auto';
+                  modalCloseEscapeRemove();
                 }}
               >
                 Cancel
@@ -225,6 +234,7 @@ const ModalAddPet = () => {
           onClick={() => {
             setModalActive(true);
             document.body.style.overflow = 'hidden';
+            modalCloseEscape();
           }}
         >
           <StyledPlus />
@@ -242,6 +252,7 @@ const ModalAddPet = () => {
                   onClick={() => {
                     setModalActive(false);
                     document.body.style.overflow = 'auto';
+                    modalCloseEscapeRemove();
                   }}
                 >
                   <HiX color="#111111" size="34px" />
@@ -257,6 +268,7 @@ const ModalAddPet = () => {
                   onClick={() => {
                     setModalActive(false);
                     document.body.style.overflow = 'auto';
+                    modalCloseEscapeRemove();
                   }}
                 >
                   <HiX color="#111111" size="34px" />
