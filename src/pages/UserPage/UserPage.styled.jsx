@@ -23,6 +23,7 @@ export const TitleSectionUser = styled.h2`
 
 export const SectionUser = styled.section`
   padding-top: 52px;
+  padding-bottom: 32px;
 `;
 export const WrapperDesctop = styled.div`
   display: flex;
