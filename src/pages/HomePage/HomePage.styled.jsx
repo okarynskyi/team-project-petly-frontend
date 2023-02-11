@@ -151,7 +151,7 @@ export const Donat = styled.a`
 `;
 export const BoxDonat = styled.div`
   position: absolute;
-  top: 330px;
+  top: 355px;
   left: 16px;
   display: flex;
   flex-direction: column;
