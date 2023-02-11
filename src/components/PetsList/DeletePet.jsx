@@ -16,7 +16,7 @@ export const DeletePet = ({ _id }) => {
       </CircleBtnTrash>
       <Modal active={modalActive} setActive={setModalActive}>
         <WrapperQuit>
-          Do you really want to delete?
+          Do you really want to delete pet?
           <div>
             {' '}
             <ButtonQuit 

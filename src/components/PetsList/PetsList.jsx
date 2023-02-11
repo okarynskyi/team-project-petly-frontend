@@ -23,7 +23,7 @@ export const PetsList = () => {
 
   return (
     <>
-      {pets.length === 0 && <EmptyListPet>Please, add pet.</EmptyListPet>}
+      {pets.length === 0 && <EmptyListPet>Please add pet.</EmptyListPet>}
       {!loadPet ?
       (pets && (
         <ListPets>

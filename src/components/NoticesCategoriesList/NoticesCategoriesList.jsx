@@ -10,8 +10,9 @@ import { selectNoticesByCategory, selectIsLoading, selectIsNoticeAdded } from 'r
 import { selectUser, selectIsLoggedIn } from 'redux/auth/authSelectors';
 
 import { categoryShelf } from 'helpers/noticesCategoryShelf';
-import { Wrapper, List, NotFound } from './NoticesCategoriesList.styled';
+import { Wrapper, List, NotFound, Cat } from './NoticesCategoriesList.styled';
 import notFound from "../../staticImages/notice/notFound.jpg"
+import catgif from "../../staticImages/catgif.gif";
 
 
 const NoticesCategoryList = () => {
@@ -52,7 +53,10 @@ const NoticesCategoryList = () => {
   
   return !isLoading && notices.length===0 ? (
     <Wrapper>
-    <NotFound src={notFound} alt="defaut"/>
+      <NotFound src={notFound} alt="defaut" />
+        <Cat>
+          <img alt="walking cat" src={ catgif } />
+        </Cat>
   </Wrapper>
   ) : (
     <Wrapper>

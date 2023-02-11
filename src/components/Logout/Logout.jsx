@@ -18,7 +18,7 @@ export const Logout = () => {
       </LogoutBtn>
       <Modal active={modalActive} setActive={setModalActive}>
         <WrapperQuit>
-          Do you really want to go out?
+          Do you really want to logout?
           <div>
             {' '}
             <ButtonQuit

@@ -49,7 +49,7 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
   const addToFavorite = async () => {
     if (!isLoggedIn) {
       return toast.error(
-        'You need to authorize before adding notices to favorite.'
+        'You need to authorize before adding pets to favorites.'
       );
     }
     dispatch(operations.addToFavorites(_id))
@@ -57,13 +57,13 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
         refreshingPage(category);
       })
 
-    toast.success('Notice added to favorite adds.');
+    toast.success('Pet added to favorites.');
   };
 
   const removeFromFavorite = async () => {
     if (!isLoggedIn) {
       return toast.error(
-        'You need to authorize before remove notices from favorite.'
+        'You need to authorize before removing pets from favorites.'
       );
     }
     dispatch(operations.deleteFromFavorites(_id))
@@ -71,7 +71,7 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
         refreshingPage(category);
       })
 
-    toast.success('Notice removed from favorite adds.');
+    toast.success('Pet removed from favorites.');
   };
 
   const onChangeOpenModal = () => {
