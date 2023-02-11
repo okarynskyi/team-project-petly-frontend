@@ -22,8 +22,17 @@ export const TitleSectionUser = styled.h2`
 `;
 
 export const SectionUser = styled.section`
-  padding-top: 52px;
-  padding-bottom: 32px;
+  padding-top: 60px;
+  padding-bottom: 80px;
+
+  @media ${device.tablet} {
+    padding-top: 88px;
+    padding-bottom: 100px;
+  }
+  @media ${device.desktop} {
+    padding-top: 70px;
+    padding-bottom: 40px;
+  }
 `;
 export const WrapperDesctop = styled.div`
   display: flex;
@@ -31,7 +40,6 @@ export const WrapperDesctop = styled.div`
   justify-content: space-between;
   flex-direction: column;
   gap: ${props => props.theme.space[5]}px;
-  margin-bottom: 40px;
   @media ${device.desktop} {
     flex-direction: row;
   }
