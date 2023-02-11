@@ -36,6 +36,7 @@ transition: 0.5s all;
 }
 `
 export const ModalButton = styled.button`
+z-index: 1;
 position: absolute;
 display: flex;
 top: 16px;

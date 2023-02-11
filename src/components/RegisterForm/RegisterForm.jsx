@@ -51,8 +51,8 @@ export const RegisterForm = () => {
   const schemaStepOne = yup.object({
     email: yup
       .string()
-      .min(7, 'Email must consist at least 7 symbols')
-      .max(63, 'Email must contain no more than 63 symbols')
+      .min(7, 'Email must contain least 7 symbols')
+      .max(63, 'Email must contain not more than 63 symbols')
       .matches(
         emailRegexp,
         'Please, enter a valid e-mail. For example, "mango@gmail.com"'
@@ -62,8 +62,8 @@ export const RegisterForm = () => {
     password: yup
       .string()
       .trim(true)
-      .min(7, 'Password must consist at least 7 symbols')
-      .max(32, 'Password must contain no more than 32 symbols')
+      .min(7, 'Password must contain at least 7 symbols')
+      .max(32, 'Password must contain not more than 32 symbols')
       .matches(passwordRegexp, 'Please, enter a valid password')
       .required('Password is required'),
     confirmPassword: yup
@@ -79,7 +79,7 @@ export const RegisterForm = () => {
     name: yup
       .string()
       .min(2, 'Name must contain at least 2 symbol')
-      .max(20, 'Name must contain no more than 20 symbols')
+      .max(20, 'Name must contain not more than 20 symbols')
       .matches(
         nameRegexp,
         'Please, enter a valid name. For example, "Mango" or "Poly"'
@@ -94,7 +94,7 @@ export const RegisterForm = () => {
       .required('Location is required'),
     phone: yup
       .string()
-      .min(13, 'Not enough of symbols entered')
+      .min(13, 'Not enough symbols entered')
       .matches(
         phoneRegexp,
         'Please, enter the phone number in the format +38xxxxxxxxxx'

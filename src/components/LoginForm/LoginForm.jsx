@@ -26,14 +26,14 @@ export const LoginForm = () => {
   const schema = yup.object({
     email: yup
       .string()
-      .min(7, 'Email must consist of at least 7 symbols')
-      .max(63, 'Email must contain no more than 63 symbols')
+      .min(7, 'Email must contain at least 7 symbols')
+      .max(63, 'Email must contain not more than 63 symbols')
       .matches(emailRegexp, 'Please, enter a valid e-mail')
       .required('E-mail is required'),
     password: yup
       .string()
-      .min(7, 'Password must consist of at least 7 symbols')
-      .max(32, 'Password must contain no more than 32 symbols')
+      .min(7, 'Password must contain at least 7 symbols')
+      .max(32, 'Password must contain not more than 32 symbols')
       .matches(passwordRegexp, 'Please, enter a valid password')
       .required('Password is required'),
   });

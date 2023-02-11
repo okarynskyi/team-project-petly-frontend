@@ -68,11 +68,11 @@ export const UserDataItem = ({
     const nik = emaill.indexOf('@');
     const validNik = emaill.slice(0, nik);
     if (formValues.email && validNik.length <= 1) {
-      toast.error('Before "@" must be more than 1 symbol');
+      toast.error('Add more than 1 symbol before "@" ');
       return;
     }
     if (formValues.email && formValues.email.length > 22) {
-      toast.error('Email must be least than 22 symbols');
+      toast.error('Email must contain at least 22 symbols');
       return;
     }
     const number = formValues.phone;
@@ -85,14 +85,14 @@ export const UserDataItem = ({
       formValues.name &&
       (formValues.name.length < 2 || formValues.name.length > 20)
     ) {
-      toast.error('Name must be in English, contain 2-20 symbols');
+      toast.error('Name must be in English and contain 2-20 symbols');
       return;
     }
     if (
       formValues.location &&
       (formValues.location.length < 4 || formValues.location.length > 40)
     ) {
-      toast.error('City must be in English, contain no more than 40 symbols');
+      toast.error('City must be in English and contain not more than 40 symbols');
       return;
     }
     const changedField = Object.entries(formValues).find(item => item[1]);

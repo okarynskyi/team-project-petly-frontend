@@ -15,7 +15,7 @@ export const FileInput = ({ preview, onAddImg }) => {
   return (
     <InputFileWrap>
       <Label>
-        Load the pet’s image:
+        Upload the pet’s image:
         {!preview && (
           <AddImgIcon>
             <BsPlusLg />

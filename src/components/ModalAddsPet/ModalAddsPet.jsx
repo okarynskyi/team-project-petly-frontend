@@ -72,7 +72,7 @@ const ModalAddPet = () => {
       newInfo.append('imageURL', onAddFile);
       newInfo.append('comments', newData.comments);
       if (!onAddFile) {
-        toast.error('photo is requare');
+        toast.error('photo is required');
         return;
       }
       makeRequest(newInfo);
@@ -113,7 +113,7 @@ const ModalAddPet = () => {
                   name="name"
                   type="text"
                   id="name"
-                  placeholder="Type name pet"
+                  placeholder="Type pet`s name"
                 />
                 <Error name="name" component="div" />
               </LabelStyled>

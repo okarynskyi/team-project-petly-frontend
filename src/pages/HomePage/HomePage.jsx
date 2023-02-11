@@ -42,7 +42,7 @@ const HomePage = () => {
                 >
                   <StyledMoney />
                 </Donat>{' '}
-                Donat
+                Donate
               </BoxDonat>
             </div>
 
