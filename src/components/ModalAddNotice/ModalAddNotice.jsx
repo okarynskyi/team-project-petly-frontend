@@ -8,7 +8,6 @@ import { useSelector } from 'react-redux';
 import { selectToken } from '../../redux/auth/authSelectors';
 import { toast } from 'react-toastify';
 import { ModalUser } from '../ModalAddsPet/Modal';
-// import Modal from '../common/Modal/Modal';
 import { NextBtn } from './NextBtn/NextBtn';
 import { CancelBtn } from './CancelBtn/CancelBtn';
 
@@ -191,8 +190,6 @@ const ModalAddNotice = () => {
       .max(120, 'Too long!')
       .required('Comments is required'),
     price: Yup.number().min(1, 'Price has to be more than 0'),
-    // sex: Yup.string().required('Choose sex'),
-    // birthday: Yup.date().required('Choose date of birth'),
   });
 
   const stateMachine = {
@@ -214,7 +211,9 @@ const ModalAddNotice = () => {
         <WrapperAddNotice hidden={modalActive}>
           <TextAddLeft>Add pet </TextAddLeft>
           <AddPetNotice
-            onClick={() => toast.error('You need to register or logged in!')}
+            onClick={() =>
+              toast.error('You need to be registered or logged in!')
+            }
           >
             <StyledPlus />
             <TextAdd>Add pet </TextAdd>

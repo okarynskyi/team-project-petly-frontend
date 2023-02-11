@@ -38,12 +38,12 @@ export const AddImgIcon = styled.span`
 
 export const PrevievImg = styled.img`
   margin-top: 8px;
-  width: 116px;
-  height: 116px;
+  width: 71px;
+  height: 71px;
   border-radius: 20px;
   @media (min-width: 768px) {
     margin-top: 12px;
-    width: 140px;
-    height: 140px;
+    width: 71px;
+    height: 71px;
   }
 `;

@@ -5,9 +5,9 @@ export const DateInput = styled(Datetime)`
   position: relative;
   font-size: 16px;
   line-height: calc(22 / 16);
-  max-width: 100%;
+  max-width: 90%;
   input {
-    width: 100%;
+    width: 90%;
     padding: 12px 20px 12px 14px;
     font-weight: 400;
     font-size: 14px;

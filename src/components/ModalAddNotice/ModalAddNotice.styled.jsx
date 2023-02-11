@@ -67,12 +67,16 @@ export const Subtitle = styled.p`
   letter-spacing: -0.01em;
   color: #111111;
   @media (min-width: 768px) {
+    margin-top: 16px;
     font-size: 20px;
     line-height: calc(27 / 20);
   }
 `;
 export const FormStyled = styled(Form)`
   margin-top: 10px;
+  @media (min-width: 768px) {
+    margin-top: 20px;
+  }
 `;
 export const InputFieldWrap = styled.div`
   margin-top: 10px;
@@ -80,7 +84,7 @@ export const InputFieldWrap = styled.div`
   flex-direction: column;
   gap: 6px;
   @media (min-width: 768px) {
-    margin-top: 20px;
+    margin-top: 32px;
     gap: 16px;
   }
   
@@ -150,17 +154,17 @@ export const ModalContent3 = styled.div`
   top: 8%;
   left: 50%;
   transform: translate(-50%, -5%);
-  height: 100vh;
+  height: 700px;
 
   width: 280px;
-  max-width: 100%;
+  // max-width: 100%;
   background: #ffffff;
   border-radius: 20px;
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
   @media ${device.tablet} {
     width: 608px;
-    height: 100vh;
+    // height: 650px;
   }
 `;
 export const WrapperModalAddNotice = styled.div`
