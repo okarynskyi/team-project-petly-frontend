@@ -1,12 +1,12 @@
 import { useSelector } from 'react-redux';
-import { selectUser } from '../../redux/auth/authSelectors';
+import { selectUserInfo } from '../../redux/user/userSelectors';
 // import userAvatar from '../../staticImages/userAvatarWhite.png';
 import { AccountBtn, UserCircle } from './UserNav.styled';
 
 export const UserNav = ({ onClose }) => {
-  const user = useSelector(selectUser);
+  const userInfo = useSelector(selectUserInfo);
   // const user = { name: 'Alena', avatarURL: userAvatar };
-  const { name, avatarURL } = user;
+  const { user, avatarURL } = userInfo ;
 
   return (
     <>
@@ -14,7 +14,7 @@ export const UserNav = ({ onClose }) => {
         <div>
           {avatarURL ? <img src={avatarURL} alt="Account" /> : <UserCircle />}
         </div>
-        {name ? name : 'Account'}
+        {user.name ? user.name : 'Account'}
       </AccountBtn>
     </>
   );
