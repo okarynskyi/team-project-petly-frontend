@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-
-export const LogoStyled = styled.p`
+import { NavLink } from 'react-router-dom';
+export const LogoStyled = styled(NavLink)`
   display: inline-block;
   font-family: ${p => p.theme.fonts.logo};
   font-weight: ${p => p.theme.fontWeights.fw700};

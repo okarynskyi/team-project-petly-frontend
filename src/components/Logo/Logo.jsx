@@ -2,7 +2,7 @@ import { LogoStyled, LogoAccentStyled } from './Logo.styled';
 
 export const Logo = () => {
   return (
-    <LogoStyled>
+    <LogoStyled to="/">
       pe
       <LogoAccentStyled>t</LogoAccentStyled>
       ly
