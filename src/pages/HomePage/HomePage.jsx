@@ -31,7 +31,7 @@ const HomePage = () => {
               <WrapperMission>
                 <p>
                   to connect <b>Owners</b> and <b>Pets</b> so that not a
-                  single Tail is left alone
+                  single <b>Tail</b> is left alone
                 </p>
               </WrapperMission>
               <BoxDonat>
