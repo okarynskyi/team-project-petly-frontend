@@ -78,12 +78,13 @@ export const MainTitle = styled.h1`
   font-weight: ${props => props.theme.fontWeights.fw700};
   line-height: 1.4;
   text-align: center;
+  margin-bottom: ${props => props.theme.space[1]}px;
   @media ${device.tablet} {
-    font-size: 56px;
+    font-size: 52px;
     margin-bottom: ${props => props.theme.space[3]}px;
   }
   @media ${device.desktop} {
-    font-size: 50px;
+    font-size: 48px;
   }
 `;
 
@@ -97,14 +98,13 @@ export const Description = styled.p`
   @media ${device.tablet} {
     font-size: 36px;
     line-height: 1.35;
-    margin-bottom: 105px;
+    margin-bottom: ${props => props.theme.space[5]}px;
     padding-right: 65px;
   }
   @media ${device.desktop} {
     padding: 0;
     text-align: center;
-    margin-bottom: ${props => props.theme.space[5]}px;
-    font-size: ${p => p.theme.fontSizes.fs32};
+    font-size: ${p => p.theme.fontSizes.fs28};
     line-height: 1.17;
   }
 `;
@@ -135,7 +135,7 @@ export const WrapperMission = styled.div`
   @media ${device.tablet} {
     margin-bottom: ${props => props.theme.space[2]}px;
     > p {
-      font-size: 42px;
+      font-size: 40px;
     }
   }
 `;
