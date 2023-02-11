@@ -250,6 +250,10 @@ export const TextWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media ${device.tablet} {
+    flex-wrap: wrap;
+  }
 `
 
 export const ContactText = styled.p`
@@ -270,6 +274,10 @@ export const ButtonText = styled.p`
   padding-right: 10px;
   color: ${p => p.theme.colors.mainText};
   cursor: pointer;
+
+  @media ${device.tablet} {
+    padding-right: 5px;
+  }
 `
 
 export const ModalNoticeWrapper = styled.div`
