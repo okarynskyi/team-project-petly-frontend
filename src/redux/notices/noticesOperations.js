@@ -6,10 +6,12 @@ axios.defaults.baseURL = 'https://petly-backend-v11f.onrender.com/api';
 // ендпоінт для отримання оголошень по категоріям
 const getNoticesByCategory = createAsyncThunk(
     'notices/getByCategory',
-    async ({ category, query }, { rejectWithValue }) => {
+    async ({ category, query, page }, { rejectWithValue }) => {
         try {
             if (query===null) {
-            const { data } = await axios.get(`/notices/category/${category}`);
+            const { data } = await axios.get(`/notices/category/${category}`, {
+                params: { page },
+            });
             return data;
         }
             else {
@@ -53,10 +55,12 @@ const addToFavorites = createAsyncThunk(
 // get '/notices/favorites' отримання оголошень авторизованого користувача доданих ним же в обрані
 const getFavorites = createAsyncThunk(
     'notices/getFavorites',
-    async ({query}, { rejectWithValue }) => {
+    async ({query, page}, { rejectWithValue }) => {
         try {
             if (query===null) {
-            const { data } = await axios.get(`/notices/user/favorites`);
+            const { data } = await axios.get(`/notices/user/favorites`, {
+                params: { page },
+            });
 
             return data;}
             else {
@@ -116,9 +120,11 @@ const createNotice = createAsyncThunk(
 // get '/notices' отримання оголошень авторизованого кристувача створених цим же користувачем
 const getUserNotices = createAsyncThunk(
     'notices/getUserNotices',
-    async ({query}, { rejectWithValue }) => {
+    async ({query, page}, { rejectWithValue }) => {
         try {if (query===null) {
-            const { data } = await axios.get(`/notices`);
+            const { data } = await axios.get(`/notices`, {
+                params: { page },
+            });
 
             return data;
         } else {

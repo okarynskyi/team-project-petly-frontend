@@ -9,6 +9,7 @@ const handlePending = state => {
 const initialState = {
     noticesByCategory: [],
     oneNoticeMoreInfo: [],
+    totalPages: 1,
     isFavorite: false,
     isLoading: false,
     isError: null,
@@ -23,6 +24,7 @@ const noticesSlice = createSlice({
         [operations.getNoticesByCategory.pending]: handlePending,
         [operations.getNoticesByCategory.fulfilled](state, { payload }) {
             state.noticesByCategory = payload.notices;
+            state.totalPages = payload.totalPages;
             state.isLoading = false;
             state.isError = null;
         },
@@ -60,6 +62,8 @@ const noticesSlice = createSlice({
         [operations.getFavorites.pending]: handlePending,
         [operations.getFavorites.fulfilled](state, {payload}) {
             state.noticesByCategory = payload.notices;
+            console.log(payload)
+            state.totalPages = payload.totalPages;
             state.isLoading = false;
             state.isError = null;
         },
@@ -107,6 +111,7 @@ const noticesSlice = createSlice({
         [operations.getUserNotices.pending]: handlePending,
         [operations.getUserNotices.fulfilled](state, { payload }) {
             state.noticesByCategory = payload.notices;
+            state.totalPages = payload.totalPages;
             state.isLoading = false;
             state.isError = null;
         },
