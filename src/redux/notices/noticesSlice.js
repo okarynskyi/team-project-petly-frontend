@@ -22,7 +22,7 @@ const noticesSlice = createSlice({
         // отримання оголошень по категоріям
         [operations.getNoticesByCategory.pending]: handlePending,
         [operations.getNoticesByCategory.fulfilled](state, { payload }) {
-            state.noticesByCategory = payload;
+            state.noticesByCategory = payload.notices;
             state.isLoading = false;
             state.isError = null;
         },
@@ -106,7 +106,7 @@ const noticesSlice = createSlice({
         // отримання оголошень авторизованого кристувача створених цим же користувачем
         [operations.getUserNotices.pending]: handlePending,
         [operations.getUserNotices.fulfilled](state, { payload }) {
-            state.noticesByCategory = payload;
+            state.noticesByCategory = payload.notices;
             state.isLoading = false;
             state.isError = null;
         },
