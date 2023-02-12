@@ -25,37 +25,48 @@ export const List = styled.ul`
   }
 `
 export const NotFound = styled.img`
-  position: relative;
   margin-left: auto;
   margin-right: auto;
-
-  @media ${device.mobile} {
-    max-width: 250px;
-  };
+  max-width: 230px;
   
   @media ${device.tablet} {
-    max-width: 400px;
+    max-width: 250px;
+  };
+
+  @media ${device.desktop} {
+    max-width: 300px;
   };
 `
 
 export const Cat = styled.div`
-    width: 300px;
+    width: 90px;
     bottom: -33%;
-    position: absolute;
+    position: relative;
     animation: walk 7s linear infinite;
 
+    > img {
+      width: 90px;
+    }
+
     @media ${device.tablet} {
+      width: 300px;
     bottom: -50%;
     animation: walk 15s linear infinite;
+
+    > img {
+      width: 120px;
+    }
   };
 
   @media ${device.desktop} {
     bottom: -57%;
-  };
-  
+
     > img {
       width: 150px;
     }
+  };
+  
+    
 
 @keyframes walk {
   0%, 100% { 
@@ -72,7 +83,9 @@ export const Cat = styled.div`
   }
      99% { 
       left: 0;   
-      transform: translatex(-50%) scalex(-1);      }
+      transform: translatex(-50%) scalex(-1);      
+    }
+  }
 `
 
 export default List;
