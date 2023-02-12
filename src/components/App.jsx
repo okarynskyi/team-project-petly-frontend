@@ -1,6 +1,6 @@
 import React, { lazy, Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -88,7 +88,7 @@ export const App = () => {
                   </PublicRoute>
                 }
               />
-              <Route path="*" element={<p>Page not found.</p>} />
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Route>
           </Routes>
         </Suspense>
