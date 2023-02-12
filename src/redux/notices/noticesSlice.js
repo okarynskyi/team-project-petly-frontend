@@ -62,7 +62,6 @@ const noticesSlice = createSlice({
         [operations.getFavorites.pending]: handlePending,
         [operations.getFavorites.fulfilled](state, {payload}) {
             state.noticesByCategory = payload.notices;
-            console.log(payload)
             state.totalPages = payload.totalPages;
             state.isLoading = false;
             state.isError = null;
