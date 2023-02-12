@@ -17,6 +17,7 @@ import {
   RegistrBtn,
   NextBtn,
 } from './RegisterForm.styled';
+import { toast } from 'react-toastify';
 
 export const passwordRegexp = /^\S*$/;
 export const spaceRegexp = /^\S*\S+$/;
@@ -33,7 +34,10 @@ export const RegisterForm = () => {
   const loginUser = values => {
     dispatch(logIn(values)).then(resp => {
       if (resp.meta.requestStatus === 'fulfilled') {
+        toast.success('Successfully registered!');
         navigate('/user', { replace: true });
+      } else {
+        toast.warn('Wrong password or email!');
       }
       return;
     });
