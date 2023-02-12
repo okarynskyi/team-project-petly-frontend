@@ -44,10 +44,16 @@ export const LabelBreed = styled.label`
 `;
 export const Error = styled.div`
   position: absolute;
-  left: 0;
-  bottom: -20%;
-  color: #f59256;
+  width: 100%;
+  left: 15px;
+  top: 12px;
+  text-align: center;
+  margin-top: ${props => props.theme.space[0]}px;
+  color: ${props => props.theme.colors.accent};
   font-size: 12px;
+  @media ${device.tablet} {
+    margin-top: ${props => props.theme.space[1]}px;
+  }
 `;
 export const Title = styled.h3`
   font-size: 24px;
