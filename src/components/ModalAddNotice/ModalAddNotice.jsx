@@ -113,6 +113,14 @@ const ModalAddNotice = () => {
     reader.readAsDataURL(file);
   };
 
+  const handleKeyDown = e => {
+    if (e.code === 'Escape') {
+      setModalActive(false);
+      document.body.style.overflow = 'auto';
+    }
+  };
+  window.addEventListener('keydown', handleKeyDown);
+  
   const submitForm = values => {
     const { title, name, breed, comments, price } = values;
 
@@ -135,13 +143,7 @@ const ModalAddNotice = () => {
       return;
     }
 
-    const handleKeyDown = e => {
-      if (e.code === 'Escape') {
-        setModalActive(false);
-        document.body.style.overflow = 'auto';
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
+    
 
     dispatch(operations.createNotice(data));
     setModalActive(false);
