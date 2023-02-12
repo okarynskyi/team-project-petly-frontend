@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { signUp, logIn, logOut, getCurrentUser } from './authOperations';
-import { toast } from 'react-toastify';
 
 const initialState = {
   user: { id: null, name: null, email: null, myPets: [], myFavorite: [] },
@@ -25,12 +24,10 @@ const authSlice = createSlice({
       state.token = action.payload.token;
       state.isLoggedIn = true;
       state.isLoading = false;
-      toast.success('Successfully registered!');
     },
     [signUp.rejected](state, action) {
       state.isLoading = false;
       state.isError = action.payload;
-      toast.warn('Wrong password or email!');
     },
     [logIn.pending](state) {
       state.isLoading = true;
@@ -41,12 +38,10 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
       state.token = action.payload.token;
       state.user = action.payload.user;
-      toast.success('Successfully logged in!');
     },
     [logIn.rejected](state, action) {
       state.isLoading = false;
       state.isError = action.payload;
-      toast.error('Wrong password or email!');
     },
     [logOut.pending](state) {
       state.isLoading = true;
@@ -57,12 +52,10 @@ const authSlice = createSlice({
       state.token = null;
       state.isLoggedIn = false;
       state.isLoading = false;
-      toast.success('Successfully logged out!');
     },
     [logOut.rejected](state, { payload }) {
       state.isLoading = false;
       state.isError = payload;
-      toast.error('Something went wrong, please try again!');
     },
     [getCurrentUser.pending](state) {
       state.isLoading = true;

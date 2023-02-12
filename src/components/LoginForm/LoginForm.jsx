@@ -13,6 +13,7 @@ import {
   InputWrapper,
 } from './LoginForm.styled';
 import { AccentButton } from 'components/common/StyledButton/StyledButton.styled';
+import { toast } from 'react-toastify';
 
 const passwordRegexp = /^[\S*]{7,32}$/;
 const emailRegexp =
@@ -44,7 +45,13 @@ export const LoginForm = () => {
   };
 
   const handleSubmit = ({ email, password }) => {
-    dispatch(logIn({ email, password }));
+    dispatch(logIn({ email, password })).then((res) => {
+      if (res.error) {
+        toast.error("Wrong password or email!")
+      } else {
+        toast.success("Successfully logged in!")
+      }
+    })
   };
   return (
     <Formik

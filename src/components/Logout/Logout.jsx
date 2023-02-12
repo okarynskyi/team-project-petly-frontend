@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { logOut } from '../../redux/auth/authOperations';
 import { LogoutBtn, WrapperQuit, ButtonQuit } from './Logout.styled';
 import Modal from '../common/Modal/Modal';
+import { toast } from 'react-toastify';
 
 export const Logout = () => {
   const dispatch = useDispatch();
@@ -24,8 +25,14 @@ export const Logout = () => {
             <ButtonQuit
               type="button"
               onClick={() => {
-                dispatch(logOut());
-                navigate('/login', { replace: true });
+                dispatch(logOut()).then((res) => {
+                  if (res.meta.requestStatus === 'fulfilled') {
+                    toast.success('Successfully logged out!');
+                    navigate('/login', { replace: true });
+                  } else {
+                    toast.error('Something went wrong, please try again!');
+                  }
+                });
               }}
             >
               Yes
