@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { selectToken } from 'redux/auth/authSelectors';
+import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import { nanoid } from 'nanoid';
 import {
   Button,
@@ -25,7 +25,7 @@ const buttons = [
     btn: 'lost/found',
     link: 'lost-found',
   },
-  
+
 ];
 
 const authButtons = [
@@ -40,8 +40,7 @@ const authButtons = [
 ];
 
 function NoticesCategoriesNav() {
-  const token = useSelector(selectToken);
-  // const [modalActive, setModalActive] = useState(false);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
     <Wrapper>
@@ -56,7 +55,7 @@ function NoticesCategoriesNav() {
           ))}
         </CommonLinks>
         <AuthLinks>
-          {token &&
+          {isLoggedIn &&
             authButtons.map(b => (
               <Item key={nanoid()}>
                 <Button to={'/notices/' + b.link} name={b.link}>
