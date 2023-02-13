@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { device } from 'Device';
-import backgroundImg from '../../staticImages/auth/background-desk.png';
-import backgroundTabImg from '../../staticImages/auth/background-tab.png';
-import backgroundMobImg from '../../staticImages/auth/background-mob.png';
+import backgroundImg from 'staticImages/auth/background-desk.png';
+import backgroundTabImg from 'staticImages/auth/background-tab.png';
+import backgroundMobImg from 'staticImages/auth/background-mob.png';
 
 export const AuthSection = styled.section`
   padding-top: 44px;

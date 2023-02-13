@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { device } from 'Device';
 import EmailTo from 'components/common/EmailTo/EmailTo';
 import CallTo from 'components/common/CallTo/CallTo';
-import { ReactComponent as Favorite } from '../../staticImages/heart2.svg';
+import { ReactComponent as Favorite } from 'staticImages/heart2.svg';
 
 export const ModalBox = styled.div`
   background: ${p => p.theme.colors.white};
@@ -18,9 +18,9 @@ export const ModalBox = styled.div`
     width: 704px;
     padding: 32px 40px 32px 20px;
     top: 10%;
-    overflow-y: hidden; 
-}
-`
+    overflow-y: hidden;
+  }
+`;
 
 export const WrapperForDesc = styled.div`
   width: 240px;
@@ -30,7 +30,7 @@ export const WrapperForDesc = styled.div`
     gap: 20px;
     width: auto;
   }
-`
+`;
 
 export const ImageWrapper = styled.div`
   position: relative;
@@ -42,7 +42,7 @@ export const ImageWrapper = styled.div`
     width: 290px;
     height: 330px;
   }
-`
+`;
 
 export const FilterTitleBox = styled.div`
   display: flex;
@@ -51,11 +51,11 @@ export const FilterTitleBox = styled.div`
   width: 160px;
   height: 28px;
   position: absolute;
-  border-radius: 0px 40px 40px  0px;
+  border-radius: 0px 40px 40px 0px;
   background: #ffffff99;
   top: 20px;
   backdrop-filter: blur(2px);
-`
+`;
 
 export const FitlerTitle = styled.p`
   font-family: ${p => p.theme.fonts.main};
@@ -64,7 +64,7 @@ export const FitlerTitle = styled.p`
   line-height: 16px;
   margin: 0;
   color: ${p => p.theme.colors.mainText};
-`
+`;
 
 export const ImgModal = styled.img`
   width: 240px;
@@ -76,10 +76,10 @@ export const ImgModal = styled.img`
     width: 290px;
     height: 330px;
   }
-  `
+`;
 
 export const ModalTitle = styled.h2`
-  width: 195px; 
+  width: 195px;
   font-family: ${p => p.theme.fonts.main};
   font-weight: ${p => p.theme.fontWeights.fw700};
   font-size: ${p => p.theme.fontSizes.fs24};
@@ -94,7 +94,7 @@ export const ModalTitle = styled.h2`
     line-height: 38px;
     padding-top: 0;
   }
-`
+`;
 
 export const ListWrapper = styled.div`
   display: flex;
@@ -105,7 +105,7 @@ export const ListWrapper = styled.div`
     padding-top: 20px;
     gap: 55px;
   }
-`
+`;
 
 export const FirstList = styled.ul`
   list-style: none;
@@ -115,13 +115,13 @@ export const FirstList = styled.ul`
   &:last-child {
     padding-bottom: 0px;
   }
-`
+`;
 
 export const SecondList = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
-`
+`;
 
 export const Items = styled.li`
   padding-bottom: 8px;
@@ -129,7 +129,7 @@ export const Items = styled.li`
   &:last-child {
     padding-bottom: 0;
   }
-`
+`;
 
 export const Text = styled.p`
   font-family: ${p => p.theme.fonts.main};
@@ -143,10 +143,10 @@ export const Text = styled.p`
     line-height: 22px;
     font-size: ${p => p.theme.fontSizes.fs16};
   }
-`
+`;
 
 export const ListItemDescr = styled.p.attrs(props => ({
-  textDecoration: props.isNotDecorated ? 'underline' : 'none', 
+  textDecoration: props.isNotDecorated ? 'underline' : 'none',
 }))`
   text-decoration: underline;
   font-weight: ${p => p.theme.fontWeights.fw500};
@@ -160,7 +160,7 @@ export const ListItemDescr = styled.p.attrs(props => ({
     line-height: 22px;
     font-size: ${p => p.theme.fontSizes.fs16};
   }
-`
+`;
 
 export const Comment = styled.p`
   font-family: ${p => p.theme.fonts.main};
@@ -175,7 +175,7 @@ export const Comment = styled.p`
     line-height: 24px;
     font-size: ${p => p.theme.fontSizes.fs16};
   }
-`
+`;
 
 export const CommentSpan = styled.span`
   font-family: ${p => p.theme.fonts.main};
@@ -186,7 +186,7 @@ export const CommentSpan = styled.span`
     line-height: 24px;
     font-size: ${p => p.theme.fontSizes.fs16};
   }
-`
+`;
 
 export const ButtonsList = styled.ul`
   list-style: none;
@@ -204,7 +204,7 @@ export const ButtonsList = styled.ul`
     justify-content: flex-start;
     padding-top: 32px;
   }
-`
+`;
 
 export const ContactItem = styled.li`
   width: 240px;
@@ -218,11 +218,11 @@ export const ContactItem = styled.li`
   @media ${device.tablet} {
     width: 160px;
   }
-`
+`;
 
-export const Email = styled(EmailTo)``
+export const Email = styled(EmailTo)``;
 
-export const Tel = styled(CallTo)``
+export const Tel = styled(CallTo)``;
 
 export const ButtonTel = styled(CallTo)`
   text-decoration: none;
@@ -232,7 +232,7 @@ export const ButtonTel = styled(CallTo)`
   &:focus {
     color: white;
   }
-`
+`;
 
 export const Btn = styled.button`
   width: 240px;
@@ -244,7 +244,7 @@ export const Btn = styled.button`
   @media ${device.tablet} {
     width: 160px;
   }
-`
+`;
 
 export const TextWrapper = styled.div`
   display: flex;
@@ -254,7 +254,7 @@ export const TextWrapper = styled.div`
   @media ${device.tablet} {
     flex-wrap: wrap;
   }
-`
+`;
 
 export const ContactText = styled.p`
   font-family: ${p => p.theme.fonts.main};
@@ -263,7 +263,7 @@ export const ContactText = styled.p`
   line-height: 22px;
   margin: 0;
   color: ${p => p.theme.colors.white};
-` 
+`;
 
 export const ButtonText = styled.p`
   font-family: ${p => p.theme.fonts.main};
@@ -278,7 +278,7 @@ export const ButtonText = styled.p`
   @media ${device.tablet} {
     padding-right: 5px;
   }
-`
+`;
 
 export const ModalNoticeWrapper = styled.div`
   border: transparent;
@@ -288,9 +288,9 @@ export const ModalNoticeWrapper = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: ${p => p.theme.radii.br40};
-`
+`;
 
 export const PetsFavoriteSvg = styled(Favorite)`
   width: 16px;
   height: 16px;
-`
+`;

@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import { device } from 'Device';
 import { ReactComponent as Icon } from 'staticImages/heart.svg';
-import { ReactComponent as Delete } from '../../staticImages/delete.svg';
+import { ReactComponent as Delete } from 'staticImages/delete.svg';
 
 export const ButtonsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-`
+`;
 export const StyledButton = styled.div`
   cursor: pointer;
   display: flex;
@@ -25,13 +25,13 @@ export const StyledButton = styled.div`
   transition: color, border 250ms cubic-bezier(0.4, 0, 0.2, 1);
   color: ${p => p.theme.colors.accent};
   margin: auto 16px 12px 16px;
- 
+
   &:only-of-type {
     margin-bottom: 32px;
   }
 
   &:hover,
-  :focus  {
+  :focus {
     border: ${p => p.theme.borders.accent};
     color: ${p => p.theme.colors.hoverAccent};
   }
@@ -85,11 +85,12 @@ export const ImageWrapper = styled.div`
   margin-bottom: 20px;
 `;
 
-export const Image = styled.img`  /**сама картинка */
- width: 288px;
+export const Image = styled.img`
+  /**сама картинка */
+  width: 288px;
   height: 288px;
   object-fit: cover;
-  background-color: #D3D3D3; // временный фон удалить когда карточки на 100% готовы
+  background-color: #d3d3d3; // временный фон удалить когда карточки на 100% готовы
 
   @media ${device.tablet} {
     width: 336px;
@@ -141,7 +142,7 @@ export const AddToFavoriteBtn = styled(Icon)`
 `;
 
 export const RemoveFromFavoriteBtn = styled(Icon)`
-  fill: #F59256;
+  fill: #f59256;
   cursor: pointer;
 `;
 
@@ -185,11 +186,10 @@ export const DescriptionText = styled.p`
   }
 `;
 
-
 export const ButtonDiv = styled.div`
- position: absolute;
- bottom: 0;
- display: block;
- /* display: flex;
+  position: absolute;
+  bottom: 0;
+  display: block;
+  /* display: flex;
  flex-direction: column; */
 `;

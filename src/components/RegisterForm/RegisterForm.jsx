@@ -3,7 +3,7 @@ import { FormikWizard } from 'formik-wizard-form';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
-import { logIn, signUp } from '../../redux/auth/authOperations';
+import { logIn, signUp } from 'redux/auth/authOperations';
 import { Link } from 'react-router-dom';
 import { RegisterFormStepOne } from './RegisterFormStepOne';
 import { RegisterFormStepTwo } from './RegisterFormStepTwo';

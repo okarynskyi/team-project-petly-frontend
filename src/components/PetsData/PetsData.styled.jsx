@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { device } from 'Device';
-import { TitleSectionUser } from '../../pages/UserPage/UserPage.styled';
+import { TitleSectionUser } from 'pages/UserPage/UserPage.styled';
 
 export const WrapperTitlePets = styled.div`
   display: flex;

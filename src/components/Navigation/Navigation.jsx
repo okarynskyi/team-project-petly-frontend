@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useMedia } from 'react-use';
 import { useSelector } from 'react-redux';
-import { selectToken, selectIsLoggedIn } from '../../redux/auth/authSelectors';
+import { selectToken, selectIsLoggedIn } from 'redux/auth/authSelectors';
 import { BtnMenu } from './BtnBurgerMenu';
 import { AuthNav } from '../AuthNav/AuthNav';
 import { BurgerMenu } from './BurgerMenu';

@@ -7,7 +7,7 @@ import {
   BoxInput,
   InputFormik,
   ErrorText,
-} from '../../components/LoginForm/LoginForm.styled';
+} from 'components/LoginForm/LoginForm.styled';
 
 export const FormAdd = styled(FormFormik)`
   @media screen and (max-width: 767px) {

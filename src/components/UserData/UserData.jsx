@@ -6,8 +6,8 @@ import { filterData, checkType } from './helpersForRender';
 import { HiCamera } from 'react-icons/hi';
 import { UserDataItem } from 'components/UserDataItem/UserDataItem';
 import { Logout } from 'components/Logout/Logout';
-import userAvatar from '../../staticImages/userAvatar.png';
-import { TitleSectionUser } from '../../pages/UserPage/UserPage.styled';
+import userAvatar from 'staticImages/userAvatar.png';
+import { TitleSectionUser } from 'pages/UserPage/UserPage.styled';
 import {
   CardProfile,
   ItemUserInfo,
@@ -29,15 +29,13 @@ export const UserData = () => {
   const [infoProfile, setInfoProfile] = useState(null);
   const [changePhoto, setchangePhoto] = useState(false);
 
-
   useEffect(() => {
-   setchangePhoto(false);
+    setchangePhoto(false);
     if (userInfo) {
       const infoProfile = filterData(userInfo.user);
       setInfoProfile(infoProfile);
     }
   }, [userInfo]);
-
 
   const UploadFile = async fileSelect => {
     const imageURL = new FormData();

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { backgroundImg } from './HomePageImg';
 import { device } from 'Device';
-import decorLeft from '../../staticImages/homepage/decorLeft.png';
-import decorRigth from '../../staticImages/homepage/decorRigth.png';
+import decorLeft from 'staticImages/homepage/decorLeft.png';
+import decorRigth from 'staticImages/homepage/decorRigth.png';
 import { GiTakeMyMoney } from 'react-icons/gi';
 
 export const Section = styled.section`
