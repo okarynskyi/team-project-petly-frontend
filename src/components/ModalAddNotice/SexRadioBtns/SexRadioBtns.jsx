@@ -1,5 +1,5 @@
-import { ReactComponent as MaleIcon } from '../../../staticImages/male.svg';
-import { ReactComponent as FemaleIcon } from '../../../staticImages/female.svg';
+import { ReactComponent as MaleIcon } from 'staticImages/male.svg';
+import { ReactComponent as FemaleIcon } from 'staticImages/female.svg';
 import { Label } from '../ModalAddNotice.styled';
 import { SexRadioWrap, RadioSexLabel, InputRadio } from './SexRadioBtns.styled';
 

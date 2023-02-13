@@ -4,7 +4,7 @@ import { device } from 'Device';
 import {
   WrapperAddPet,
   AddPetBtn,
-} from '../../components/ModalAddsPet/ModalAddsPet.styled';
+} from 'components/ModalAddsPet/ModalAddsPet.styled';
 
 export const Label = styled.label`
   position: relative;
@@ -92,8 +92,6 @@ export const InputFieldWrap = styled.div`
   @media (min-width: 768px) {
     margin-top: 32px;
     gap: 16px;
-  }
-  
   }
 `;
 export const BtnWrap = styled.div`

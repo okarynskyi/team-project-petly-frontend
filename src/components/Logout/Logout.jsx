@@ -2,7 +2,7 @@ import { HiOutlineLogout } from 'react-icons/hi';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { logOut } from '../../redux/auth/authOperations';
+import { logOut } from 'redux/auth/authOperations';
 import { LogoutBtn, WrapperQuit, ButtonQuit } from './Logout.styled';
 import Modal from '../common/Modal/Modal';
 import { toast } from 'react-toastify';
@@ -25,7 +25,7 @@ export const Logout = () => {
             <ButtonQuit
               type="button"
               onClick={() => {
-                dispatch(logOut()).then((res) => {
+                dispatch(logOut()).then(res => {
                   if (res.meta.requestStatus === 'fulfilled') {
                     toast.success('Successfully logged out!');
                     navigate('/login', { replace: true });

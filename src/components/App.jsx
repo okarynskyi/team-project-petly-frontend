@@ -7,20 +7,22 @@ import 'react-toastify/dist/ReactToastify.css';
 import {
   selectIsGetCurrentUser,
   selectIsLoading,
-} from '../redux/auth/authSelectors';
-import { getCurrentUser } from '../redux/auth/authOperations';
+} from 'redux/auth/authSelectors';
+import { getCurrentUser } from 'redux/auth/authOperations';
 import { SharedLayout } from './SharedLayout';
 import { Loader } from './Loader';
-import PublicRoute from '../components/PublicRoute';
-import PrivateRoute from '../components/PrivateRoute';
+import PublicRoute from 'components/PublicRoute';
+import PrivateRoute from 'components/PrivateRoute';
 
-const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
-const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
-const UserPage = lazy(() => import('../pages/UserPage/UserPage'));
-const NewsPage = lazy(() => import('../pages/NewsPage/NewsPage'));
-const NoticesPage = lazy(() => import('../pages/NoticesPage/NoticesPage'));
-const OurFriendsPage = lazy(()=> import('../pages/OurFriendsPage/OurFriendsPage'))
-const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
+const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
+const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
+const UserPage = lazy(() => import('pages/UserPage/UserPage'));
+const NewsPage = lazy(() => import('pages/NewsPage/NewsPage'));
+const NoticesPage = lazy(() => import('pages/NoticesPage/NoticesPage'));
+const OurFriendsPage = lazy(() =>
+  import('pages/OurFriendsPage/OurFriendsPage')
+);
+const HomePage = lazy(() => import('pages/HomePage/HomePage'));
 
 export const App = () => {
   const isLoading = useSelector(selectIsLoading);

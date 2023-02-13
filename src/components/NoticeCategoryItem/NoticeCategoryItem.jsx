@@ -1,12 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
-import operations from '../../redux/notices/noticesOperations';
+import operations from 'redux/notices/noticesOperations';
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
-import petNotFound from '../../staticImages/petNotFound.jpg';
+import petNotFound from 'staticImages/petNotFound.jpg';
 import ModalNotice from '../ModalNotice/ModalNotice';
 import { formatAgeYears } from 'helpers/formatDate';
-import { categoryShelf, normalizeCategoryName } from 'helpers/noticesCategoryShelf';
+import {
+  categoryShelf,
+  normalizeCategoryName,
+} from 'helpers/noticesCategoryShelf';
 import {
   Item,
   ImageWrapper,
@@ -27,23 +30,21 @@ import {
 } from './NoticeCategoryItem.styled';
 
 const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
-  const {
-    avatarURL,
-    birthday,
-    breed,
-    location,
-    title,
-    _id,
-    adopStatus,
-  } = notice;
+  const { avatarURL, birthday, breed, location, title, _id, adopStatus } =
+    notice;
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
   let query = null;
 
-  const refreshingPage = (category) => {
-    if (category === categoryShelf[category]) dispatch(operations.getNoticesByCategory({category, query}));
-    if (category === "favorites-ads") { dispatch(operations.getFavorites({query})); };
-    if (category === "my-ads") { dispatch(operations.getUserNotices({query})); };
+  const refreshingPage = category => {
+    if (category === categoryShelf[category])
+      dispatch(operations.getNoticesByCategory({ category, query }));
+    if (category === 'favorites-ads') {
+      dispatch(operations.getFavorites({ query }));
+    }
+    if (category === 'my-ads') {
+      dispatch(operations.getUserNotices({ query }));
+    }
   };
 
   const addToFavorite = async () => {
@@ -52,10 +53,9 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
         'You need to authorize before adding pets to favorites.'
       );
     }
-    dispatch(operations.addToFavorites(_id))
-      .then(() => {
-        refreshingPage(category);
-      })
+    dispatch(operations.addToFavorites(_id)).then(() => {
+      refreshingPage(category);
+    });
 
     toast.success('Pet added to favorites.');
   };
@@ -66,40 +66,38 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
         'You need to authorize before removing pets from favorites.'
       );
     }
-    dispatch(operations.deleteFromFavorites(_id))
-      .then(() => {
-        refreshingPage(category);
-      })
+    dispatch(operations.deleteFromFavorites(_id)).then(() => {
+      refreshingPage(category);
+    });
 
     toast.success('Pet removed from favorites.');
   };
 
   const onChangeOpenModal = () => {
-    dispatch(operations.getOneNotice(_id))
+    dispatch(operations.getOneNotice(_id));
   };
 
   const removeNotice = () => {
-    dispatch(operations.deleteUserNotice(_id))
-      .then(() => {
-        refreshingPage(category);
-      })
+    dispatch(operations.deleteUserNotice(_id)).then(() => {
+      refreshingPage(category);
+    });
   };
 
   return (
     <Item key={_id}>
       <ImageWrapper>
-        <Image src={avatarURL || petNotFound} alt="Pet" loading='lazy' />
+        <Image src={avatarURL || petNotFound} alt="Pet" loading="lazy" />
       </ImageWrapper>
       <CategoryName>{normalizeCategoryName[adopStatus]}</CategoryName>
 
       {!isFavorite && (
         <SvgWrapper>
-          <AddToFavoriteBtn onClick={addToFavorite}/>
+          <AddToFavoriteBtn onClick={addToFavorite} />
         </SvgWrapper>
       )}
       {isFavorite && (
         <SvgWrapper>
-          <RemoveFromFavoriteBtn onClick={removeFromFavorite}/>
+          <RemoveFromFavoriteBtn onClick={removeFromFavorite} />
         </SvgWrapper>
       )}
 
@@ -112,7 +110,7 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
             <DescriptionText>Place:</DescriptionText>
             <DescriptionText>Age:</DescriptionText>
           </DescriptionTextContainer>
-          
+
           <DescriptionTextContainer>
             <DescriptionText>{breed}</DescriptionText>
             <DescriptionText>{location}</DescriptionText>
@@ -127,15 +125,21 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
             <ButtonsWrapper>
               <StyledButton onClick={onChangeOpenModal}>
                 <ModalNotice
-                refreshingPage={() => {refreshingPage(category)}}
+                  refreshingPage={() => {
+                    refreshingPage(category);
+                  }}
                 />
               </StyledButton>
-              {isOwner && <StyledButton onClick={removeNotice}>Delete <StyledTrash /></StyledButton>}
+              {isOwner && (
+                <StyledButton onClick={removeNotice}>
+                  Delete <StyledTrash />
+                </StyledButton>
+              )}
             </ButtonsWrapper>
           </>
         ) : (
-            <StyledButton onClick={onChangeOpenModal}>
-              <ModalNotice/>
+          <StyledButton onClick={onChangeOpenModal}>
+            <ModalNotice />
           </StyledButton>
         )}
       </ButtonDiv>

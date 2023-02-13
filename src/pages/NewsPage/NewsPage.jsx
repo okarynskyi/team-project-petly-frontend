@@ -12,19 +12,24 @@ import {
   DataP,
   A,
 } from './NewsPage.styled.jsx';
-import { SearchBar } from '../../components/common/SearchBar/SearchBar';
+import { SearchBar } from 'components/common/SearchBar/SearchBar';
 import { dateConverter } from 'helpers/formatDate.js';
+import { Loader } from 'components/Loader';
+import NotFound from 'components/common/NotFound/NotFound.jsx';
 
 const NewsPage = () => {
   const [news, setNews] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
+    setIsLoading(true);
     getNews()
       .then(data => data.data)
       .then(results => {
         setNews(results.news);
+        setIsLoading(false);
       });
   }, []);
 
@@ -59,7 +64,9 @@ const NewsPage = () => {
             onReset={handlerSearchReset}
             searchValue={searchValue.trim()}
           />
-          {filtredNews && (
+          {isLoading && <Loader />}
+
+          {!isLoading && filtredNews.length > 0 && (
             <NewsListBoxUl>
               {filtredNews.map(item => (
                 <li key={item._id}>
@@ -76,6 +83,8 @@ const NewsPage = () => {
               ))}
             </NewsListBoxUl>
           )}
+
+          {!isLoading && filtredNews.length === 0 && <NotFound />}
         </Container>
       </Section>
     </main>

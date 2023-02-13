@@ -12,7 +12,7 @@ import {
 import { CircleBtn } from 'components/common/CircleBtn.styled';
 import { useDispatch } from 'react-redux';
 import { userUpdate } from 'redux/user/userOperations';
-import { getCurrent } from '../../helpers/formatDate';
+import { getCurrent } from 'helpers/formatDate';
 import { chooseTypeLink, findCity } from './helpersForRender';
 import { toast } from 'react-toastify';
 
@@ -41,14 +41,14 @@ export const UserDataItem = ({
   }, [label, value]);
   // const activeInput = document.querySelector(`#${activeField}`);
   // const handleClickOutside = event => {
-    //          console.log(startUpdate);
-    // if (activeField && !startUpdate ) {
-    // if (event.target !== activeInput) {
-    //   setStartUpdate(false);
-    //   setDisable(true);
-    //   setActiveField(null);
-    // }
-    // }
+  //          console.log(startUpdate);
+  // if (activeField && !startUpdate ) {
+  // if (event.target !== activeInput) {
+  //   setStartUpdate(false);
+  //   setDisable(true);
+  //   setActiveField(null);
+  // }
+  // }
   // };
   // window.addEventListener('mouseup', handleClickOutside);
 
@@ -92,7 +92,9 @@ export const UserDataItem = ({
       formValues.location &&
       (formValues.location.length < 4 || formValues.location.length > 40)
     ) {
-      toast.error('City must be in English and contain not more than 40 symbols');
+      toast.error(
+        'City must be in English and contain not more than 40 symbols'
+      );
       return;
     }
     const changedField = Object.entries(formValues).find(item => item[1]);

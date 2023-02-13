@@ -12,6 +12,10 @@ export const Section = styled.section`
   @media ${device.desktop} {
     padding: 70px 0 200px;
   }
+
+  img {
+    margin-top: 16px;
+  }
 `;
 
 export const NewsH1 = styled.h1`
@@ -125,7 +129,7 @@ export const A = styled.a`
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
-  :focus  {
+  :focus {
     color: ${p => p.theme.colors.hoverAccent};
   }
 `;

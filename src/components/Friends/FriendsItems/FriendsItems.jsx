@@ -1,9 +1,19 @@
 import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
-import petNotFound from '../../../staticImages/petNotFound.jpg';
+import petNotFound from 'staticImages/petNotFound.jpg';
 import TimeItem from './TimeItem/TimeItem';
-import { StyledItem, StyledTitle, StyledWrapper, ImgWrapper, StyledImg, StyledList, StyledNoInfo, StyledListItem, StyledLink, StyledItemTitle } from './FriendsItems.styled';
-
+import {
+  StyledItem,
+  StyledTitle,
+  StyledWrapper,
+  ImgWrapper,
+  StyledImg,
+  StyledList,
+  StyledNoInfo,
+  StyledListItem,
+  StyledLink,
+  StyledItemTitle,
+} from './FriendsItems.styled';
 
 const noItem = '-----------------------';
 
@@ -25,7 +35,7 @@ function FriendsItems({
     setIsOpen(prevState => !prevState);
   };
 
-   useEffect(() => {
+  useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       if (prevScrollY.current < currentScrollY && isOpen) {
@@ -49,11 +59,7 @@ function FriendsItems({
           <StyledImg src={imageUrl || petNotFound} alt={title} />
         </ImgWrapper>
         <StyledList>
-          <TimeItem
-            onClick={handleClick}
-            workDays={workDays}
-            isOpen={isOpen}
-          />
+          <TimeItem onClick={handleClick} workDays={workDays} isOpen={isOpen} />
           <StyledListItem>
             <StyledItemTitle>Address:</StyledItemTitle>
             {addressUrl ? (
@@ -96,7 +102,7 @@ function FriendsItems({
           </StyledListItem>
         </StyledList>
       </StyledWrapper>
-      </StyledItem>
+    </StyledItem>
   );
 }
 

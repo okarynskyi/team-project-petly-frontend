@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { WrapperQuit, ButtonQuit } from '../Logout/Logout.styled';
 import Modal from '../common/Modal/Modal';
 import { CircleBtnTrash, StyledTrash } from './PetsList.styled';
-import { removePet } from '../../redux/user/userOperations';
+import { removePet } from 'redux/user/userOperations';
 
 export const DeletePet = ({ _id }) => {
   const dispatch = useDispatch();
@@ -19,16 +19,16 @@ export const DeletePet = ({ _id }) => {
           Do you really want to delete pet?
           <div>
             {' '}
-            <ButtonQuit 
+            <ButtonQuit
               type="button"
               onClick={() => {
                 dispatch(removePet(_id));
-                setModalActive(false)
+                setModalActive(false);
               }}
             >
               Yes
             </ButtonQuit>
-            <ButtonQuit  type="button" onClick={() => setModalActive(false)}>
+            <ButtonQuit type="button" onClick={() => setModalActive(false)}>
               Cancel
             </ButtonQuit>
           </div>

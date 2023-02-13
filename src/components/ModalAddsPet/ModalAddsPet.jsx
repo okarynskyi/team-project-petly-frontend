@@ -3,9 +3,9 @@ import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { HiX, HiOutlinePlus } from 'react-icons/hi';
 import { schema1, schema2 } from './schemas';
-import { getCurrent } from '../../helpers/formatDate';
+import { getCurrent } from 'helpers/formatDate';
 import { ModalUser } from './Modal';
-import { addPet } from '../../redux/user/userOperations';
+import { addPet } from 'redux/user/userOperations';
 import {
   WrapperAddPet,
   StyledPlus,
@@ -50,17 +50,17 @@ const ModalAddPet = () => {
     document.body.style.overflow = 'auto';
     modalCloseEscapeRemove();
   };
-    const modalCloseEscape = () => {
-      const handleKeyDown = e => {
-    if (e.code === 'Escape') {
-      setModalActive(false);
-    }
+  const modalCloseEscape = () => {
+    const handleKeyDown = e => {
+      if (e.code === 'Escape') {
+        setModalActive(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
   };
-  window.addEventListener('keydown', handleKeyDown);
-  }
   const modalCloseEscapeRemove = () => {
-  window.addEventListener('keydown', modalCloseEscape);
-  }
+    window.addEventListener('keydown', modalCloseEscape);
+  };
 
   const handleNextStep = (newData, final = false) => {
     setDatat(prev => ({ ...prev, ...newData }));
