@@ -31,7 +31,9 @@ export const PetsList = () => {
             <CardPet key={pet._id}>
               <ImgPet src={pet.petsPhotoURL} alt={pet.name} />
               <WrapperInfo>
-                <DeletePet _id={pet._id} />
+                <DeletePet _id={pet._id}
+                >
+                </DeletePet>
                 <InfoPet>
                   Name: <span>{pet.name}</span>{' '}
                 </InfoPet>

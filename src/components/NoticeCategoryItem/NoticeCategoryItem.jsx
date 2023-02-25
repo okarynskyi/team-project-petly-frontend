@@ -26,8 +26,9 @@ import {
   SvgWrapper,
   ButtonsWrapper,
   StyledButton,
-  StyledTrash,
 } from './NoticeCategoryItem.styled';
+
+import { DeletePet } from 'components/PetsList/DeletePet';
 
 const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
   const { avatarURL, birthday, breed, location, title, _id, adopStatus } =
@@ -35,6 +36,7 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
   let query = null;
+
 
   const refreshingPage = category => {
     if (category === categoryShelf[category])
@@ -75,12 +77,6 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
 
   const onChangeOpenModal = () => {
     dispatch(operations.getOneNotice(_id));
-  };
-
-  const removeNotice = () => {
-    dispatch(operations.deleteUserNotice(_id)).then(() => {
-      refreshingPage(category);
-    });
   };
 
   return (
@@ -131,9 +127,15 @@ const NoticesCategoryItem = ({ notice, isFavorite, isOwner, category }) => {
                 />
               </StyledButton>
               {isOwner && (
-                <StyledButton onClick={removeNotice}>
-                  Delete <StyledTrash />
-                </StyledButton>
+                <>
+                <DeletePet 
+                _id={_id} 
+                category={category}
+                refreshingPage={() => {
+                  refreshingPage(category);
+                }}
+                />
+                </>
               )}
             </ButtonsWrapper>
           </>

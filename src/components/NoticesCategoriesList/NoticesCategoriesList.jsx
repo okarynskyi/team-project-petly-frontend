@@ -96,7 +96,6 @@ const NoticesCategoryList = () => {
                     isFavorite={isFavorite}
                     isOwner={isOwner}
                     category={category}
-                    // page={page}
                   />
                 );
               })}

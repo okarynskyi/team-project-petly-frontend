@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logOut } from 'redux/auth/authOperations';
 import { LogoutBtn, WrapperQuit, ButtonQuit } from './Logout.styled';
-import Modal from '../common/Modal/Modal';
+import { ModalContentDellLogout } from 'components/common/Modal/Modal.styled';
+import { Modal } from 'components/common/Modal/Modal';
 import { toast } from 'react-toastify';
 
 export const Logout = () => {
@@ -12,12 +13,23 @@ export const Logout = () => {
   const [modalActive, setModalActive] = useState(false);
   const navigate = useNavigate();
 
+  function closeModal () {
+    setModalActive(false)
+    document.body.style.overflow = '';
+  }
   return (
     <main>
       <LogoutBtn onClick={() => setModalActive(true)}>
         <HiOutlineLogout color="rgba(245, 146, 86, 0.6)" size="18px" /> Log Out
       </LogoutBtn>
-      <Modal active={modalActive} setActive={setModalActive}>
+      {
+      // modalActive && (
+      <Modal 
+      onClick={() => closeModal()} 
+      active={modalActive}
+      setActive={setModalActive}>
+        <ModalContentDellLogout
+        className={modalActive ? "modal-content active" : "modal-content"}>
         <WrapperQuit>
           Do you really want to logout?
           <div>
@@ -42,7 +54,10 @@ export const Logout = () => {
             </ButtonQuit>
           </div>
         </WrapperQuit>
+        </ModalContentDellLogout>
       </Modal>
+      // )
+      }
     </main>
   );
 };

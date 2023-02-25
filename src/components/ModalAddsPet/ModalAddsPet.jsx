@@ -1,17 +1,15 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import { HiX, HiOutlinePlus } from 'react-icons/hi';
+import { HiOutlinePlus } from 'react-icons/hi';
 import { schema1, schema2 } from './schemas';
 import { getCurrent } from 'helpers/formatDate';
-import { ModalUser } from './Modal';
+import { Modal } from '../common/Modal/Modal';
 import { addPet } from 'redux/user/userOperations';
 import {
   WrapperAddPet,
   StyledPlus,
   AddPetBtn,
-  WrapperModalAddPet1,
-  WrapperModalAddPet2,
   FormAdd,
   BowInputs,
   InputStyled,
@@ -21,7 +19,6 @@ import {
   LabelEdd,
   Error,
   Preview,
-  ModalButton,
 } from './ModalAddsPet.styled';
 import {
   AccentButton,
@@ -29,7 +26,13 @@ import {
 } from 'components/common/StyledButton/StyledButton.styled';
 import { HiddenInput } from 'components/UserData/UserData.styled';
 import { Formik } from 'formik';
-import { ModalContent, ModalContent2 } from '../ModalAddsPet/Modal.styled';
+import { ModalContentAddPets1, 
+  ModalContentAddPets2,
+  WrapperModalAddPet1,
+  WrapperModalAddPet2,
+ } from '../common/Modal/Modal.styled';
+import { ModalCloseBtn } from 'components/common/ModalCloseBtn/ModalCloseBtn';
+
 const ModalAddPet = () => {
   const [modalActive, setModalActive] = useState(false);
   const [datat, setDatat] = useState({
@@ -156,7 +159,6 @@ const ModalAddPet = () => {
   };
   const ModalAddPetTwo = props => {
     const handleSubmit = values => {
-      console.log(values);
       props.next(values, true);
     };
     const handleChange = e => {
@@ -240,44 +242,35 @@ const ModalAddPet = () => {
           <StyledPlus />
         </AddPetBtn>
       </WrapperAddPet>
-      {modalActive && (
-        <ModalUser>
+      {
+      // modalActive && (
+        <Modal
+        active={modalActive}
+        setActive={setModalActive}>
           {currentStep === 0 ? (
-            <ModalContent>
+            <ModalContentAddPets1
+            className={modalActive ? "modal-content active" : "modal-content"}>
               {' '}
               <WrapperModalAddPet1>
                 {steps[0]}{' '}
-                <ModalButton
-                  type="button"
-                  onClick={() => {
-                    setModalActive(false);
-                    document.body.style.overflow = 'auto';
-                    modalCloseEscapeRemove();
-                  }}
-                >
-                  <HiX color="#111111" size="34px" />
-                </ModalButton>
+                <ModalCloseBtn
+                setModalActive={setModalActive}
+                />
               </WrapperModalAddPet1>
-            </ModalContent>
+            </ModalContentAddPets1>
           ) : (
-            <ModalContent2>
+            <ModalContentAddPets2
+            className={modalActive ? "modal-content active" : "modal-content"}>
               <WrapperModalAddPet2>
                 {steps[1]}{' '}
-                <ModalButton
-                  type="button"
-                  onClick={() => {
-                    setModalActive(false);
-                    document.body.style.overflow = 'auto';
-                    modalCloseEscapeRemove();
-                  }}
-                >
-                  <HiX color="#111111" size="34px" />
-                </ModalButton>
+                <ModalCloseBtn
+                setModalActive={setModalActive}/>
               </WrapperModalAddPet2>
-            </ModalContent2>
+            </ModalContentAddPets2>
           )}
-        </ModalUser>
-      )}
+        </Modal>
+      // )
+      }
     </div>
   );
 };
