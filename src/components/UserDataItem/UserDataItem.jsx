@@ -41,7 +41,6 @@ export const UserDataItem = ({
   }, [label, value]);
   // const activeInput = document.querySelector(`#${activeField}`);
   // const handleClickOutside = event => {
-  //          console.log(startUpdate);
   // if (activeField && !startUpdate ) {
   // if (event.target !== activeInput) {
   //   setStartUpdate(false);

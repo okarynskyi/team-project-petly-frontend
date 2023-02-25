@@ -128,34 +128,34 @@ export const Preview = styled.img`
     height: 182px;
   }
 `;
-export const WrapperModalAddPet1 = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  padding: 30px 20px;
-  overflow-y: auto;
-  width: 100%;
-  @media ${device.tablet} {
-    width: 620px;
-    height: 100%;
-    padding: 40px 75px;
-  }
-`;
-export const WrapperModalAddPet2 = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  padding: 20px 20px;
-  overflow-y: auto;
-  width: 100%;
-  @media ${device.tablet} {
-    width: 620px;
-    height: 100%;
-    padding: 40px 75px;
-  }
-`;
+// export const WrapperModalAddPet1 = styled.div`
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   height: 100%;
+//   padding: 30px 20px;
+//   overflow-y: auto;
+//   width: 100%;
+//   @media ${device.tablet} {
+//     width: 620px;
+//     height: 100%;
+//     padding: 40px 75px;
+//   }
+// `;
+// export const WrapperModalAddPet2 = styled.div`
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   height: 100%;
+//   padding: 20px 20px;
+//   overflow-y: auto;
+//   width: 100%;
+//   @media ${device.tablet} {
+//     width: 620px;
+//     height: 100%;
+//     padding: 40px 75px;
+//   }
+// `;
 export const TitleModal = styled.h3`
   margin-bottom: 24px;
   text-align: center;
@@ -231,21 +231,21 @@ export const ModalButton = styled.button`
     transform: scale(1.2);
   }
 `;
-export const WrapperModalAddPet = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  padding: 40px 20px;
-  overflow-y: auto;
-  width: 100%;
-  padding-top: ${props => props.theme.space[3]}px;
-  @media ${device.mobileOnly} {
-    max-height: 510px;
-  }
-  @media ${device.tablet} {
+// export const WrapperModalAddPet = styled.div`
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   height: 100%;
+//   padding: 40px 20px;
+//   overflow-y: auto;
+//   width: 100%;
+//   padding-top: ${props => props.theme.space[3]}px;
+//   @media ${device.mobileOnly} {
+//     max-height: 510px;
+//   }
+  /* @media ${device.tablet} {
     width: 620px;
     max-height: 570px;
     padding: 40px 75px;
-  }
-`;
+  } */
+// `;

@@ -32,6 +32,18 @@ export const LogoutBtn = styled.button`
     right: auto;
   }
 `;
+// export const ModalStyledContent = styled.div`
+// position: absolute;
+//   padding: 20px;
+//   border-radius: 40px;
+//   background-color: #FFFFFF;
+//   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+// /* transform: scale(0.5); */
+// transition: 0.5s all;
+// &.active {
+//   transform: scale(1);
+// }
+// `
 export const WrapperQuit = styled.div`
   width: 240px;
   height: 240px;

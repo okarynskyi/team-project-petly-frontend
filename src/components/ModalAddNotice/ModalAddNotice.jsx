@@ -7,7 +7,7 @@ import operations from 'redux/notices/noticesOperations';
 import { useSelector } from 'react-redux';
 import { selectToken } from 'redux/auth/authSelectors';
 import { toast } from 'react-toastify';
-import { ModalUser } from '../ModalAddsPet/Modal';
+import { Modal } from '../common/Modal/Modal';
 import { NextBtn } from './NextBtn/NextBtn';
 import { CancelBtn } from './CancelBtn/CancelBtn';
 
@@ -19,8 +19,8 @@ import { CommentField } from './CommentField/CommentField';
 import { FileInput } from './FileInput/FileInput';
 import { TextInput } from './TextInput/TextInput';
 import { PriceField } from './PriceField/PriceField';
-import { HiX } from 'react-icons/hi';
-import { StyledPlus, ModalButton } from '../ModalAddsPet/ModalAddsPet.styled';
+import { StyledPlus } from '../ModalAddsPet/ModalAddsPet.styled';
+import { ModalCloseBtn } from 'components/common/ModalCloseBtn/ModalCloseBtn';
 import {
   Label,
   LabelBreed,
@@ -34,9 +34,8 @@ import {
   AddPetNotice,
   TextAdd,
   TextAddLeft,
-  ModalContent3,
-  WrapperModalAddNotice,
 } from './ModalAddNotice.styled';
+import { ModalContentAddNotice, WrapperModalAddNotice } from 'components/common/Modal/Modal.styled';
 export const locationRegexp = /[A-Z][a-z]*,\s[A-Z][a-z]*/;
 export const titleRegexp = /^[a-zA-Z\s]*$/;
 
@@ -112,14 +111,6 @@ const ModalAddNotice = () => {
 
     reader.readAsDataURL(file);
   };
-
-  const handleKeyDown = e => {
-    if (e.code === 'Escape') {
-      setModalActive(false);
-      document.body.style.overflow = 'auto';
-    }
-  };
-  window.addEventListener('keydown', handleKeyDown);
   
   const submitForm = values => {
     const { title, name, breed, comments, price } = values;
@@ -235,9 +226,13 @@ const ModalAddNotice = () => {
               <TextAdd>Add pet </TextAdd>
             </AddPetNotice>
           </WrapperAddNotice>
-          {modalActive && (
-            <ModalUser>
-              <ModalContent3>
+          {
+          // modalActive && (
+            <Modal
+            active={modalActive}
+            setActive={setModalActive}>
+              <ModalContentAddNotice
+              className={modalActive ? "modal-content active" : "modal-content"}>
                 <WrapperModalAddNotice>
                   <Title>Add pet</Title>
                   <Subtitle>Fill the fields below, please.</Subtitle>
@@ -370,7 +365,7 @@ const ModalAddNotice = () => {
                             <CancelBtn
                               onClick={() => {
                                 setModalActive(false);
-                                document.body.style.overflow = 'hidden';
+                                document.body.style.overflow = '';
                               }}
                             />
                           ) : (
@@ -381,18 +376,12 @@ const ModalAddNotice = () => {
                     )}
                   </Formik>
                 </WrapperModalAddNotice>
-                <ModalButton
-                  type="button"
-                  onClick={() => {
-                    setModalActive(false);
-                    document.body.style.overflow = 'auto';
-                  }}
-                >
-                  <HiX color="#111111" size="34px" />
-                </ModalButton>
-              </ModalContent3>
-            </ModalUser>
-          )}
+                <ModalCloseBtn
+                setModalActive={setModalActive}/>
+              </ModalContentAddNotice>
+            </Modal>
+          // )
+          }
         </>
       )}
     </div>

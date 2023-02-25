@@ -47,7 +47,7 @@ export const StyledButton = styled.div`
   }
 `;
 
-export const StyledTrash = styled(Delete)`
+export const StyledTrashNotice = styled(Delete)`
   width: 20px;
   height: 20px;
   display: inline-block;

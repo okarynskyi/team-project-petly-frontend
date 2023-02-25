@@ -153,34 +153,34 @@ export const TextAddLeft = styled.p`
     color: #111111;
   }
 `;
-export const ModalContent3 = styled.div`
-  position: absolute;
-  top: 8%;
-  left: 50%;
-  transform: translate(-50%, -5%);
-  height: 700px;
+// export const ModalContent3 = styled.div`
+//   position: absolute;
+//   top: 8%;
+//   left: 50%;
+//   transform: translate(-50%, -5%);
+//   height: 700px;
 
-  width: 280px;
-  // max-width: 100%;
-  background: #ffffff;
-  border-radius: 20px;
-  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
-    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
-  @media ${device.tablet} {
-    width: 608px;
-    // height: 650px;
-  }
-`;
-export const WrapperModalAddNotice = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 10px 20px;
-  overflow-y: auto;
-  width: 100%;
+//   width: 280px;
+//   // max-width: 100%;
+//   background: #ffffff;
+//   border-radius: 20px;
+//   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+//     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+//   @media ${device.tablet} {
+//     width: 608px;
+//     // height: 650px;
+//   }
+// `;
+// export const WrapperModalAddNotice = styled.div`
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   padding: 10px 20px;
+//   overflow-y: auto;
+//   width: 100%;
 
-  @media ${device.tablet} {
-    width: 608px;
-    padding: 10px 75px;
-  }
-`;
+//   @media ${device.tablet} {
+//     width: 608px;
+//     padding: 10px 75px;
+//   }
+// `;

@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-
 import { Loader } from 'components/Loader';
-import Modal from 'components/common/Modal/Modal';
+import { Modal } from 'components/common/Modal/Modal';
 import { selectIsLoggedIn, selectUser } from 'redux/auth/authSelectors';
 import operations from 'redux/notices/noticesOperations';
 import { selectOneNoticeMoreInfo, selectIsLoading } from 'redux/notices/noticesSelectors';
 import { dateConverter } from 'helpers/formatDate';
 import { normalizeCategoryName } from 'helpers/noticesCategoryShelf';
-import { ModalNoticeWrapper, ImgModal, FilterTitleBox, FitlerTitle, Items, Text, ModalTitle, Email, Tel, TextWrapper, ContactText, ButtonText, ContactItem, Btn, FirstList, ButtonsList, SecondList, ListWrapper, WrapperForDesc, ImageWrapper, ListItemDescr, ButtonTel, PetsFavoriteSvg, CommentSpan, Comment, ModalBox } from './ModalNotice.styled';
+import { ModalNoticeWrapper, ImgModal, FilterTitleBox, FitlerTitle, Items, Text, ModalTitle, Email, Tel, TextWrapper, ContactText, ButtonText, ContactItem, Btn, FirstList, ButtonsList, SecondList, ListWrapper, WrapperForDesc, ImageWrapper, ListItemDescr, ButtonTel, PetsFavoriteSvg, CommentSpan, Comment } from './ModalNotice.styled';
 import petNotFound from 'staticImages/petNotFound.jpg';
+import { ModalCloseBtn } from 'components/common/ModalCloseBtn/ModalCloseBtn';
+import { ModalContentLearnMore } from 'components/common/Modal/Modal.styled';
 
 const ModalNotice = ({refreshingPage}) => {
   const [modalActive, setModalActive] = useState(false);
@@ -76,14 +77,26 @@ const ModalNotice = ({refreshingPage}) => {
     setModalActive(true)
     document.body.style.overflow = 'hidden';
   };
-  
+  function closeModal () {
+    setModalActive(false)
+    document.body.style.overflow = '';
+  }
   return (
     <div position="relative">
       <ModalNoticeWrapper onClick={() => openModal()}>Learn more</ModalNoticeWrapper>
-      <Modal
+      {
+      /* {modalActive && ( */}
+
+     { <Modal 
+      active={modalActive}
+      setActive={setModalActive}
+      onClick={() => closeModal()}
+        >
+        <ModalContentLearnMore
+         className={modalActive ? "modal-content active" : "modal-content"}
+        onClick={e => e.stopPropagation()}
         active={modalActive}
-        setActive={setModalActive}>
-        <ModalBox>
+        >
           <WrapperForDesc>
             <ImageWrapper>
               <FilterTitleBox>
@@ -183,9 +196,12 @@ const ModalNotice = ({refreshingPage}) => {
                 </Btn>
               )}
             </li>
+            <ModalCloseBtn
+                setModalActive={setModalActive}/>
           </ButtonsList>
-        </ModalBox>
+        </ModalContentLearnMore>
       </Modal>
+      }
     </div>
   );
 };
